@@ -342,31 +342,16 @@
       
         
           
-            <pre><code>proxychains是一个支持　http socks4 socks5 代理的强力的代理工具（支持身份认证）．&apos;chains&apos;这个词是关键，支持代理链．现在已经有新版（proxychains ng (new generation)，增加了一些功能．
-</code></pre><h3 id="支持的代理类型"><a href="#支持的代理类型" class="headerlink" title="支持的代理类型"></a>支持的代理类型</h3><pre><code>http, socks4, socks5    
-</code></pre><h5 id="支持的身份认证方式"><a href="#支持的身份认证方式" class="headerlink" title="支持的身份认证方式"></a>支持的身份认证方式</h5><pre><code>http基本身份认证  socks用户名/密码认证
-</code></pre><h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><pre><code>proxychains xxxx
-</code></pre><p>xxxx　的流量就走代理了．</p>
-<h3 id="配置文件位置"><a href="#配置文件位置" class="headerlink" title="配置文件位置"></a>配置文件位置</h3><pre><code>Proxychains 依照下面的顺序来寻找配置文件：
-首先在当前目录下找：
-./proxychains.conf
-再在用户家目录下找
-$(HOME)/.proxychains/proxychains.conf
-系统配置文件目录：
-/etc/proxychains.conf 
-</code></pre><h3 id="配置项详解"><a href="#配置项详解" class="headerlink" title="配置项详解"></a>配置项详解</h3><h4 id="代理类型"><a href="#代理类型" class="headerlink" title="代理类型"></a>代理类型</h4><p>dynamic_chain　自动跳过死代理<br>strict_chain　每个代理都使用，不管死活<br>random_chain 随便挑着代理用　（chain_len　是配置每次用的代理个数）</p>
-<h4 id="代理dns请求"><a href="#代理dns请求" class="headerlink" title="代理dns请求"></a>代理dns请求</h4><p>proxy_dns</p>
-<h4 id="跳过本地地址（proxychains-ng-目前值得一提的功能，ng才支持）"><a href="#跳过本地地址（proxychains-ng-目前值得一提的功能，ng才支持）" class="headerlink" title="跳过本地地址（proxychains ng 目前值得一提的功能，ng才支持）"></a>跳过本地地址（proxychains ng 目前值得一提的功能，ng才支持）</h4><p>localnet 127.0.0.0/255.0.0.0</p>
-<h4 id="超时时间"><a href="#超时时间" class="headerlink" title="超时时间"></a>超时时间</h4><p>tcp_read_time_out 15000<br>tcp_connect_time_out 8000</p>
-<h4 id="代理列表"><a href="#代理列表" class="headerlink" title="代理列表"></a>代理列表</h4><h5 id="代理列表开始的标记"><a href="#代理列表开始的标记" class="headerlink" title="代理列表开始的标记"></a>代理列表开始的标记</h5><p>[ProxyList]</p>
-<h5 id="代理格式"><a href="#代理格式" class="headerlink" title="代理格式"></a>代理格式</h5><pre><code>type  host  port [user pass]
-每一项配置用　tab 或者空格　隔开
-</code></pre><h5 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h5><pre><code>socks5    192.168.67.78    1080    lamer    secret
-http    192.168.89.3    8080    justu    hidden
-socks4    192.168.1.49    1080
-http    192.168.39.93    8080    
-</code></pre>
-          
+          proxychains是一个支持　http socks4 socks5 代理的强力的代理工具（支持身份认证）．&apos;chains&apos;这个词是关键，支持代理链．现在已经有新版（proxychains ng (new generation)，增加了一些功能．
+支持的代理类型http, so
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/03/proxychains配置详解/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -486,8 +471,15 @@ http    192.168.39.93    8080
       
         
           
-            
           
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/03/burpsuite-Target模块/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -607,8 +599,15 @@ http    192.168.39.93    8080
       
         
           
-            
           
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/03/代码审计-基本概念/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -750,12 +749,16 @@ http    192.168.39.93    8080
       
         
           
-            <pre><code>burpsuite的测试功能，主要体现在能灵活的修改重放http请求，其原理是将burpsuite做为代理，在客户端和服务器之间截断请求．（可以分析下httpproxy.pcapng，了解下http代理．）    
-</code></pre><h3 id="https证书问题"><a href="#https证书问题" class="headerlink" title="https证书问题"></a>https证书问题</h3><p>web请求有http和https两种，https是经过ssl证书加密的http通信，burpsuite在中间做代理，则必须让客户端信任burp的证书．<br>浏览器设置代理指向burp监听的端口，然后访问 <a href="https://burp" target="_blank" rel="noopener">https://burp</a> 把证书导入就行了</p>
-<h3 id="客户端不支持http代理的解决方案"><a href="#客户端不支持http代理的解决方案" class="headerlink" title="客户端不支持http代理的解决方案"></a>客户端不支持http代理的解决方案</h3><p>不可见代理（透明代理）</p>
-<p>默认不截获返回</p>
-
-          
+          burpsuite的测试功能，主要体现在能灵活的修改重放http请求，其原理是将burpsuite做为代理，在客户端和服务器之间截断请求．（可以分析下httpproxy.pcapng，了解下http代理．）    
+https证书问题web请求有http和https两种，https是经过ssl证书加
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/02/burpsuite截获流量/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -897,18 +900,18 @@ http    192.168.39.93    8080
       
         
           
-            <pre><code>burpsuite是由PortSwigger公司开发的一款功能强大的web应用程序测试工具．
+          burpsuite是由PortSwigger公司开发的一款功能强大的web应用程序测试工具．
 它不同于一般的web扫描器，它不局限与对网站的扫描，理论上，他可以测试一切通过http协议通讯的程序．    
-</code></pre><h3 id="安装设置中文字体"><a href="#安装设置中文字体" class="headerlink" title="安装设置中文字体"></a>安装设置中文字体</h3><ul>
-<li><h4 id="安装字体"><a href="#安装字体" class="headerlink" title="安装字体"></a>安装字体</h4>百度＂文泉驿微米黑＂下载一个（微软雅黑因该也可以，文泉驿是苑老师推荐的），扔到home目录下的.font目录里就行了．<br><img src="/2018/02/02/burpsuite优化配置/2.png" alt=""> </li>
-<li><h4 id="设置中文字体"><a href="#设置中文字体" class="headerlink" title="设置中文字体"></a>设置中文字体</h4>设置的位置：User options -&gt; Dispaly -&gt; HTTP Message Display<br>点击　change font … 按钮　修改　Font 属性，选择要设置的字体即可．<br><img src="/2018/02/02/burpsuite优化配置/1.png" alt=""> </li>
-</ul>
-<h3 id="设置较大的JVM内存"><a href="#设置较大的JVM内存" class="headerlink" title="设置较大的JVM内存"></a>设置较大的JVM内存</h3><p>burpsuite是个java程序，如果安装了jre就能顺利运行了，但是由于burpsuite是个做渗透测试的工具，免不了发送大量请求，那么默认的64M内存也就满足不了需求了．所以就要在java在创建虚拟机的时候分配较大的内存，命令如下：</p>
-<pre><code>java -jar -Xmx2048M  /your_burpsuite_path/burpsuite.jar
-</code></pre><p>其中参数-Xmx指定JVM可用的最大内存，单位可以是M，也可以是G，如果是G为单位的话，则脚本内容为：</p>
-<pre><code>java -jar -Xmx2G  /your_burpsuite_path/burpsuite.jar
-</code></pre>
-          
+安装设置中文字体
+安装字体百度＂文泉驿微米黑＂下载一个（微软雅黑因该也可以，文泉驿是苑老师推荐
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/02/burpsuite优化配置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1050,452 +1053,17 @@ http    192.168.39.93    8080
       
         
           
-            <h3 id="一、目标指定"><a href="#一、目标指定" class="headerlink" title="一、目标指定"></a>一、目标指定</h3><p>1.CIDR标志位 192.168.1.0/24<br>2.指定范围 192.168.1.1-255     192.168.1-255.1（任意位置）<br>3.IPv6地址只能用规范的IPv6地址或主机名指定。 CIDR 和八位字节范围不支持IPv6，因为它们对于IPv6几乎没什么用。</p>
-<blockquote>
-<p>-iL &lt;文件名&gt;</p>
-</blockquote>
-<p>主机名或者ip地址列表<br>列表中的项可以是Nmap在 命令行上接受的任何格式(IP地址，主机名，CIDR，IPv6，或者八位字节范围)。 每一项必须以一个或多个空格，制表符或换行符分开。 如果您希望Nmap从标准输入而不是实际文件读取列表， 您可以用一个连字符(-)作为文件名。</p>
-<blockquote>
-<p>-iR &lt;数量&gt;</p>
-</blockquote>
-<p>随机选择一定数量的目标</p>
-<blockquote>
-<p>–exclude &lt;主机名/地址&gt;</p>
-</blockquote>
-<p>不包含的主机</p>
-<blockquote>
-<p>–excludefile &lt;文件名&gt;</p>
-</blockquote>
-<p>不包含的主机的列表</p>
-<h3 id="二、主机发现"><a href="#二、主机发现" class="headerlink" title="二、主机发现"></a>二、主机发现</h3><p>1.如果没有给出主机发现的选项，Nmap 就发送一个TCP ACK报文到80端口和一个ICMP回声请求到每台目标机器。<br>2.一个例外是ARP扫描用于局域网上的任何目标机器。对于非特权UNIX shell用户，使用connect()系统调用会发送一个SYN报文而不是ACK 这些默认行为和使用-PA -PE选项的效果相同。<br>3.另外要注意的是即使您指定了其它 -P*选项，ARP发现(-PR)对于局域网上的 目标而言是默认行为，因为它总是更快更有效。</p>
-<blockquote>
-<p>-sL（列表扫描）</p>
-</blockquote>
-<p>列出给出目标的具体内容，默认会对地址进行反向解析，显示主机名。</p>
-<blockquote>
-<p>-sn（不进行端口扫描）</p>
-</blockquote>
-<p>与-sn一起完成的默认主机发现包括一个ICMP响应请求、TCP SYN到端口443、TCP ACK到端口80，以及一个ICMP的时间戳请求。</p>
-<p>在以前的Nmap中，-sn被称为-sP。-sP（Ping扫描）选项在默认情况下，发送一个ICMP回声请求和一个TCP报文到80端口。如果非特权用户执行，就发送一个SYN报文 (用connect()系统调用)到目标机的80端口。 当特权用户扫描局域网上的目标机时，会发送ARP请求(-PR)， ，除非使用了–send-ip选项。 -sP选项可以和除-P0)之外的任何发现探测类型-P* 选项结合使用以达到更大的灵活性。 一旦使用了任何探测类型和端口选项，默认的探测(ACK和回应请求)就被覆盖了。</p>
-<blockquote>
-<p>-Pn（无ping）</p>
-</blockquote>
-<p>跳过主机发现阶段，把每个都IP当成存活主机。</p>
-<blockquote>
-<p>-P0 &lt;协议号列表&gt;（IP 协议 ping）</p>
-</blockquote>
-<p>一个较新的主机发现选项是IP协议ping，它将IP数据包发送到IP报头中指定的协议号。协议列表的格式与前面讨论的TCP、UDP和SCTP主机发现选项的端口列表相同。如果没有指定协议，默认的是为ICMP(协议1)、IGMP(协议2)和ipin-IP(协议4)发送多个IP数据包。默认的协议可以在编译时通过更改nmap.h中的默认proat探测端口规范来配置。注意，对于ICMP、IGMP、TCP(协议6)、UDP(协议17)和SCTP(协议132)，数据包是用适当的协议标头发送的，而其他协议被发送时，除了IP报头之外没有附加的数据(除非有任何数据——数据字符串，或者——数据长度选项被指定)。</p>
-<blockquote>
-<p>-PS&lt;端口列表&gt;（TCP SYN Ping）</p>
-</blockquote>
-<p>1.该选项发送一个设置了SYN标志位的空TCP报文，默认端口为80。不同的端口可以作为选项制定（如 -PS22，23，25，80，113，1050，3500）<br>2.SYN标志位告诉对方您正试图建立一个连接。 通常目标端口是关闭的，一个RST (复位) 包会发回来。 如果碰巧端口是开放的，目标会进行TCP三步握手的第二步，回应 一个SYN/ACK TCP报文。<br>3.无论RST还是SYN/ACK响应都告诉Nmap该主机正在运行。然后运行Nmap的机器则会扼杀这个正在建立的连接， 发送一个RST而非ACK报文，ST报文是运行Nmap的机器而不是Nmap本身响应的，因为它对收到 的SYN/ACK感到很意外。</p>
-<blockquote>
-<p>-PA&lt;端口列表&gt;（TCP ACK Ping）</p>
-</blockquote>
-<p> 1.ACK报文表示确认一个建立连接的尝试，但该连接尚未完全建立。 所以远程主机应该总是回应一个RST报文， 因为它们并没有发出过连接请求到运行Nmap的机器，如果它们正在运行的话。<br> 2.如果非特权用户尝试该功能， 或者指定的是IPv6目标，前面说过的connect()方法将被使用。 这个方法并不完美，因为它实际上发送的是SYN报文，而不是ACK报文。<br> 3.他的默认端口和修改方法跟-PS一致<br> 4.SYN探测更有可能用于这样的系统，由于没头没脑的ACK报文 通常会被识别成伪造的而丢弃。解决这个两难的方法是通过即指定 -PS又指定-PA来即发送SYN又发送ACK。</p>
-<blockquote>
-<p>-PU &lt;端口列表&gt;（UDP Ping）</p>
-</blockquote>
-<p> 1.发送一个空的(除非指定了–data-length UDP报文到给定的端口。端口列表的格式和前面讨论过的-PS和-PA选项还是一样。 如果不指定端口，默认是31338。修改方法和-PA -PS一致<br> 2.如果目标机器的端口是关闭的，UDP探测应该马上得到一个ICMP端口无法到达的回应报文。 这对于Nmap意味着该机器正在运行。 许多其它类型的ICMP错误，像主机/网络无法到达或者TTL超时则表示down掉的或者不可到达的主机。 没有回应也被这样解释。如果到达一个开放的端口，大部分服务仅仅忽略这个 空报文而不做任何回应。这就是为什么默认探测端口是31338这样一个 极不可能被使用的端口。少数服务如chargen会响应一个空的UDP报文， 从而向Nmap表明该机器正在运行。</p>
-<blockquote>
-<p>-PR（ARP Ping）</p>
-</blockquote>
-<p> 如果Nmap发现目标主机就在它所在的局域网上，它会进行ARP扫描。 即使指定了不同的ping类型(如 -PI或者 -PS) ，Nmap也会对任何相同局域网上的目标机使用ARP。 如果您真的不想要ARP扫描，指定 –send-ip。<br> 对于IPv6(-6选项)，-PR使用ICMPv6的邻居发现而不是ARP。在RFC 4861中定义的邻居发现可以看作是IPv6等效的。</p>
-<blockquote>
-<p>–disable-arp-ping (No ARP or ND Ping) </p>
-</blockquote>
-<p>不使用ARP发现和ICMPv6邻居发现</p>
-<blockquote>
-<p>-PY &lt;端口列表&gt; （SCTP INIT Ping）</p>
-</blockquote>
-<p>1.一个SCTP INIT数据包，默认端口是80,如果要改变端口可以用如下形式： -PY22：-PY22,80,179,5060。注意PY和端口列表之间没有空格。<br>2.SCTP INIT数据包表示本机想跟目标主机关联。一般情况下，目标主机的端口是关闭的，就会返回一个SCTP 数据包。如果目标主机端口是开放的，它就会回复一个SCTP INIT-ACK数据包。如果运行nmap的本机支持SCTP协议栈的话，本机会给目标主机回复一个SCTP ABORT数据包，而不是SCTP COOKIE-ECHO数据包，这个数据包是由系统内核发送的，因为他没有去向目标主机发起关联请求。<br>3.本技术用于主机发现，所以不必关心端口是否开放，只要收到回复就可认为主机是存活的。<br>4.在linux系统中，特权用户发送和接收raw SCTP数据包，非特权用户不支持这个扫描技术。</p>
-<blockquote>
-<p>-PE; -PP; -PM（ICMP Ping Types）</p>
-</blockquote>
-<p> -PE是ICMP echo请求<br>时间戳和地址掩码查询可以分别用-PP和-PM选项发送。 时间戳响应(ICMP代码14)或者地址掩码响应(代码18)表示主机在运行。</p>
-<blockquote>
-<p>-n   不域名解析</p>
-<p>-R   所有IP做反向域名解析</p>
-<p>–system-dns    使用本机的dns服务器</p>
-<p>–dns-servers <server1,server2> （使用指定的dns服务器)</server1,server2></p>
-</blockquote>
-<p>如果指定dns服务器无法使用，则会转向使用本机配置的dns服务器</p>
-<h3 id="三、端口状态"><a href="#三、端口状态" class="headerlink" title="三、端口状态"></a>三、端口状态</h3><blockquote>
-<p>open(开放的)</p>
-</blockquote>
-<p>应用程序正在该端口接收TCP 连接或者UDP报文。</p>
-<blockquote>
-<p>closed(关闭的)</p>
-</blockquote>
-<p>关闭的端口对于Nmap也是可访问的(它接受Nmap的探测报文并作出响应)， 但没有应用程序在其上监听。 </p>
-<blockquote>
-<p>filtered(被过滤的)</p>
-</blockquote>
-<p>由于包过滤阻止探测报文到达端口， Nmap无法确定该端口是否开放。</p>
-<blockquote>
-<p>unfiltered(未被过滤的)</p>
-</blockquote>
-<p>未被过滤状态意味着端口可访问，但Nmap不能确定它是开放还是关闭。</p>
-<blockquote>
-<p>open|filtered(开放或者被过滤的)</p>
-</blockquote>
-<p>当无法确定端口是开放还是被过滤的，Nmap就把该端口划分成 这种状态。<br>开放的端口不响应就是一个例子。</p>
-<blockquote>
-<p>closed|filtered(关闭或者被过滤的)</p>
-</blockquote>
-<p>该状态用于Nmap不能确定端口是关闭的还是被过滤的。 它只可能出现在IPID Idle扫描中</p>
-<h3 id="四、端口扫描技术"><a href="#四、端口扫描技术" class="headerlink" title="四、端口扫描技术"></a>四、端口扫描技术</h3><blockquote>
-<p>-sS（TCP SYN扫描）</p>
-</blockquote>
-<p>半开放扫描，不打开一个完整的TCP链接<br>它发送一个SYN报文，然后等待响应。 SYN/ACK表示端口在监听 (开放)，而 RST (复位)表示没有监听者。如果数次重发后仍没响应， 该端口就被标记为被过滤。如果收到ICMP不可到达错误 (类型3，代码1，2，3，9，10，或者13)，该端口也被标记为被过滤。</p>
-<blockquote>
-<p>-sT（TCP connect()扫描）</p>
-</blockquote>
-<p>Nmap通过创建connect() 系统调用要求操作系统和目标机以及端口建立连接，而不像其它扫描类型直接发送原始报文。 这是和Web浏览器，P2P客户端以及大多数其它网络应用程序用以建立连接一样的 高层系统调用。当Nmap连接，然后不发送数据又关闭连接， 许多普通UNIX系统上的服务会在syslog留下记录，有时候是一条加密的错误消息。</p>
-<blockquote>
-<p>-sU（UDP 扫描）</p>
-</blockquote>
-<p>1.UDP扫描用-sU选项激活。它可以和TCP扫描如 SYN扫描 (-sS)结合使用来同时检查两种协议。<br>2.UDP扫描发送空的(没有数据)UDP报头到每个目标端口。 如果返回ICMP端口不可到达错误(类型3，代码3)， 该端口是closed(关闭的)。 其它ICMP不可到达错误(类型3， 代码1，2，9，10，或者13)表明该端口是filtered(被过滤的)。 偶尔地，某服务会响应一个UDP报文，证明该端口是open(开放的)。 如果几次重试后还没有响应，该端口就被认为是 open|filtered(开放|被过滤的)。 这意味着该端口可能是开放的，也可能包过滤器正在封锁通信。 可以用版本扫描(-sV)帮助区分真正的开放端口和被过滤的端口。</p>
-<blockquote>
-<p>-sY（SCTP INIT scan）</p>
-</blockquote>
-<p>SCTP INIT扫描类似TCP SYN扫描，他也是打开一个半开的连接，而不是建立一个完整的SCTP关联。如果目标端口回复一个INIT-ACK数据包，则说明端口是开放的，如果回复一个ABORT数据包，端口是关闭的，如果没有回复，端口会被标记标记为被过滤，当然如果收到了ICMP不可达的消息（type 3, code 0, 1, 2, 3, 9, 10, or 13）也会被标记为被过滤。</p>
-<blockquote>
-<p>-sN; -sF; -sX (TCP Null，FIN，Xmas扫描)</p>
-</blockquote>
-<p>1.如果扫描系统遵循该RFC，当端口关闭时，任何不包含SYN，RST，或者ACK位的报文会导致 一个RST返回，而当端口开放时，应该没有任何响应。只要不包含SYN，RST，或者ACK， 任何其它三种(FIN，PSH，and URG)的组合都行。Nmap有三种扫描类型利用这一点：<br>Null扫描 (-sN)</p>
-<pre><code>不设置任何标志位(tcp标志头是0)
-</code></pre><p>FIN扫描 (-sF)<br>    只设置TCP FIN标志位。<br>Xmas扫描 (-sX)<br>    设置FIN，PSH，和URG标志位，就像点亮圣诞树上所有的灯一样。<br>2.除了探测报文的标志位不同，这三种扫描在行为上完全一致。 如果收到一个RST报文，该端口被认为是 closed(关闭的)，而没有响应则意味着 端口是open|filtered(开放或者被过滤的)。 如果收到ICMP不可到达错误(类型 3，代号 1，2，3，9，10，或者13)，该端口就被标记为 被过滤的。</p>
-<blockquote>
-<p>-sA (TCP ACK扫描)</p>
-</blockquote>
-<p>1.这种扫描与目前为止讨论的其它扫描的不同之处在于 它不能确定open(开放的)或者 open|filtered(开放或者过滤的))端口。 它用于发现防火墙规则，确定它们是有状态的还是无状态的，哪些端口是被过滤的。<br>2.ACK扫描探测报文只设置ACK标志位(除非您使用 –scanflags)。当扫描未被过滤的系统时， open(开放的)和closed(关闭的) 端口 都会返回RST报文。Nmap把它们标记为 unfiltered(未被过滤的)，意思是 ACK报文不能到达，但至于它们是open(开放的)或者 closed(关闭的) 无法确定。不响应的端口 或者发送特定的ICMP错误消息(类型3，代号1，2，3，9，10， 或者13)的端口，标记为 filtered(被过滤的)。</p>
-<blockquote>
-<p>-sW（TCP窗口扫描）</p>
-</blockquote>
-<p> 在某些系统上，开放端口用正数表示窗口大小(甚至对于RST报文) 而关闭端口的窗口大小为0。因此，当收到RST时，窗口扫描不总是把端口标记为 unfiltered， 而是根据TCP窗口值是正数还是0，分别把端口标记为open或者 closed</p>
-<blockquote>
-<p>-sM（TCP Maimon扫描）</p>
-</blockquote>
-<p> 探测报文是FIN/ACK。 根据RFC 793 (TCP)，无论端口开放或者关闭，都应该对这样的探测响应RST报文。 然而，Uriel注意到如果端口开放，许多基于BSD的系统只是丢弃该探测报文。 </p>
-<blockquote>
-<p>–scanflags (定制的TCP扫描)</p>
-</blockquote>
-<p> –scanflags选项可以是一个数字标记值如9 (PSH和FIN)， 但使用字符名更容易些。 只要是URG， ACK，PSH， RST，SYN，and FIN的任何组合就行。例如，–scanflags URGACKPSHRSTSYNFIN设置了所有标志位，但是这对扫描没有太大用处。 标志位的顺序不重要。</p>
-<blockquote>
-<p>-sZ(SCTP COOKIE ECHO扫描)</p>
-</blockquote>
-<p>如果目标端口开放，则会丢弃之前没有发起关联请求的SCTP COOKIE ECHO数据包，如果端口是关闭的则会返回一个SCTP ABORT数据包。所以这个扫描技术，无法分辨过滤和开放，只能分辨出关闭的端口。</p>
-<blockquote>
-<p>–sI &lt;僵尸主机地址：端口&gt;（idlescan）</p>
-</blockquote>
-<p> 1.这种高级的扫描方法允许对目标进行真正的TCP端口盲扫描 (意味着没有报文从您的真实IP地址发送到目标)。相反，side-channel攻击 利用zombie主机上已知的IP分段ID序列生成算法来窥探目标上开放端口的信息。<br> 2.如果您由于IPID改变希望探测zombie上的特定端口， 您可以在zombie 主机后加上一个冒号和端口号。 否则Nmap会使用默认端口(80)。</p>
-<blockquote>
-<p>-sO（IP协议扫描）</p>
-</blockquote>
-<p> IP 协议扫描可以让您确定目标机支持哪些IP协议 (TCP，ICMP，IGMP，等等)。从技术上说，这不是端口扫描 ，既然它遍历的是IP协议号而不是TCP或者UDP端口号。 但是它仍使用 -p选项选择要扫描的协议号， 用正常的端口表格式报告结果，甚至用和真正的端口扫描一样 的扫描引擎。因此它和端口扫描非常接近，也被放在这里讨论。 </p>
-<blockquote>
-<p>-b <ftp relay="" host="">（FTP弹跳扫描）</ftp></p>
-</blockquote>
-<p>1.FTP协议的一个有趣特征(RFC 959) 是支持所谓代理ftp连接。<br>2.它允许用户连接到一台FTP服务器，然后要求文件送到一台第三方服务器。 这个特性在很多层次上被滥用，所以许多服务器已经停止支持它了。其中一种就是导致FTP服务器对其它主机端口扫描。 只要请求FTP服务器轮流发送一个文件到目标主机上的所感兴趣的端口。 错误消息会描述端口是开放还是关闭的。<br>3.这是绕过防火墙的好方法，因为FTP服务器常常被置于可以访问比Web主机更多其它内部主机的位置。<br>4.Nmap用-b选项支持ftp弹跳扫描。参数格式是 <username>:<password>@<server>:<port>。 <server> 是某个脆弱的FTP服务器的名字或者IP地址。 您也许可以省略<username>:<password>， 如果服务器上开放了匿名用户(user:anonymous password:-wwwuser@)。 端口号(以及前面的冒号) 也可以省略，如果<server>使用默认的FTP端口(21)。</server></password></username></server></port></server></password></username></p>
-<h3 id="五、端口扫描设置"><a href="#五、端口扫描设置" class="headerlink" title="五、端口扫描设置"></a>五、端口扫描设置</h3><p> 默认情况下，Nmap用指定的协议对端口1到1024以及nmap-services 文件中列出的更高的端口在扫描。</p>
-<blockquote>
-<p>-p &lt;端口号，端口列表&gt;</p>
-</blockquote>
-<p>1.制定扫描某个或某些端口用逗号分隔，或者用链接符号表示范围也可。<br>2.对于-sO IP协议扫描，该选项用来指定协议号（0-255）。</p>
-<blockquote>
-<p>–exclede-ports &lt;端口列表&gt;（排除的端口）</p>
-</blockquote>
-<p>指定排除的端口，如果是指定排除的协议号的话，他的值在0-255之间</p>
-<blockquote>
-<p>-F（快速扫描）</p>
-</blockquote>
-<p>在nmap的nmap-services 文件中(对于-sO，是协议文件)指定您想要扫描的端口。 这比扫描所有65535个端口快得多。 因为该列表包含如此多的TCP端口(1200多)，这和默认的TCP扫描 scan (大约1600个端口)速度差别不是很大。如果用–datadir选项指定小的nmap-services文件 ，差别会很大。</p>
-<blockquote>
-<p>-r（顺序扫描端口）</p>
-</blockquote>
-<p>默认情况下，Nmap按随机顺序扫描端口 (除了出于效率的考虑，常用的端口前移)。可以指定-r来顺序端口扫描。 </p>
-<blockquote>
-<p>–port-ratio <ratio></ratio></p>
-</blockquote>
-<p>扫描nmap-services中给出的目标的一定比例，这个值在1.0-0.0之间。</p>
-<blockquote>
-<p>–top-ports</p>
-</blockquote>
-<p>扫描nmap-services中的前多少个端口</p>
-<h3 id="六-服务和版本扫描"><a href="#六-服务和版本扫描" class="headerlink" title="六.服务和版本扫描"></a>六.服务和版本扫描</h3><blockquote>
-<p>-sV（版本扫描）</p>
-</blockquote>
-<p>扫描服务版本，也可以用-A同时进行操作系统探测和版本扫描。</p>
-<blockquote>
-<p>–allports（版本扫描时，不排除任何端口）</p>
-</blockquote>
-<p>1.默认情况下，Nmap版本探测会跳过9100 TCP端口，因为一些打印机简单地打印送到该端口的 任何数据，这回导致数十页HTTP get请求，二进制 SSL会话请求等等被打印出来。<br>2.这一行为可以通过修改或删除nmap-service-probes 中的Exclude指示符改变</p>
-<blockquote>
-<p>–version-intensity &lt;强度&gt;（版本扫描强度）</p>
-</blockquote>
-<p>强度在1到9之间，一般来说，强度越大，服务越有可能被正确识别</p>
-<blockquote>
-<p>–version-light</p>
-</blockquote>
-<p>相当于 –version-intensity 2</p>
-<blockquote>
-<p>–vension-all</p>
-</blockquote>
-<p>相当于 –version-intensity 9</p>
-<blockquote>
-<p>–version-trace</p>
-</blockquote>
-<p>打印出正在进行的版本扫描的详细信息</p>
-<h3 id="七、操作系统探测"><a href="#七、操作系统探测" class="headerlink" title="七、操作系统探测"></a>七、操作系统探测</h3><blockquote>
-<p>-O (启用操作系统检测)</p>
-</blockquote>
-<p>也可以使用-A来同时启用操作系统检测和版本扫描。</p>
-<blockquote>
-<p>–osscan-limit </p>
-</blockquote>
-<p>只对至少知晓一个端口开放或者关闭的主机进行操作系统探测</p>
-<blockquote>
-<p>–osscan-guess;–fuzzy</p>
-</blockquote>
-<p>无法确定操作系统类型的时候，默认进行推测。但是使用这两项，会让猜测更加准确。</p>
-<blockquote>
-<p>–max-os-tries（操作系统识别重试次数）</p>
-</blockquote>
-<p>默认重试五次，</p>
-<h3 id="八、扫描性能设置"><a href="#八、扫描性能设置" class="headerlink" title="八、扫描性能设置"></a>八、扫描性能设置</h3><blockquote>
-<p>–min-hostgroup <milliseconds>; –max-hostgroup <milliseconds> (调整并行扫描组的大小)</milliseconds></milliseconds></p>
-</blockquote>
-<p>1.Nmap具有并行扫描多主机端口或版本的能力，Nmap将多个目标IP地址 空间分成组，然后在同一时间对一个组进行扫描。通常，大的组更有效。缺点是只有当整个组扫描结束后才会提供主机的扫描结果。如果组的大小定义 为50，则只有当前50个主机扫描结束后才能得到报告(详细模式中的补充信息 除外)。<br>2.默认方式下，Nmap采取折衷的方法。开始扫描时的组较小， 最小为5，这样便于尽快产生结果；随后增长组的大小，最大为1024。确切的 大小依赖于所给定的选项。为保证效率，针对UDP或少量端口的TCP扫描，Nmap 使用大的组。–max-hostgroup选项用于说明使用最大的组，Nmap不 会超出这个大小。–min-hostgroup选项说明最小的组，Nmap 会保持组大于这个值。如果在指定的接口上没有足够的目标主机来满足所指定的最小值，Nmap可能会采用比所指定的值小的组。这两个参数虽然很少使用， 但都用于保持组的大小在一个指定的范围之内。<br>3.这些选项的主要用途是说明一个最小组的大小，使得整个扫描更加快速。通常选择256来扫描C类网段。对于端口数较多的扫描，超出该值没有意义。对于 端口数较少的扫描，2048或更大的组大小是有帮助的。</p>
-<blockquote>
-<p>–min-parallelism <milliseconds>; –max-parallelism <milliseconds> (调整探测报文的并行度)</milliseconds></milliseconds></p>
-</blockquote>
-<p>这些选项控制用于主机组的探测报文数量，可用于端口扫描和主机发现。默认状态下，Nmap基于网络性能计算一个理想的并行度，这个值经常改变。如果报文被丢弃， Nmap降低速度，探测报文数量减少。随着网络性能的改善，理想的探测报文数量会缓慢增加。这些选项确定这个变量的大小范围。默认状态下，当网络不可靠时，理想的并行度值 可能为1，在好的条件下，可能会增长至几百。<br>最常见的应用是–min-parallelism值大于1，以加快 性能不佳的主机或网络的扫描。这个选项具有风险，如果过高则影响准确度，同时也会降低Nmap基于网络条件动态控制并行度的能力。这个值设为10较为合适， 这个值的调整往往作为最后的手段。</p>
-<blockquote>
-<p>–max-parallelism选项通常设为1，以防止Nmap在同一时间 向主机发送多个探测报文，和选择–scan-delay同时使用非常有用。</p>
-<p>–min-rtt-timeout <milliseconds>， –max-rtt-timeout <milliseconds>， –initial-rtt-timeout <milliseconds> (调整探测报文超时)</milliseconds></milliseconds></milliseconds></p>
-</blockquote>
-<p>Nmap使用一个运行超时值来确定等待探测报文响应的时间，随后会放弃或重新 发送探测报文。Nmap基于上一个探测报文的响应时间来计算超时值，如果网络延迟比较显著 和不定，这个超时值会增加几秒。初始值的比较保守(高)，而当Nmap扫描无响应 的主机时，这个保守值会保持一段时间。<br>这些选项以毫秒为单位，采用小的–max-rtt-timeout值，使 –initial-rtt-timeout值大于默认值可以明显减少扫描时间，特别 是对不能ping通的扫描(-P0)以及具有严格过滤的网络。如果使用太 小的值，使得很多探测报文超时从而重新发送，而此时可能响应消息正在发送，这使得整个扫描的时 间会增加。<br>如果所有的主机都在本地网络，对于–max-rtt-timeout值来 说，100毫秒比较合适。如果存在路由，首先使用ICMP ping工具ping主机，或使用其 它报文工具如hpings，可以更好地穿透防火墙。查看大约10个包的最大往返时间，然后将 –initial-rtt-timeout设成这个时间的2倍，–max-rtt-timeout 可设成这个时间值的3倍或4倍。通常，不管ping的时间是多少，最大的rtt值不得小于100ms， 不能超过1000ms。<br>–min-rtt-timeout这个选项很少使用，当网络不可靠时， Nmap的默认值也显得过于强烈，这时这个选项可起作用。当网络看起来不可靠时，Nmap仅将 超时时间降至最小值，这个情况是不正常的，需要向nmap-dev邮件列表报告bug。</p>
-<blockquote>
-<p>–host-timeout <milliseconds> (放弃低速目标主机) </milliseconds></p>
-</blockquote>
-<p>由于性能较差或不可靠的网络硬件或软件、带宽限制、严格的防火墙等原因， 一些主机需要很长的时间扫描。这些极少数的主机扫描往往占 据了大部分的扫描时间。因此，最好的办法是减少时间消耗并且忽略这些主机，使用 –host-timeout选项来说明等待的时间(毫秒)。通常使用1800000 来保证Nmap不会在单个主机上使用超过半小时的时间。需要注意的是，Nmap在这半小时中可以 同时扫描其它主机，因此并不是完全放弃扫描。超时的主机被忽略，因此也没有针对该主机的 端口表、操作系统检测或版本检测结果的输出。</p>
-<blockquote>
-<p>–scan-delay <milliseconds>; –max-scan-delay <milliseconds> (调整探测报文的时间间隔)</milliseconds></milliseconds></p>
-</blockquote>
-<p>这个选项用于Nmap控制针对一个主机发送探测报文的等待时间(毫秒)，在带宽 控制的情况下这个选项非常有效。Solaris主机在响应UDP扫描探测报文报文时，每秒 只发送一个ICMP消息，因此Nmap发送的很多数探测报文是浪费的。–scan-delay 设为1000，使Nmap低速运行。Nmap尝试检测带宽控制并相应地调整扫描的延迟，但 并不影响明确说明何种速度工作最佳。–scan-delay的另一个用途是躲闭基于阈值的入侵检测和预防 系统(IDS/IPS)。</p>
-<blockquote>
-<p>-T <paranoid|sneaky|polite|normal|aggressive|insane> (设置时间模板) </paranoid|sneaky|polite|normal|aggressive|insane></p>
-</blockquote>
-<p>上述优化时间控制选项的功能很强大也很有效，但有些用户会被迷惑。此外， 往往选择合适参数的时间超过了所需优化的扫描时间。因此，Nmap提供了一些简单的 方法，使用6个时间模板，使用时采用-T选项及数字(0 - 5) 或名称。模板名称有paranoid (0)、sneaky (1)、polite (2)、normal(3)、 aggressive (4)和insane (5)。前两种模式用于IDS躲避，Polite模式降低了扫描 速度以使用更少的带宽和目标主机资源。默认模式为Normal，因此-T3 实际上是未做任何优化。Aggressive模式假设用户具有合适及可靠的网络从而加速 扫描。Insane模式假设用户具有特别快的网络或者愿意为获得速度而牺牲准确性。<br>用户可以根据自己的需要选择不同的模板，由Nmap负责选择实际的时间值。 模板也会针对其它的优化控制选项进行速度微调。例如，-T4 针对TCP端口禁止动态扫描延迟超过10ms，-T5对应的值为5ms。 模板可以和优化调整控制选项组合使用，但模板必须首先指定，否则模板的标准值 会覆盖用户指定的值。建议在扫描可靠的网络时使用 -T4，即使 在自己要增加优化控制选项时也使用(在命令行的开始)，从而从这些额外的较小的优化 中获益。<br>如果用于有足够的带宽或以太网连接，仍然建议使用-T4选项。 有些用户喜欢-T5选项，但这个过于强烈。有时用户考虑到避免使主机 崩溃或者希望更礼貌一些会采用-T2选项。他们并没意识到-T Polite选项是如何的慢，这种模式的扫描比默认方式实际上要多花10倍的时间。默认时间 选项(-T3)很少有主机崩溃和带宽问题，比较适合于谨慎的用户。不进行 版本检测比进行时间调整能更有效地解决这些问题。<br>虽然-T0和-T1选项可能有助于避免IDS告警，但在进行上千个主机或端口扫描时，会显著增加时间。对于这种长时间的扫描，宁可设定确切的时间值，而不要去依赖封装的-T0和-T1选项。<br>T0选项的主要影响是对于连续扫描，在一个时间只能扫描一个端口， 每个探测报文的发送间隔为5分钟。T1和T2选项比较类似， 探测报文间隔分别为15秒和0.4秒。T3是Nmap的默认选项，包含了并行扫描。 T4选项与 –max-rtt-timeout 1250 –initial-rtt-timeout 500 等价，最大TCP扫描延迟为10ms。T5等价于 –max-rtt-timeout 300 –min-rtt-timeout 50 –initial-rtt-timeout 250 –host-timeout 900000，最大TCP扫描延迟为5ms。</p>
-<blockquote>
-<p>–max-retries &lt;次数&gt;</p>
-</blockquote>
-<p>没有响应后的重试次数</p>
-<blockquote>
-<p>–script-timeout <time> （设置脚本超时时间）</time></p>
-</blockquote>
-<p>预防脚本的bug导致影响效率</p>
-<blockquote>
-<p>–min-rate <number>; –max-rate <number> （发包速度控制）</number></number></p>
-</blockquote>
-<p>最少每秒发多少，最多每秒发多少。如果0.1的话就是10秒一个包的意思</p>
-<blockquote>
-<p>–defeat-rst-ratelimit</p>
-</blockquote>
-<p>忽略系统reset包的速率限制</p>
-<blockquote>
-<p>–defeat-icmp-ratelimit</p>
-</blockquote>
-<p>忽略系统ICMP错误消息速率限制</p>
-<blockquote>
-<p>–nsock-engine epoll|kqueue|poll|select</p>
-</blockquote>
-<p>选择系统IO模型，nmap -V可以查看支持哪些</p>
-<h3 id="九、防火墙绕过-IDS躲避"><a href="#九、防火墙绕过-IDS躲避" class="headerlink" title="九、防火墙绕过/IDS躲避"></a>九、防火墙绕过/IDS躲避</h3><blockquote>
-<p>-f (报文分段); –mtu (使用指定的MTU) </p>
-</blockquote>
-<p>1.-f选项要求扫描时(包挺ping扫描)使用小的IP包分段。其思路是将TCP头分段在几个包中，使得包过滤器、IDS以及其它工具的检测更加困难。必须小心使用这个选项，有些系统在处理这些小包时存在问题，例如旧的网络嗅探器Sniffit在接收到第一个分段时会立刻出现分段错误。该选项使用一次，Nmap在IP头后将包分成8个字节或更小。因此，一个20字节的TCP头会被分成3个包，其中2个包分别有TCP头的8个字节，另1个包有TCP头的剩下4个字节。当然，每个包都有一个IP头。再次使用-f可使用 16字节的分段(减少分段数量)。<br>2.使用–mtu选项可 以自定义偏移的大小，使用时不需要-f，偏移量必须是8的倍数。包过滤器和防火墙对所有的IP分段排队，如Linux核心中的 CONFIG-IP-ALWAYS-DEFRAG配置项，分段包不会直接使用。一些网络无法 承受这样所带来的性能冲击，会将这个配置禁止。其它禁止的原因有分段 包会通过不同的路由进入网络。一些源系统在内核中对发送的报文进行分段，使用iptables连接跟踪模块的Linux就是一个例子。当使用类似Ethereal的嗅探器时，扫描必须保证发送的报文要分段。如果主机操作系统会产生问题，尝试使用–send-eth选项以避开IP层而直接发送原始的以太网帧。</p>
-<p>-D &lt;肉鸡1 [，肉鸡2][，ME]，…&gt;（结合肉鸡干扰进行扫描）<br>首先必须让目标主机认为是肉鸡在扫描它，IDS虽然能够捕捉到扫描的IP，但是并知道哪个是真实的攻击者，使用逗号来分隔每个肉鸡，如果使用了ME选项，nmap将不会使用本机地址，否则nmap将会把本机地址放在一个随机位置。<br>注意，太多的欺骗包甚至可能造成DDoS的效果，而且很多多IPS会过滤欺骗包</p>
-<blockquote>
-<p>-S <ip地址>（源地址欺骗）</ip地址></p>
-</blockquote>
-<p>伪造扫描请求源地址。<br>在某些情况下，Nmap可能无法确定你的源地址(如果这样，Nmap会给出 提示)。此时，使用-S选项并说明所需发送包的接口IP地址。<br>-e选项常在这种情况下使用，也可采用-P0选项。</p>
-<blockquote>
-<p>-e <interface>（指定使用的网络接口）</interface></p>
-</blockquote>
-<p>告诉nmap使用哪个网络接口收发报文</p>
-<blockquote>
-<p>–source-port <portnumber>; -g <portnumber> (源端口欺骗) </portnumber></portnumber></p>
-</blockquote>
-<p>只需要提供一个端口号，Nmap就可以从这些 端口发送数据。为使特定的操作系统正常工作，Nmap必须使用不同的端口号。 DNS请求会忽略–source-port选项，这是因为Nmap依靠系 统库来处理。大部分TCP扫描，包括SYN扫描，可以完全支持这些选项，UDP扫 描同样如此。</p>
-<blockquote>
-<p>–date <hex string=""></hex></p>
-</blockquote>
-<p>可以用这样的格式指定值 –data 0xdeadbeef –data \xCA\xFE\x09<br>如果指定0x00ff 这个的数字，将不会做字节序转换。确保你的字节序，对方可以接受</p>
-<blockquote>
-<p>–data-string <string></string></p>
-</blockquote>
-<p>例如，–data-string “Scan conducted by Security Ops, extension 7192” or –data-string “Ph34r my l33t skills”</p>
-<blockquote>
-<p>–data-length <number> (发送报文时 附加随机数据) </number></p>
-</blockquote>
-<p>这个选项告诉Nmap在发送的报文上 附加指定数量的随机字节。操作系统检测(-O)包不受影响。</p>
-<blockquote>
-<p>–ip-options <s|r [route]|l="" [route]|t|u="" ...="">; –ip-options <hex string=""> (Send packets with specified ip options) </hex></s|r></p>
-</blockquote>
-<p>指定IP头</p>
-<blockquote>
-<p>–proxies <comma-separated list="" of="" proxy="" urls=""> </comma-separated></p>
-</blockquote>
-<p>设置代理，支持http代理和socks4代理</p>
-<blockquote>
-<p>–badsum（让nmap使用一个伪造的不合法的checksum）</p>
-</blockquote>
-<p>这样的数据包一般都会丢弃，如果收到任何回复，这个回复一定来自防火墙</p>
-<blockquote>
-<p>–adler32（使用弃用的Adler32来代替CRC32C做SCTP的checksum）</p>
-</blockquote>
-<p>这是为了从旧版的SCTP协议设备获得响应</p>
-<blockquote>
-<p>–ttl <value> (设置IP time-to-live域) </value></p>
-</blockquote>
-<p>设置IPv4报文的time-to-live域为指定的值。</p>
-<blockquote>
-<p>–randomize-hosts (对目标主机的顺序随机排列) </p>
-</blockquote>
-<p>告诉Nmap在扫描主机前对每个组中的主机随机排列，最多可达 8096个主机。</p>
-<blockquote>
-<p>–spoof-mac <mac address，prefix，or="" vendor="" name=""> (MAC地址哄骗) </mac></p>
-</blockquote>
-<p>要求Nmap在发送原以太网帧时使用指定的MAC地址，这个选项隐含了 –send-eth选项，以保证Nmap真正发送以太网包。MAC地址有几 种格式。如果简单地使用字符串“0”，Nmap选择一个完全随机的MAC 地址。如果给定的字符品是一个16进制偶数(使用:分隔)，Nmap将使用这个MAC地址。 如果是小于12的16进制数字，Nmap会随机填充剩下的6个字节。如果参数不是0或16进 制字符串，Nmap将通过nmap-mac-prefixes查找 厂商的名称(大小写区分)，如果找到匹配，Nmap将使用厂商的OUI(3字节前缀)，然后 随机填充剩余的3个节字。正确的–spoof-mac参数有， Apple， 0，01:02:03:04:05:06， deadbeefcafe，0020F2， 和Cisco。</p>
-<h3 id="十、输出"><a href="#十、输出" class="headerlink" title="十、输出"></a>十、输出</h3><blockquote>
-<p>-oN <filespec> (标准输出)</filespec></p>
-</blockquote>
-<p>将结果输入制定文件</p>
-<blockquote>
-<p>-oX <filespec> (XML输出)</filespec></p>
-</blockquote>
-<p>将XML输出写入指定文件</p>
-<blockquote>
-<p>-oS <filespec> (ScRipT KIdd|3 oUTpuT)</filespec></p>
-</blockquote>
-<p>脚本小子输出类似于交互工具输出，这是一个事后处理，适合于 ‘l33t HaXXorZ， 由于原来全都是大写的Nmap输出。</p>
-<blockquote>
-<p>-oG <filespec> (Grep输出)</filespec></p>
-</blockquote>
-<p>这种方式最后介绍，因为不建议使用。XML输格式很强大，便于有经验 的用户使用。XML是一种标准，由许多解析器构成，而Grep输届更简化。XML是可扩展的，以支持新发布的Nmap特点。使用Grep输出的目的是忽略这些 特点，因为没有足够的空间。<br>然而，Grep输出仍然很常使用。它是一种简单格式，每行一个主机，可以 通过UNIX工具(如grep、awk、cut、sed、diff)和Perl方便地查找和分解。常可 用于在命令行上进行一次性测式。查找ssh端口打开或运行Sloaris的主机，只需要一个简单的grep主机说明，使用通道并通过awk或cut命令打印所需的域。<br>Grep输出可以包含注释(每行由#号开始)。每行由6个标记的域组成，由制表符及 冒号分隔。这些域有主机，端口， 协议，忽略状态，操作系统，序列号， IPID和状态。<br>这些域中最重要的是Ports，它提供了所关注的端口的细节，端口项由逗号分隔。每个端口项代表一个所关注的端口，每个子域由/分隔。这些子域有：端口号， 状态，协议， 拥有者，服务， SunRPCinfo和版本信息。<br>对于XML输出，本手册无法列举所有的格式，有关Nmap Grep输出的更详细信息可 查阅<a href="http://www.unspecific.com/nmap-oG-output。" target="_blank" rel="noopener">http://www.unspecific.com/nmap-oG-output。</a></p>
-<blockquote>
-<p>-oA <basename> (输出至所有格式)</basename></p>
-</blockquote>
-<p>为使用方便，利用-oA<basename>选项 可将扫描结果以标准格式、XML格式和Grep格式一次性输出。分别存放在 <basename>.nmap，<basename>.xml和 <basename>.gnmap文件中。也可以在文件名前 指定目录名，如在UNIX中，使用~/nmaplogs/foocorp/， 在Window中，使用c:\hacking\sco on Windows。</basename></basename></basename></basename></p>
-<blockquote>
-<p>-v（提高输出信息的详细程度）</p>
-<p>-d [level]（设置调试级别）</p>
-<p>–packet-trace（跟踪发出的报文）</p>
-<p>-iflist（列举端口和路由）</p>
-<p>–append-out（在输出文件住追加）</p>
-</blockquote>
-<p>但对于XML(-oX)扫描输出 文件无效，无法正常解析，需要手工修改。</p>
-<blockquote>
-<p>–resume <filename> （继续中断的扫描）</filename></p>
-</blockquote>
-<p>如果标准扫描 (-oN)或Grep扫描(-oG)日志 被保留，用户可以要求Nmap恢复终止的扫描，只需要简单地使用选项 –resume并说明标准/Grep扫描输出文件，不允许 使用其它参数，Nmap会解析输出文件并使用原来的格式输出。使用方式 如nmap –resume <logfilename>。Nmap将把新地结果添加到文件中，这种方式不支持XML输出格式，原因是将两次运行结果合并至一个XML文件比较困难。</logfilename></p>
-<blockquote>
-<p>–stylesheet <path or="" url=""></path> (设置XSL样式表，转换XML输出) </p>
-<p>–webxml</p>
-<p>–stylesheet <a href="https://nmap.org/svn/docs/nmap.xsl" target="_blank" rel="noopener">https://nmap.org/svn/docs/nmap.xsl</a> 的简写。</p>
-<p>–no-stylesheet (忽略XML声明的XSL样式表) </p>
-<p>–open </p>
-</blockquote>
-<p>只显示开放或者可能开放的端口</p>
-<blockquote>
-<p>–stats-every <time>（周期性的输出统计数据）</time></p>
-<p>–stats-every 10s 每10秒输出一次，，这个输出会被输出到标准输出，和XML文件</p>
-<p>–reason（打印主机和端口状态的原因）</p>
-</blockquote>
-<h3 id="十一、其他选项"><a href="#十一、其他选项" class="headerlink" title="十一、其他选项"></a>十一、其他选项</h3><blockquote>
-<p>-6（启用IPv6扫描）</p>
-<p>-A（强力扫描模式）</p>
-</blockquote>
-<p>个选项启用了操作系统检测(-O) 和版本扫描(-sV)，以后会增加更多的功能。 目的是启用一个全面的扫描选项集合，不需要用户记忆大量的 选项。这个选项仅仅启用功能，不包含用于可能所需要的 时间选项(如-T4)或细节选项(-v)。</p>
-<blockquote>
-<p>–datadir &lt;文件夹名称&gt; （说明nmap用户数据文件的位置）</p>
-</blockquote>
-<p>Nmap在运行时从文件中获得特殊的数据，这些文件有 nmap-service-probes， nmap-services， nmap-protocols， nmap-rpc， nmap-mac-prefixes和 nmap-os-fingerprints。Nmap首先 在–datadir选项说明的目录中查找这些文件。 未找到的文件，将在BMAPDIR环境变量说明的目录中查找。 接下来是用于真正和有效UID的~/.nmap 或Nmap可执行代码的位置(仅Win32)；然后是是编译位置， 如/usr/local/share/nmap 或/usr/share/nmap。 Nmap查找的最后一个位置是当前目录。</p>
-<blockquote>
-<p>–send-ip (在原IP层发送)</p>
-</blockquote>
-<p>要求Nmap通过原IP套接字发送报文，而不是低层的以 太网帧。这是–send-eth选项的补充。</p>
-<blockquote>
-<p>–send-eth</p>
-</blockquote>
-<p>使用raw ethernet包来发包</p>
-<blockquote>
-<p>–privileged (假定用户具有全部权限) </p>
-</blockquote>
-<p>告诉Nmap假定其具有足够的权限进行源套接字包发送、 报文捕获和类似UNIX系统中根用户操作的权限。默认状态下， 如果由getuid()请求的类似操作不为0，Nmap将退出。 –privileged在具有Linux内核性能的类似 系统中使用非常有效，这些系统配置允许非特权用户可以进行 原报文扫描。需要明确的是，在其它选项之前使用这些需要权 限的选项(SYN扫描、操作系统检测等)。Nmap-PRIVILEGED变量 设置等价于–privileged选项。</p>
-<blockquote>
-<p>–unprivileged（假定用户没有特权）</p>
-<p>–interactive (在交互模式中启动) </p>
-</blockquote>
-<p>在交互模式中启动Nmap，提供交互式的Nmap提示，便于 进行多个扫描(同步或后台方式)。对于从多用户系统中扫描 的用户非常有效，这些用户常需要测试他们的安全性，但不希望 系统中的其它用户知道他们扫描哪些系统。使用–interactive 激活这种方式，然后输入h可 获得帮助信息。由于需要对正确的shell程序和整个功能非常熟悉， 这个选项很少使用。这个选项包含了一个!操作符，用于执行shell命令， 这是不安装Nmap setuid root的多个原因之一。</p>
-<blockquote>
-<p>–release-memory （退出后namp自己释放内存）</p>
-<p>–servicedb <services file=""></services></p>
-</blockquote>
-<p>nmap-service文件的路径</p>
-<blockquote>
-<p>–versiondb <service probes="" file=""></service></p>
-</blockquote>
-<p>nmap-service-probes文件路径</p>
-<blockquote>
-<p>-V;–version （查看版本）</p>
-<p>-h;–help（简要的使用介绍）</p>
-</blockquote>
-<h3 id="十二、NSE脚本引擎"><a href="#十二、NSE脚本引擎" class="headerlink" title="十二、NSE脚本引擎"></a>十二、NSE脚本引擎</h3><p><a href="https://nmap.org/nsedoc/" target="_blank" rel="noopener">https://nmap.org/nsedoc/</a> 具体脚本的使用手册</p>
-<blockquote>
-<p>–script &lt;脚本名&gt;</p>
-</blockquote>
-<p>脚本名字前面加 + 会让脚本强制执行<br>指定名字的时候可以使用shell风格的通配符”*”。</p>
-<blockquote>
-<p>nmap –script “http-*”</p>
-</blockquote>
-<p>加载所有的名字以http-开头的脚本，必须用引号包起来，让通配符不受shell影响。</p>
-<blockquote>
-<p>nmap –script “not intrusive”</p>
-</blockquote>
-<p>加载所有非入侵类型的脚本</p>
-<blockquote>
-<p>nmap –script “default or safe”</p>
-</blockquote>
-<p>在功能上等同于nmap –script “default,safe”加载了所有默认类或者安全类，或者是两者都包含的。</p>
-<blockquote>
-<p>nmap –script “default and safe”</p>
-</blockquote>
-<p>加载在同属于两者的脚本</p>
-<blockquote>
-<p>nmap –script “(default or safe or intrusive) and not http-*”</p>
-</blockquote>
-<p>加载属于默认类或者安全类或者入侵类的但是名字开头不是http-的脚本</p>
-<blockquote>
-<p>–script-args <n1>=<v1>,<n2>={<n3>=<v3>},<n4>={<v4>,<v5>}</v5></v4></n4></v3></n3></n2></v1></n1></p>
-</blockquote>
-<p>指定脚本参数，里面不能有‘{’, ‘}’, ‘=’, or ‘,’，如果要用就用\转义</p>
-<blockquote>
-<p>–script-args-file <filename></filename></p>
-</blockquote>
-<p>从一个文件获取脚本参数</p>
-<blockquote>
-<p>–script-trace</p>
-</blockquote>
-<p>打印出脚本执行的具体信息</p>
-<blockquote>
-<p>–script-updatedb</p>
-</blockquote>
-<p>更新脚本库</p>
+          一、目标指定1.CIDR标志位 192.168.1.0/242.指定范围 192.168.1.1-255     192.168.1-255.1（任意位置）3.IPv6地址只能用规范的IPv6地址或主机名指定。 CIDR 和八位字节范围不支持IPv6，因为它们对于IPv6几乎没什么用。
 
-          
+-iL &
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/31/nmap-7-6-手册/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
