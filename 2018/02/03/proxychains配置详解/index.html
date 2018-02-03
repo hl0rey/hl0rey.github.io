@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="burpsuite," />
+  <meta name="keywords" content="proxy," />
 
 
 
@@ -79,21 +79,18 @@
 
 
 
-<meta name="description" content="burpsuite是由PortSwigger公司开发的一款功能强大的web应用程序测试工具． 它不同于一般的web扫描器，它不局限与对网站的扫描，理论上，他可以测试一切通过http协议通讯的程序．     安装设置中文字体 安装字体百度＂文泉驿微米黑＂下载一个（微软雅黑因该也可以，文泉驿是苑老师推荐的），扔到home目录下的.font目录里就行了．  设置中文字体设置的位置：User option">
-<meta name="keywords" content="burpsuite">
+<meta name="description" content="proxychains是一个支持　http socks4 socks5 代理的强力的代理工具（支持身份认证）．&amp;apos;chains&amp;apos;这个词是关键，支持代理链．现在已经有新版（proxychains ng (new generation) 支持的代理类型http, socks4, socks5     支持的身份认证方式http基本身份认证  socks用户名/密码认证 基本使用pro">
+<meta name="keywords" content="proxy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="burpsuite优化配置">
-<meta property="og:url" content="http://hl0rey.github.io/2018/02/02/burpsuite优化配置/index.html">
+<meta property="og:title" content="proxychains配置详解">
+<meta property="og:url" content="http://hl0rey.github.io/2018/02/03/proxychains配置详解/index.html">
 <meta property="og:site_name" content="hl0rey&#39;s blog">
-<meta property="og:description" content="burpsuite是由PortSwigger公司开发的一款功能强大的web应用程序测试工具． 它不同于一般的web扫描器，它不局限与对网站的扫描，理论上，他可以测试一切通过http协议通讯的程序．     安装设置中文字体 安装字体百度＂文泉驿微米黑＂下载一个（微软雅黑因该也可以，文泉驿是苑老师推荐的），扔到home目录下的.font目录里就行了．  设置中文字体设置的位置：User option">
+<meta property="og:description" content="proxychains是一个支持　http socks4 socks5 代理的强力的代理工具（支持身份认证）．&amp;apos;chains&amp;apos;这个词是关键，支持代理链．现在已经有新版（proxychains ng (new generation) 支持的代理类型http, socks4, socks5     支持的身份认证方式http基本身份认证  socks用户名/密码认证 基本使用pro">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://hl0rey.github.io/2018/02/02/burpsuite优化配置/2.png">
-<meta property="og:image" content="http://hl0rey.github.io/2018/02/02/burpsuite优化配置/1.png">
-<meta property="og:updated_time" content="2018-02-03T12:13:11.564Z">
+<meta property="og:updated_time" content="2018-02-03T13:51:24.673Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="burpsuite优化配置">
-<meta name="twitter:description" content="burpsuite是由PortSwigger公司开发的一款功能强大的web应用程序测试工具． 它不同于一般的web扫描器，它不局限与对网站的扫描，理论上，他可以测试一切通过http协议通讯的程序．     安装设置中文字体 安装字体百度＂文泉驿微米黑＂下载一个（微软雅黑因该也可以，文泉驿是苑老师推荐的），扔到home目录下的.font目录里就行了．  设置中文字体设置的位置：User option">
-<meta name="twitter:image" content="http://hl0rey.github.io/2018/02/02/burpsuite优化配置/2.png">
+<meta name="twitter:title" content="proxychains配置详解">
+<meta name="twitter:description" content="proxychains是一个支持　http socks4 socks5 代理的强力的代理工具（支持身份认证）．&amp;apos;chains&amp;apos;这个词是关键，支持代理链．现在已经有新版（proxychains ng (new generation) 支持的代理类型http, socks4, socks5     支持的身份认证方式http基本身份认证  socks用户名/密码认证 基本使用pro">
 
 
 
@@ -123,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://hl0rey.github.io/2018/02/02/burpsuite优化配置/"/>
+  <link rel="canonical" href="http://hl0rey.github.io/2018/02/03/proxychains配置详解/"/>
 
 
 
 
 
-  <title>burpsuite优化配置 | hl0rey's blog</title>
+  <title>proxychains配置详解 | hl0rey's blog</title>
   
 
 
@@ -256,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/02/burpsuite优化配置/">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/03/proxychains配置详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hl0rey">
@@ -273,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">burpsuite优化配置</h1>
+          <h1 class="post-title" itemprop="name headline">proxychains配置详解</h1>
         
 
         <div class="post-meta">
@@ -285,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-02T11:21:57+08:00">
-                2018-02-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-03T21:27:08+08:00">
+                2018-02-03
               </time>
             
 
@@ -345,16 +342,29 @@
       
 
       
-        <pre><code>burpsuite是由PortSwigger公司开发的一款功能强大的web应用程序测试工具．
-它不同于一般的web扫描器，它不局限与对网站的扫描，理论上，他可以测试一切通过http协议通讯的程序．    
-</code></pre><h3 id="安装设置中文字体"><a href="#安装设置中文字体" class="headerlink" title="安装设置中文字体"></a>安装设置中文字体</h3><ul>
-<li><h4 id="安装字体"><a href="#安装字体" class="headerlink" title="安装字体"></a>安装字体</h4>百度＂文泉驿微米黑＂下载一个（微软雅黑因该也可以，文泉驿是苑老师推荐的），扔到home目录下的.font目录里就行了．<br><img src="/2018/02/02/burpsuite优化配置/2.png" alt=""> </li>
-<li><h4 id="设置中文字体"><a href="#设置中文字体" class="headerlink" title="设置中文字体"></a>设置中文字体</h4>设置的位置：User options -&gt; Dispaly -&gt; HTTP Message Display<br>点击　change font … 按钮　修改　Font 属性，选择要设置的字体即可．<br><img src="/2018/02/02/burpsuite优化配置/1.png" alt=""> </li>
-</ul>
-<h3 id="设置较大的JVM内存"><a href="#设置较大的JVM内存" class="headerlink" title="设置较大的JVM内存"></a>设置较大的JVM内存</h3><p>burpsuite是个java程序，如果安装了jre就能顺利运行了，但是由于burpsuite是个做渗透测试的工具，免不了发送大量请求，那么默认的64M内存也就满足不了需求了．所以就要在java在创建虚拟机的时候分配较大的内存，命令如下：</p>
-<pre><code>java -jar -Xmx2048M  /your_burpsuite_path/burpsuite.jar
-</code></pre><p>其中参数-Xmx指定JVM可用的最大内存，单位可以是M，也可以是G，如果是G为单位的话，则脚本内容为：</p>
-<pre><code>java -jar -Xmx2G  /your_burpsuite_path/burpsuite.jar
+        <pre><code>proxychains是一个支持　http socks4 socks5 代理的强力的代理工具（支持身份认证）．&apos;chains&apos;这个词是关键，支持代理链．现在已经有新版（proxychains ng (new generation)
+</code></pre><h3 id="支持的代理类型"><a href="#支持的代理类型" class="headerlink" title="支持的代理类型"></a>支持的代理类型</h3><pre><code>http, socks4, socks5    
+</code></pre><h5 id="支持的身份认证方式"><a href="#支持的身份认证方式" class="headerlink" title="支持的身份认证方式"></a>支持的身份认证方式</h5><pre><code>http基本身份认证  socks用户名/密码认证
+</code></pre><h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><pre><code>proxychains xxxx
+</code></pre><p>xxxx　的流量就走代理了．</p>
+<h3 id="配置文件位置"><a href="#配置文件位置" class="headerlink" title="配置文件位置"></a>配置文件位置</h3><pre><code>Proxychains 依照下面的顺序来寻找配置文件：
+首先在当前目录下找：
+./proxychains.conf
+再在用户家目录下找
+$(HOME)/.proxychains/proxychains.conf
+系统配置文件目录：
+/etc/proxychains.conf 
+</code></pre><h3 id="配置项详解"><a href="#配置项详解" class="headerlink" title="配置项详解"></a>配置项详解</h3><h4 id="代理类型"><a href="#代理类型" class="headerlink" title="代理类型"></a>代理类型</h4><p>dynamic_chain　自动跳过死代理<br>strict_chain　每个代理都使用，不管死活<br>random_chain 随便挑着代理用　（chain_len　是配置每次用的代理个数）</p>
+<h4 id="代理dns请求"><a href="#代理dns请求" class="headerlink" title="代理dns请求"></a>代理dns请求</h4><p>proxy_dns</p>
+<h4 id="跳过本地地址"><a href="#跳过本地地址" class="headerlink" title="跳过本地地址"></a>跳过本地地址</h4><p>localnet 127.0.0.0/255.0.0.0</p>
+<h4 id="超时时间"><a href="#超时时间" class="headerlink" title="超时时间"></a>超时时间</h4><p>tcp_read_time_out 15000<br>tcp_connect_time_out 8000</p>
+<h4 id="代理列表"><a href="#代理列表" class="headerlink" title="代理列表"></a>代理列表</h4><h5 id="代理列表开始的标记"><a href="#代理列表开始的标记" class="headerlink" title="代理列表开始的标记"></a>代理列表开始的标记</h5><p>[ProxyList]</p>
+<h5 id="代理格式"><a href="#代理格式" class="headerlink" title="代理格式"></a>代理格式</h5><pre><code>type  host  port [user pass]
+每一项配置用　tab 或者空格　隔开
+</code></pre><h5 id="Examples"><a href="#Examples" class="headerlink" title="Examples:"></a>Examples:</h5><pre><code>socks5    192.168.67.78    1080    lamer    secret
+http    192.168.89.3    8080    justu    hidden
+socks4    192.168.1.49    1080
+http    192.168.39.93    8080    
 </code></pre>
       
     </div>
@@ -370,12 +380,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/02/02/burpsuite优化配置/">burpsuite优化配置</a></p>
+  <p><span>本文标题:</span><a href="/2018/02/03/proxychains配置详解/">proxychains配置详解</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 hl0rey 的个人博客">hl0rey</a></p>
-  <p><span>发布时间:</span>2018年02月02日 - 11:02</p>
-  <p><span>最后更新:</span>2018年02月03日 - 20:02</p>
-  <p><span>原始链接:</span><a href="/2018/02/02/burpsuite优化配置/" title="burpsuite优化配置">http://hl0rey.github.io/2018/02/02/burpsuite优化配置/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/02/burpsuite优化配置/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年02月03日 - 21:02</p>
+  <p><span>最后更新:</span>2018年02月03日 - 21:02</p>
+  <p><span>原始链接:</span><a href="/2018/02/03/proxychains配置详解/" title="proxychains配置详解">http://hl0rey.github.io/2018/02/03/proxychains配置详解/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/03/proxychains配置详解/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -406,7 +416,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/burpsuite/" rel="tag"># burpsuite</a>
+            <a href="/tags/proxy/" rel="tag"># proxy</a>
           
         </div>
       
@@ -419,8 +429,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/31/nmap-7-6-手册/" rel="next" title="nmap 7.6 手册">
-                <i class="fa fa-chevron-left"></i> nmap 7.6 手册
+              <a href="/2018/02/03/burpsuite-Target模块/" rel="next" title="burpsuite-Target模块">
+                <i class="fa fa-chevron-left"></i> burpsuite-Target模块
               </a>
             
           </div>
@@ -428,10 +438,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/02/burpsuite截获流量/" rel="prev" title="burpsuite截获流量">
-                burpsuite截获流量 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -563,7 +569,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装设置中文字体"><span class="nav-number">1.</span> <span class="nav-text">安装设置中文字体</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装字体"><span class="nav-number">1.1.</span> <span class="nav-text">安装字体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置中文字体"><span class="nav-number">1.2.</span> <span class="nav-text">设置中文字体</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置较大的JVM内存"><span class="nav-number">2.</span> <span class="nav-text">设置较大的JVM内存</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#支持的代理类型"><span class="nav-number">1.</span> <span class="nav-text">支持的代理类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#支持的身份认证方式"><span class="nav-number">1.0.1.</span> <span class="nav-text">支持的身份认证方式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本使用"><span class="nav-number">2.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文件位置"><span class="nav-number">3.</span> <span class="nav-text">配置文件位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置项详解"><span class="nav-number">4.</span> <span class="nav-text">配置项详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代理类型"><span class="nav-number">4.1.</span> <span class="nav-text">代理类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代理dns请求"><span class="nav-number">4.2.</span> <span class="nav-text">代理dns请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#跳过本地地址"><span class="nav-number">4.3.</span> <span class="nav-text">跳过本地地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#超时时间"><span class="nav-number">4.4.</span> <span class="nav-text">超时时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代理列表"><span class="nav-number">4.5.</span> <span class="nav-text">代理列表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#代理列表开始的标记"><span class="nav-number">4.5.1.</span> <span class="nav-text">代理列表开始的标记</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代理格式"><span class="nav-number">4.5.2.</span> <span class="nav-text">代理格式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Examples"><span class="nav-number">4.5.3.</span> <span class="nav-text">Examples:</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
