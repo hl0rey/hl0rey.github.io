@@ -657,6 +657,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tools/" itemprop="url" rel="index">
+                    <span itemprop="name">tools</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -686,9 +708,16 @@
       
         
           
-            <p>中文字体</p>
-<p>如何设置JVM内存 大小<br>如果Java可运行环境配置正确的话，当你双击burpSuite.jar即可启动软件，这时，Burp Suite自己会自动分配最大的可用内存，具体实际分配了多少内存，默认一般为64M。当我们在渗透测试过程，如果有成千上万个请求通过Burp Suite，这时就可能会导致Burp Suite因内存不足而崩溃，从而会丢失渗透测试过程中的相关数据，这是我们不希望看到的。因此，当我们启动Burp Suite时，通常会指定它使用的内存大小。 一般来说，我们通常会分配2G的内存供Burp Suite使用，如果你的电脑内存足够，可以分配4G；如果你的电脑内存足够小，你也可以分配128M。当你给Burp Suite分配足够多的内存时，它能做的工作也会更多。指定Burp Suite占用内存大小的具体配置方法是在启动脚本里添加如下命令行参数： 假设启动脚本的名称为burp_suite_start.bat，则该bat脚本的内容为<br>java -jar -Xmx2048M  /your_burpsuite_path/burpsuite.jar<br>其中参数-Xmx指定JVM可用的最大内存，单位可以是M，也可以是G，如果是G为单位的话，则脚本内容为：<br>java -jar -Xmx2G  /your_burpsuite_path/burpsuite.jar<br>更多关于JVM性能调优的知识请阅读 Oracle JVM Tuning<br>IPv6问题调试<br>Burp Suite是不支持IPv6地址进行数据通信的，这时在cmd控制台里就会抛出如下异常<br>java.net.SocketException: Permission denied<br>同时，浏览器访问时，也会出现异常<br>Burp proxy error: Permission denied: connect<br>当出现如上问题时，我们需要修改启动脚本，添加对IPv4的指定后，重启Burp Suite即可。<br>java -jar -Xmx2048M  -Djava.net.preferIPv4Stack=true  /your_burpsuite_path/burpsuite.jar<br>通过 -Djava.net.preferIPv4Stack=true参数的设置，告诉Java运行环境，使用IPv4协议栈进行数据通信，IPv6协议将会被禁止使用。 这个错误最常见于64位的windows操作系统上，使用了32位的JDK</p>
-
+            <pre><code>burpsuite是由PortSwigger公司开发的一款功能强大的web应用程序测试工具．它不同于一般的web扫描器，它不局限与对网站的扫描，理论上，他可以测试一切通过http协议通讯的程序．    
+</code></pre><h3 id="安装设置中文字体"><a href="#安装设置中文字体" class="headerlink" title="安装设置中文字体"></a>安装设置中文字体</h3><ul>
+<li><h4 id="安装字体"><a href="#安装字体" class="headerlink" title="安装字体"></a>安装字体</h4>百度＂文泉驿微米黑＂下载一个（微软雅黑因该也可以，文泉驿是苑老师推荐的），扔到home目录下的.font目录里就行了．<br><img src="/2018/02/02/burpsuite优化配置/2.png" alt=""> </li>
+<li><h4 id="设置中文字体"><a href="#设置中文字体" class="headerlink" title="设置中文字体"></a>设置中文字体</h4>设置的位置：User options -&gt; Dispaly -&gt; HTTP Message Display<br>点击　change font … 按钮　修改　Font 属性，选择要设置的字体即可．<br><img src="/2018/02/02/burpsuite优化配置/1.png" alt=""> </li>
+</ul>
+<h3 id="设置较大的JVM内存"><a href="#设置较大的JVM内存" class="headerlink" title="设置较大的JVM内存"></a>设置较大的JVM内存</h3><p>burpsuite是个java程序，如果安装了jre就能顺利运行了，但是由于burpsuite是个做渗透测试的工具，免不了发送大量请求，那么默认的64M内存也就满足不了需求了．所以就要在java在创建虚拟机的时候分配较大的内存，命令如下：</p>
+<pre><code>java -jar -Xmx2048M  /your_burpsuite_path/burpsuite.jar
+</code></pre><p>其中参数-Xmx指定JVM可用的最大内存，单位可以是M，也可以是G，如果是G为单位的话，则脚本内容为：</p>
+<pre><code>java -jar -Xmx2G  /your_burpsuite_path/burpsuite.jar
+</code></pre>
           
         
       
@@ -1342,6 +1371,15 @@
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
