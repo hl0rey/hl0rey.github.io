@@ -342,8 +342,7 @@
       
         
           
-            <pre><code>proxychains是一个支持　http socks4 socks5 代理的强力的代理工具（支持身份认证）．&apos;chains&apos;这个词是关键，支持代理链．现在已经有新版（proxychains ng (new generation)
-proxychains ng 目前只是增加了几个命令行参数
+            <pre><code>proxychains是一个支持　http socks4 socks5 代理的强力的代理工具（支持身份认证）．&apos;chains&apos;这个词是关键，支持代理链．现在已经有新版（proxychains ng (new generation)，增加了一些功能．
 </code></pre><h3 id="支持的代理类型"><a href="#支持的代理类型" class="headerlink" title="支持的代理类型"></a>支持的代理类型</h3><pre><code>http, socks4, socks5    
 </code></pre><h5 id="支持的身份认证方式"><a href="#支持的身份认证方式" class="headerlink" title="支持的身份认证方式"></a>支持的身份认证方式</h5><pre><code>http基本身份认证  socks用户名/密码认证
 </code></pre><h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><pre><code>proxychains xxxx
@@ -357,7 +356,7 @@ $(HOME)/.proxychains/proxychains.conf
 /etc/proxychains.conf 
 </code></pre><h3 id="配置项详解"><a href="#配置项详解" class="headerlink" title="配置项详解"></a>配置项详解</h3><h4 id="代理类型"><a href="#代理类型" class="headerlink" title="代理类型"></a>代理类型</h4><p>dynamic_chain　自动跳过死代理<br>strict_chain　每个代理都使用，不管死活<br>random_chain 随便挑着代理用　（chain_len　是配置每次用的代理个数）</p>
 <h4 id="代理dns请求"><a href="#代理dns请求" class="headerlink" title="代理dns请求"></a>代理dns请求</h4><p>proxy_dns</p>
-<h4 id="跳过本地地址"><a href="#跳过本地地址" class="headerlink" title="跳过本地地址"></a>跳过本地地址</h4><p>localnet 127.0.0.0/255.0.0.0</p>
+<h4 id="跳过本地地址（proxychains-ng-目前值得一提的功能，ng才支持）"><a href="#跳过本地地址（proxychains-ng-目前值得一提的功能，ng才支持）" class="headerlink" title="跳过本地地址（proxychains ng 目前值得一提的功能，ng才支持）"></a>跳过本地地址（proxychains ng 目前值得一提的功能，ng才支持）</h4><p>localnet 127.0.0.0/255.0.0.0</p>
 <h4 id="超时时间"><a href="#超时时间" class="headerlink" title="超时时间"></a>超时时间</h4><p>tcp_read_time_out 15000<br>tcp_connect_time_out 8000</p>
 <h4 id="代理列表"><a href="#代理列表" class="headerlink" title="代理列表"></a>代理列表</h4><h5 id="代理列表开始的标记"><a href="#代理列表开始的标记" class="headerlink" title="代理列表开始的标记"></a>代理列表开始的标记</h5><p>[ProxyList]</p>
 <h5 id="代理格式"><a href="#代理格式" class="headerlink" title="代理格式"></a>代理格式</h5><pre><code>type  host  port [user pass]
