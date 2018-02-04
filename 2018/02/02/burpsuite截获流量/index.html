@@ -91,7 +91,7 @@
 <meta property="og:image" content="http://hl0rey.github.io/2018/02/02/burpsuite截获流量/1.png">
 <meta property="og:image" content="http://hl0rey.github.io/2018/02/02/burpsuite截获流量/3.png">
 <meta property="og:image" content="http://hl0rey.github.io/2018/02/02/burpsuite截获流量/4.png">
-<meta property="og:updated_time" content="2018-02-04T12:23:36.842Z">
+<meta property="og:updated_time" content="2018-02-04T12:28:04.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="burpsuite截获流量">
 <meta name="twitter:description" content="burpsuite的测试功能，主要体现在能灵活的修改重放http请求，其原理是将burpsuite做为代理，在客户端和服务器之间截断请求．默认不截获返回内容．（可以分析下httpproxy.pcapng，了解下http代理．）     https证书问题web请求有http和https两种，https是经过ssl证书加密的http通信，burpsuite在中间做代理，则必须让客户端信任burp的证">
@@ -357,8 +357,9 @@
 <h4 id="linux-lo子接口配置（kali）"><a href="#linux-lo子接口配置（kali）" class="headerlink" title="linux lo子接口配置（kali）"></a>linux lo子接口配置（kali）</h4><pre><code>ifconfig lo:1 127.0.0.2 netmask 255.255.255.0
 ifconfig lo:1 up
 </code></pre><p>这样就创建好了<br>在burp添加代理的时候，就能看见这个地址了，然后在浏览器里直接配置代理就可以用了．<br><img src="/2018/02/02/burpsuite截获流量/4.png" alt=""> </p>
-<p>使用完毕　<br>    ifconfig lo:1 down<br>把接口关闭就恢复原样了．</p>
-
+<p>使用完毕，把接口关闭就恢复原样了．</p>
+<pre><code>ifconfig lo:1 down
+</code></pre>
       
     </div>
     
