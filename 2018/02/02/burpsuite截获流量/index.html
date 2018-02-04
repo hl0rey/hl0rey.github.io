@@ -87,10 +87,15 @@
 <meta property="og:site_name" content="hl0rey&#39;s blog">
 <meta property="og:description" content="burpsuite的测试功能，主要体现在能灵活的修改重放http请求，其原理是将burpsuite做为代理，在客户端和服务器之间截断请求．默认不截获返回内容．（可以分析下httpproxy.pcapng，了解下http代理．）     https证书问题web请求有http和https两种，https是经过ssl证书加密的http通信，burpsuite在中间做代理，则必须让客户端信任burp的证">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-04T11:15:32.158Z">
+<meta property="og:image" content="http://hl0rey.github.io/2018/02/02/burpsuite截获流量/2.png">
+<meta property="og:image" content="http://hl0rey.github.io/2018/02/02/burpsuite截获流量/1.png">
+<meta property="og:image" content="http://hl0rey.github.io/2018/02/02/burpsuite截获流量/3.png">
+<meta property="og:image" content="http://hl0rey.github.io/2018/02/02/burpsuite截获流量/4.png">
+<meta property="og:updated_time" content="2018-02-04T12:23:36.842Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="burpsuite截获流量">
 <meta name="twitter:description" content="burpsuite的测试功能，主要体现在能灵活的修改重放http请求，其原理是将burpsuite做为代理，在客户端和服务器之间截断请求．默认不截获返回内容．（可以分析下httpproxy.pcapng，了解下http代理．）     https证书问题web请求有http和https两种，https是经过ssl证书加密的http通信，burpsuite在中间做代理，则必须让客户端信任burp的证">
+<meta name="twitter:image" content="http://hl0rey.github.io/2018/02/02/burpsuite截获流量/2.png">
 
 
 
@@ -345,7 +350,14 @@
         <pre><code>burpsuite的测试功能，主要体现在能灵活的修改重放http请求，其原理是将burpsuite做为代理，在客户端和服务器之间截断请求．默认不截获返回内容．（可以分析下httpproxy.pcapng，了解下http代理．）    
 </code></pre><h3 id="https证书问题"><a href="#https证书问题" class="headerlink" title="https证书问题"></a>https证书问题</h3><p>web请求有http和https两种，https是经过ssl证书加密的http通信，burpsuite在中间做代理，则必须让客户端信任burp的证书．<br>浏览器设置代理指向burp监听的端口，然后访问 <a href="https://burp" target="_blank" rel="noopener">https://burp</a> 把证书导入就行了</p>
 <h3 id="客户端支持代理的解决方案"><a href="#客户端支持代理的解决方案" class="headerlink" title="客户端支持代理的解决方案"></a>客户端支持代理的解决方案</h3><p>直接设置．</p>
-<h5 id="可见代理，适用于支持代理的客户端"><a href="#可见代理，适用于支持代理的客户端" class="headerlink" title="可见代理，适用于支持代理的客户端"></a>可见代理，适用于支持代理的客户端</h5><h3 id="客户端不支持http代理的解决方案"><a href="#客户端不支持http代理的解决方案" class="headerlink" title="客户端不支持http代理的解决方案"></a>客户端不支持http代理的解决方案</h3><h4 id="不可见代理（透明代理）"><a href="#不可见代理（透明代理）" class="headerlink" title="不可见代理（透明代理）"></a>不可见代理（透明代理）</h4><p>代理服务器读取数据包的</p>
+<h5 id="可见代理，适用于支持代理的客户端"><a href="#可见代理，适用于支持代理的客户端" class="headerlink" title="可见代理，适用于支持代理的客户端"></a>可见代理，适用于支持代理的客户端</h5><h3 id="客户端不支持http代理的解决方案"><a href="#客户端不支持http代理的解决方案" class="headerlink" title="客户端不支持http代理的解决方案"></a>客户端不支持http代理的解决方案</h3><h4 id="dns欺骗"><a href="#dns欺骗" class="headerlink" title="dns欺骗"></a>dns欺骗</h4><p>通过修改客户端的hosts文或者其他办法把发向待测试的web应用程序的流量引到burpsuite上．这就需要burpsuite来判断如何转发流量．当在被测试的客户端与burp在同一机器时，为使其能正常访问，可设置burp内部的域名解析，来覆盖系统hosts文件的配置．<br>Hostname Resolution配置<br><img src="/2018/02/02/burpsuite截获流量/2.png" alt=""></p>
+<h4 id="不可见代理（透明代理）"><a href="#不可见代理（透明代理）" class="headerlink" title="不可见代理（透明代理）"></a>不可见代理（透明代理）</h4><p>代理服务器读取数据包的URL和host头，来判断客户端要访问的网站．<br>配置位置：<br>Proxy -&gt; Option -&gt; Proxy Listeners<br>点击 Edit 某个代理的配置，切换到 Request handing 标签页，勾选 Support invisible proxying，不能随便勾选，如果勾选了此项则不支持可见代理了．<br><img src="/2018/02/02/burpsuite截获流量/1.png" alt=""> </p>
+<h4 id="请求没有host头"><a href="#请求没有host头" class="headerlink" title="请求没有host头"></a>请求没有host头</h4><p>这种情况单靠不可见代理代理，也不能解决问题了．<br>这时候需要让burp自己来确定如何转发．在Request handing 标签页下来配置．<br>当客户端访问多个域名，多个待测服务器时，可以启动多个监听，运用linux子接口机制，让测试机有多个ip地址，来完成测试．</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>苑老师的表格<br><img src="/2018/02/02/burpsuite截获流量/3.png" alt=""> </p>
+<h4 id="linux-lo子接口配置（kali）"><a href="#linux-lo子接口配置（kali）" class="headerlink" title="linux lo子接口配置（kali）"></a>linux lo子接口配置（kali）</h4><pre><code>ifconfig lo:1 127.0.0.2 netmask 255.255.255.0
+ifconfig lo:1 up
+</code></pre><p>这样就创建好了<br>在burp添加代理的时候，就能看见这个地址了，然后在浏览器里直接配置代理就可以用了．<br><img src="/2018/02/02/burpsuite截获流量/4.png" alt=""> </p>
+<p>使用完毕　<br>    ifconfig lo:1 down<br>把接口关闭就恢复原样了．</p>
 
       
     </div>
@@ -355,6 +367,35 @@
     <div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/02/02/burpsuite截获流量/">burpsuite截获流量</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 hl0rey 的个人博客">hl0rey</a></p>
+  <p><span>发布时间:</span>2018年02月02日 - 12:02</p>
+  <p><span>最后更新:</span>2018年02月04日 - 20:02</p>
+  <p><span>原始链接:</span><a href="/2018/02/02/burpsuite截获流量/" title="burpsuite截获流量">http://hl0rey.github.io/2018/02/02/burpsuite截获流量/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/02/burpsuite截获流量/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
 
       
     </div>
@@ -525,7 +566,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#https证书问题"><span class="nav-number">1.</span> <span class="nav-text">https证书问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端支持代理的解决方案"><span class="nav-number">2.</span> <span class="nav-text">客户端支持代理的解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#可见代理，适用于支持代理的客户端"><span class="nav-number">2.0.1.</span> <span class="nav-text">可见代理，适用于支持代理的客户端</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端不支持http代理的解决方案"><span class="nav-number">3.</span> <span class="nav-text">客户端不支持http代理的解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不可见代理（透明代理）"><span class="nav-number">3.1.</span> <span class="nav-text">不可见代理（透明代理）</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#https证书问题"><span class="nav-number">1.</span> <span class="nav-text">https证书问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端支持代理的解决方案"><span class="nav-number">2.</span> <span class="nav-text">客户端支持代理的解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#可见代理，适用于支持代理的客户端"><span class="nav-number">2.0.1.</span> <span class="nav-text">可见代理，适用于支持代理的客户端</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端不支持http代理的解决方案"><span class="nav-number">3.</span> <span class="nav-text">客户端不支持http代理的解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dns欺骗"><span class="nav-number">3.1.</span> <span class="nav-text">dns欺骗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不可见代理（透明代理）"><span class="nav-number">3.2.</span> <span class="nav-text">不可见代理（透明代理）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求没有host头"><span class="nav-number">3.3.</span> <span class="nav-text">请求没有host头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">3.4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#linux-lo子接口配置（kali）"><span class="nav-number">3.5.</span> <span class="nav-text">linux lo子接口配置（kali）</span></a></li></ol></li></ol></div>
             
 
           </div>
