@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="burpsuite的测试功能，主要体现在能灵活的修改重放http请求，其原理是将burpsuite做为代理，在客户端和服务器之间截断请求．（可以分析下httpproxy.pcapng，了解下http代理．）     https证书问题web请求有http和https两种，https是经过ssl证书加密的http通信，burpsuite在中间做代理，则必须让客户端信任burp的证书．浏览器设置代理指">
+<meta name="description" content="burpsuite的测试功能，主要体现在能灵活的修改重放http请求，其原理是将burpsuite做为代理，在客户端和服务器之间截断请求．默认不截获返回内容．（可以分析下httpproxy.pcapng，了解下http代理．）     https证书问题web请求有http和https两种，https是经过ssl证书加密的http通信，burpsuite在中间做代理，则必须让客户端信任burp的证">
 <meta name="keywords" content="burpsuite">
 <meta property="og:type" content="article">
 <meta property="og:title" content="burpsuite截获流量">
 <meta property="og:url" content="http://hl0rey.github.io/2018/02/02/burpsuite截获流量/index.html">
 <meta property="og:site_name" content="hl0rey&#39;s blog">
-<meta property="og:description" content="burpsuite的测试功能，主要体现在能灵活的修改重放http请求，其原理是将burpsuite做为代理，在客户端和服务器之间截断请求．（可以分析下httpproxy.pcapng，了解下http代理．）     https证书问题web请求有http和https两种，https是经过ssl证书加密的http通信，burpsuite在中间做代理，则必须让客户端信任burp的证书．浏览器设置代理指">
+<meta property="og:description" content="burpsuite的测试功能，主要体现在能灵活的修改重放http请求，其原理是将burpsuite做为代理，在客户端和服务器之间截断请求．默认不截获返回内容．（可以分析下httpproxy.pcapng，了解下http代理．）     https证书问题web请求有http和https两种，https是经过ssl证书加密的http通信，burpsuite在中间做代理，则必须让客户端信任burp的证">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-03T13:18:19.810Z">
+<meta property="og:updated_time" content="2018-02-04T10:54:44.756Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="burpsuite截获流量">
-<meta name="twitter:description" content="burpsuite的测试功能，主要体现在能灵活的修改重放http请求，其原理是将burpsuite做为代理，在客户端和服务器之间截断请求．（可以分析下httpproxy.pcapng，了解下http代理．）     https证书问题web请求有http和https两种，https是经过ssl证书加密的http通信，burpsuite在中间做代理，则必须让客户端信任burp的证书．浏览器设置代理指">
+<meta name="twitter:description" content="burpsuite的测试功能，主要体现在能灵活的修改重放http请求，其原理是将burpsuite做为代理，在客户端和服务器之间截断请求．默认不截获返回内容．（可以分析下httpproxy.pcapng，了解下http代理．）     https证书问题web请求有http和https两种，https是经过ssl证书加密的http通信，burpsuite在中间做代理，则必须让客户端信任burp的证">
 
 
 
@@ -342,10 +342,9 @@
       
 
       
-        <pre><code>burpsuite的测试功能，主要体现在能灵活的修改重放http请求，其原理是将burpsuite做为代理，在客户端和服务器之间截断请求．（可以分析下httpproxy.pcapng，了解下http代理．）    
+        <pre><code>burpsuite的测试功能，主要体现在能灵活的修改重放http请求，其原理是将burpsuite做为代理，在客户端和服务器之间截断请求．默认不截获返回内容．（可以分析下httpproxy.pcapng，了解下http代理．）    
 </code></pre><h3 id="https证书问题"><a href="#https证书问题" class="headerlink" title="https证书问题"></a>https证书问题</h3><p>web请求有http和https两种，https是经过ssl证书加密的http通信，burpsuite在中间做代理，则必须让客户端信任burp的证书．<br>浏览器设置代理指向burp监听的端口，然后访问 <a href="https://burp" target="_blank" rel="noopener">https://burp</a> 把证书导入就行了</p>
 <h3 id="客户端不支持http代理的解决方案"><a href="#客户端不支持http代理的解决方案" class="headerlink" title="客户端不支持http代理的解决方案"></a>客户端不支持http代理的解决方案</h3><p>不可见代理（透明代理）</p>
-<p>默认不截获返回</p>
 
       
     </div>
@@ -470,7 +469,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

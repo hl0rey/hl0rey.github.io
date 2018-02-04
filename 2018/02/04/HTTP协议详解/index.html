@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="信息安全, 黑客技术, 渗透测试, 信安, 黑客, 渗透, security, hacker, hl0rey" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="小白的pte学习之路之HTTP协议HTTP 协议，即超文本传输协议(Hypertext transfer protocol)。 是一种详细规定了浏览器和万维网(WWW = World Wide Web)服务器之间互相通信的规则，通过因特网传送万维网文档的数据传送协议 HTTP协议的特点就不好再赘述了中文RFC文档： 超文本传输协议–HTTP1.0 本文的主要内容：     HTTP 请求方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hl0rey&#39;s blog">
+<meta property="og:url" content="http://hl0rey.github.io/2018/02/04/HTTP协议详解/index.html">
+<meta property="og:site_name" content="hl0rey&#39;s blog">
+<meta property="og:description" content="小白的pte学习之路之HTTP协议HTTP 协议，即超文本传输协议(Hypertext transfer protocol)。 是一种详细规定了浏览器和万维网(WWW = World Wide Web)服务器之间互相通信的规则，通过因特网传送万维网文档的数据传送协议 HTTP协议的特点就不好再赘述了中文RFC文档： 超文本传输协议–HTTP1.0 本文的主要内容：     HTTP 请求方法">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2964446-fdfb1a8fce8de946.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-02-04T11:02:26.904Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hl0rey&#39;s blog">
+<meta name="twitter:description" content="小白的pte学习之路之HTTP协议HTTP 协议，即超文本传输协议(Hypertext transfer protocol)。 是一种详细规定了浏览器和万维网(WWW = World Wide Web)服务器之间互相通信的规则，通过因特网传送万维网文档的数据传送协议 HTTP协议的特点就不好再赘述了中文RFC文档： 超文本传输协议–HTTP1.0 本文的主要内容：     HTTP 请求方法">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2964446-fdfb1a8fce8de946.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hl0rey.github.io/2018/02/04/HTTP协议详解/"/>
+
+
+
+
+
+  <title> | hl0rey's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hl0rey's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/04/HTTP协议详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hl0rey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hl0rey's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-04T19:03:51+08:00">
+                2018-02-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="小白的pte学习之路之HTTP协议"><a href="#小白的pte学习之路之HTTP协议" class="headerlink" title="小白的pte学习之路之HTTP协议"></a>小白的pte学习之路之HTTP协议</h1><p>HTTP 协议，即超文本传输协议(Hypertext transfer protocol)。 是一种<br>详细规定了浏览器和万维网(WWW = World Wide Web)服务器之间互相通信的规则，<br>通过因特网传送万维网文档的数据传送协议</p>
+<h6 id="HTTP协议的特点就不好再赘述了"><a href="#HTTP协议的特点就不好再赘述了" class="headerlink" title="HTTP协议的特点就不好再赘述了"></a>HTTP协议的特点就不好再赘述了</h6><p>中文RFC文档：</p>
+<p><a href="http://man.chinaunix.net/develop/rfc/RFC1945.txt" target="_blank" rel="noopener">超文本传输协议–HTTP1.0</a></p>
+<pre><code>本文的主要内容：
+    HTTP 请求方法
+        HTTP1.0 的请求方法
+            了解 HTTP1.0 三种请求方法， GET, POST 和 HEAD
+            掌握 GET 请求的标准格式
+            掌握 POST 请求提交表单， 上传文件的方法
+            了解 HEAD 请求与 GET 请求的区别
+        HTTP1.1 新增的请求方法
+            了解 HTTP1.1 新增了五种请求方法： OPTIONS, PUT, DELETE,TRACE 和 CONNECT 方法的基本概念
+            掌握 HTTP1.1 新增的五种请求的基本方法和产生的请求结果
+
+    HTTP 的状态码
+        HTTP 状态码的分类
+            了解 HTTP 状态码的规范
+            了解 HTTP 状态码的作用
+            掌握常见的 HTTP 状态码
+        HTTP 状态码的含义
+            了解 HTTP 状态码 2**,3**,4**,5** 代表的含义
+            掌握用计算机语言获取 HTTP 状态码的方法
+
+    HTTP 协议响应头信息
+        HTTP 响应头的含义
+            了解常见的 HTTP 响应头
+            掌握 HTTP 响应头的作用
+        HTTP 响应头的类型
+            了解 HTTP 响应头的名称
+            掌握 HTTP 响应头的格式
+
+    HTTP 协议中的 URL
+        URL 的基本构成
+            了解 URL 的基本概念
+            了解 URL 的结构
+            掌握 URL 编码格式
+        URL、URN和URI的区别
+
+    HTTP2.0 新事物
+    HTTP XST攻击与trace方法
+    使用python requests库花式发送http请求（如果使用python的比较底层的HTTP请求库还能fuzzing）
+    Web DAV（Web-based Distributed Authoring and Versioning）
+</code></pre><h2 id="HTTP的请求方法"><a href="#HTTP的请求方法" class="headerlink" title="HTTP的请求方法"></a>HTTP的请求方法</h2><p>一个HTTP请求结构</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2964446-fdfb1a8fce8de946.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<h3 id="HTTP1-0-的请求方法"><a href="#HTTP1-0-的请求方法" class="headerlink" title="HTTP1.0 的请求方法"></a>HTTP1.0 的请求方法</h3><h4 id="GET-方法"><a href="#GET-方法" class="headerlink" title="GET 方法"></a>GET 方法</h4><p>请求指定的页面信息，并返回实体主体。</p>
+<p>一个形象的比喻：</p>
+<pre><code>HTTP报文和HTTP实体的关系就像订单信息和具体的订单货物一样。
+HTTP报文是一个提供http头信息和主体的请求或响应，类似一个订单拥有订单的各种信息。
+而HTTP实体就像订单的具体货物一样，他本身就持有头部和主体的信息，他是传输中真正传输的数据，和订单中传输的是订单商品一样
+</code></pre><p>实体 entity 是请求或响应的有效承载信息。Http报头分为通用报头，请求报头，响应报头和实体报头。实体包头加上实体就是实体信息</p>
+<p>GET 方法是获取服务器某一资源的方法。</p>
+<h4 id="POST-方法"><a href="#POST-方法" class="headerlink" title="POST 方法"></a>POST 方法</h4><p>向服务器发送数据。</p>
+<h4 id="HEAD-方法"><a href="#HEAD-方法" class="headerlink" title="HEAD 方法"></a>HEAD 方法</h4><p>请求服务器返回响应头部，不返回实体。这就是和GET 方法的区别。</p>
+<h4 id="GET-请求的标准格式"><a href="#GET-请求的标准格式" class="headerlink" title="GET 请求的标准格式"></a>GET 请求的标准格式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">GET /develop/rfc/default.htm HTTP/1.1</span><br><span class="line">Host: man.chinaunix.net</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Cache-Control: no-cache</span><br></pre></td></tr></table></figure>
+<p>请求行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /develop/rfc/default.htm HTTP/1.1</span><br></pre></td></tr></table></figure></p>
+<p>请求头部<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Host: man.chinaunix.net</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Cache-Control: no-cache</span><br></pre></td></tr></table></figure></p>
+<h4 id="用POST上传文件"><a href="#用POST上传文件" class="headerlink" title="用POST上传文件"></a>用POST上传文件</h4><h5 id="PHP文件上传代码"><a href="#PHP文件上传代码" class="headerlink" title="PHP文件上传代码"></a>PHP文件上传代码</h5><p>fileupload.html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;fileupload.php&quot; enctype=&quot;multipart/form-data&quot; method=&quot;post&quot; name=&quot;uploadfile&quot;&gt;uploadfile：&lt;input type=&quot;file&quot; name=&quot;file&quot; /&gt;&lt;br&gt;</span><br><span class="line">&lt;input type=&quot;submit&quot; value=&quot;upload&quot; /&gt;&lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
+<p>fileupload.php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">move_uploaded_file($_FILE[&apos;file&apos;][&apos;tmp_name&apos;],$upfile[&apos;name&apos;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<h5 id="java文件上传代码"><a href="#java文件上传代码" class="headerlink" title="java文件上传代码"></a>java文件上传代码</h5><p>uploadfile.html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form name=get method=post&gt;</span><br><span class="line">服务端地址&lt;input name=url size=110 type=text&gt;  &lt;br&gt;&lt;br&gt;&lt;textarea name=t rows=20 cols=120&gt;</span><br><span class="line">你提交的代码&lt;/textarea&gt;&lt;br&gt;</span><br><span class="line">保存成的文件名：&lt;input name=f size=30 value=shell.jsp&gt;</span><br><span class="line">&lt;input type=button onclick=&quot;javascript:get.action=document.get.url.value;get.submit()&quot; value=提交&gt; &lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
+<p>uploadfile.jsp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%if(request.getParameter(&quot;f&quot;)!=null)(new java.io.FileOutputStream(application.getRealPath(&quot;/&quot;)+request.getParameter(&quot;f&quot;))).write(request.getParameter(&quot;t&quot;).getBytes());%&gt;</span><br></pre></td></tr></table></figure></p>
+<h5 id="asp文件上传代码"><a href="#asp文件上传代码" class="headerlink" title="asp文件上传代码"></a>asp文件上传代码</h5><p>有待添加。</p>
+<h4 id="HTTP1-1-新增的请求方法"><a href="#HTTP1-1-新增的请求方法" class="headerlink" title="HTTP1.1 新增的请求方法"></a>HTTP1.1 新增的请求方法</h4><h5 id="HTTP1-1-新增了五种请求方法：-OPTIONS-PUT-DELETE-TRACE-和-CONNECT-方法的基本概念"><a href="#HTTP1-1-新增了五种请求方法：-OPTIONS-PUT-DELETE-TRACE-和-CONNECT-方法的基本概念" class="headerlink" title="HTTP1.1 新增了五种请求方法： OPTIONS, PUT, DELETE,TRACE 和 CONNECT 方法的基本概念"></a>HTTP1.1 新增了五种请求方法： OPTIONS, PUT, DELETE,TRACE 和 CONNECT 方法的基本概念</h5><h6 id="OPTIONS-方法"><a href="#OPTIONS-方法" class="headerlink" title="OPTIONS 方法"></a>OPTIONS 方法</h6><p>没有找到合适的测试<br>OPTIONS它用于获取当前URL所支持的方法。若请求成功，则它会在HTTP头中包含一个名为“Allow”的头，值是所支持的方法，如“GET, POST”。</p>
+<pre><code>1、获取服务器支持的HTTP请求方法；也是黑客经常使用的方法。
+
+2、用来检查服务器的性能。例如：AJAX进行跨域请求时的预检，需要向另外一个域名的资源发送一个HTTP OPTIONS请求头，用以判断实际发送的请求是否安全。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">OPTIONS / HTTP/1.1</span><br><span class="line">Host: www.myh0st.cn</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Cache-Control: no-cache</span><br></pre></td></tr></table></figure>
+<h6 id="PUT-方法"><a href="#PUT-方法" class="headerlink" title="PUT 方法"></a>PUT 方法</h6><p>向指定资源位置上传其最新内容。<br>没找到合适的测试</p>
+<h6 id="DELETE-方法"><a href="#DELETE-方法" class="headerlink" title="DELETE 方法"></a>DELETE 方法</h6><p>请求服务器删除Request-URI所标识的资源。<br>没有找到合适的测试</p>
+<h6 id="TRACE-方法"><a href="#TRACE-方法" class="headerlink" title="TRACE 方法"></a>TRACE 方法</h6><p>回显服务器收到的请求，主要用于测试或诊断。</p>
+<h6 id="CONNECT-方法"><a href="#CONNECT-方法" class="headerlink" title="CONNECT 方法"></a>CONNECT 方法</h6><p>HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。</p>
+<h2 id="HTTP-的状态码"><a href="#HTTP-的状态码" class="headerlink" title="HTTP 的状态码"></a>HTTP 的状态码</h2><h3 id="HTTP-状态码的分类"><a href="#HTTP-状态码的分类" class="headerlink" title="HTTP 状态码的分类"></a>HTTP 状态码的分类</h3><h4 id="HTTP-状态码规范"><a href="#HTTP-状态码规范" class="headerlink" title="HTTP 状态码规范"></a>HTTP 状态码规范</h4><p><a href="http://blog.csdn.net/diandianxiyu_geek/article/details/50373195" target="_blank" rel="noopener">HTTP 状态码规范</a></p>
+<h4 id="HTTP-状态码的作用"><a href="#HTTP-状态码的作用" class="headerlink" title="HTTP 状态码的作用"></a>HTTP 状态码的作用</h4><p>获取请求的返回结果和原因</p>
+<h4 id="常见的-HTTP-状态码"><a href="#常见的-HTTP-状态码" class="headerlink" title="常见的 HTTP 状态码"></a>常见的 HTTP 状态码</h4><pre><code>1**     信息，服务器收到请求，需要请求者继续执行操作
+
+100     Continue     继续。客户端应继续其请求
+101     Switching Protocols     切换协议。服务器根据客户端的请求切换协议。只能切换到更高级的协议，例如，切换到HTTP的新版本协议
+
+
+2**     成功，操作被成功接收并处理
+
+200     OK     请求成功。一般用于GET与POST请求
+201     Created     已创建。成功请求并创建了新的资源
+202     Accepted     已接受。已经接受请求，但未处理完成
+203     Non-Authoritative Information     非授权信息。请求成功。但返回的meta信息不在原始的服务器，而是一个副本
+204     No Content     无内容。服务器成功处理，但未返回内容。在未更新网页的情况下，可确保浏览器继续显示当前文档
+205     Reset Content     重置内容。服务器处理成功，用户终端（例如：浏览器）应重置文档视图。可通过此返回码清除浏览器的表单域
+206     Partial Content     部分内容。服务器成功处理了部分GET请求
+
+
+3**     重定向，需要进一步的操作以完成请求
+
+300     Multiple Choices     多种选择。请求的资源可包括多个位置，相应可返回一个资源特征与地址的列表用于用户终端（例如：浏览器）选择
+301     Moved Permanently     永久移动。请求的资源已被永久的移动到新URI，返回信息会包括新的URI，浏览器会自动定向到新URI。今后任何新的请求都应使用新的URI代替
+302     Found     临时移动。与301类似。但资源只是临时被移动。客户端应继续使用原有URI
+303     See Other     查看其它地址。与301类似。使用GET和POST请求查看
+304     Not Modified     未修改。所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。客户端通常会缓存访问过的资源，通过提供一个头信息指出客户端希望只返回在指定日期之后修改的资源
+305     Use Proxy     使用代理。所请求的资源必须通过代理访问
+306     Unused     已经被废弃的HTTP状态码
+307     Temporary Redirect     临时重定向。与302类似。使用GET请求重定向
+
+
+4**     客户端错误，请求包含语法错误或无法完成请求
+
+400     Bad Request     客户端请求的语法错误，服务器无法理解
+401     Unauthorized     请求要求用户的身份认证
+402     Payment Required     保留，将来使用
+403     Forbidden     服务器理解请求客户端的请求，但是拒绝执行此请求
+404     Not Found     服务器无法根据客户端的请求找到资源（网页）。通过此代码，网站设计人员可设置&quot;您所请求的资源无法找到&quot;的个性页面
+405     Method Not Allowed     客户端请求中的方法被禁止
+406     Not Acceptable     服务器无法根据客户端请求的内容特性完成请求
+407     Proxy Authentication Required     请求要求代理的身份认证，与401类似，但请求者应当使用代理进行授权
+408     Request Time-out     服务器等待客户端发送的请求时间过长，超时
+409     Conflict     服务器完成客户端的PUT请求是可能返回此代码，服务器处理请求时发生了冲突
+410     Gone     客户端请求的资源已经不存在。410不同于404，如果资源以前有现在被永久删除了可使用410代码，网站设计人员可通过301代码指定资源的新位置
+411     Length Required     服务器无法处理客户端发送的不带Content-Length的请求信息
+412     Precondition Failed     客户端请求信息的先决条件错误
+413     Request Entity Too Large     由于请求的实体过大，服务器无法处理，因此拒绝请求。为防止客户端的连续请求，服务器可能会关闭连接。如果只是服务器暂时无法处理，则会包含一个Retry-After的响应信息
+414     Request-URI Too Large     请求的URI过长（URI通常为网址），服务器无法处理
+415     Unsupported Media Type     服务器无法处理请求附带的媒体格式
+416     Requested range not satisfiable     客户端请求的范围无效
+417     Expectation Failed     服务器无法满足Expect的请求头信息
+
+
+5**     服务器错误，服务器在处理请求的过程中发生了错误
+
+500     Internal Server Error     服务器内部错误，无法完成请求
+501     Not Implemented     服务器不支持请求的功能，无法完成请求
+502     Bad Gateway     充当网关或代理的服务器，从远端服务器接收到了一个无效的请求
+503     Service Unavailable     由于超载或系统维护，服务器暂时的无法处理客户端的请求。延时的长度可包含在服务器的Retry-After头信息中
+504     Gateway Time-out     充当网关或代理的服务器，未及时从远端服务器获取请求
+505     HTTP Version not supported     服务器不支持请求的HTTP协议的版本，无法完成处理
+</code></pre><h4 id="python获取HTTP-请求状态码"><a href="#python获取HTTP-请求状态码" class="headerlink" title="python获取HTTP 请求状态码"></a>python获取HTTP 请求状态码</h4><p>python3<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">res=requests.get(&quot;https://www.baidu.com&quot;)</span><br><span class="line">print(res.status_code)</span><br></pre></td></tr></table></figure></p>
+<h2 id="HTTP-协议响应头信息"><a href="#HTTP-协议响应头信息" class="headerlink" title="HTTP 协议响应头信息"></a>HTTP 协议响应头信息</h2><h3 id="HTTP-响应头的含义"><a href="#HTTP-响应头的含义" class="headerlink" title="HTTP 响应头的含义"></a>HTTP 响应头的含义</h3><h4 id="常见的-HTTP-响应头和请求头"><a href="#常见的-HTTP-响应头和请求头" class="headerlink" title="常见的 HTTP 响应头和请求头"></a>常见的 HTTP 响应头和请求头</h4><p><a href="https://www.cnblogs.com/honghong87/articles/6941436.html" target="_blank" rel="noopener">常见的HTTP 响应头和请求头</a></p>
+<h4 id="HTTP-响应头的类型"><a href="#HTTP-响应头的类型" class="headerlink" title="HTTP 响应头的类型"></a>HTTP 响应头的类型</h4><p><a href="http://www.runoob.com/http/http-header-fields.html" target="_blank" rel="noopener">HTTP 响应头类型</a></p>
+<h2 id="HTTP-协议中的-URL"><a href="#HTTP-协议中的-URL" class="headerlink" title="HTTP 协议中的 URL"></a>HTTP 协议中的 URL</h2><p>HTTP使用统一资源标识符（Uniform Resource Identifiers, URI）来传输数据和建立连接。URL是一种特殊类型的URI，包含了用于查找某个资源的足够的信息<br>URL,全称是UniformResourceLocator, 中文叫统一资源定位符,是互联网上用来标识某一处资源的地址。以下面这个URL为例，介绍下普通URL的各部分组成：<br><a href="http://www.aspxfans.com:8080/news/index.asp?boardID=5&amp;ID=24618&amp;page=1#name" target="_blank" rel="noopener">http://www.aspxfans.com:8080/news/index.asp?boardID=5&amp;ID=24618&amp;page=1#name</a><br>从上面的URL可以看出，一个完整的URL包括以下几部分：</p>
+<h5 id="1-协议部分：该URL的协议部分为“http：”，这代表网页使用的是HTTP协议。在Internet中可以使用多种协议，如HTTP，FTP等等本例中使用的是HTTP协议。在”HTTP”后面的“-”为分隔符"><a href="#1-协议部分：该URL的协议部分为“http：”，这代表网页使用的是HTTP协议。在Internet中可以使用多种协议，如HTTP，FTP等等本例中使用的是HTTP协议。在”HTTP”后面的“-”为分隔符" class="headerlink" title="1.协议部分：该URL的协议部分为“http：”，这代表网页使用的是HTTP协议。在Internet中可以使用多种协议，如HTTP，FTP等等本例中使用的是HTTP协议。在”HTTP”后面的“//”为分隔符"></a>1.协议部分：该URL的协议部分为“http：”，这代表网页使用的是HTTP协议。在Internet中可以使用多种协议，如HTTP，FTP等等本例中使用的是HTTP协议。在”HTTP”后面的“//”为分隔符</h5><h5 id="2-域名部分：该URL的域名部分为“www-aspxfans-com”。一个URL中，也可以使用IP地址作为域名使用"><a href="#2-域名部分：该URL的域名部分为“www-aspxfans-com”。一个URL中，也可以使用IP地址作为域名使用" class="headerlink" title="2.域名部分：该URL的域名部分为“www.aspxfans.com”。一个URL中，也可以使用IP地址作为域名使用"></a>2.域名部分：该URL的域名部分为“www.aspxfans.com”。一个URL中，也可以使用IP地址作为域名使用</h5><h5 id="3-端口部分：跟在域名后面的是端口，域名和端口之间使用“-”作为分隔符。端口不是一个URL必须的部分，如果省略端口部分，将采用默认端口"><a href="#3-端口部分：跟在域名后面的是端口，域名和端口之间使用“-”作为分隔符。端口不是一个URL必须的部分，如果省略端口部分，将采用默认端口" class="headerlink" title="3.端口部分：跟在域名后面的是端口，域名和端口之间使用“:”作为分隔符。端口不是一个URL必须的部分，如果省略端口部分，将采用默认端口"></a>3.端口部分：跟在域名后面的是端口，域名和端口之间使用“:”作为分隔符。端口不是一个URL必须的部分，如果省略端口部分，将采用默认端口</h5><h5 id="4-虚拟目录部分：从域名后的第一个“-”开始到最后一个“-”为止，是虚拟目录部分。虚拟目录也不是一个URL必须的部分。本例中的虚拟目录是“-news-”"><a href="#4-虚拟目录部分：从域名后的第一个“-”开始到最后一个“-”为止，是虚拟目录部分。虚拟目录也不是一个URL必须的部分。本例中的虚拟目录是“-news-”" class="headerlink" title="4.虚拟目录部分：从域名后的第一个“/”开始到最后一个“/”为止，是虚拟目录部分。虚拟目录也不是一个URL必须的部分。本例中的虚拟目录是“/news/”"></a>4.虚拟目录部分：从域名后的第一个“/”开始到最后一个“/”为止，是虚拟目录部分。虚拟目录也不是一个URL必须的部分。本例中的虚拟目录是“/news/”</h5><h5 id="5-文件名部分：从域名后的最后一个“-”开始到“？”为止，是文件名部分，如果没有“-”-则是从域名后的最后一个“-”开始到“-”为止，是文件部分，如果没有“？”和“-”，那么从域名后的最后一个“-”开始到结束，都是文件名部分。本例中的文件名是“index-asp”。文件名部分也不是一个URL必须的部分，如果省略该部分，则使用默认的文件名"><a href="#5-文件名部分：从域名后的最后一个“-”开始到“？”为止，是文件名部分，如果没有“-”-则是从域名后的最后一个“-”开始到“-”为止，是文件部分，如果没有“？”和“-”，那么从域名后的最后一个“-”开始到结束，都是文件名部分。本例中的文件名是“index-asp”。文件名部分也不是一个URL必须的部分，如果省略该部分，则使用默认的文件名" class="headerlink" title="5.文件名部分：从域名后的最后一个“/”开始到“？”为止，是文件名部分，如果没有“?”,则是从域名后的最后一个“/”开始到“#”为止，是文件部分，如果没有“？”和“#”，那么从域名后的最后一个“/”开始到结束，都是文件名部分。本例中的文件名是“index.asp”。文件名部分也不是一个URL必须的部分，如果省略该部分，则使用默认的文件名"></a>5.文件名部分：从域名后的最后一个“/”开始到“？”为止，是文件名部分，如果没有“?”,则是从域名后的最后一个“/”开始到“#”为止，是文件部分，如果没有“？”和“#”，那么从域名后的最后一个“/”开始到结束，都是文件名部分。本例中的文件名是“index.asp”。文件名部分也不是一个URL必须的部分，如果省略该部分，则使用默认的文件名</h5><h5 id="6-锚部分：从“-”开始到最后，都是锚部分。本例中的锚部分是“name”。锚部分也不是一个URL必须的部分"><a href="#6-锚部分：从“-”开始到最后，都是锚部分。本例中的锚部分是“name”。锚部分也不是一个URL必须的部分" class="headerlink" title="6.锚部分：从“#”开始到最后，都是锚部分。本例中的锚部分是“name”。锚部分也不是一个URL必须的部分"></a>6.锚部分：从“#”开始到最后，都是锚部分。本例中的锚部分是“name”。锚部分也不是一个URL必须的部分</h5><p>因为这个所以注入SQL语句的时候，需要将#进行url编码，否则会被当成锚点处理。</p>
+<h5 id="7-参数部分：从“？”开始到“-”为止之间的部分为参数部分，又称搜索部分、查询部分。本例中的参数部分为“boardID-5-amp-ID-24618-amp-page-1”。参数可以允许有多个参数，参数与参数之间用“-amp-”作为分隔符。"><a href="#7-参数部分：从“？”开始到“-”为止之间的部分为参数部分，又称搜索部分、查询部分。本例中的参数部分为“boardID-5-amp-ID-24618-amp-page-1”。参数可以允许有多个参数，参数与参数之间用“-amp-”作为分隔符。" class="headerlink" title="7.参数部分：从“？”开始到“#”为止之间的部分为参数部分，又称搜索部分、查询部分。本例中的参数部分为“boardID=5&amp;ID=24618&amp;page=1”。参数可以允许有多个参数，参数与参数之间用“&amp;”作为分隔符。"></a>7.参数部分：从“？”开始到“#”为止之间的部分为参数部分，又称搜索部分、查询部分。本例中的参数部分为“boardID=5&amp;ID=24618&amp;page=1”。参数可以允许有多个参数，参数与参数之间用“&amp;”作为分隔符。</h5><h6 id="（原文：http-blog-csdn-net-ergouge-article-details-8185219-）"><a href="#（原文：http-blog-csdn-net-ergouge-article-details-8185219-）" class="headerlink" title="（原文：http://blog.csdn.net/ergouge/article/details/8185219 ）"></a>（原文：<a href="http://blog.csdn.net/ergouge/article/details/8185219" target="_blank" rel="noopener">http://blog.csdn.net/ergouge/article/details/8185219</a> ）</h6><h3 id="URL和URI的区别"><a href="#URL和URI的区别" class="headerlink" title="URL和URI的区别"></a>URL和URI的区别</h3><p>URI，是uniform resource identifier，统一资源标识符，用来唯一的标识一个资源。</p>
+<pre><code>Web上可用的每种资源如HTML文档、图像、视频片段、程序等都是一个来URI来定位的
+URI一般由三部组成：
+①访问资源的命名机制
+②存放资源的主机名
+③资源自身的名称，由路径表示，着重强调于资源。
+URL是uniform resource locator，统一资源定位器，它是一种具体的URI，即URL可以用来标识一个资源，而且还指明了如何locate这个资源。
+</code></pre><p>URL是Internet上用来描述信息资源的字符串，主要用在各种WWW客户程序和服务器程序上，特别是著名的Mosaic。</p>
+<pre><code>采用URL可以用一种统一的格式来描述各种信息资源，包括文件、服务器的地址和目录等。
+URL一般由三部组成：
+①协议(或称为服务方式)
+②存有该资源的主机IP地址(有时也包括端口号)
+③主机资源的具体地址。如目录和文件名等
+</code></pre><p>URN，uniform resource name，统一资源命名，是通过名字来标识资源，比如mailto:java-net@java.sun.com。</p>
+<p>URI是以一种抽象的，高层次概念定义统一资源标识，而URL和URN则是具体的资源标识的方式。</p>
+<pre><code>URL和URN都是一种URI。
+笼统地说，每个 URL 都是 URI，但不一定每个 URI 都是 URL。
+这是因为 URI 还包括一个子类，即统一资源名称 (URN)，它命名资源但不指定如何定位资源。上面的 mailto、news 和 isbn URI 都是 URN 的示例。
+</code></pre><p>通常来说，一个URI实例可以代表绝对的，也可以是相对的，只要它符合URI的语法规则。而URL类则不仅符合语义，还包含了定位该资源的信息，因此它不能是相对的。<br>URI类不包含任何访问资源的方法，它唯一的作用就是解析。<br>相反的是，URL类可以打开一个到达资源的流。</p>
+<h2 id="HTTP2-0-新事物"><a href="#HTTP2-0-新事物" class="headerlink" title="HTTP2.0 新事物"></a>HTTP2.0 新事物</h2><p><a href="http://www.mamicode.com/info-detail-1199706.html" target="_blank" rel="noopener">HTTP2.0 那些事</a></p>
+<h2 id="HTTP-XST攻击与trace方法"><a href="#HTTP-XST攻击与trace方法" class="headerlink" title="HTTP XST攻击与trace方法"></a>HTTP XST攻击与trace方法</h2><pre><code>绕过http-only 对XSS攻击的限制
+TRACE 请求会让服务器返回请求内容。
+</code></pre><p>xst主要是使用http的trace方法，该方法会返回浏览器发给服务器的所有请求信息，但该方法不能带body，主要是利于debug。<br>现在前端后端都做了很多xst攻击的措施，很难在浏览器端发起trace请求了，所以只能用fiddler模拟一下，服务器是wamp，支持trace方法。</p>
+<p>该攻击主要是在网站存在xss漏洞但设置了cookie的httponly属性的时候结合trace方法进行攻击。如果某网站存在xss漏洞，那比如用户点击a标签会执行一段脚本，那么该脚本可以异步发起一个trace请求，因为是同域，所以会带上cookie，然后服务器会把浏览器请求的信息全部返回来，其中包括cookie，我们可以在回调函数里解析然后上传到我们的服务器上去。</p>
+<h2 id="使用python-requests库花式发送http请求"><a href="#使用python-requests库花式发送http请求" class="headerlink" title="使用python requests库花式发送http请求"></a>使用python requests库花式发送http请求</h2><p>（如果使用python的比较底层的HTTP请求库还能fuzzing）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">#只支持这五种</span><br><span class="line">requests.get(&quot;https://www.baidu.com&quot;)</span><br><span class="line">requests.post(&quot;https://www.baidu.com&quot;)</span><br><span class="line">requests.put(&quot;https://www.baidu.com&quot;)</span><br><span class="line">requests.delete(&quot;https://www.baidu.com&quot;)</span><br><span class="line">requests.options(&quot;https://www.baidu.com&quot;)</span><br></pre></td></tr></table></figure></p>
+<h5 id="用比较底层的库可以实现所有的请求"><a href="#用比较底层的库可以实现所有的请求" class="headerlink" title="用比较底层的库可以实现所有的请求"></a>用比较底层的库可以实现所有的请求</h5><p><a href="http://blog.csdn.net/shw800/article/details/51328618" target="_blank" rel="noopener">用比较底层的库实现 HTTP 请求</a></p>
+<h2 id="Web-DAV"><a href="#Web-DAV" class="headerlink" title="Web DAV"></a>Web DAV</h2><h5 id="（Web-based-Distributed-Authoring-and-Versioning）"><a href="#（Web-based-Distributed-Authoring-and-Versioning）" class="headerlink" title="（Web-based Distributed Authoring and Versioning）"></a>（Web-based Distributed Authoring and Versioning）</h5><p><a href="http://blog.csdn.net/u014270687/article/details/45798227" target="_blank" rel="noopener">Web Dav的利用</a></p>
+
+      
+    </div>
+    
+    
+    
+    <div>
+      
+        
+
+      
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/03/proxychains配置详解/" rel="next" title="proxychains配置详解">
+                <i class="fa fa-chevron-left"></i> proxychains配置详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">hl0rey</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#小白的pte学习之路之HTTP协议"><span class="nav-number">1.</span> <span class="nav-text">小白的pte学习之路之HTTP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#HTTP协议的特点就不好再赘述了"><span class="nav-number">1.0.0.0.0.1.</span> <span class="nav-text">HTTP协议的特点就不好再赘述了</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP的请求方法"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP的请求方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP1-0-的请求方法"><span class="nav-number">1.1.1.</span> <span class="nav-text">HTTP1.0 的请求方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GET-方法"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">GET 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POST-方法"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">POST 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HEAD-方法"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">HEAD 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GET-请求的标准格式"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">GET 请求的标准格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用POST上传文件"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">用POST上传文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#PHP文件上传代码"><span class="nav-number">1.1.1.5.1.</span> <span class="nav-text">PHP文件上传代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#java文件上传代码"><span class="nav-number">1.1.1.5.2.</span> <span class="nav-text">java文件上传代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#asp文件上传代码"><span class="nav-number">1.1.1.5.3.</span> <span class="nav-text">asp文件上传代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP1-1-新增的请求方法"><span class="nav-number">1.1.1.6.</span> <span class="nav-text">HTTP1.1 新增的请求方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP1-1-新增了五种请求方法：-OPTIONS-PUT-DELETE-TRACE-和-CONNECT-方法的基本概念"><span class="nav-number">1.1.1.6.1.</span> <span class="nav-text">HTTP1.1 新增了五种请求方法： OPTIONS, PUT, DELETE,TRACE 和 CONNECT 方法的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#OPTIONS-方法"><span class="nav-number">1.1.1.6.1.1.</span> <span class="nav-text">OPTIONS 方法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#PUT-方法"><span class="nav-number">1.1.1.6.1.2.</span> <span class="nav-text">PUT 方法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#DELETE-方法"><span class="nav-number">1.1.1.6.1.3.</span> <span class="nav-text">DELETE 方法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#TRACE-方法"><span class="nav-number">1.1.1.6.1.4.</span> <span class="nav-text">TRACE 方法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#CONNECT-方法"><span class="nav-number">1.1.1.6.1.5.</span> <span class="nav-text">CONNECT 方法</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-的状态码"><span class="nav-number">1.2.</span> <span class="nav-text">HTTP 的状态码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-状态码的分类"><span class="nav-number">1.2.1.</span> <span class="nav-text">HTTP 状态码的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-状态码规范"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">HTTP 状态码规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-状态码的作用"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">HTTP 状态码的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的-HTTP-状态码"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">常见的 HTTP 状态码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#python获取HTTP-请求状态码"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">python获取HTTP 请求状态码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-协议响应头信息"><span class="nav-number">1.3.</span> <span class="nav-text">HTTP 协议响应头信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-响应头的含义"><span class="nav-number">1.3.1.</span> <span class="nav-text">HTTP 响应头的含义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的-HTTP-响应头和请求头"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">常见的 HTTP 响应头和请求头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-响应头的类型"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">HTTP 响应头的类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-协议中的-URL"><span class="nav-number">1.4.</span> <span class="nav-text">HTTP 协议中的 URL</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-协议部分：该URL的协议部分为“http：”，这代表网页使用的是HTTP协议。在Internet中可以使用多种协议，如HTTP，FTP等等本例中使用的是HTTP协议。在”HTTP”后面的“-”为分隔符"><span class="nav-number">1.4.0.0.1.</span> <span class="nav-text">1.协议部分：该URL的协议部分为“http：”，这代表网页使用的是HTTP协议。在Internet中可以使用多种协议，如HTTP，FTP等等本例中使用的是HTTP协议。在”HTTP”后面的“//”为分隔符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-域名部分：该URL的域名部分为“www-aspxfans-com”。一个URL中，也可以使用IP地址作为域名使用"><span class="nav-number">1.4.0.0.2.</span> <span class="nav-text">2.域名部分：该URL的域名部分为“www.aspxfans.com”。一个URL中，也可以使用IP地址作为域名使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-端口部分：跟在域名后面的是端口，域名和端口之间使用“-”作为分隔符。端口不是一个URL必须的部分，如果省略端口部分，将采用默认端口"><span class="nav-number">1.4.0.0.3.</span> <span class="nav-text">3.端口部分：跟在域名后面的是端口，域名和端口之间使用“:”作为分隔符。端口不是一个URL必须的部分，如果省略端口部分，将采用默认端口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-虚拟目录部分：从域名后的第一个“-”开始到最后一个“-”为止，是虚拟目录部分。虚拟目录也不是一个URL必须的部分。本例中的虚拟目录是“-news-”"><span class="nav-number">1.4.0.0.4.</span> <span class="nav-text">4.虚拟目录部分：从域名后的第一个“/”开始到最后一个“/”为止，是虚拟目录部分。虚拟目录也不是一个URL必须的部分。本例中的虚拟目录是“/news/”</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-文件名部分：从域名后的最后一个“-”开始到“？”为止，是文件名部分，如果没有“-”-则是从域名后的最后一个“-”开始到“-”为止，是文件部分，如果没有“？”和“-”，那么从域名后的最后一个“-”开始到结束，都是文件名部分。本例中的文件名是“index-asp”。文件名部分也不是一个URL必须的部分，如果省略该部分，则使用默认的文件名"><span class="nav-number">1.4.0.0.5.</span> <span class="nav-text">5.文件名部分：从域名后的最后一个“/”开始到“？”为止，是文件名部分，如果没有“?”,则是从域名后的最后一个“/”开始到“#”为止，是文件部分，如果没有“？”和“#”，那么从域名后的最后一个“/”开始到结束，都是文件名部分。本例中的文件名是“index.asp”。文件名部分也不是一个URL必须的部分，如果省略该部分，则使用默认的文件名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-锚部分：从“-”开始到最后，都是锚部分。本例中的锚部分是“name”。锚部分也不是一个URL必须的部分"><span class="nav-number">1.4.0.0.6.</span> <span class="nav-text">6.锚部分：从“#”开始到最后，都是锚部分。本例中的锚部分是“name”。锚部分也不是一个URL必须的部分</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-参数部分：从“？”开始到“-”为止之间的部分为参数部分，又称搜索部分、查询部分。本例中的参数部分为“boardID-5-amp-ID-24618-amp-page-1”。参数可以允许有多个参数，参数与参数之间用“-amp-”作为分隔符。"><span class="nav-number">1.4.0.0.7.</span> <span class="nav-text">7.参数部分：从“？”开始到“#”为止之间的部分为参数部分，又称搜索部分、查询部分。本例中的参数部分为“boardID=5&amp;ID=24618&amp;page=1”。参数可以允许有多个参数，参数与参数之间用“&amp;”作为分隔符。</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#（原文：http-blog-csdn-net-ergouge-article-details-8185219-）"><span class="nav-number">1.4.0.0.7.1.</span> <span class="nav-text">（原文：http://blog.csdn.net/ergouge/article/details/8185219 ）</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL和URI的区别"><span class="nav-number">1.4.1.</span> <span class="nav-text">URL和URI的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP2-0-新事物"><span class="nav-number">1.5.</span> <span class="nav-text">HTTP2.0 新事物</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-XST攻击与trace方法"><span class="nav-number">1.6.</span> <span class="nav-text">HTTP XST攻击与trace方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用python-requests库花式发送http请求"><span class="nav-number">1.7.</span> <span class="nav-text">使用python requests库花式发送http请求</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#用比较底层的库可以实现所有的请求"><span class="nav-number">1.7.0.0.1.</span> <span class="nav-text">用比较底层的库可以实现所有的请求</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-DAV"><span class="nav-number">1.8.</span> <span class="nav-text">Web DAV</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#（Web-based-Distributed-Authoring-and-Versioning）"><span class="nav-number">1.8.0.0.1.</span> <span class="nav-text">（Web-based Distributed Authoring and Versioning）</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hl0rey</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
