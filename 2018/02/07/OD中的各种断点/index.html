@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="普通断点又叫F2断点,或者CC断点，或者INT3断点．按F2设置普通断点，所以叫F2断点．叫CC断点的原因是OD会在设置断点的位置之前，写入一个CC，引发INT3中断，所以也叫INT3断点． 内存断点本质是修改某块内存的属性，让程序在访问目标内存的时候，触发异常，被OD捕获，进而成功断下程序． 硬件断点这是计算机硬件提供给我们的功能．硬件断点和DRx调试寄存器有关。从Inter CPU体系架构手册">
+<meta name="description" content="普通断点又叫F2断点,或者CC断点，或者INT3断点．按F2设置普通断点，所以叫F2断点．叫CC断点的原因是OD会在设置断点的位置之前（此处抱有疑问），写入一个CC，引发INT3中断，所以也叫INT3断点． 内存断点本质是修改某块内存的属性，让程序在访问目标内存的时候，触发异常，被OD捕获，进而成功断下程序．在一些比较难以确定在哪个API下断点的时候，内存断点有奇效． 硬件断点这是计算机硬件提供给">
 <meta name="keywords" content="OD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OD中的各种断点">
 <meta property="og:url" content="http://hl0rey.github.io/2018/02/07/OD中的各种断点/index.html">
 <meta property="og:site_name" content="hl0rey&#39;s blog">
-<meta property="og:description" content="普通断点又叫F2断点,或者CC断点，或者INT3断点．按F2设置普通断点，所以叫F2断点．叫CC断点的原因是OD会在设置断点的位置之前，写入一个CC，引发INT3中断，所以也叫INT3断点． 内存断点本质是修改某块内存的属性，让程序在访问目标内存的时候，触发异常，被OD捕获，进而成功断下程序． 硬件断点这是计算机硬件提供给我们的功能．硬件断点和DRx调试寄存器有关。从Inter CPU体系架构手册">
+<meta property="og:description" content="普通断点又叫F2断点,或者CC断点，或者INT3断点．按F2设置普通断点，所以叫F2断点．叫CC断点的原因是OD会在设置断点的位置之前（此处抱有疑问），写入一个CC，引发INT3中断，所以也叫INT3断点． 内存断点本质是修改某块内存的属性，让程序在访问目标内存的时候，触发异常，被OD捕获，进而成功断下程序．在一些比较难以确定在哪个API下断点的时候，内存断点有奇效． 硬件断点这是计算机硬件提供给">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-07T14:13:40.848Z">
+<meta property="og:updated_time" content="2018-02-08T09:17:35.910Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OD中的各种断点">
-<meta name="twitter:description" content="普通断点又叫F2断点,或者CC断点，或者INT3断点．按F2设置普通断点，所以叫F2断点．叫CC断点的原因是OD会在设置断点的位置之前，写入一个CC，引发INT3中断，所以也叫INT3断点． 内存断点本质是修改某块内存的属性，让程序在访问目标内存的时候，触发异常，被OD捕获，进而成功断下程序． 硬件断点这是计算机硬件提供给我们的功能．硬件断点和DRx调试寄存器有关。从Inter CPU体系架构手册">
+<meta name="twitter:description" content="普通断点又叫F2断点,或者CC断点，或者INT3断点．按F2设置普通断点，所以叫F2断点．叫CC断点的原因是OD会在设置断点的位置之前（此处抱有疑问），写入一个CC，引发INT3中断，所以也叫INT3断点． 内存断点本质是修改某块内存的属性，让程序在访问目标内存的时候，触发异常，被OD捕获，进而成功断下程序．在一些比较难以确定在哪个API下断点的时候，内存断点有奇效． 硬件断点这是计算机硬件提供给">
 
 
 
@@ -342,8 +342,8 @@
       
 
       
-        <h3 id="普通断点"><a href="#普通断点" class="headerlink" title="普通断点"></a>普通断点</h3><p>又叫F2断点,或者CC断点，或者INT3断点．<br>按F2设置普通断点，所以叫F2断点．<br>叫CC断点的原因是OD会在设置断点的位置之前，写入一个CC，引发INT3中断，所以也叫INT3断点．</p>
-<h3 id="内存断点"><a href="#内存断点" class="headerlink" title="内存断点"></a>内存断点</h3><p>本质是修改某块内存的属性，让程序在访问目标内存的时候，触发异常，被OD捕获，进而成功断下程序．</p>
+        <h3 id="普通断点"><a href="#普通断点" class="headerlink" title="普通断点"></a>普通断点</h3><p>又叫F2断点,或者CC断点，或者INT3断点．<br>按F2设置普通断点，所以叫F2断点．<br>叫CC断点的原因是OD会在设置断点的位置之前（此处抱有疑问），写入一个CC，引发INT3中断，所以也叫INT3断点．</p>
+<h3 id="内存断点"><a href="#内存断点" class="headerlink" title="内存断点"></a>内存断点</h3><p>本质是修改某块内存的属性，让程序在访问目标内存的时候，触发异常，被OD捕获，进而成功断下程序．在一些比较难以确定在哪个API下断点的时候，内存断点有奇效．</p>
 <h3 id="硬件断点"><a href="#硬件断点" class="headerlink" title="硬件断点"></a>硬件断点</h3><p>这是计算机硬件提供给我们的功能．<br>硬件断点和DRx调试寄存器有关。从Inter CPU体系架构手册中，可以找到DRx调试寄存器的介绍。<br>　　DRx调试寄存器总共有8个，从DRx0到DRx7。每个寄存器的特性如下：<br>　　·DR0－DR3：调试 地址寄存器，保存需要监视的地址，如设置硬件断点；<br>　　·DR4－DR5：保留，未公开具体作用；<br>　　·DR6：调试 寄存器组 状态寄存器；<br>　　·DR7：调试寄存器组 控制寄存器。<br>　　硬件断点原理是使用4个调试寄存器（DR0,DR1,DR2,DR3）来设定地址，以及DR7设定状态，比如：对这个401000是硬件读还是写，或者是执行；是对 字节还是对字，或者是双字。因此最多只能设置4个断点。<br>　　OllyDbg支持调试寄存器，其称为硬件断点。设置方法是在指定的代码行单击鼠标右键，执行设置断点、硬件执行命令。<br>　　硬件断点优点是速度快，在 INT3断点容易被发现的地方，使用硬件断点来代替会有很好的效果，缺点就是最多只能设置4个断点。 
 　　</p>
 <h3 id="API断点"><a href="#API断点" class="headerlink" title="API断点"></a>API断点</h3><p>本质是CC断点<br>ctrl + N 查找API</p>
@@ -370,7 +370,7 @@
   <p><span>本文标题:</span><a href="/2018/02/07/OD中的各种断点/">OD中的各种断点</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 hl0rey 的个人博客">hl0rey</a></p>
   <p><span>发布时间:</span>2018年02月07日 - 21:02</p>
-  <p><span>最后更新:</span>2018年02月07日 - 22:02</p>
+  <p><span>最后更新:</span>2018年02月08日 - 17:02</p>
   <p><span>原始链接:</span><a href="/2018/02/07/OD中的各种断点/" title="OD中的各种断点">http://hl0rey.github.io/2018/02/07/OD中的各种断点/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/07/OD中的各种断点/"  aria-label="复制成功！"></i></span>
   </p>
@@ -505,7 +505,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
