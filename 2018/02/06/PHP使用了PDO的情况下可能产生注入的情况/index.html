@@ -88,7 +88,7 @@
 <meta property="og:description" content="PDO 官方文档http://php.net/manual/zh/book.pdo.php 对于做代码审计来说，遇到Pdo预编译，序列化查询基本上就可以对注入说再见了,我们有理由相信,一个网站,基本上全站都使用了序列化查询的情况下,是不可能在一些重要功能点使用拼接的方式进行SQL语句的查询,所以说这种漏洞应该是作者故意留的吧。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://hl0rey.github.io/2018/02/06/PHP使用了PDO的情况下可能产生注入的情况/1.png">
-<meta property="og:updated_time" content="2018-02-07T10:58:26.730Z">
+<meta property="og:updated_time" content="2018-02-08T04:22:14.016Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP使用了PDO的情况下可能产生注入的情况">
 <meta name="twitter:description" content="PDO 官方文档http://php.net/manual/zh/book.pdo.php 对于做代码审计来说，遇到Pdo预编译，序列化查询基本上就可以对注入说再见了,我们有理由相信,一个网站,基本上全站都使用了序列化查询的情况下,是不可能在一些重要功能点使用拼接的方式进行SQL语句的查询,所以说这种漏洞应该是作者故意留的吧。">
@@ -409,7 +409,7 @@ if (!isset($_GET[&apos;id&apos;])){
 }
 
 $dbh=new PDO(&apos;mysql:host=localhost;dbname=test_data&apos;,&apos;root&apos;,&apos;&apos;);
-$sql=&quot;SELECT * FROM &quot;.$_GET[&apos;id&apos;].&quot; WHERE `username`=:name&quot;;
+$sql=&quot;SELECT * FROM `&quot;.$_GET[&apos;id&apos;].&quot;` WHERE `username`=:name&quot;;
 $sth=$dbh-&gt;prepare($sql);
 $sth-&gt;execute(array(&quot;:name&quot;=&gt;&apos;admin&apos;));
 $result=$sth-&gt;fetch(PDO::FETCH_ASSOC);
@@ -462,7 +462,7 @@ SET GLOBAL general_log = &apos;ON&apos;;
   <p><span>本文标题:</span><a href="/2018/02/06/PHP使用了PDO的情况下可能产生注入的情况/">PHP使用了PDO的情况下可能产生注入的情况</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 hl0rey 的个人博客">hl0rey</a></p>
   <p><span>发布时间:</span>2018年02月06日 - 16:02</p>
-  <p><span>最后更新:</span>2018年02月07日 - 18:02</p>
+  <p><span>最后更新:</span>2018年02月08日 - 12:02</p>
   <p><span>原始链接:</span><a href="/2018/02/06/PHP使用了PDO的情况下可能产生注入的情况/" title="PHP使用了PDO的情况下可能产生注入的情况">http://hl0rey.github.io/2018/02/06/PHP使用了PDO的情况下可能产生注入的情况/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/06/PHP使用了PDO的情况下可能产生注入的情况/"  aria-label="复制成功！"></i></span>
   </p>
