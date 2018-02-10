@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="OD," />
+  <meta name="keywords" content="php," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="普通断点又叫F2断点,或者CC断点，或者INT3断点．按F2设置普通断点，所以叫F2断点．叫CC断点的原因是OD会在设置断点的位置之前（此处抱有疑问），写入一个CC，引发INT3中断，所以也叫INT3断点． 内存断点本质是修改某块内存的属性，让程序在访问目标内存的时候，触发异常，被OD捕获，进而成功断下程序．在一些比较难以确定在哪个API下断点的时候，内存断点有奇效． 硬件断点这是计算机硬件提供给">
-<meta name="keywords" content="OD">
+<meta name="description" content="拿到一套源码该从哪个地方开始审计，该用什么思路审计，是很值得思考的．     ###通读原文是对代码能力要求比较高的一种方法，耗时多，但是有利于把握程序的逻辑，挖出逻辑漏洞，毕竟不只是getshell才叫漏洞．所期望的功能不能正常实现也是漏洞． 敏感关键字回溯这个方法比较迅速，直接在源码里全文搜索关键字，比如可控的参数，编码解码等，容易出错的地方，或是危险函数，一旦发现问题，一般就是大问题，但是不">
+<meta name="keywords" content="php">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OD中的各种断点">
-<meta property="og:url" content="http://hl0rey.github.io/2018/02/07/OD中的各种断点/index.html">
+<meta property="og:title" content="代码审计大的思路">
+<meta property="og:url" content="http://hl0rey.github.io/2018/02/10/代码审计大的思路/index.html">
 <meta property="og:site_name" content="hl0rey&#39;s blog">
-<meta property="og:description" content="普通断点又叫F2断点,或者CC断点，或者INT3断点．按F2设置普通断点，所以叫F2断点．叫CC断点的原因是OD会在设置断点的位置之前（此处抱有疑问），写入一个CC，引发INT3中断，所以也叫INT3断点． 内存断点本质是修改某块内存的属性，让程序在访问目标内存的时候，触发异常，被OD捕获，进而成功断下程序．在一些比较难以确定在哪个API下断点的时候，内存断点有奇效． 硬件断点这是计算机硬件提供给">
+<meta property="og:description" content="拿到一套源码该从哪个地方开始审计，该用什么思路审计，是很值得思考的．     ###通读原文是对代码能力要求比较高的一种方法，耗时多，但是有利于把握程序的逻辑，挖出逻辑漏洞，毕竟不只是getshell才叫漏洞．所期望的功能不能正常实现也是漏洞． 敏感关键字回溯这个方法比较迅速，直接在源码里全文搜索关键字，比如可控的参数，编码解码等，容易出错的地方，或是危险函数，一旦发现问题，一般就是大问题，但是不">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-08T09:17:35.910Z">
+<meta property="og:updated_time" content="2018-02-10T13:25:56.323Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OD中的各种断点">
-<meta name="twitter:description" content="普通断点又叫F2断点,或者CC断点，或者INT3断点．按F2设置普通断点，所以叫F2断点．叫CC断点的原因是OD会在设置断点的位置之前（此处抱有疑问），写入一个CC，引发INT3中断，所以也叫INT3断点． 内存断点本质是修改某块内存的属性，让程序在访问目标内存的时候，触发异常，被OD捕获，进而成功断下程序．在一些比较难以确定在哪个API下断点的时候，内存断点有奇效． 硬件断点这是计算机硬件提供给">
+<meta name="twitter:title" content="代码审计大的思路">
+<meta name="twitter:description" content="拿到一套源码该从哪个地方开始审计，该用什么思路审计，是很值得思考的．     ###通读原文是对代码能力要求比较高的一种方法，耗时多，但是有利于把握程序的逻辑，挖出逻辑漏洞，毕竟不只是getshell才叫漏洞．所期望的功能不能正常实现也是漏洞． 敏感关键字回溯这个方法比较迅速，直接在源码里全文搜索关键字，比如可控的参数，编码解码等，容易出错的地方，或是危险函数，一旦发现问题，一般就是大问题，但是不">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://hl0rey.github.io/2018/02/07/OD中的各种断点/"/>
+  <link rel="canonical" href="http://hl0rey.github.io/2018/02/10/代码审计大的思路/"/>
 
 
 
 
 
-  <title>OD中的各种断点 | hl0rey's blog</title>
+  <title>代码审计大的思路 | hl0rey's blog</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/07/OD中的各种断点/">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/10/代码审计大的思路/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hl0rey">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">OD中的各种断点</h1>
+          <h1 class="post-title" itemprop="name headline">代码审计大的思路</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-07T21:27:49+08:00">
-                2018-02-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-10T21:06:12+08:00">
+                2018-02-10
               </time>
             
 
@@ -305,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/reverse/" itemprop="url" rel="index">
-                    <span itemprop="name">reverse</span>
+                  <a href="/categories/code/" itemprop="url" rel="index">
+                    <span itemprop="name">code</span>
                   </a>
                 </span>
 
@@ -342,16 +342,10 @@
       
 
       
-        <h3 id="普通断点"><a href="#普通断点" class="headerlink" title="普通断点"></a>普通断点</h3><p>又叫F2断点,或者CC断点，或者INT3断点．<br>按F2设置普通断点，所以叫F2断点．<br>叫CC断点的原因是OD会在设置断点的位置之前（此处抱有疑问），写入一个CC，引发INT3中断，所以也叫INT3断点．</p>
-<h3 id="内存断点"><a href="#内存断点" class="headerlink" title="内存断点"></a>内存断点</h3><p>本质是修改某块内存的属性，让程序在访问目标内存的时候，触发异常，被OD捕获，进而成功断下程序．在一些比较难以确定在哪个API下断点的时候，内存断点有奇效．</p>
-<h3 id="硬件断点"><a href="#硬件断点" class="headerlink" title="硬件断点"></a>硬件断点</h3><p>这是计算机硬件提供给我们的功能．<br>硬件断点和DRx调试寄存器有关。从Inter CPU体系架构手册中，可以找到DRx调试寄存器的介绍。<br>　　DRx调试寄存器总共有8个，从DRx0到DRx7。每个寄存器的特性如下：<br>　　·DR0－DR3：调试 地址寄存器，保存需要监视的地址，如设置硬件断点；<br>　　·DR4－DR5：保留，未公开具体作用；<br>　　·DR6：调试 寄存器组 状态寄存器；<br>　　·DR7：调试寄存器组 控制寄存器。<br>　　硬件断点原理是使用4个调试寄存器（DR0,DR1,DR2,DR3）来设定地址，以及DR7设定状态，比如：对这个401000是硬件读还是写，或者是执行；是对 字节还是对字，或者是双字。因此最多只能设置4个断点。<br>　　OllyDbg支持调试寄存器，其称为硬件断点。设置方法是在指定的代码行单击鼠标右键，执行设置断点、硬件执行命令。<br>　　硬件断点优点是速度快，在 INT3断点容易被发现的地方，使用硬件断点来代替会有很好的效果，缺点就是最多只能设置4个断点。 
-　　</p>
-<h3 id="API断点"><a href="#API断点" class="headerlink" title="API断点"></a>API断点</h3><p>本质是CC断点<br>ctrl + N 查找API</p>
-<h6 id="按软件功能来猜测其使用了哪些API"><a href="#按软件功能来猜测其使用了哪些API" class="headerlink" title="按软件功能来猜测其使用了哪些API"></a>按软件功能来猜测其使用了哪些API</h6><h3 id="条件断点"><a href="#条件断点" class="headerlink" title="条件断点"></a>条件断点</h3><p>本质是一个CC断点（CC是红色，条件是粉色），选到某行，快捷键 shift + F2。弹出的框中输入条件，如 EAX==400000，EAX==400000 || ECX == 6，EAX==400000 &amp;&amp; ECX == 6，满足条件，就断。 </p>
-<p>条件记录断点：shift + F4,该断点是用来记录东西的，点击工具栏L 已进入日志窗口</p>
-<h6 id="在软件通过寄存器一位一位的对比注册码的时候有妙用"><a href="#在软件通过寄存器一位一位的对比注册码的时候有妙用" class="headerlink" title="在软件通过寄存器一位一位的对比注册码的时候有妙用"></a>在软件通过寄存器一位一位的对比注册码的时候有妙用</h6><h3 id="消息断点："><a href="#消息断点：" class="headerlink" title="消息断点："></a>消息断点：</h3><p>本质是一个条件断点。<br>拦截窗口或控件的消息。<br>点击工具栏的 W ，点击右键。 刷新，就会出现一些控件句柄，在claProc上右键，设置断点，选择需要中断的消息。</p>
-<p>ESP 堆栈最顶端</p>
-<p>[ESP+8] 堆栈中消息的位置</p>
+        <pre><code>拿到一套源码该从哪个地方开始审计，该用什么思路审计，是很值得思考的．    
+</code></pre><p>###通读原文<br>是对代码能力要求比较高的一种方法，耗时多，但是有利于把握程序的逻辑，挖出逻辑漏洞，毕竟不只是getshell才叫漏洞．所期望的功能不能正常实现也是漏洞．</p>
+<h3 id="敏感关键字回溯"><a href="#敏感关键字回溯" class="headerlink" title="敏感关键字回溯"></a>敏感关键字回溯</h3><p>这个方法比较迅速，直接在源码里全文搜索关键字，比如可控的参数，编码解码等，容易出错的地方，或是危险函数，一旦发现问题，一般就是大问题，但是不容易挖到逻辑漏洞，因为对程序的功能不够了解</p>
+<h3 id="功能定向审计"><a href="#功能定向审计" class="headerlink" title="功能定向审计"></a>功能定向审计</h3><p>拿到源码之后先看看怎么用，有什么用，看看有啥功能，然后针对功能，黑白盒测试相结合，事半功倍．比如，程序安装，文件上传，文件管理，登录验证，备份，找回密码，购物车，评论等等．感觉这个方法比较高效一些．</p>
 
       
     </div>
@@ -367,12 +361,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/02/07/OD中的各种断点/">OD中的各种断点</a></p>
+  <p><span>本文标题:</span><a href="/2018/02/10/代码审计大的思路/">代码审计大的思路</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 hl0rey 的个人博客">hl0rey</a></p>
-  <p><span>发布时间:</span>2018年02月07日 - 21:02</p>
-  <p><span>最后更新:</span>2018年02月08日 - 17:02</p>
-  <p><span>原始链接:</span><a href="/2018/02/07/OD中的各种断点/" title="OD中的各种断点">http://hl0rey.github.io/2018/02/07/OD中的各种断点/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/07/OD中的各种断点/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年02月10日 - 21:02</p>
+  <p><span>最后更新:</span>2018年02月10日 - 21:02</p>
+  <p><span>原始链接:</span><a href="/2018/02/10/代码审计大的思路/" title="代码审计大的思路">http://hl0rey.github.io/2018/02/10/代码审计大的思路/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/10/代码审计大的思路/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -403,7 +397,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/OD/" rel="tag"># OD</a>
+            <a href="/tags/php/" rel="tag"># php</a>
           
         </div>
       
@@ -416,8 +410,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/06/PHP使用了PDO的情况下可能产生注入的情况/" rel="next" title="PHP使用了PDO的情况下可能产生注入的情况">
-                <i class="fa fa-chevron-left"></i> PHP使用了PDO的情况下可能产生注入的情况
+              <a href="/2018/02/10/隐式地调用系统API/" rel="next" title="隐式地调用系统API">
+                <i class="fa fa-chevron-left"></i> 隐式地调用系统API
               </a>
             
           </div>
@@ -425,10 +419,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/07/php代码审计思维导图/" rel="prev" title="php代码审计思维导图">
-                php代码审计思维导图 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -560,7 +550,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#普通断点"><span class="nav-number">1.</span> <span class="nav-text">普通断点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存断点"><span class="nav-number">2.</span> <span class="nav-text">内存断点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#硬件断点"><span class="nav-number">3.</span> <span class="nav-text">硬件断点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API断点"><span class="nav-number">4.</span> <span class="nav-text">API断点</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#按软件功能来猜测其使用了哪些API"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">按软件功能来猜测其使用了哪些API</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件断点"><span class="nav-number">5.</span> <span class="nav-text">条件断点</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#在软件通过寄存器一位一位的对比注册码的时候有妙用"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">在软件通过寄存器一位一位的对比注册码的时候有妙用</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息断点："><span class="nav-number">6.</span> <span class="nav-text">消息断点：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#敏感关键字回溯"><span class="nav-number">1.</span> <span class="nav-text">敏感关键字回溯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能定向审计"><span class="nav-number">2.</span> <span class="nav-text">功能定向审计</span></a></li></ol></div>
             
 
           </div>
