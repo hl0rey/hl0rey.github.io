@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="msf," />
+  <meta name="keywords" content="API," />
 
 
 
@@ -79,27 +79,18 @@
 
 
 
-<meta name="description" content="所有渗透中有趣的思路，那都是渗透的艺术。                             ——（中）沃兹基索德 钓鱼式攻击顾名思义，是一种如同钓鱼一样的攻击，是一种安逸的很的攻击方式。搜狗百科是给出来比较容易理解的网络钓鱼的定义。 网络钓鱼 （Phishing）攻击者利用欺骗性的电子邮件和伪造的 Web 站点来进行网络诈骗活动，受骗者往往会泄露自己的私人资料，如信用卡号、银行卡账户、身份证">
-<meta name="keywords" content="msf">
+<meta name="description" content="隐藏调用系统API如果直接调用API，在将程序逆向的时候就会直接显示出被调用的函数的名字，所以根据程序的功能，结合调试器给出的提示很容易的就能定位关键代码，从而破解程序，所以程序员就采取一定的办法来隐式地调用系统API．  下边这种办法比较简单，毕竟还是可以通过LoadlLibrary(),GetProcAddress()这俩函数来判断程序用了什么函数，通过在GetProcessAddress上下">
+<meta name="keywords" content="API">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网页表单调用以外的钓鱼方法">
-<meta property="og:url" content="http://hl0rey.github.io/2018/02/08/网页表单调用以外的钓鱼方法/index.html">
+<meta property="og:title" content="隐式地调用系统API">
+<meta property="og:url" content="http://hl0rey.github.io/2018/02/10/隐式地调用系统API/index.html">
 <meta property="og:site_name" content="hl0rey&#39;s blog">
-<meta property="og:description" content="所有渗透中有趣的思路，那都是渗透的艺术。                             ——（中）沃兹基索德 钓鱼式攻击顾名思义，是一种如同钓鱼一样的攻击，是一种安逸的很的攻击方式。搜狗百科是给出来比较容易理解的网络钓鱼的定义。 网络钓鱼 （Phishing）攻击者利用欺骗性的电子邮件和伪造的 Web 站点来进行网络诈骗活动，受骗者往往会泄露自己的私人资料，如信用卡号、银行卡账户、身份证">
+<meta property="og:description" content="隐藏调用系统API如果直接调用API，在将程序逆向的时候就会直接显示出被调用的函数的名字，所以根据程序的功能，结合调试器给出的提示很容易的就能定位关键代码，从而破解程序，所以程序员就采取一定的办法来隐式地调用系统API．  下边这种办法比较简单，毕竟还是可以通过LoadlLibrary(),GetProcAddress()这俩函数来判断程序用了什么函数，通过在GetProcessAddress上下">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://hl0rey.github.io/2018/02/08/网页表单调用以外的钓鱼方法/msffish.png">
-<meta property="og:image" content="http://hl0rey.github.io/2018/02/08/网页表单调用以外的钓鱼方法/1.png">
-<meta property="og:image" content="http://hl0rey.github.io/2018/02/08/网页表单调用以外的钓鱼方法/2.png">
-<meta property="og:image" content="http://hl0rey.github.io/2018/02/08/网页表单调用以外的钓鱼方法/3.png">
-<meta property="og:image" content="http://hl0rey.github.io/2018/02/08/网页表单调用以外的钓鱼方法/5.png">
-<meta property="og:image" content="http://hl0rey.github.io/2018/02/08/网页表单调用以外的钓鱼方法/6.png">
-<meta property="og:image" content="http://hl0rey.github.io/2018/02/08/网页表单调用以外的钓鱼方法/7.png">
-<meta property="og:image" content="http://hl0rey.github.io/2018/02/08/网页表单调用以外的钓鱼方法/8.png">
-<meta property="og:updated_time" content="2018-02-08T11:15:04.545Z">
+<meta property="og:updated_time" content="2018-02-10T12:14:29.343Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网页表单调用以外的钓鱼方法">
-<meta name="twitter:description" content="所有渗透中有趣的思路，那都是渗透的艺术。                             ——（中）沃兹基索德 钓鱼式攻击顾名思义，是一种如同钓鱼一样的攻击，是一种安逸的很的攻击方式。搜狗百科是给出来比较容易理解的网络钓鱼的定义。 网络钓鱼 （Phishing）攻击者利用欺骗性的电子邮件和伪造的 Web 站点来进行网络诈骗活动，受骗者往往会泄露自己的私人资料，如信用卡号、银行卡账户、身份证">
-<meta name="twitter:image" content="http://hl0rey.github.io/2018/02/08/网页表单调用以外的钓鱼方法/msffish.png">
+<meta name="twitter:title" content="隐式地调用系统API">
+<meta name="twitter:description" content="隐藏调用系统API如果直接调用API，在将程序逆向的时候就会直接显示出被调用的函数的名字，所以根据程序的功能，结合调试器给出的提示很容易的就能定位关键代码，从而破解程序，所以程序员就采取一定的办法来隐式地调用系统API．  下边这种办法比较简单，毕竟还是可以通过LoadlLibrary(),GetProcAddress()这俩函数来判断程序用了什么函数，通过在GetProcessAddress上下">
 
 
 
@@ -129,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://hl0rey.github.io/2018/02/08/网页表单调用以外的钓鱼方法/"/>
+  <link rel="canonical" href="http://hl0rey.github.io/2018/02/10/隐式地调用系统API/"/>
 
 
 
 
 
-  <title>网页表单调用以外的钓鱼方法 | hl0rey's blog</title>
+  <title>隐式地调用系统API | hl0rey's blog</title>
   
 
 
@@ -262,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/08/网页表单调用以外的钓鱼方法/">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/10/隐式地调用系统API/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hl0rey">
@@ -279,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">网页表单调用以外的钓鱼方法</h1>
+          <h1 class="post-title" itemprop="name headline">隐式地调用系统API</h1>
         
 
         <div class="post-meta">
@@ -291,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-08T19:12:52+08:00">
-                2018-02-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-10T19:55:54+08:00">
+                2018-02-10
               </time>
             
 
@@ -314,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tools/" itemprop="url" rel="index">
-                    <span itemprop="name">tools</span>
+                  <a href="/categories/reverse/" itemprop="url" rel="index">
+                    <span itemprop="name">reverse</span>
                   </a>
                 </span>
 
@@ -351,46 +342,51 @@
       
 
       
-        <pre><code>所有渗透中有趣的思路，那都是渗透的艺术。
-                            ——（中）沃兹基索德
-</code></pre><h2 id="钓鱼式攻击"><a href="#钓鱼式攻击" class="headerlink" title="钓鱼式攻击"></a>钓鱼式攻击</h2><p>顾名思义，是一种如同钓鱼一样的攻击，是一种安逸的很的攻击方式。<br>搜狗百科是给出来比较容易理解的网络钓鱼的定义。</p>
-<pre><code>网络钓鱼 （Phishing）攻击者利用欺骗性的电子邮件和伪造的 Web 站点来进行网络诈骗活动，受骗者往往会泄露自己的私人资料，如信用卡号、银行卡账户、身份证号等内容。诈骗者通常会将自己伪装成网络银行、在线零售商和信用卡公司等可信的品牌，骗取用户的私人信息
-</code></pre><p>可以看出，钓鱼攻击并不是一种完全随缘的攻击方法。关键在于是否成功伪装成了受害者信任的目标。</p>
-<h2 id="场景模拟"><a href="#场景模拟" class="headerlink" title="场景模拟"></a>场景模拟</h2><p>现在你接受了一项秘密任务，组织需要你拿到X公司服务上的一份秘密的名单，然而X公司是一家非常有钱的公司，聘请了专业的打补丁的人员，服务器该有的补丁都有了，还有专业的web扫描器使用者，天天对他们的网站进行扫描，你手中也没有0day。但是唯一可喜的是你可以进入他的内网（这就是所谓的百密一疏吧）。</p>
-<pre><code>假设现在你已经成功欺骗了受害者的机器，他已经认为你就是目标服务器。
-</code></pre><p><img src="/2018/02/08/网页表单调用以外的钓鱼方法/msffish.png" alt="image"></p>
-<pre><code>msf可以说是当下最强大渗透测试框架，是一个渗透测试者必须掌握的神器。
-                                                ——（中）耶斯沃兹基索德
-</code></pre><h5 id="X公司管理员特别喜欢用ftp管理服务器（不要在意他为什么喜欢用ftp，这是剧情需要）。"><a href="#X公司管理员特别喜欢用ftp管理服务器（不要在意他为什么喜欢用ftp，这是剧情需要）。" class="headerlink" title="X公司管理员特别喜欢用ftp管理服务器（不要在意他为什么喜欢用ftp，这是剧情需要）。"></a>X公司管理员特别喜欢用ftp管理服务器（不要在意他为什么喜欢用ftp，这是剧情需要）。</h5><p>在做事之前，我们得把假的ftp服务器运行起来。<br><img src="/2018/02/08/网页表单调用以外的钓鱼方法/1.png" alt="image"></p>
-<p>默认配置即可，或者你想改变的个端口也可以。<br><img src="/2018/02/08/网页表单调用以外的钓鱼方法/2.png" alt="image"></p>
-<p>如果端口没有被占用并且权限够大，就能看到如下界面，ftp凭证收割机就启动了。<br><img src="/2018/02/08/网页表单调用以外的钓鱼方法/3.png" alt="image"></p>
-<p>通过社会工程学的方法，冒充客服妹子等等，比如，“管理员小哥哥，有个小黑客跟我说，他在在我们服务器web根目录上传shell了，他好厉害啊。”。这样刺激了管理员的雄性荷尔蒙，他就想上去服务器看看了。</p>
-<p>管理员受到了刺激，登录ftp，但是他受到了更大的刺激，“难道真的被黑了？”<br><img src="/2018/02/08/网页表单调用以外的钓鱼方法/5.png" alt="image"></p>
-<p>再看我们这边，我们已经成功。<br><img src="/2018/02/08/网页表单调用以外的钓鱼方法/6.png" alt="image"><br><img src="/2018/02/08/网页表单调用以外的钓鱼方法/7.png" alt="image"></p>
-<p>使用creds命令，查看我们收集到的凭证。<br><img src="/2018/02/08/网页表单调用以外的钓鱼方法/8.png" alt="image"></p>
-<p>最后完美收网，停止欺骗攻击，管理员最终登录上了ftp服务器，并且没有发现上传shell，截图给妹子看，获得了妹子的亲睐，并且约好了晚上一起吃饭（管理员并不知道妹子也是假的）。我们把管理员约到一个偏远地区，我们就可以趁机上传shell了。</p>
-<pre><code>真是一次精彩的作战。
-</code></pre><p>msf还有其他的创建为了收集用户凭证的虚假服务的模块。</p>
-<pre><code>截止2017年12月26号，可用的模块有
-     auxiliary/server/capture/drda    分布式关系数据库体系结构（百度百科的解释）
-     auxiliary/server/capture/ftp
-     auxiliary/server/capture/http
-     auxiliary/server/capture/http_basic
-     auxiliary/server/capture/http_javascript_keylogger
-     auxiliary/server/capture/http_ntlm
-     auxiliary/server/capture/imap
-     auxiliary/server/capture/mssql
-     auxiliary/server/capture/mysql
-     auxiliary/server/capture/pop3
-     auxiliary/server/capture/postgresql
-     auxiliary/server/capture/printjob_capture
-     auxiliary/server/capture/sip
-     auxiliary/server/capture/smb
-     auxiliary/server/capture/smtp
-     auxiliary/server/capture/telnet
-     auxiliary/server/capture/vnc
-</code></pre><p>只要思路到位就可以玩出花来，让受害者不知道到底在哪一步上当了。</p>
+        <h4 id="隐藏调用系统API"><a href="#隐藏调用系统API" class="headerlink" title="隐藏调用系统API"></a>隐藏调用系统API</h4><pre><code>如果直接调用API，在将程序逆向的时候就会直接显示出被调用的函数的名字，所以根据程序的功能，结合调试器给出的提示很容易的就能定位关键代码，从而破解程序，所以程序员就采取一定的办法来隐式地调用系统API．
+</code></pre><ul>
+<li><p>下边这种办法比较简单，毕竟还是可以通过LoadlLibrary(),GetProcAddress()这俩函数来判断程序用了什么函数，通过在GetProcessAddress上下一个条件断点（一般返回值放在EAX，参数直接推进栈），来记录，它获取过什么函数的地址即可．</p>
+</li>
+<li><p>示例代码：</p>
+<pre><code>TCHAR DllName[MAX_PATH]=&quot;user32.dll&quot;;
+TCHAR ImportedFunctionName[MAX_PATH]=&quot;MessageBoxA&quot;;
+HANDLE hDllModule=NULL;
+DWORD dwFunctionAddress=0;
 
+hDllModule=LoadLibrary(DllName);    
+(FARPROC)dwFunctionAddress=GetProcAddress(hDllModule,ImportedFunctionName);
+((FARPROC)dwFunctionAddress)(NULL,OutputInfor,&quot;Info&quot;,MB_OK | MB_ICONINFORMATION);
+</code></pre></li>
+<li><p>手动实现call指令方式，让调试器认不出call，如果开发者所有的API的这么调用，也算有恒心有毅力的了，放过他吧．</p>
+</li>
+<li><p>实例代码：</p>
+<pre><code>_asm
+{
+            push MB_OK
+            push StringAddress
+            mov eax,0
+            push eax
+            push eax
+
+            mov eax,offset Label
+            push eax
+            jmp [dwFunctionAddress]                //call MessageBox()
+label:    
+            nop
+            nop
+}
+</code></pre></li>
+</ul>
+<p>以上代码段中的</p>
+<pre><code>mov eax,offset Label001
+push eax
+jmp [dwFunctionAddress]       
+</code></pre><p>实现了CALL 指令的功能，且功能有所增强，如果使用CALL 指令，API函数的返回地址必定是紧接CALL 指令的下一条指令的地址。<br>而此代码段可返回到任意指定地址，形成更具迷惑性的代码。</p>
+<ul>
+<li>动态解密函数名，感觉应该不如第二有迷惑性，找到动态解密函数的代码段即可了．<br>代码实例不好找</li>
+</ul>
+<p>参考链接：</p>
+<pre><code>https://bbs.pediy.com/thread-73398.htm
+</code></pre>
       
     </div>
     
@@ -405,12 +401,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/02/08/网页表单调用以外的钓鱼方法/">网页表单调用以外的钓鱼方法</a></p>
+  <p><span>本文标题:</span><a href="/2018/02/10/隐式地调用系统API/">隐式地调用系统API</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 hl0rey 的个人博客">hl0rey</a></p>
-  <p><span>发布时间:</span>2018年02月08日 - 19:02</p>
-  <p><span>最后更新:</span>2018年02月08日 - 19:02</p>
-  <p><span>原始链接:</span><a href="/2018/02/08/网页表单调用以外的钓鱼方法/" title="网页表单调用以外的钓鱼方法">http://hl0rey.github.io/2018/02/08/网页表单调用以外的钓鱼方法/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/08/网页表单调用以外的钓鱼方法/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年02月10日 - 19:02</p>
+  <p><span>最后更新:</span>2018年02月10日 - 20:02</p>
+  <p><span>原始链接:</span><a href="/2018/02/10/隐式地调用系统API/" title="隐式地调用系统API">http://hl0rey.github.io/2018/02/10/隐式地调用系统API/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/10/隐式地调用系统API/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -441,7 +437,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/msf/" rel="tag"># msf</a>
+            <a href="/tags/API/" rel="tag"># API</a>
           
         </div>
       
@@ -454,8 +450,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/08/反调试之IsDebuggerPresent/" rel="next" title="反调试之IsDebuggerPresent">
-                <i class="fa fa-chevron-left"></i> 反调试之IsDebuggerPresent
+              <a href="/2018/02/10/反调试之检测进程名/" rel="next" title="反调试之检测进程名">
+                <i class="fa fa-chevron-left"></i> 反调试之检测进程名
               </a>
             
           </div>
@@ -463,10 +459,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/08/150行代码写成的可扩展的代码审计辅助工具/" rel="prev" title="150行代码写成的可扩展的代码审计辅助工具">
-                150行代码写成的可扩展的代码审计辅助工具 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -598,7 +590,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#钓鱼式攻击"><span class="nav-number">1.</span> <span class="nav-text">钓鱼式攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#场景模拟"><span class="nav-number">2.</span> <span class="nav-text">场景模拟</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#X公司管理员特别喜欢用ftp管理服务器（不要在意他为什么喜欢用ftp，这是剧情需要）。"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">X公司管理员特别喜欢用ftp管理服务器（不要在意他为什么喜欢用ftp，这是剧情需要）。</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#隐藏调用系统API"><span class="nav-number">1.</span> <span class="nav-text">隐藏调用系统API</span></a></li></ol></div>
             
 
           </div>
