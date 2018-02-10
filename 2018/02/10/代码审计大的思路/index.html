@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="拿到一套源码该从哪个地方开始审计，该用什么思路审计，是很值得思考的．     ###通读原文是对代码能力要求比较高的一种方法，耗时多，但是有利于把握程序的逻辑，挖出逻辑漏洞，毕竟不只是getshell才叫漏洞．所期望的功能不能正常实现也是漏洞． 敏感关键字回溯这个方法比较迅速，直接在源码里全文搜索关键字，比如可控的参数，编码解码等，容易出错的地方，或是危险函数，一旦发现问题，一般就是大问题，但是不">
+<meta name="description" content="拿到一套源码该从哪个地方开始审计，该用什么思路审计，是很值得思考的．     通读原文是对代码能力要求比较高的一种方法，耗时多，但是有利于把握程序的逻辑，挖出逻辑漏洞，毕竟不只是getshell才叫漏洞．所期望的功能不能正常实现也是漏洞． 敏感关键字回溯这个方法比较迅速，直接在源码里全文搜索关键字，比如可控的参数，编码解码等，容易出错的地方，或是危险函数，一旦发现问题，一般就是大问题，但是不容易挖">
 <meta name="keywords" content="php">
 <meta property="og:type" content="article">
 <meta property="og:title" content="代码审计大的思路">
 <meta property="og:url" content="http://hl0rey.github.io/2018/02/10/代码审计大的思路/index.html">
 <meta property="og:site_name" content="hl0rey&#39;s blog">
-<meta property="og:description" content="拿到一套源码该从哪个地方开始审计，该用什么思路审计，是很值得思考的．     ###通读原文是对代码能力要求比较高的一种方法，耗时多，但是有利于把握程序的逻辑，挖出逻辑漏洞，毕竟不只是getshell才叫漏洞．所期望的功能不能正常实现也是漏洞． 敏感关键字回溯这个方法比较迅速，直接在源码里全文搜索关键字，比如可控的参数，编码解码等，容易出错的地方，或是危险函数，一旦发现问题，一般就是大问题，但是不">
+<meta property="og:description" content="拿到一套源码该从哪个地方开始审计，该用什么思路审计，是很值得思考的．     通读原文是对代码能力要求比较高的一种方法，耗时多，但是有利于把握程序的逻辑，挖出逻辑漏洞，毕竟不只是getshell才叫漏洞．所期望的功能不能正常实现也是漏洞． 敏感关键字回溯这个方法比较迅速，直接在源码里全文搜索关键字，比如可控的参数，编码解码等，容易出错的地方，或是危险函数，一旦发现问题，一般就是大问题，但是不容易挖">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-10T13:25:56.323Z">
+<meta property="og:updated_time" content="2018-02-10T15:00:35.314Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="代码审计大的思路">
-<meta name="twitter:description" content="拿到一套源码该从哪个地方开始审计，该用什么思路审计，是很值得思考的．     ###通读原文是对代码能力要求比较高的一种方法，耗时多，但是有利于把握程序的逻辑，挖出逻辑漏洞，毕竟不只是getshell才叫漏洞．所期望的功能不能正常实现也是漏洞． 敏感关键字回溯这个方法比较迅速，直接在源码里全文搜索关键字，比如可控的参数，编码解码等，容易出错的地方，或是危险函数，一旦发现问题，一般就是大问题，但是不">
+<meta name="twitter:description" content="拿到一套源码该从哪个地方开始审计，该用什么思路审计，是很值得思考的．     通读原文是对代码能力要求比较高的一种方法，耗时多，但是有利于把握程序的逻辑，挖出逻辑漏洞，毕竟不只是getshell才叫漏洞．所期望的功能不能正常实现也是漏洞． 敏感关键字回溯这个方法比较迅速，直接在源码里全文搜索关键字，比如可控的参数，编码解码等，容易出错的地方，或是危险函数，一旦发现问题，一般就是大问题，但是不容易挖">
 
 
 
@@ -343,7 +343,7 @@
 
       
         <pre><code>拿到一套源码该从哪个地方开始审计，该用什么思路审计，是很值得思考的．    
-</code></pre><p>###通读原文<br>是对代码能力要求比较高的一种方法，耗时多，但是有利于把握程序的逻辑，挖出逻辑漏洞，毕竟不只是getshell才叫漏洞．所期望的功能不能正常实现也是漏洞．</p>
+</code></pre><h3 id="通读原文"><a href="#通读原文" class="headerlink" title="通读原文"></a>通读原文</h3><p>是对代码能力要求比较高的一种方法，耗时多，但是有利于把握程序的逻辑，挖出逻辑漏洞，毕竟不只是getshell才叫漏洞．所期望的功能不能正常实现也是漏洞．</p>
 <h3 id="敏感关键字回溯"><a href="#敏感关键字回溯" class="headerlink" title="敏感关键字回溯"></a>敏感关键字回溯</h3><p>这个方法比较迅速，直接在源码里全文搜索关键字，比如可控的参数，编码解码等，容易出错的地方，或是危险函数，一旦发现问题，一般就是大问题，但是不容易挖到逻辑漏洞，因为对程序的功能不够了解</p>
 <h3 id="功能定向审计"><a href="#功能定向审计" class="headerlink" title="功能定向审计"></a>功能定向审计</h3><p>拿到源码之后先看看怎么用，有什么用，看看有啥功能，然后针对功能，黑白盒测试相结合，事半功倍．比如，程序安装，文件上传，文件管理，登录验证，备份，找回密码，购物车，评论等等．感觉这个方法比较高效一些．</p>
 
@@ -364,7 +364,7 @@
   <p><span>本文标题:</span><a href="/2018/02/10/代码审计大的思路/">代码审计大的思路</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 hl0rey 的个人博客">hl0rey</a></p>
   <p><span>发布时间:</span>2018年02月10日 - 21:02</p>
-  <p><span>最后更新:</span>2018年02月10日 - 21:02</p>
+  <p><span>最后更新:</span>2018年02月10日 - 23:02</p>
   <p><span>原始链接:</span><a href="/2018/02/10/代码审计大的思路/" title="代码审计大的思路">http://hl0rey.github.io/2018/02/10/代码审计大的思路/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/10/代码审计大的思路/"  aria-label="复制成功！"></i></span>
   </p>
@@ -550,7 +550,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#敏感关键字回溯"><span class="nav-number">1.</span> <span class="nav-text">敏感关键字回溯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能定向审计"><span class="nav-number">2.</span> <span class="nav-text">功能定向审计</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#通读原文"><span class="nav-number">1.</span> <span class="nav-text">通读原文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#敏感关键字回溯"><span class="nav-number">2.</span> <span class="nav-text">敏感关键字回溯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能定向审计"><span class="nav-number">3.</span> <span class="nav-text">功能定向审计</span></a></li></ol></div>
             
 
           </div>
