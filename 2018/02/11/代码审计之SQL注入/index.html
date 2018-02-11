@@ -88,7 +88,7 @@
 <meta property="og:description" content="基本注入类型数字型因为拼接到SQL语句的中数字型变量过滤不严而导致的漏洞．这种漏洞的利用很大的一个特点是不用闭合引号，但是可能需要闭合括号．测试代码：test1.php防护方法：直接用预编译，或者用intval转换变量类型． 字符型SQL语句中拼进去一个过滤不严的字符串型变量．这种漏洞的利用需要闭合引号或者引号和括号．测试代码：test2.php防护方法：直接用预编译，或者用addslashe">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://hl0rey.github.io/2018/02/11/代码审计之SQL注入/SQL注入.jpg">
-<meta property="og:updated_time" content="2018-02-11T12:59:25.010Z">
+<meta property="og:updated_time" content="2018-02-11T13:41:30.816Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="代码审计之SQL注入">
 <meta name="twitter:description" content="基本注入类型数字型因为拼接到SQL语句的中数字型变量过滤不严而导致的漏洞．这种漏洞的利用很大的一个特点是不用闭合引号，但是可能需要闭合括号．测试代码：test1.php防护方法：直接用预编译，或者用intval转换变量类型． 字符型SQL语句中拼进去一个过滤不严的字符串型变量．这种漏洞的利用需要闭合引号或者引号和括号．测试代码：test2.php防护方法：直接用预编译，或者用addslashe">
@@ -388,7 +388,7 @@ def tamper(payload, **kwargs):
 </code></pre><h3 id="注入触发"><a href="#注入触发" class="headerlink" title="注入触发"></a>注入触发</h3><h4 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h4><p>通过GET请求触发</p>
 <h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><p>通过POST请求触发</p>
 <h4 id="二次注入"><a href="#二次注入" class="headerlink" title="二次注入"></a>二次注入</h4><p>恶意请求经过转义或者过滤，没能实现攻击，但恶意数据正常入库，再程序另一处使用了恶意的变量，可能因为从自身取出数据，就疏于防范导致恶意请求被执行．<br>比如　处理后的数据　\’a\’ or 1=1 –+ 入库，取出时是　‘1’ or 1=1<br>只要有别的地方调用这段数据拼接进SQL语句，就被攻击了．</p>
-<h4 id="宽字节注入，不恰当的转换编码导致的注入"><a href="#宽字节注入，不恰当的转换编码导致的注入" class="headerlink" title="宽字节注入，不恰当的转换编码导致的注入"></a>宽字节注入，不恰当的转换编码导致的注入</h4><p>宽字节注入的本质是转换编码的时候，让一个或几个字节跟反斜杠合成一个字符，形象的来说就是＂吃掉反斜杠＂．所以不只是页面编码为gbk的时候才有宽字节注入，不只SQL注入，其他注入型的漏洞有可能有这个问题<br><a href="http://blog.csdn.net/u011721501/article/details/42874517" target="_blank" rel="noopener">http://blog.csdn.net/u011721501/article/details/42874517</a><br><a href="http://www.91ri.org/8611.html" target="_blank" rel="noopener">http://www.91ri.org/8611.html</a></p>
+<h4 id="宽字节注入，不恰当的转换编码导致的注入"><a href="#宽字节注入，不恰当的转换编码导致的注入" class="headerlink" title="宽字节注入，不恰当的转换编码导致的注入"></a>宽字节注入，不恰当的转换编码导致的注入</h4><p>宽字节注入的本质是转换编码的时候，让一个或几个字节跟反斜杠合成一个字符，形象的来说就是＂吃掉反斜杠＂．所以不只是页面编码为gbk的时候才有宽字节注入，不只SQL注入，其他注入型的漏洞有可能有这个问题<br>测试代码：test3.php<br>参考链接：<br><a href="http://blog.csdn.net/u011721501/article/details/42874517" target="_blank" rel="noopener">http://blog.csdn.net/u011721501/article/details/42874517</a><br><a href="http://www.91ri.org/8611.html" target="_blank" rel="noopener">http://www.91ri.org/8611.html</a></p>
 
       
     </div>
@@ -407,7 +407,7 @@ def tamper(payload, **kwargs):
   <p><span>本文标题:</span><a href="/2018/02/11/代码审计之SQL注入/">代码审计之SQL注入</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 hl0rey 的个人博客">hl0rey</a></p>
   <p><span>发布时间:</span>2018年02月11日 - 12:02</p>
-  <p><span>最后更新:</span>2018年02月11日 - 20:02</p>
+  <p><span>最后更新:</span>2018年02月11日 - 21:02</p>
   <p><span>原始链接:</span><a href="/2018/02/11/代码审计之SQL注入/" title="代码审计之SQL注入">http://hl0rey.github.io/2018/02/11/代码审计之SQL注入/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/11/代码审计之SQL注入/"  aria-label="复制成功！"></i></span>
   </p>
