@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="php," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="为了让程序更加灵活，能够迎合复杂的需求。常常需要程序可以动态执行代码。当在动态执行的代码可以控制的时候，则很可能出现代码执行（代码注入）漏洞。 动态执行代码的情况 直接执行代码的函数 eval assert preg_replace  回调函数 call_usr_func call_usr_func_array array_map  函数动态执行 $a($b)   具体分析：一、直接代码执行的函数">
+<meta name="keywords" content="php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码审计之代码执行">
+<meta property="og:url" content="http://hl0rey.github.io/2018/02/19/代码审计之代码执行/index.html">
+<meta property="og:site_name" content="hl0rey&#39;s blog">
+<meta property="og:description" content="为了让程序更加灵活，能够迎合复杂的需求。常常需要程序可以动态执行代码。当在动态执行的代码可以控制的时候，则很可能出现代码执行（代码注入）漏洞。 动态执行代码的情况 直接执行代码的函数 eval assert preg_replace  回调函数 call_usr_func call_usr_func_array array_map  函数动态执行 $a($b)   具体分析：一、直接代码执行的函数">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-19T10:15:21.890Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代码审计之代码执行">
+<meta name="twitter:description" content="为了让程序更加灵活，能够迎合复杂的需求。常常需要程序可以动态执行代码。当在动态执行的代码可以控制的时候，则很可能出现代码执行（代码注入）漏洞。 动态执行代码的情况 直接执行代码的函数 eval assert preg_replace  回调函数 call_usr_func call_usr_func_array array_map  函数动态执行 $a($b)   具体分析：一、直接代码执行的函数">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hl0rey.github.io/2018/02/19/代码审计之代码执行/"/>
+
+
+
+
+
+  <title>代码审计之代码执行 | hl0rey's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hl0rey's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/19/代码审计之代码执行/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hl0rey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hl0rey's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">代码审计之代码执行</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-19T15:34:35+08:00">
+                2018-02-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/code/" itemprop="url" rel="index">
+                    <span itemprop="name">code</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <pre><code>为了让程序更加灵活，能够迎合复杂的需求。常常需要程序可以动态执行代码。当在动态执行的代码可以控制的时候，则很可能出现代码执行（代码注入）漏洞。
+</code></pre><h3 id="动态执行代码的情况"><a href="#动态执行代码的情况" class="headerlink" title="动态执行代码的情况"></a>动态执行代码的情况</h3><ul>
+<li><p>直接执行代码的函数</p>
+<pre><code>eval
+assert
+preg_replace
+</code></pre></li>
+<li><p>回调函数</p>
+<pre><code>call_usr_func
+call_usr_func_array
+array_map
+</code></pre></li>
+<li><p>函数动态执行</p>
+<pre><code>$a($b)
+</code></pre></li>
+</ul>
+<h3 id="具体分析："><a href="#具体分析：" class="headerlink" title="具体分析："></a>具体分析：</h3><h4 id="一、直接代码执行的函数"><a href="#一、直接代码执行的函数" class="headerlink" title="一、直接代码执行的函数"></a>一、直接代码执行的函数</h4><p>1.eval()：<br><a href="http://php.net/eval" target="_blank" rel="noopener">http://php.net/eval</a></p>
+<pre><code>eval($a)
+</code></pre><p>字符串a带入就可以执行，这个太容易利用了<br>值得一提的是eval不能被可变函数调用</p>
+<p>2.assert()：<br><a href="http://php.net/manual/zh/function.assert.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.assert.php</a></p>
+<pre><code>assert($a)
+</code></pre><p>参数a是个字符串，assert函数会把他当作代码执行</p>
+<p>3.preg_replace() php5.5之前可用<br><a href="http://php.net/manual/zh/function.preg-replace.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.preg-replace.php</a></p>
+<pre><code>mixed preg_replace ( mixed $pattern , mixed $replacement , mixed $subject [, int $limit = -1 [, int &amp;$count ]] )
+</code></pre><p>简化一下</p>
+<pre><code>preg_replace($a,$b,$c)
+</code></pre><p>参数 a、b、c可以是字符串也可以是数组，此处参数a、b、c可以注入<br>a）参数a注入是构造字符串使参数a含有“/e”，并且参数b在反向引用结束之后符合eval语法。也就是这个过程，用正则a去匹配c，得到捕获组，然后反向引用取到捕获组的内容，如果此时的字符串符合eval语法，就代码执行了。下面这两篇文章是介绍反向引用的<br><a href="http://blog.csdn.net/lxcnn/article/details/4146148" target="_blank" rel="noopener">http://blog.csdn.net/lxcnn/article/details/4146148</a><br><a href="http://www.cnblogs.com/-ShiL/archive/2012/04/06/Star201204061009.html" target="_blank" rel="noopener">http://www.cnblogs.com/-ShiL/archive/2012/04/06/Star201204061009.html</a></p>
+<ul>
+<li><p>示例：<br>php代码：</p>
+<pre><code>&lt;?php preg_replace($_GET[‘reg’],”\\1”,”ph1phpinfoph1”);?&gt;
+</code></pre></li>
+</ul>
+<p>payload：<br>www.test.com/test.php?reg=/ph1(.*?)ph1/e</p>
+<p>b)参数b注入就十分简单了，但是必须正则a使用了e修饰符，直接穿传符合eval语法的字符串就行了<br>示例：<br>php代码：</p>
+<pre><code>&lt;?php preg_replace(“/test/e”,$_GET[‘cmd’],”test”);?&gt;
+</code></pre><p>payload：<br>www.test.com/test.php?cmd=phpinfo()<br>c）参数c的注入跟参数a类似，只要让参数b取得的字符串符合eval语法就行了。<br>示例：<br>php代码：</p>
+<pre><code>&lt;?php preg_replace(“/ph1(.*?)php/e”,”\\1”,$_GET[‘cmd’]);?&gt;
+</code></pre><p>payload:<br>www.test.com/test.php?cmd=ph1phpinfo()ph1<br>`    </p>
+<p>4.create_function()<br><a href="http://php.net/manual/zh/function.create-function.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.create-function.php</a></p>
+<pre><code>string create_function ( string $args , string $code )
+create_function($a,$b)
+</code></pre><p>这个函数在内部执行的eval，也就是说解析传入的参数，构造一段创建函数的符合eval语法的字符串，然后直接执行他。这里的参数b可以注入代码。<br>示例：<br>php代码：</p>
+<pre><code>&lt;?php
+//02-8.php?id=2;}phpinfo();/*
+$id=$_GET[&apos;id&apos;];
+$str2=&apos;echo  ‘.$a.’ test&apos;.$id.&quot;;&quot;;
+echo $str2;
+echo &quot;&lt;br/&gt;&quot;;
+echo &quot;==============================&quot;;
+echo &quot;&lt;br/&gt;&quot;;
+$f1 = create_function(&apos;$a&apos;,$str2);
+echo &quot;&lt;br/&gt;&quot;;
+echo &quot;==============================&quot;;
+?&gt;
+</code></pre><p>payload:<br><a href="http://127.0.0.1/test.php?id=2;}phpinfo();/*" target="_blank" rel="noopener">http://127.0.0.1/test.php?id=2;}phpinfo();/*</a><br>绕过一下<br><a href="http://127.0.0.1/test.php?id=;}@phpinfo();/*" target="_blank" rel="noopener">http://127.0.0.1/test.php?id=;}@phpinfo();/*</a></p>
+<p>原本字符串：<br>    function fT($a) {<br>      echo “test”.$a;<br>    }</p>
+<p>注入后字符串：</p>
+<pre><code>function fT($a) {
+  echo &quot;test&quot;;}
+  phpinfo();/*;//此处为注入代码。
+}
+
+&lt;?php
+$foobar = $_GET[&apos;foobar&apos;];
+$dyn_func = create_function(&apos;$foobar&apos;, &quot;echo $foobar;&quot;);
+$dyn_func(&apos;&apos;);
+?&gt;
+</code></pre><p>我们提交 <a href="http://127.0.0.1/create_function.php?foobar=system%28dir%29" target="_blank" rel="noopener">http://127.0.0.1/create_function.php?foobar=system%28dir%29</a> 执行dir命令</p>
+<p>5.call_user_func()<br><a href="http://php.net/manual/zh/function.call-user-func.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.call-user-func.php</a></p>
+<pre><code>mixed call_user_func ( callable $callback [, mixed $parameter [, mixed $... ]] )
+call_user_func($a)
+</code></pre><p>参数a是调用的函数名，想办法让这里变成自己想要的函数名,如果还要个参数可控就更好了</p>
+<p>示例：<br>php代码：</p>
+<pre><code>&lt;?php call_user_func($_GET[‘code’]);?&gt;
+&lt;?php call_user_func($_GET[‘code’],$_GET[‘cmd’]);?&gt;
+</code></pre><p>payload：<br>www.test.com/test.php?code=phpinfo<br><a href="http://127.0.0.1/test.php?code=system&amp;cmd=whoami" target="_blank" rel="noopener">http://127.0.0.1/test.php?code=system&amp;cmd=whoami</a></p>
+<p>6.call_user_func_array()<br><a href="http://php.net/manual/zh/function.call-user-func-array.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.call-user-func-array.php</a></p>
+<pre><code>mixed call_user_func_array ( callable $callback , array $param_arr )
+call_user_func_array($a,$b)
+</code></pre><p>跟call_user_func差不多，但是这个必须带参数。<br>127.0.0.1/test.php?func=phpinfo&amp;p[]= 此处为空不能执行<br>php代码：</p>
+<pre><code>&lt;?php call_user_func_array($_GET[&apos;func&apos;],$_GET[&apos;p&apos;]);?&gt;
+</code></pre><p>payload:<br><a href="http://127.0.0.1/test.php?func=system&amp;p[]=whoami" target="_blank" rel="noopener">http://127.0.0.1/test.php?func=system&amp;p[]=whoami</a></p>
+<p>7.ob_start() php7未测试成功<br><a href="http://php.net/manual/zh/function.ob-start.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.ob-start.php</a></p>
+<pre><code>bool ob_start ([ callback $output_callback [, int $chunk_size [, bool $erase ]]] )
+ob_start($a)
+</code></pre><p>参数a是一个回调函数名，当缓存刷新时，把缓冲区的内容作为一个参数传给回    调函数处理，回调函数内不能再调用ob_start().</p>
+<pre><code>$foobar = &apos;system&apos;;
+ob_start($foobar);
+echo &apos;dir&apos;;
+ob_end_flush();
+</code></pre><p>8.array_map()<br><a href="http://php.net/manual/zh/function.array-map.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.array-map.php</a></p>
+<p>array array_map ( callable $callback , array $array1 [, array $… ] )<br>示例：</p>
+<pre><code>&lt;?php array_map(&apos;system&apos;,$_GET[&apos;cmd&apos;]);?&gt;
+</code></pre><p><a href="http://127.0.0.1/test.php?cmd[]=whoami" target="_blank" rel="noopener">http://127.0.0.1/test.php?cmd[]=whoami</a></p>
+<p>9.array_walk(),array_walk_recursive()<br><a href="http://php.net/manual/zh/function.array-walk.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.array-walk.php</a><br><a href="http://php.net/manual/zh/function.array-walk-recursive.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.array-walk-recursive.php</a><br>bool array_walk ( array &amp;$array , callable $callback [, mixed $userdata = NULL ] )<br>bool array_walk_recursive ( array &amp;$array , callable $callback [, mixed $userdata = NULL ] )<br>array_walk($a,$b)<br>array_walk_recursive($a,$b)<br>参数a是个数组，参数b是个回调函数的名字，这两个函数都是把数组中的值作为参数带到回调函数中执行。第二个可以遍历多维数组。</p>
+<pre><code>&lt;？php array_walk($_GET[&apos;cmd&apos;],&apos;system&apos;);
+array_walk_recursive($_GET[&apos;cmd&apos;],&apos;system&apos;); ?&gt;
+</code></pre><p><a href="http://127.0.0.1/test.php?cmd[]=whoami" target="_blank" rel="noopener">http://127.0.0.1/test.php?cmd[]=whoami</a></p>
+<p>10.register_shutdown_function()<br><a href="http://php.net/manual/zh/function.register-shutdown-function.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.register-shutdown-function.php</a></p>
+<pre><code>void register_shutdown_function ( callable $callback [, mixed $parameter [, mixed $... ]] )
+</code></pre><p>register_shutdown_function($a)<br>参数a是一个函数名，也可以给他传参,可以传多个<br>register_shutdown_function($a,$b)<br>示例</p>
+<pre><code>&lt;?php register_shutdown_function(&apos;system&apos;,$_GET[&apos;cmd&apos;]);?&gt;
+</code></pre><p><a href="http://127.0.0.1/test.php?cmd=whoami" target="_blank" rel="noopener">http://127.0.0.1/test.php?cmd=whoami</a></p>
+<pre><code>&lt;?php register_shutdown_function($_GET[&apos;cmd&apos;]);?&gt;
+</code></pre><p><a href="http://127.0.0.1/test.php?cmd=phpinfo" target="_blank" rel="noopener">http://127.0.0.1/test.php?cmd=phpinfo</a></p>
+<p>11.preg_replace_callback(),preg_replace_callback_array<br><a href="http://php.net/manual/zh/function.preg-replace-callback.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.preg-replace-callback.php</a></p>
+<pre><code>mixed preg_replace_callback ( mixed $pattern , callable $callback , mixed $subject [, int $limit = -1 [, int &amp;$count ]] )
+http://php.net/manual/zh/function.preg-replace-callback-array.php
+mixed preg_replace_callback_array ( array $patterns_and_callbacks , mixed $subject [, int $limit = -1 [, int &amp;$count ]] )
+</code></pre><p>这个函数太麻烦先算了。</p>
+<p>13.array_filter()<br><a href="http://php.net/manual/zh/function.array-filter.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.array-filter.php</a></p>
+<pre><code>array array_filter ( array $array [, callable $callback [, int $flag = 0 ]] )
+</code></pre><p><a href="http://php.net/manual/zh/function.array-reduce.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.array-reduce.php</a></p>
+<pre><code>mixed array_reduce ( array $array , callable $callback [, mixed $initial = NULL ] )这俩跟array_walk()执行代码的方式一样
+</code></pre><p>14.stream_filter_register()<br><a href="http://php.net/manual/zh/function.stream-filter-register.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.stream-filter-register.php</a><br>自己构造一个类贼六啊<br>15.剩下的可能执行代码的函数<br>回调函数的构造比较复杂，当遇上的时候再具体分析。</p>
+<pre><code>xml_set_character_data_handler()
+xml_set_default_handler()
+xml_set_element_handler()
+xml_set_end_namespace_decl_handler()
+xml_set_external_entity_ref_handler()
+xml_set_notation_decl_handler()
+xml_set_processing_instruction_handler()
+xml_set_start_namespace_decl_handler()
+xml_set_unparsed_entity_decl_handler()
+stream_filter_register()
+set_error_handler()
+usort(),uasort(), uksort()array_diff_uassoc(),
+array_diff_ukey()
+array_udiff(), array_udiff_assoc(), array_udiff_uassoc()
+array_intersect_assoc(), array_intersect_uassoc()
+array_uintersect(), array_uintersect_assoc(), array_uintersect_uassoc()
+</code></pre><p>16.这个没看懂怎么注入代码，比较反人类</p>
+<pre><code>register_tick_function()
+</code></pre><h1 id="危险函数集合"><a href="#危险函数集合" class="headerlink" title="危险函数集合"></a>危险函数集合</h1><pre><code>直接执行代码
+eval()
+assert()
+preg_replace()(php7不支持.5.5以后废弃改成preg_replace _callback(）
+
+可以控制函数内容
+create_function()
+
+能控制函数参数和函数名
+较容易
+call_user_func（），call_user_func_array（）
+ob_start()，
+array_map()，array_walk(),array_walk_recursive()
+register_shutdown_function()
+preg_replace _callback()
+array_filter()
+array_reduce()
+
+
+比较困难，参数可控但是有限制
+xml_set_character_data_handler()
+xml_set_default_handler()
+xml_set_element_handler()
+xml_set_end_namespace_decl_handler()
+xml_set_external_entity_ref_handler()
+xml_set_notation_decl_handler()
+xml_set_processing_instruction_handler()
+xml_set_start_namespace_decl_handler()
+xml_set_unparsed_entity_decl_handler()
+
+stream_filter_register()
+
+set_error_handler()
+
+usort(),uasort(), uksort()array_diff_uassoc(),
+array_diff_ukey()
+array_udiff(), array_udiff_assoc(), array_udiff_uassoc()
+array_intersect_assoc(), array_intersect_uassoc()
+array_uintersect(), array_uintersect_assoc(), array_uintersect_uassoc()
+
+register_tick_function()
+</code></pre><h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><pre><code>&lt;?php
+
+//36个函数或者语句可以代码执行
+//代码执行函数 eval，assert,preg_replace(php7不支持.5.5以后废弃),create_function,ob_start()
+
+//assert http://php.net/manual/zh/function.assert.php https://yq.aliyun.com/articles/27402
+//preg_replace http://php.net/manual/zh/function.preg-replace.php https://zhidao.baidu.com/question/240565568.html
+//ob_start http://blog.csdn.net/qq_22533095/article/details/50372150
+
+
+/*
+ * 同类型函数还有很多
+array_map()
+usort(), uasort(), uksort()
+array_filter()
+array_reduce()
+array_diff_uassoc(), array_diff_ukey()
+array_udiff(), array_udiff_assoc(), array_udiff_uassoc()
+array_intersect_assoc(), array_intersect_uassoc()
+array_uintersect(), array_uintersect_assoc(), array_uintersect_uassoc()
+array_walk(), array_walk_recursive()
+xml_set_character_data_handler()
+xml_set_default_handler()
+xml_set_element_handler()
+xml_set_end_namespace_decl_handler()
+xml_set_external_entity_ref_handler()
+xml_set_notation_decl_handler()
+xml_set_processing_instruction_handler()
+xml_set_start_namespace_decl_handler()
+xml_set_unparsed_entity_decl_handler()
+stream_filter_register()
+set_error_handler()
+register_shutdown_function()
+register_tick_function()
+ * */
+
+
+$codes = &apos;&apos;;
+$original = &apos;eval&apos;;
+
+if ($_POST[&apos;lv&apos;] == 1) {
+
+    $codes = $_POST[&apos;code&apos;];
+
+}
+
+if (isset($_POST[&apos;func&apos;])) {
+    $original = str_replace(&apos; &apos;, &apos;&apos;, $_POST[&apos;func&apos;]);
+}
+
+
+if ($original == &apos;eval&apos;) {
+
+    eval(&apos;echo &apos; . $codes);
+
+}
+if ($original == &apos;assert&apos;) {
+
+    assert(&apos;1=&apos; . $codes);
+
+
+}
+
+if ($original == &apos;create_function&apos;) {
+    $func = create_function(&apos;$a&apos;, &apos;echo $a&apos;);
+    $func($codes);
+}
+
+if ($original == &apos;dynamic&apos;) {
+
+    $codes();
+
+}
+
+if ($original == &apos;preg_replace&apos;) {
+    function test($a){
+    echo $a;
+    }
+    //echo preg_replace(&quot;/\s*php(.+?)\/php\s*/ies&quot;, &quot;\\1&quot;, $_GET[&apos;h&apos;]);
+    echo preg_replace(&quot;/s*[php](.+?)[/php]s*/ies&quot;, &apos;test(&quot;\1&quot;)&apos;, $codes);
+}
+if ($original==&apos;ob_start&apos;){
+
+    ob_start($codes);
+    echo &apos;echo &quot;codeexec&quot;&apos;;
+    ob_end_flush();
+
+
+}
+
+if ($original==&apos;unserialize&apos;){
+
+    //此处应当另行探究，主要研究php，反序列化
+
+}
+</code></pre>
+      
+    </div>
+    
+    
+    
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/02/19/代码审计之代码执行/">代码审计之代码执行</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 hl0rey 的个人博客">hl0rey</a></p>
+  <p><span>发布时间:</span>2018年02月19日 - 15:02</p>
+  <p><span>最后更新:</span>2018年02月19日 - 18:02</p>
+  <p><span>原始链接:</span><a href="/2018/02/19/代码审计之代码执行/" title="代码审计之代码执行">http://hl0rey.github.io/2018/02/19/代码审计之代码执行/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/19/代码审计之代码执行/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+
+      
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/php/" rel="tag"># php</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/18/以太网协议详解/" rel="next" title="以太网协议详解">
+                <i class="fa fa-chevron-left"></i> 以太网协议详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/19/代码审计之命令执行/" rel="prev" title="代码审计之命令执行">
+                代码审计之命令执行 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">hl0rey</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态执行代码的情况"><span class="nav-number">1.</span> <span class="nav-text">动态执行代码的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体分析："><span class="nav-number">2.</span> <span class="nav-text">具体分析：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、直接代码执行的函数"><span class="nav-number">2.1.</span> <span class="nav-text">一、直接代码执行的函数</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#危险函数集合"><span class="nav-number"></span> <span class="nav-text">危险函数集合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试代码"><span class="nav-number">1.</span> <span class="nav-text">测试代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hl0rey</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

