@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="信息安全, 黑客技术, 渗透测试, 信安, 黑客, 渗透, security, hacker, hl0rey" />
+  <meta name="keywords" content="python," />
 
 
 
@@ -79,14 +79,20 @@
 
 
 
+<meta name="description" content="简介ARP协议就是把IP地址解析成MAC地址的协议，RARP协议就是把MAC地址解析成IP地址的协议． ###　数据包头结构  typedef struct arphdr //arp协议28字节 { unsigned short hard_tpye;//硬件类型2字节 通常为01 (以太网地址) unsigned short protocol;//协议类型2字节 通常为80 (IP地址) unsi">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ARP协议详解">
 <meta property="og:url" content="http://hl0rey.github.io/2018/02/17/ARP协议详解/index.html">
 <meta property="og:site_name" content="hl0rey&#39;s blog">
+<meta property="og:description" content="简介ARP协议就是把IP地址解析成MAC地址的协议，RARP协议就是把MAC地址解析成IP地址的协议． ###　数据包头结构  typedef struct arphdr //arp协议28字节 { unsigned short hard_tpye;//硬件类型2字节 通常为01 (以太网地址) unsigned short protocol;//协议类型2字节 通常为80 (IP地址) unsi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-17T14:48:20.546Z">
+<meta property="og:image" content="http://hl0rey.github.io/2018/02/17/ARP协议详解/2.jpg">
+<meta property="og:updated_time" content="2018-02-21T15:07:22.065Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ARP协议详解">
+<meta name="twitter:description" content="简介ARP协议就是把IP地址解析成MAC地址的协议，RARP协议就是把MAC地址解析成IP地址的协议． ###　数据包头结构  typedef struct arphdr //arp协议28字节 { unsigned short hard_tpye;//硬件类型2字节 通常为01 (以太网地址) unsigned short protocol;//协议类型2字节 通常为80 (IP地址) unsi">
+<meta name="twitter:image" content="http://hl0rey.github.io/2018/02/17/ARP协议详解/2.jpg">
 
 
 
@@ -289,6 +295,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/code/" itemprop="url" rel="index">
+                    <span itemprop="name">code</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -316,7 +344,105 @@
       
 
       
-        
+        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><pre><code>ARP协议就是把IP地址解析成MAC地址的协议，RARP协议就是把MAC地址解析成IP地址的协议．
+</code></pre><p>###　数据包头结构<br><img src="/2018/02/17/ARP协议详解/2.jpg" alt=""> </p>
+<pre><code>typedef struct arphdr //arp协议28字节
+{
+unsigned short hard_tpye;//硬件类型2字节 通常为01 (以太网地址)
+unsigned short protocol;//协议类型2字节 通常为80 (IP地址)
+unsigned char hard_length;//硬件地址长度1字节 通常为6
+unsigned char protocol_length;//协议地址长度1字节 通常为4 (IP协议)
+unsigned short operation_type;//操作类型 1为ARP请求，2为ARP应答，3为RARP请求，4为RARP应答
+unsigned char source_mac[6];//源物理地址
+struct in_addr source_ip;//源IP地址
+unsigned char destination_mac[6];//目的物理地址
+struct in_addr destination_ip;//目的IP地址
+}ARP_HEADER,*PARPHDR;
+</code></pre><h3 id="值得一提的是"><a href="#值得一提的是" class="headerlink" title="值得一提的是"></a>值得一提的是</h3><pre><code>操作类型字段，目前能支持到9
+
+5    DRARP(动态反向地址转换协议) Request
+6    DRARP Reply
+7    DRARP Error
+8    InARP(逆向地址转换协议) Request
+9    InARP Relpy
+
+DRARP对应的RFC文档编号为rfc1931
+</code></pre><h3 id="scapy"><a href="#scapy" class="headerlink" title="scapy"></a>scapy</h3><pre><code> 非常简单，直接构造即可．
+
+In [31]: a=ARP()
+In [32]: a.op=1
+
+In [33]: send(a)
+.
+Sent 1 packets.
+
+In [34]: a.op=2
+
+In [35]: send(a)
+.
+Sent 1 packets.
+
+In [36]: a.op=3
+
+In [37]: send(a)
+.
+Sent 1 packets.
+
+In [38]: a.op=4
+
+In [39]: send(a)
+.
+Sent 1 packets.
+
+In [40]: a.op=5
+
+In [41]: send(a)
+.
+Sent 1 packets.
+
+In [42]: a.op=6
+
+In [43]: send(a)
+.
+Sent 1 packets.
+
+In [44]: a.op=7
+
+In [45]: send(a)
+.
+Sent 1 packets.
+
+In [46]: a.op=8
+
+In [47]: send(a)
+.
+Sent 1 packets.
+
+In [48]: a.op=9
+
+In [49]: send(a)
+.
+Sent 1 packets.
+
+In [50]: a.op=10
+
+In [51]: send(a)
+.
+Sent 1 packets.
+
+In [52]: a.show()
+###[ ARP ]###
+  hwtype= 0x1
+  ptype= 0x800
+  hwlen= 6
+  plen= 4
+  op= 10
+  hwsrc= 18:d6:c7:0f:0a:87
+  psrc= 192.168.1.104
+  hwdst= 00:00:00:00:00:00
+  pdst= 0.0.0.0
+</code></pre><p>然后抓到的保存成了perfectarp.pcap.</p>
+
       
     </div>
     
@@ -325,6 +451,35 @@
     <div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/02/17/ARP协议详解/">ARP协议详解</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 hl0rey 的个人博客">hl0rey</a></p>
+  <p><span>发布时间:</span>2018年02月17日 - 22:02</p>
+  <p><span>最后更新:</span>2018年02月21日 - 23:02</p>
+  <p><span>原始链接:</span><a href="/2018/02/17/ARP协议详解/" title="ARP协议详解">http://hl0rey.github.io/2018/02/17/ARP协议详解/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/17/ARP协议详解/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
 
       
     </div>
@@ -335,6 +490,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
       
 
       
@@ -409,8 +570,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -470,6 +640,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#值得一提的是"><span class="nav-number">2.</span> <span class="nav-text">值得一提的是</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scapy"><span class="nav-number">3.</span> <span class="nav-text">scapy</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

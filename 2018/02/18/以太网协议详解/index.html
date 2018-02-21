@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://hl0rey.github.io/2018/02/18/以太网协议详解/1.png">
 <meta property="og:image" content="http://hl0rey.github.io/2018/02/18/以太网协议详解/2.png">
-<meta property="og:updated_time" content="2018-02-20T02:17:30.456Z">
+<meta property="og:updated_time" content="2018-02-21T14:11:40.736Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="以太网协议详解">
 <meta name="twitter:description" content="参考链接http://blog.csdn.net/xiao628945/article/details/8006022 各协议在模型中的位置TCP/IP:  网络接口层（链路层）： 网络层： IP,ICMP,IGMP，【ARP,RARP】 传输层：TCP ,UDP,UGP 应用层：Telnet,FTP,SMTP,SNMP.  OSI: 物理层：EIA/TIA-232, EIA/TIA-499, V">
@@ -372,16 +372,47 @@ unsigned short type;//后面的协议类型2字节 为0806表示后面跟的包�
 }ET_HEADER,*PETHDR; 
 </code></pre></li>
 <li><p>type字段的常见值及其意义<br><img src="/2018/02/18/以太网协议详解/2.png" alt=""> </p>
+<pre><code>Ethertype ( 十六进制 )   协议   
+0x0000 - 0x05DC   IEEE 802.3 长度   
+0x0101 – 0x01FF   实验   
+0x0600   XEROX NS IDP   
+0x0660 0x0661   DLOG   
+0x0800   网际协议（IP）   
+0x0801   X.75 Internet   
+0x0802   NBS Internet   
+0x0803   ECMA Internet   
+0x0804   Chaosnet   
+0x0805   X.25 Level 3   
+0x0806   地址解析协议（ARP ： Address Resolution Protocol）   
+0x0808   帧中继 ARP （Frame Relay ARP） [RFC1701]   
+0x6559   原始帧中继（Raw Frame Relay） [RFC1701]   
+0x8035   动态 DARP （DRARP：Dynamic RARP） 反向地址解析协议（RARP：Reverse Address Resolution Protocol）   
+0x8037   Novell Netware IPX   
+0x809B   EtherTalk   
+0x80D5   IBM SNA Services over Ethernet   
+0x 80F 3   AppleTalk 地址解析协议（AARP：AppleTalk Address Resolution Protocol）   
+0x8100   以太网自动保护开关（EAPS：Ethernet Automatic Protection Switching）   
+0x8137   因特网包交换（IPX：Internet Packet Exchange）   
+0x 814C   简单网络管理协议（SNMP：Simple Network Management Protocol）   
+0x86DD   网际协议v6 （IPv6，Internet Protocol version 6）   
+0x880B   点对点协议（PPP：Point-to-Point Protocol）   
+0x 880C   通用交换管理协议（GSMP：General Switch Management Protocol）   
+0x8847   多协议标签交换（单播） MPLS：Multi-Protocol Label Switching &lt;unicast&gt;）   
+0x8848   多协议标签交换（组播）（MPLS, Multi-Protocol Label Switching &lt;multicast&gt;）   
+0x8863   以太网上的 PPP（发现阶段）（PPPoE：PPP Over Ethernet &lt;Discovery Stage&gt;）   
+0x8864   以太网上的 PPP（PPP 会话阶段） （PPPoE，PPP Over Ethernet&lt;PPP Session Stage&gt;）   
+0x88BB   轻量级访问点协议（LWAPP：Light Weight Access Point Protocol）   
+0x88CC   链接层发现协议（LLDP：Link Layer Discovery Protocol）   
+0x8E88   局域网上的 EAP（EAPOL：EAP over LAN）   
+0x9000   配置测试协议（Loopback）   
+0x9100   VLAN 标签协议标识符（VLAN Tag Protocol Identifier）   
+0x9200   VLAN 标签协议标识符（VLAN Tag Protocol Identifier）   
+0xFFFF   保留
+</code></pre><h3 id="scapy"><a href="#scapy" class="headerlink" title="scapy"></a>scapy</h3><p>  执行 ls(Ether)，回显如下：</p>
+<p>  dst        : DestMACField         = (None) //目的MAC<br>  src        : SourceMACField       = (None)//源MAC<br>  type       : XShortEnumField      = (36864)//上层协议类型</p>
 </li>
 </ul>
-<h3 id="scapy"><a href="#scapy" class="headerlink" title="scapy"></a>scapy</h3><pre><code>执行 ls(Ether)，回显如下：
-
-dst        : DestMACField         = (None) //目的MAC
-src        : SourceMACField       = (None)//源MAC
-type       : XShortEnumField      = (36864)//上层协议类型
-
-
-通常不用手动构造以太头
+<pre><code>通常不用手动构造以太头
 </code></pre><h4 id="scapy的几个发包的方法"><a href="#scapy的几个发包的方法" class="headerlink" title="scapy的几个发包的方法"></a>scapy的几个发包的方法</h4><pre><code>send()方法在三层定义和发送数据包，也就是说，用户不用自己考虑路由（不用自己选接口），和以太头．
 
     send(IP(dst=&quot;www.baidu.com&quot;)/ICMP())
@@ -487,7 +518,7 @@ wrpcap              : Write a list of packets to a pcap file
   <p><span>本文标题:</span><a href="/2018/02/18/以太网协议详解/">以太网协议详解</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 hl0rey 的个人博客">hl0rey</a></p>
   <p><span>发布时间:</span>2018年02月18日 - 21:02</p>
-  <p><span>最后更新:</span>2018年02月20日 - 10:02</p>
+  <p><span>最后更新:</span>2018年02月21日 - 22:02</p>
   <p><span>原始链接:</span><a href="/2018/02/18/以太网协议详解/" title="以太网协议详解">http://hl0rey.github.io/2018/02/18/以太网协议详解/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2018/02/18/以太网协议详解/"  aria-label="复制成功！"></i></span>
   </p>
