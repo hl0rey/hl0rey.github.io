@@ -554,7 +554,7 @@ GET型
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/23/代码审计之XSS/bootstrap/jquery/">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/23/代码审计之XSS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hl0rey">
@@ -573,7 +573,7 @@ GET型
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/23/代码审计之XSS/bootstrap/jquery/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2018/02/23/代码审计之XSS/" itemprop="url">代码审计之XSS</a></h1>
         
 
         <div class="post-meta">
@@ -585,7 +585,7 @@ GET型
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T20:11:33+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T18:45:18+08:00">
                 2018-02-23
               </time>
             
@@ -595,6 +595,28 @@ GET型
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/code/" itemprop="url" rel="index">
+                    <span itemprop="name">code</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -625,12 +647,24 @@ GET型
       
         
           
-          /*! jQuery v3.3.1 | (c) JS Foundation and other contributors | jquery.org/license */
-!function(e,t){"use strict";"object"==typeof module&&"object"==ty
+          攻击的类型
+反射型XSS
+服务器取得用户输入之后直接再浏览器输出    
+
+存储型XSS
+服务器取得用户输入之后，存储起来，再输出        
+
+DOM型XSS
+客户端利用DOM动态的改变页面内容，不经过服务器
+
+Flash XSS
+
+
+参考资料XSS防御速查表http://www.freebu
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/23/代码审计之XSS/bootstrap/jquery/#more" rel="contents">
+            <a class="btn" href="/2018/02/23/代码审计之XSS/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -683,7 +717,7 @@ GET型
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/23/代码审计之XSS/bootstrap/js/bootstrap/">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/19/代码审计之命令执行/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hl0rey">
@@ -702,7 +736,7 @@ GET型
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/23/代码审计之XSS/bootstrap/js/bootstrap/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2018/02/19/代码审计之命令执行/" itemprop="url">代码审计之命令执行</a></h1>
         
 
         <div class="post-meta">
@@ -714,8 +748,8 @@ GET型
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T20:09:35+08:00">
-                2018-02-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-19T15:36:11+08:00">
+                2018-02-19
               </time>
             
 
@@ -724,6 +758,28 @@ GET型
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/code/" itemprop="url" rel="index">
+                    <span itemprop="name">code</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -754,17 +810,23 @@ GET型
       
         
           
-          /*!
- * Bootstrap v3.3.7 (http://getbootstrap.com)
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under the MIT license
- */
+          有些时候，应用程序需要调用外部程序，这个时候就需要用到操作系统命令执行了．
+涉及的函数
+system
+exec
+passthru
+shell_exec
 
-if (typeof jQuery === 'u
+``
+反引号本质是调用shell_exec
+  当然，执行命令的办法并不是只能用php内置的函数，比如COM组件．
+
+
+自动化检测工具commix
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/23/代码审计之XSS/bootstrap/js/bootstrap/#more" rel="contents">
+            <a class="btn" href="/2018/02/19/代码审计之命令执行/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -817,7 +879,7 @@ if (typeof jQuery === 'u
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/23/代码审计之XSS/bootstrap/js/bootstrap.min/">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/19/代码审计之代码执行/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hl0rey">
@@ -836,7 +898,7 @@ if (typeof jQuery === 'u
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/23/代码审计之XSS/bootstrap/js/bootstrap.min/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2018/02/19/代码审计之代码执行/" itemprop="url">代码审计之代码执行</a></h1>
         
 
         <div class="post-meta">
@@ -848,8 +910,8 @@ if (typeof jQuery === 'u
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T20:09:35+08:00">
-                2018-02-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-19T15:34:35+08:00">
+                2018-02-19
               </time>
             
 
@@ -858,6 +920,28 @@ if (typeof jQuery === 'u
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/code/" itemprop="url" rel="index">
+                    <span itemprop="name">code</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -888,16 +972,20 @@ if (typeof jQuery === 'u
       
         
           
-          /*!
- * Bootstrap v3.3.7 (http://getbootstrap.com)
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under the MIT license
- */
-if("undefined"==typeof jQ
+          为了让程序更加灵活，能够迎合复杂的需求。常常需要程序可以动态执行代码。当在动态执行的代码可以控制的时候，则很可能出现代码执行（代码注入）漏洞。
+动态执行代码的情况
+直接执行代码的函数
+eval
+assert
+preg_replace
+
+回调函数
+call_usr_func
+call_usr_func
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/23/代码审计之XSS/bootstrap/js/bootstrap.min/#more" rel="contents">
+            <a class="btn" href="/2018/02/19/代码审计之代码执行/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -950,7 +1038,7 @@ if("undefined"==typeof jQ
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/23/代码审计之XSS/bootstrap/js/npm/">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/18/以太网协议详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hl0rey">
@@ -969,7 +1057,7 @@ if("undefined"==typeof jQ
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/23/代码审计之XSS/bootstrap/js/npm/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2018/02/18/以太网协议详解/" itemprop="url">以太网协议详解</a></h1>
         
 
         <div class="post-meta">
@@ -981,8 +1069,8 @@ if("undefined"==typeof jQ
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T20:09:35+08:00">
-                2018-02-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-18T21:02:34+08:00">
+                2018-02-18
               </time>
             
 
@@ -991,6 +1079,28 @@ if("undefined"==typeof jQ
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/code/" itemprop="url" rel="index">
+                    <span itemprop="name">code</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1021,13 +1131,16 @@ if("undefined"==typeof jQ
       
         
           
-          // This file is autogenerated via the `commonjs` Grunt task. You can require() this file in a CommonJS environment.
-require('../../js/transition.js')
-
+          参考链接http://blog.csdn.net/xiao628945/article/details/8006022
+各协议在模型中的位置TCP/IP: 
+网络接口层（链路层）：
+网络层： IP,ICMP,IGMP，【ARP,RARP】
+传输层：TCP ,UDP,UGP
+应用层：Telnet,FT
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/23/代码审计之XSS/bootstrap/js/npm/#more" rel="contents">
+            <a class="btn" href="/2018/02/18/以太网协议详解/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1080,7 +1193,7 @@ require('../../js/transition.js')
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/23/代码审计之XSS/bootstrap/css/bootstrap-theme/">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/17/ARP协议详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hl0rey">
@@ -1099,7 +1212,7 @@ require('../../js/transition.js')
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/23/代码审计之XSS/bootstrap/css/bootstrap-theme/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2018/02/17/ARP协议详解/" itemprop="url">ARP协议详解</a></h1>
         
 
         <div class="post-meta">
@@ -1111,8 +1224,8 @@ require('../../js/transition.js')
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T20:09:35+08:00">
-                2018-02-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-17T22:48:20+08:00">
+                2018-02-17
               </time>
             
 
@@ -1121,6 +1234,28 @@ require('../../js/transition.js')
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/code/" itemprop="url" rel="index">
+                    <span itemprop="name">code</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1151,14 +1286,16 @@ require('../../js/transition.js')
       
         
           
-          /*!
- * Bootstrap v3.3.7 (http://getbootstrap.com)
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/m
+          简介ARP协议就是把IP地址解析成MAC地址的协议，RARP协议就是把MAC地址解析成IP地址的协议．
+###　数据包头结构 
+typedef struct arphdr //arp协议28字节
+{
+unsigned short hard_tpye;//硬件类型2字节 通常为01 (以太网地址)
+u
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/23/代码审计之XSS/bootstrap/css/bootstrap-theme/#more" rel="contents">
+            <a class="btn" href="/2018/02/17/ARP协议详解/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1211,7 +1348,7 @@ require('../../js/transition.js')
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/23/代码审计之XSS/bootstrap/css/bootstrap.min/">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/13/反调试之检测标题名和类名/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hl0rey">
@@ -1230,7 +1367,7 @@ require('../../js/transition.js')
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/23/代码审计之XSS/bootstrap/css/bootstrap.min/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2018/02/13/反调试之检测标题名和类名/" itemprop="url">反调试之检测标题名和类名</a></h1>
         
 
         <div class="post-meta">
@@ -1242,8 +1379,8 @@ require('../../js/transition.js')
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T20:09:35+08:00">
-                2018-02-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-13T10:27:39+08:00">
+                2018-02-13
               </time>
             
 
@@ -1252,6 +1389,28 @@ require('../../js/transition.js')
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/reverse/" itemprop="url" rel="index">
+                    <span itemprop="name">reverse</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1282,14 +1441,13 @@ require('../../js/transition.js')
       
         
           
-          /*!
- * Bootstrap v3.3.7 (http://getbootstrap.com)
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/m
+          原理通过FindWindow函数，找到是否存在黑名单中的标题和类名．
+涉及的函数FindWindow TerminateProcess GetProAddress OpenProcess Process32First Process32Next CreateToolhelp32Snapshot
+流程
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/23/代码审计之XSS/bootstrap/css/bootstrap.min/#more" rel="contents">
+            <a class="btn" href="/2018/02/13/反调试之检测标题名和类名/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1342,7 +1500,7 @@ require('../../js/transition.js')
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/23/代码审计之XSS/bootstrap/css/bootstrap/">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/11/代码审计之SQL注入/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hl0rey">
@@ -1361,7 +1519,7 @@ require('../../js/transition.js')
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/23/代码审计之XSS/bootstrap/css/bootstrap/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2018/02/11/代码审计之SQL注入/" itemprop="url">代码审计之SQL注入</a></h1>
         
 
         <div class="post-meta">
@@ -1373,8 +1531,8 @@ require('../../js/transition.js')
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T20:09:35+08:00">
-                2018-02-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-11T12:45:55+08:00">
+                2018-02-11
               </time>
             
 
@@ -1383,6 +1541,28 @@ require('../../js/transition.js')
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/code/" itemprop="url" rel="index">
+                    <span itemprop="name">code</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1413,14 +1593,13 @@ require('../../js/transition.js')
       
         
           
-          /*!
- * Bootstrap v3.3.7 (http://getbootstrap.com)
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/m
+           
+基本注入类型数字型因为拼接到SQL语句的中数字型变量过滤不严而导致的漏洞．这种漏洞的利用很大的一个特点是不用闭合引号，但是可能需要闭合括号．测试代码：test1.php防护方法：直接用预编译，或者用intval转换变量类型．
+字符型SQL语句中拼进去一个过滤不严的字符串型变量．这种漏洞的利用需要
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/23/代码审计之XSS/bootstrap/css/bootstrap/#more" rel="contents">
+            <a class="btn" href="/2018/02/11/代码审计之SQL注入/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1473,7 +1652,7 @@ require('../../js/transition.js')
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/23/代码审计之XSS/bootstrap/css/bootstrap-theme.min/">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/10/php-ini的不安全配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hl0rey">
@@ -1492,7 +1671,7 @@ require('../../js/transition.js')
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/23/代码审计之XSS/bootstrap/css/bootstrap-theme.min/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2018/02/10/php-ini的不安全配置/" itemprop="url">php.ini的不安全配置</a></h1>
         
 
         <div class="post-meta">
@@ -1504,8 +1683,8 @@ require('../../js/transition.js')
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T20:09:35+08:00">
-                2018-02-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-10T21:27:45+08:00">
+                2018-02-10
               </time>
             
 
@@ -1514,6 +1693,28 @@ require('../../js/transition.js')
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/code/" itemprop="url" rel="index">
+                    <span itemprop="name">code</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1544,14 +1745,13 @@ require('../../js/transition.js')
       
         
           
-          /*!
- * Bootstrap v3.3.7 (http://getbootstrap.com)
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/m
+          参考链接http://www.jb51.net/article/5102.htmhttp://blog.csdn.net/fz_flower/article/details/49509159
+安全模式本特性已自 PHP 5.3.0 起废弃并将自 PHP 5.4.0 起移除。
+安全模式http://p
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/23/代码审计之XSS/bootstrap/css/bootstrap-theme.min/#more" rel="contents">
+            <a class="btn" href="/2018/02/10/php-ini的不安全配置/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1595,7 +1795,7 @@ require('../../js/transition.js')
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1641,7 +1841,7 @@ require('../../js/transition.js')
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
