@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Cobalt Strike," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基本结构一个profile的基本结构如下： 123456789101112131415161718#注释#设置全局的配置set global_option &amp;quot;value&amp;quot;;#对某个传输方法进行配置protocol-transaction&amp;#123;	#配置局部的配置	set local_option &amp;quot;value&amp;quot;;		#客户端配置块	client&amp;#123">
+<meta name="keywords" content="Cobalt Strike">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MalleableC2总结">
+<meta property="og:url" content="http://hl0rey.github.io/2019/07/17/MalleableC2总结/index.html">
+<meta property="og:site_name" content="hl0rey&#39;s blog">
+<meta property="og:description" content="基本结构一个profile的基本结构如下： 123456789101112131415161718#注释#设置全局的配置set global_option &amp;quot;value&amp;quot;;#对某个传输方法进行配置protocol-transaction&amp;#123;	#配置局部的配置	set local_option &amp;quot;value&amp;quot;;		#客户端配置块	client&amp;#123">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-17T05:15:41.560Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MalleableC2总结">
+<meta name="twitter:description" content="基本结构一个profile的基本结构如下： 123456789101112131415161718#注释#设置全局的配置set global_option &amp;quot;value&amp;quot;;#对某个传输方法进行配置protocol-transaction&amp;#123;	#配置局部的配置	set local_option &amp;quot;value&amp;quot;;		#客户端配置块	client&amp;#123">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hl0rey.github.io/2019/07/17/MalleableC2总结/"/>
+
+
+
+
+
+  <title>MalleableC2总结 | hl0rey's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hl0rey's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2019/07/17/MalleableC2总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hl0rey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hl0rey's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MalleableC2总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-17T13:14:20+08:00">
+                2019-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pentest/" itemprop="url" rel="index">
+                    <span itemprop="name">pentest</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h2><p>一个profile的基本结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#注释</span><br><span class="line">#设置全局的配置</span><br><span class="line">set global_option &quot;value&quot;;</span><br><span class="line"></span><br><span class="line">#对某个传输方法进行配置</span><br><span class="line">protocol-transaction&#123;</span><br><span class="line">	#配置局部的配置</span><br><span class="line">	set local_option &quot;value&quot;;</span><br><span class="line">	</span><br><span class="line">	#客户端配置块</span><br><span class="line">	client&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	#服务器配置块</span><br><span class="line">	server&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#符号是单行注释，set关键字用来设置某项配置的值。花括号用来圈定某一块配置的范围。</p>
+<h2 id="数据传输编码"><a href="#数据传输编码" class="headerlink" title="数据传输编码"></a>数据传输编码</h2><p>一个数据传输编码的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">http-get &#123;</span><br><span class="line">	set uri &quot;/foobar&quot;;</span><br><span class="line">	client &#123;</span><br><span class="line">		metadata &#123;</span><br><span class="line">			base64;</span><br><span class="line">			prepend &quot;user=&quot;;</span><br><span class="line">			header &quot;Cookie&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>语句</th>
+<th>正向动作</th>
+<th>反向动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>append “string”</td>
+<td>追加字符串“string”</td>
+<td>去掉最后“string”长度的字符串</td>
+</tr>
+<tr>
+<td>base64</td>
+<td>base64编码</td>
+<td>base64解码</td>
+</tr>
+<tr>
+<td>base64url</td>
+<td>URL-safe base64编码</td>
+<td>URL-safe base64解码</td>
+</tr>
+<tr>
+<td>mask</td>
+<td>随机key进行XOR  mask w</td>
+<td>使用相同的key进行XOR mask w</td>
+</tr>
+<tr>
+<td>netbios</td>
+<td>netbios 编码‘a’</td>
+<td>netbios解码‘a’</td>
+</tr>
+<tr>
+<td>netbiosu</td>
+<td>netbios解码’A’</td>
+<td>netbios解码‘A’</td>
+</tr>
+<tr>
+<td>prepend “string”</td>
+<td>开头插入“string”</td>
+<td>从开头去掉“string”长度的字符串</td>
+</tr>
+</tbody>
+</table>
+<p>一次数据传输可以以任意次序使用上述任意个传输编码指令，例如你可以先用netbios编码一下，然后加点东西，最后用base64编码编码整个数据部分。也就是你的语句先后顺序会影响数据的处理。</p>
+<p>数据传输部分必须以一个告诉客户端和服务端传送的数据在什么位置的指令为结束。以下有四个结束语句。</p>
+<table>
+<thead>
+<tr>
+<th>语句</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>header “header”</td>
+<td>把数据放到名为header的http头中</td>
+</tr>
+<tr>
+<td>parameter “key”</td>
+<td>把数据放到名为key的uri参数中</td>
+</tr>
+<tr>
+<td>print</td>
+<td>把数据放到http响应body中</td>
+</tr>
+<tr>
+<td>uri-append</td>
+<td>把数据直接追加到URI上</td>
+</tr>
+</tbody>
+</table>
+<p>值得注意的是，print语句只能用在服务端的输出中，也就是只能用在http-get.server.output、http-post.server.output和http-stager.server.output的配置块中。其他的语句你可以任意使用。</p>
+<p>如果你同时使用了header、parameter和 uri-append在httppost.client.output配置块中， beacon会合理划分响应的数据，适应这种传输方式。</p>
+<h2 id="特殊字符串格式"><a href="#特殊字符串格式" class="headerlink" title="特殊字符串格式"></a>特殊字符串格式</h2><p>cobalt strike的profile多个地方支持自定义的字符串，同时他还支持如下的特殊字符串格式。</p>
+<table>
+<thead>
+<tr>
+<th>输入的值</th>
+<th>解析出的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“\n”</td>
+<td>换行符</td>
+</tr>
+<tr>
+<td>“\r”</td>
+<td>回车</td>
+</tr>
+<tr>
+<td>“\t”</td>
+<td>tab</td>
+</tr>
+<tr>
+<td>“\u###”</td>
+<td>unicode字符串</td>
+</tr>
+<tr>
+<td>“\x##”</td>
+<td>一个字节</td>
+</tr>
+<tr>
+<td>“\\“</td>
+<td>反斜线</td>
+</tr>
+</tbody>
+</table>
+<h2 id="头信息和参数"><a href="#头信息和参数" class="headerlink" title="头信息和参数"></a>头信息和参数</h2><p>可以 向通信过程中加入一些无用的数据来混淆视听，让你的C2通信更像正常的访问请求，以期绕过IDS。在client或者server的配置块下加入。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">http-get &#123;</span><br><span class="line">	client &#123;</span><br><span class="line">		parameter &apos;bar&apos; &apos;bbb&apos;;</span><br><span class="line">	&#125;</span><br><span class="line">	server &#123;</span><br><span class="line">		header &quot;xxxxx&quot; &quot;aaaaa&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>配置项有全局的配置和局部的配置，局部配置只能针对特定的配置块。使用set语句进行配置设置。如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set &quot;sleeptime&quot; &quot;1000&quot;;</span><br></pre></td></tr></table></figure>
+<p>目前支持的配置如下：</p>
+<table>
+<thead>
+<tr>
+<th>配置名称</th>
+<th>配置块</th>
+<th>默认值</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>amsi_disable</td>
+<td></td>
+<td>false</td>
+<td>为了execute-assembly、powerpick和psinject去试图禁用AMSI</td>
+</tr>
+<tr>
+<td>dns_idle</td>
+<td></td>
+<td>0.0.0.0</td>
+<td>cs通过返回这个ip地址去告诉客户端没有安排任务</td>
+</tr>
+<tr>
+<td>dns_max_txt</td>
+<td></td>
+<td>252</td>
+<td>DNS TXT响应的最大长度</td>
+</tr>
+<tr>
+<td>dns_sleep</td>
+<td></td>
+<td>0</td>
+<td>每次dns请求之间的间隔（以毫秒为间隔）</td>
+</tr>
+<tr>
+<td>dns_stager_prepend</td>
+<td></td>
+<td></td>
+<td>在dns payload之前插入内容</td>
+</tr>
+<tr>
+<td>dns_stagersubhost</td>
+<td></td>
+<td>.stage.123456</td>
+<td>dns txt记录使用的子域名</td>
+</tr>
+<tr>
+<td>dns_ttl</td>
+<td></td>
+<td>1</td>
+<td>dns的ttl，默认1秒</td>
+</tr>
+<tr>
+<td>host_stage</td>
+<td></td>
+<td>true</td>
+<td>把http、https和dns的payload放在服务器上</td>
+</tr>
+<tr>
+<td>jitter</td>
+<td></td>
+<td>0</td>
+<td>针对睡眠时间的抖动率，随机睡眠。（0-99% ）</td>
+</tr>
+<tr>
+<td>maxdns</td>
+<td></td>
+<td>255</td>
+<td>当通过dns上传数据时，主机名的最大长度</td>
+</tr>
+<tr>
+<td>pipename</td>
+<td></td>
+<td>msagent_##</td>
+<td>用于smb beacon之间的通信的管道名称。##会被随机数字所替换</td>
+</tr>
+<tr>
+<td>pipename_stager</td>
+<td></td>
+<td>status_##</td>
+<td>stager使用的管道名，##会被随机数字替换。</td>
+</tr>
+<tr>
+<td>sample_name</td>
+<td></td>
+<td>随意的名字</td>
+<td>给你的profile起个名字，用在报告里</td>
+</tr>
+<tr>
+<td>sleeptime</td>
+<td></td>
+<td>60000</td>
+<td>睡眠时间，以毫秒为单位</td>
+</tr>
+<tr>
+<td>spawnto_x86</td>
+<td></td>
+<td>%windir%\syswow64\rundll32.exe</td>
+<td>x86默认打开并注入shellcode的进程</td>
+</tr>
+<tr>
+<td>spawnto_x64</td>
+<td></td>
+<td>%windir%\sysnative\rundll32.exe</td>
+<td>x64默认打开并注入shellcode的进程</td>
+</tr>
+<tr>
+<td>tcp_port</td>
+<td></td>
+<td>4444</td>
+<td>tcp beacon 监听的端口</td>
+</tr>
+<tr>
+<td>useragent</td>
+<td></td>
+<td>Internet    Explorer（ 随机）</td>
+<td>指定一个useragent</td>
+</tr>
+<tr>
+<td>uri</td>
+<td>http-get、http-post</td>
+<td>( 必须的配置）</td>
+<td>数据传输请求的uri</td>
+</tr>
+<tr>
+<td>uri_x86</td>
+<td>http-stager</td>
+<td></td>
+<td>x86 payload stage</td>
+</tr>
+<tr>
+<td>uri_x64</td>
+<td>http-stager</td>
+<td></td>
+<td>x64 payload stage</td>
+</tr>
+<tr>
+<td>verb</td>
+<td>http-get、http-post</td>
+<td>GET、POST</td>
+<td>使用什么方法进行数据传输</td>
+</tr>
+</tbody>
+</table>
+<p>你可以指定多个uri，如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set uri &quot;/windebug/updcheck.php /aircanada/dark.php /aero2/fly.php /windowsxp/updcheck.php /hello/flash.php&quot;;</span><br></pre></td></tr></table></figure>
+<p>虽然存在useragent配置，但是可以用header配置去覆盖。</p>
+<h2 id="一次beacon通信的全过程"><a href="#一次beacon通信的全过程" class="headerlink" title="一次beacon通信的全过程"></a>一次beacon通信的全过程</h2><ul>
+<li>beacon携带metadata以GET方法请求Cobalt Strike web 服务器。（metadata是一段加密的数据，但是没有编码，所以他不能在请求头和URI中发送。需要将其所使用base64、base64url或者netbios编码之后才能在请求头和URI中发送。）</li>
+<li>cs web服务器响应该请求，返回一块加密的二进制数据，你可以在http-get的output的配置块底下进行配置，对它进行编码。当所有任务完成，客户端会查看是否有输出，如果没有输出，beacon开始睡眠，如果有输出，则开始准备开始进行POST请求。</li>
+<li>HTTP POST请求包含通过URI参数传递的id参数，用来标识，该输出是哪个beacon的，POST请求携带的内容也是一块加密的二进制数据，但是没有进行编码，你可以通过http-post下的client的output配置块进行配置。</li>
+<li>cs服务器也许需要响应POST请求，beacon不会取用响应内容，你可以通过http-post下的server下的output配置块进行配置。</li>
+</ul>
+<p>默认情况下http-get使用GET方法，http-post使用POST方法，但是你可以通过verb配置项去改变它。</p>
+<p>通信过程中客户端和服务器发送接收的数据，或者说这是profile可自定义的项目。</p>
+<table>
+<thead>
+<tr>
+<th>请求</th>
+<th>主体</th>
+<th>数据块</th>
+<th>数据内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>http-get</td>
+<td>client</td>
+<td>metadata</td>
+<td>session的metadata</td>
+</tr>
+<tr>
+<td>http-get</td>
+<td>server</td>
+<td>output</td>
+<td>beacon的任务</td>
+</tr>
+<tr>
+<td>http-post</td>
+<td>client</td>
+<td>id</td>
+<td>完成任务的session id</td>
+</tr>
+<tr>
+<td>http-post</td>
+<td>client</td>
+<td>output</td>
+<td>beacon完成任务的结果</td>
+</tr>
+<tr>
+<td>http-post</td>
+<td>server</td>
+<td>output</td>
+<td>空</td>
+</tr>
+<tr>
+<td>http-stager</td>
+<td>server</td>
+<td>output</td>
+<td>编码的payload stage</td>
+</tr>
+</tbody>
+</table>
+<h2 id="HTTP-Staging"><a href="#HTTP-Staging" class="headerlink" title="HTTP Staging"></a>HTTP Staging</h2><p>beacon是通过stager下载到内存中去的。在beacon注入目标内存之前，http-get和http-post都不会生效。你可以自己定义stager下载stage的行为。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">http-stager &#123;</span><br><span class="line">	set uri_x86 &quot;/get32.gif&quot;;</span><br><span class="line">	set uri_x64 &quot;/get64.gif&quot;;</span><br><span class="line">	client &#123;</span><br><span class="line">		parameter &quot;id&quot; &quot;1234&quot;;</span><br><span class="line">		header &quot;Cookie&quot; &quot;SomeValue&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	server &#123;</span><br><span class="line">		header &quot;Conten-Type&quot; &quot;image/gif&quot;;</span><br><span class="line">		output &#123;</span><br><span class="line">			prepend &quot;GIF89a&quot;;</span><br><span class="line">			print;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="HTTP响应头"><a href="#HTTP响应头" class="headerlink" title="HTTP响应头"></a>HTTP响应头</h2><p>http-config可以配置所以的cs服务器的相应头。优先级最低，相当于配置一个默认配置。set headers设置http头的顺序，不在该列表中的，就被加到最后。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http-config &#123;</span><br><span class="line">	set headers &quot;Date, Server, Content-Length, Keep-Alive,Connection, Content-Type&quot;;</span><br><span class="line">	header &quot;Server&quot; &quot;Apache&quot;;</span><br><span class="line">	header &quot;Keep-Alive&quot; &quot;timeout=5, max=100&quot;;</span><br><span class="line">	header &quot;Connection&quot; &quot;Keep-Alive&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="自签名证书保护下的SSL-beacon"><a href="#自签名证书保护下的SSL-beacon" class="headerlink" title="自签名证书保护下的SSL beacon"></a>自签名证书保护下的SSL beacon</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#set https cert info</span><br><span class="line">https-certificate &#123;</span><br><span class="line">    set CN       &quot;*.wikipedia.org&quot;; #Common Name</span><br><span class="line">    set C        &quot;US&quot;; #Country</span><br><span class="line">    set L        &quot;San Francisco&quot;; #Locality</span><br><span class="line">    set OU       &quot;Wikimedia Foundation Inc&quot;; #Organizational Unit Name</span><br><span class="line">    set ST       &quot;CA&quot;; #State or Province</span><br><span class="line">    set validity &quot;365&quot;; #Number of days the cert is valid for</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>示例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C</td>
+<td>US</td>
+<td>国家</td>
+</tr>
+<tr>
+<td>CN</td>
+<td>beacon.cobaltstrike.com</td>
+<td>域名</td>
+</tr>
+<tr>
+<td>L</td>
+<td>Washington</td>
+<td>地区</td>
+</tr>
+<tr>
+<td>O</td>
+<td>Strategic Cyber LLC</td>
+<td>组织名</td>
+</tr>
+<tr>
+<td>OU</td>
+<td>Certificate    Department</td>
+<td>组织单位名称</td>
+</tr>
+<tr>
+<td>ST</td>
+<td>DC</td>
+<td>州或者省</td>
+</tr>
+<tr>
+<td>validity</td>
+<td>365</td>
+<td>时效</td>
+</tr>
+</tbody>
+</table>
+<h2 id="合法签名保护下的SSL-beacon"><a href="#合法签名保护下的SSL-beacon" class="headerlink" title="合法签名保护下的SSL beacon"></a>合法签名保护下的SSL beacon</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">https-certificate &#123;</span><br><span class="line">	set keystore &quot;domain.store&quot;;</span><br><span class="line">	set password &quot;mypassword&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码签名"><a href="#代码签名" class="headerlink" title="代码签名"></a>代码签名</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">code-signer &#123;</span><br><span class="line">	set keystore &quot;keystore.jks&quot;;</span><br><span class="line">	set password &quot;password&quot;;</span><br><span class="line">	set alias &quot;server&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>示例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alias</td>
+<td>server</td>
+<td>证书别名</td>
+</tr>
+<tr>
+<td>digest_algorithm</td>
+<td>SHA256</td>
+<td>摘要算法</td>
+</tr>
+<tr>
+<td>keystore</td>
+<td>keystore.jks</td>
+<td>java kerstore文件</td>
+</tr>
+<tr>
+<td>password</td>
+<td>pass</td>
+<td>keystore文件的打开密码</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>false</td>
+<td>使用第三方服务为文件打上时间戳</td>
+</tr>
+<tr>
+<td>timestamp_url</td>
+<td><a href="http://timestamp.digicert.com" target="_blank" rel="noopener">http://timestamp.digicert.com</a></td>
+<td>timestamp服务的url</td>
+</tr>
+</tbody>
+</table>
+<h2 id="PE和内存自定义"><a href="#PE和内存自定义" class="headerlink" title="PE和内存自定义"></a>PE和内存自定义</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">stage &#123;</span><br><span class="line">set userwx &quot;false&quot;;</span><br><span class="line">set compile_time &quot;14 Jul 2009 8:14:00&quot;;</span><br><span class="line">set image_size_x86 &quot;512000&quot;;</span><br><span class="line">set image_size_x64 &quot;512000&quot;;</span><br><span class="line">set obfuscate &quot;true&quot;;</span><br><span class="line">transform-x86 &#123;</span><br><span class="line">prepend &quot;\x90\x90&quot;;</span><br><span class="line">strrep &quot;ReflectiveLoader&quot; &quot;DoLegitStuff&quot;;</span><br><span class="line">&#125;</span><br><span class="line">transform-x64 &#123;</span><br><span class="line"># transform the x64 rDLL stage</span><br><span class="line">&#125;</span><br><span class="line">stringw &quot;I am not Beacon&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>stringw 是宽字节字符串</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>示例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>checksum</td>
+<td>0</td>
+<td>PE头里checksum的值</td>
+</tr>
+<tr>
+<td>cleanup</td>
+<td>false</td>
+<td>尝试释放反射加载的dll的内存</td>
+</tr>
+<tr>
+<td>compile_time</td>
+<td>14 July 2009 8:14:00</td>
+<td>PE头里的编译时间</td>
+</tr>
+<tr>
+<td>entry_point</td>
+<td>92145</td>
+<td>PE头里的入口点</td>
+</tr>
+<tr>
+<td>image_size_x64</td>
+<td>512000</td>
+<td>x64 PE头里写的镜像大小</td>
+</tr>
+<tr>
+<td>image_size_x86</td>
+<td>512000</td>
+<td>x86 PE头里写的镜像大小</td>
+</tr>
+<tr>
+<td>module_x86</td>
+<td>xpsservices.dll</td>
+<td>加载一个dll，然后用beacon去覆盖这个dll，而不是用VirtualAlloc去分配内存</td>
+</tr>
+<tr>
+<td>module_x64</td>
+<td>xpsservices.dll</td>
+<td>同上，但是这个是针对x64的</td>
+</tr>
+<tr>
+<td>name</td>
+<td>beacon.x64.dll</td>
+<td>导出的名字</td>
+</tr>
+<tr>
+<td>obfuscate</td>
+<td>false</td>
+<td>是否混淆</td>
+</tr>
+<tr>
+<td>rich_header</td>
+<td></td>
+<td>编译器插入的元信息</td>
+</tr>
+<tr>
+<td>sleep_mask</td>
+<td>false</td>
+<td>在睡眠之前进行混淆</td>
+</tr>
+<tr>
+<td>stomppe</td>
+<td>true</td>
+<td>加载完dll之后覆盖pe mz头信息</td>
+</tr>
+<tr>
+<td>userwx</td>
+<td>false</td>
+<td>反射加载时是否要把内存设置为可读可写可执行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="PE头克隆"><a href="#PE头克隆" class="headerlink" title="PE头克隆"></a>PE头克隆</h2><p>./peclone    [/path/to/sample.dll] </p>
+<p>会直接生成一个可以直接使用的stage配置块。</p>
+<h2 id="内存混淆免杀的全过程"><a href="#内存混淆免杀的全过程" class="headerlink" title="内存混淆免杀的全过程"></a>内存混淆免杀的全过程</h2><p>使用prepend配置可以绕过只检测前几个字节来发现内存注入行为的AV。如果是检测特定字符串的AV，就可以使用strrep配置来绕过。</p>
+<p>如果靠strrep还绕不过，那就使用sleep_mask，让beacon在睡眠之前混淆自己。睡眠结束之后，就反混淆，并且进行正常请求，每当beacon在睡眠或者等他的父session的指令时，都会混淆自己。</p>
+<p>轻度混淆使用stomppe，重度混淆使用obfuscate。</p>
+<p>默认情况下，beacon会使用VirtualAlloc申请内存，然后写入dll。但是也可以使用内存模块覆盖的方式去写入dll。将module_x86设置成一个大约比beacon payload大两倍的dll，beacon将会加载它，然后在内存中找到他的地址，然后覆盖它。module_x64也是类似的。</p>
+<p>如果怕内存中stage被检测出来，可以设置cleanup为true，这样的话，当stage没用了之后就释放掉。</p>
+<h2 id="进程注入行为定义"><a href="#进程注入行为定义" class="headerlink" title="进程注入行为定义"></a>进程注入行为定义</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">process-inject &#123;</span><br><span class="line">set min_alloc &quot;16384&quot;;</span><br><span class="line">set startrwx &quot;true&quot;;</span><br><span class="line">set userwx &quot;false&quot;;</span><br><span class="line">transform-x86 &#123;</span><br><span class="line">prepend “\x90\x90”;</span><br><span class="line">&#125;</span><br><span class="line">transform-x64 &#123;</span><br><span class="line"># transform x64 injected content</span><br><span class="line">&#125;</span><br><span class="line">disable &quot;CreateRemoteThread&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>transform-x86和transform-x64定义beacon注入的内容，支持prepend和append两个配置。要确保注入的内容是可以在x86或者x64的机器上运行的代码，c2init并不会去检查插入的内容是否合法。</p>
+<p>disable配置用了禁用一些在dll注入中使用的函数。禁用这些函数可能会引起可避免的错误，c2init会提示这些错误。</p>
+<p>其他配置：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>示例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>min_alloc</td>
+<td>4096</td>
+<td>当注入时，最少申请多少内存。</td>
+</tr>
+<tr>
+<td>startrwx</td>
+<td>false</td>
+<td>是否使用rwx作为代码内存的默认权限，替代权限是rw</td>
+</tr>
+<tr>
+<td>userwx</td>
+<td>false</td>
+<td>同上，但是替代权限是rx</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+    
+    
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2019/07/17/MalleableC2总结/">MalleableC2总结</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 hl0rey 的个人博客">hl0rey</a></p>
+  <p><span>发布时间:</span>2019年07月17日 - 13:07</p>
+  <p><span>最后更新:</span>2019年07月17日 - 13:07</p>
+  <p><span>原始链接:</span><a href="/2019/07/17/MalleableC2总结/" title="MalleableC2总结">http://hl0rey.github.io/2019/07/17/MalleableC2总结/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2019/07/17/MalleableC2总结/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+
+      
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cobalt-Strike/" rel="tag"># Cobalt Strike</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/17/域内信息收集/" rel="next" title="域内信息收集">
+                <i class="fa fa-chevron-left"></i> 域内信息收集
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">hl0rey</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本结构"><span class="nav-number">1.</span> <span class="nav-text">基本结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据传输编码"><span class="nav-number">2.</span> <span class="nav-text">数据传输编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊字符串格式"><span class="nav-number">3.</span> <span class="nav-text">特殊字符串格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#头信息和参数"><span class="nav-number">4.</span> <span class="nav-text">头信息和参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">5.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一次beacon通信的全过程"><span class="nav-number">6.</span> <span class="nav-text">一次beacon通信的全过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Staging"><span class="nav-number">7.</span> <span class="nav-text">HTTP Staging</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP响应头"><span class="nav-number">8.</span> <span class="nav-text">HTTP响应头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自签名证书保护下的SSL-beacon"><span class="nav-number">9.</span> <span class="nav-text">自签名证书保护下的SSL beacon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合法签名保护下的SSL-beacon"><span class="nav-number">10.</span> <span class="nav-text">合法签名保护下的SSL beacon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码签名"><span class="nav-number">11.</span> <span class="nav-text">代码签名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE和内存自定义"><span class="nav-number">12.</span> <span class="nav-text">PE和内存自定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PE头克隆"><span class="nav-number">13.</span> <span class="nav-text">PE头克隆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存混淆免杀的全过程"><span class="nav-number">14.</span> <span class="nav-text">内存混淆免杀的全过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程注入行为定义"><span class="nav-number">15.</span> <span class="nav-text">进程注入行为定义</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hl0rey</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
