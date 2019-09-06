@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Cobalt Strike," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言想了很多题目，感觉都不合适，比如，初探External C2、小白学External C2、通过端口复用让无法主动出网内网机器在CS上线、菜鸡玩Cobalt Strike等等。 标题不能起的太长，又不想当标题党，所以就在开头把题目和测试环境先讲清楚。目标将内网一台web服务器的80端口映射出来，但是此web服务器是不能出网的。目标不能出网，但你又想用CS（内网直接connect别的主机，多舒服">
+<meta name="keywords" content="Cobalt Strike">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用External C2让内网机器在Cobalt Strike中上线">
+<meta property="og:url" content="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/index.html">
+<meta property="og:site_name" content="hl0rey&#39;s blog">
+<meta property="og:description" content="前言想了很多题目，感觉都不合适，比如，初探External C2、小白学External C2、通过端口复用让无法主动出网内网机器在CS上线、菜鸡玩Cobalt Strike等等。 标题不能起的太长，又不想当标题党，所以就在开头把题目和测试环境先讲清楚。目标将内网一台web服务器的80端口映射出来，但是此web服务器是不能出网的。目标不能出网，但你又想用CS（内网直接connect别的主机，多舒服">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/externalC2.png">
+<meta property="og:image" content="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/1.png">
+<meta property="og:image" content="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/2.png">
+<meta property="og:image" content="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/3.png">
+<meta property="og:image" content="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/4.png">
+<meta property="og:image" content="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/5.png">
+<meta property="og:image" content="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/6.png">
+<meta property="og:image" content="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/7.png">
+<meta property="og:image" content="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/8.png">
+<meta property="og:image" content="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/9.png">
+<meta property="og:image" content="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/10.png">
+<meta property="og:image" content="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/书籍资料/用伪端口复用让无法出网机器在CS中上线/img/11.png">
+<meta property="og:image" content="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/12.png">
+<meta property="og:image" content="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/13.png">
+<meta property="og:image" content="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/14.png">
+<meta property="og:updated_time" content="2019-09-06T01:24:40.550Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用External C2让内网机器在Cobalt Strike中上线">
+<meta name="twitter:description" content="前言想了很多题目，感觉都不合适，比如，初探External C2、小白学External C2、通过端口复用让无法主动出网内网机器在CS上线、菜鸡玩Cobalt Strike等等。 标题不能起的太长，又不想当标题党，所以就在开头把题目和测试环境先讲清楚。目标将内网一台web服务器的80端口映射出来，但是此web服务器是不能出网的。目标不能出网，但你又想用CS（内网直接connect别的主机，多舒服">
+<meta name="twitter:image" content="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/externalC2.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/"/>
+
+
+
+
+
+  <title>利用External C2让内网机器在Cobalt Strike中上线 | hl0rey's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hl0rey's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hl0rey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hl0rey's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">利用External C2让内网机器在Cobalt Strike中上线</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-06T09:18:29+08:00">
+                2019-09-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pentest/" itemprop="url" rel="index">
+                    <span itemprop="name">pentest</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>想了很多题目，感觉都不合适，比如，初探External C2、小白学External C2、通过端口复用让无法主动出网内网机器在CS上线、菜鸡玩Cobalt Strike等等。</p>
+<p>标题不能起的太长，又不想当标题党，所以就在开头把题目和测试环境先讲清楚。目标将内网一台web服务器的80端口映射出来，但是此web服务器是不能出网的。目标不能出网，但你又想用CS（内网直接connect别的主机，多舒服）。</p>
+<p>本文是通过实现这样的功能的一个小Demo来介绍下external C2这个功能。</p>
+<p>Demo代码地址：<a href="https://github.com/hl0rey/Web_ExternalC2_Demo" target="_blank" rel="noopener">https://github.com/hl0rey/Web_ExternalC2_Demo</a></p>
+<h3 id="externalC2介绍"><a href="#externalC2介绍" class="headerlink" title="externalC2介绍"></a>externalC2介绍</h3><p>因为我这篇文章是面向新手的（尤其是external C2介绍部分，大佬可以略过），希望不熟悉externalC2的朋友能够在看完这篇文章之后，也能自己尝试着手自定义C2通信来适应不同的场景。</p>
+<h4 id="什么是externalC2"><a href="#什么是externalC2" class="headerlink" title="什么是externalC2"></a>什么是externalC2</h4><p>就如这个单词的字面意思一样：额外的C2。externalC2是cobalt strike开放给用户的接口。利用这个特性，用户让自己编写的程序在cobalt strike的teamserver和beacon之间处理C2通信的过程，也就是充当“翻译”的角色。</p>
+<h4 id="externalC2的基本架构"><a href="#externalC2的基本架构" class="headerlink" title="externalC2的基本架构"></a>externalC2的基本架构</h4><p>完成一次externalC2通信逻辑上需要五个部分参与：</p>
+<ul>
+<li><p>团队服务器（Teamserver）</p>
+<p>cobalt strike的核心部分，一切功能的基础。</p>
+</li>
+<li><p>Exterlnal C2 服务器（External C2 server）</p>
+<p>依托于Teamserver启动的External C2服务，将开启一个端口，接收传入的请求。</p>
+</li>
+<li><p>第三方控制器（Third-party Controller）</p>
+<p>自己编写的与External C2 server 直接交互的程序，一般用来把第三方客户端传回的信息，翻译成External C2 server能懂的格式。</p>
+</li>
+<li><p>第三方客户端（Third-party Client）</p>
+<p>用来获取被控端的基本信息和执行CS下发的payload的程序。</p>
+</li>
+<li><p>Beacon（SMB Beacon）</p>
+<p>CS功能的基础，一切的由CS下发的命令，最终都交由它来执行。</p>
+</li>
+</ul>
+<p>由于官方的架构图是英文的，看起来没有亲切感，所以我再画一遍。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/externalC2.png" alt=""></p>
+<p>从图中可以看出，使用External C2对我们最基本的要求是</p>
+<ul>
+<li>编写一个第三方控制器，该控制器可以通过TCP连接向EternalC2服务器发送数据和从ExternalC2服务器接收数据，并且能与第三方客户端进行通信。</li>
+<li>编写一个第三方客户端，可以启动Beacon，并且能通过命名管道与Beacon进行交互，还要能与第三方控制器进行通信。</li>
+</ul>
+<h4 id="ExternalC2的通信协议"><a href="#ExternalC2的通信协议" class="headerlink" title="ExternalC2的通信协议"></a>ExternalC2的通信协议</h4><p>看代码是最能熟悉它的通信协议的方式，这里只介绍几个关键的点。</p>
+<ul>
+<li>无认证的帧格式。</li>
+<li>先是一个长度为四字节的小端字节序的表示长度的值（高级语言可能会使用大端字节序序列化数字为流，所以得保证这个数字得按照小端字节序序列化）。</li>
+<li>根据长度读取真正的数据部分，也就是说要完成一次对结果的读取，要先读长度，在读内容。</li>
+<li>进行写入操作时也是需要符合该格式。</li>
+<li>与external C2服务器的通信，以及与命名管道的通信都遵循这个格式。</li>
+</ul>
+<h4 id="External-C2组件"><a href="#External-C2组件" class="headerlink" title="External C2组件"></a>External C2组件</h4><h5 id="External-C2-服务器"><a href="#External-C2-服务器" class="headerlink" title="External C2 服务器"></a>External C2 服务器</h5><p>从客户端加载contana脚本即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">externalc2_start(&quot;0.0.0.0&quot;,2222);</span><br></pre></td></tr></table></figure>
+<h5 id="第三方控制器"><a href="#第三方控制器" class="headerlink" title="第三方控制器"></a>第三方控制器</h5><p>想让被控端上线的时候，就先向external C2服务器请求建立一个会话，发送被控端的相关配置，服务端会返还需要执行的Payload。每一个链接对应一个会话。</p>
+<p>具体细节是：</p>
+<p>首先设置当前会话，就是向External C2 服务器发送被控端的相关信息，发送一个或多个数据包中包含key=value格式的键值对。具体格式如下：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>arch</td>
+<td>x86</td>
+<td>payload的位数，可接受的值：x86、x64</td>
+</tr>
+<tr>
+<td>pipename</td>
+<td></td>
+<td>命名管道的名字</td>
+</tr>
+<tr>
+<td>block</td>
+<td>100</td>
+<td>以毫秒为单位的时间，没有操作的时候，external C2应该阻塞多长时间，应该相当于sleep</td>
+</tr>
+</tbody>
+</table>
+<p>设置发送完毕之后，向external C2 服务器发送一个字符串 go，然后等external C2 服务器返回payload，第三方控制器需要把payload中继到第三方客户端，并且有第三方客户端执行它。当第三方控制器从external C2 服务器断开连接时，teamserver就会把当前连接对应的会话标记为失效会话，目前没有办法恢复已死的会话。（经过我对其协议的学习，感觉官方文档这句还是有有点绝对的，应该是存在断线重连的方法的。）</p>
+<h5 id="第三方客户端"><a href="#第三方客户端" class="headerlink" title="第三方客户端"></a>第三方客户端</h5><p>第三方客户端负责执行从第三方控制端接收到的payload。该payload是一个头部经过修改的可以自我引导、反射加载的DLL（关于这部分内容可以参考参考链接中的pe_to_shellcode）。用通常的进程注入技术就可以执行它。当payload处于运行状态时，第三方客户端即可以通过对前一阶段会话配置时设置的命名管道名称（</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\\.\pipe\[pipe name]</span><br></pre></td></tr></table></figure>
+<p>）的读写操作来与Beacon交互。</p>
+<h5 id="会话生命周期"><a href="#会话生命周期" class="headerlink" title="会话生命周期"></a>会话生命周期</h5><table>
+<thead>
+<tr>
+<th>Teamserver</th>
+<th>External C2服务器</th>
+<th>第三方控制器</th>
+<th>第三方客户端</th>
+<th>SMB Beacon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>向控制器请求建立一个新的会话</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>连接到External C2服务器</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>向External C2发送会话配置</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>向External C2请求stage（payload）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>把stage发给第三方控制器</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>中继stage给第三方客户端</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>把stage注入某进程</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>启动命名管道服务器</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>连接到命名管道服务器</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>向第三方客户端发送metadata</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>中继metadata给第三方控制器</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>中继metadata给external C2服务器</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>处理metadata</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Coabalt   strike中出现了一个新的会话</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>用户下发任务或者不下发</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>向第三方控制器发送任务</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>中继任务</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>中继任务</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>处理任务</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>向第三方客户端发送任务结果</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>中继任务结果</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>中继任务结果</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>处理任务结果</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>显示结果</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>当会话存活的时候，重复从出现会话到显示结果的过程</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>会话退出</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>读写命名管道出错</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>通知第三方控制器退出会话</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>与External C2 服务器断开连接</td>
+<td>退出</td>
+</tr>
+</tbody>
+</table>
+<p>推荐看下官方的示例代码，我顺便一起放到了Demo代码中。</p>
+<h3 id="实现目的的基本思路"><a href="#实现目的的基本思路" class="headerlink" title="实现目的的基本思路"></a>实现目的的基本思路</h3><p>实现目的主要有以下需要考虑的点：</p>
+<ul>
+<li><p>问题：当payload成功执行之后，需要由第三方客户端完全接管与Beacon的交互。</p>
+<p>解决方案：所有与Beacon后续的交互，最终均是对命名管道的读写。命名管道可以直接作为文件来读写，多数脚本语言都支持该功能。</p>
+</li>
+<li><p>问题：因为目标不能出网，所以就无法向第三方客户端主动请求建立会话，也就是说按照官方生命周期的描述是无法建立会话的。</p>
+<p>解决方案：其实这一步不是必要，可以省略，或者将其变为第三方控制器先向External C2服务器请求payload，然后将payload直接发送给第三方客户端，让它执行即可。</p>
+</li>
+<li><p>问题：Beacon返回执行结果时，无法主动向外发送数据。</p>
+<p>解决方案：可以在第三方控制器对第三方控制器进行轮询解决该问题。会话退出的消息同理。</p>
+</li>
+</ul>
+<p>这个需求的难点在于把所有第三方控制器、Beacon主动对外的访问都转化为第三方控制器对第三方客户端的请求，变主动为被动。</p>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><p>主要有3个模块参与：</p>
+<p>第三方控制器：保存payload和轮询第三方客户端；</p>
+<p>第三方客户端A：payload执行与管道中继；</p>
+<p>第三方客户端B：第三方控制器请求中继）。</p>
+<p>官方的会话生命周期描述不符合当前需求，符合当前的需求的会话生命周期如下：</p>
+<ul>
+<li>在webshell里确定目标服务器的类型，第三方控制器向External C2服务器请求payload，并将返回的paylaod保存起来。</li>
+<li>根据保存起来的payload生成可加载payload的可执行文件，也就是为了用第三方客户端执行payload而做准备。</li>
+<li>通过webshell把第三方客户端A和payload传送到目标机器上，并且执行。</li>
+<li>将第三方客户端B（符合目标服务器环境的web服务端脚本）传送到目标web路径下，后续的与第三方客户端A的交互，由它完成。</li>
+<li>告知第三方控制器上一步上传的服务端脚本（第三方客户端B）的路径。</li>
+<li>第三方控制器命令第三方客户端B从第三方客户端A获取metadata，第三方客户端A获取metadata并且回传。</li>
+<li>第三方控制器将获取到的metadata发送给External C2服务器，此时Cobalt strike中已经出现上线的机器。</li>
+<li>第三方控制器将任务下发给第三方客户端，并开始轮询是否有结果返回（时间间隔可以长一些，频繁的访问不是好事）。</li>
+<li>第三方控制器轮询第三方客户端时，发现其返回来命名管道读写失败的信息，第三方控制器断开与External C2服务器的连接。</li>
+</ul>
+<p>第三方控制器python编写，因为涉及到HTTP请求，可以直接使用requests库。第三方客户端分为两个部分，分别用C和PHP编写，C的部分负责保持与Beacon命名管道的持久连接（为了不让beacon认为自己掉线了），并且创建管道供PHP部分读写，PHP部分负责将数据中继出来，返回给第三方控制器。</p>
+<h3 id="功能测试"><a href="#功能测试" class="headerlink" title="功能测试"></a>功能测试</h3><p>环境准备：</p>
+<p>一台win7，普通客户机（虚拟机）</p>
+<p>一台win10，web服务器，有php运行环境（我的物理机）</p>
+<p>一台kali，攻击机，cobalt strike3.13运行External C2服务（虚拟机）</p>
+<p>前期先把C程序编译好，我使用VS2019编写并编译可以正常使用。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/1.png" alt=""></p>
+<p>启动TeamServer，使用客户端连接TeamServer，并且加载externalc2.cna。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/2.png" alt=""></p>
+<p>服务端出现这个就成功了。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/3.png" alt=""></p>
+<p>执行第三方控制器，事先需在第三方控制器脚本中配置好External C2服务器的地址。脚本将payload保存在脚本当前路径下的payload目录中，名为payload.bin。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/4.png" alt=""></p>
+<p>接下来，将第三方客户端以及payload上传至目标服务器，也就是win10上。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/5.png" alt=""></p>
+<p>先启动一个notepad，因为默认情况下会把payload注入进notepad进程。然后先后运行RemoteThreadInject.exe和PipeOperationRelay.exe。当看到all pipe are ok。就说明程序运行所需要的所有管道都建立好了。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/6.png" alt=""></p>
+<p>然后去第三方控制器里配置上传的piperw.php的url。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/7.png" alt=""></p>
+<p>回车之后，上线成功。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/8.png" alt=""></p>
+<p>测试下功能是否正常，查看进程。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/9.png" alt=""></p>
+<p>测试TCP Beacon，在另一台主机上执行TCP Beacon。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/10.png" alt=""></p>
+<p>可以正常进行链接。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/书籍资料\用伪端口复用让无法出网机器在CS中上线\img\11.png" alt=""></p>
+<p>测试TCP Beacon的功能。</p>
+<p>查看进程：</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/12.png" alt=""></p>
+<p>查看文件：</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/13.png" alt="13"></p>
+<h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><ul>
+<li>每次断开与命名管道的连接，再次打开时，必须重新发送上线包，在这上边栽了三天，才发现这个问题。最终通过写一个管道访问中继程序解决了这个问题，断开命名管道的连接，beacon就认为自己掉线了。</li>
+<li>php的recourse指针无法放到session中。但这个不能叫坑，正常可以理解的特性。</li>
+<li>有些东西做出来之后，才知道有没有用。External C2表现并不好，在一些操作上表现出了极差的稳定性，看到官网的文档是2016年，也许作者并没有把重心放在这上边，因为不是开源的，别人也没法帮他，只能等着了。</li>
+<li>因为是测试代码，所以保留了很多调试输出。</li>
+<li>我用win10做web服务器是因为想下周干点别的，不想解决兼容性问题了。</li>
+</ul>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/14.png" alt=""></p>
+<h3 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h3><p><a href="https://github.com/hasherezade/pe_to_shellcode" target="_blank" rel="noopener">https://github.com/hasherezade/pe_to_shellcode</a></p>
+<p><a href="https://docs.microsoft.com/zh-cn/windows/win32/ipc/pipes" target="_blank" rel="noopener">https://docs.microsoft.com/zh-cn/windows/win32/ipc/pipes</a></p>
+<p><a href="https://blog.xpnsec.com/exploring-cobalt-strikes-externalc2-framework/" target="_blank" rel="noopener">https://blog.xpnsec.com/exploring-cobalt-strikes-externalc2-framework/</a></p>
+<p><a href="https://github.com/Und3rf10w/external_c2_framework" target="_blank" rel="noopener">https://github.com/Und3rf10w/external_c2_framework</a></p>
+<p><a href="https://www.cobaltstrike.com/help-externa" target="_blank" rel="noopener">https://www.cobaltstrike.com/help-externa</a></p>
+
+      
+    </div>
+    
+    
+    
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/">利用External C2让内网机器在Cobalt Strike中上线</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 hl0rey 的个人博客">hl0rey</a></p>
+  <p><span>发布时间:</span>2019年09月06日 - 09:09</p>
+  <p><span>最后更新:</span>2019年09月06日 - 09:09</p>
+  <p><span>原始链接:</span><a href="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/" title="利用External C2让内网机器在Cobalt Strike中上线">http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+
+      
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Cobalt-Strike/" rel="tag"># Cobalt Strike</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/18/mimikatz中的tspkg、MSV1-0、WDigest、kerberos/" rel="next" title="mimikatz中的tspkg、MSV1_0、WDigest、kerberos">
+                <i class="fa fa-chevron-left"></i> mimikatz中的tspkg、MSV1_0、WDigest、kerberos
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">hl0rey</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#externalC2介绍"><span class="nav-number">2.</span> <span class="nav-text">externalC2介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是externalC2"><span class="nav-number">2.1.</span> <span class="nav-text">什么是externalC2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#externalC2的基本架构"><span class="nav-number">2.2.</span> <span class="nav-text">externalC2的基本架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ExternalC2的通信协议"><span class="nav-number">2.3.</span> <span class="nav-text">ExternalC2的通信协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#External-C2组件"><span class="nav-number">2.4.</span> <span class="nav-text">External C2组件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#External-C2-服务器"><span class="nav-number">2.4.1.</span> <span class="nav-text">External C2 服务器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三方控制器"><span class="nav-number">2.4.2.</span> <span class="nav-text">第三方控制器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三方客户端"><span class="nav-number">2.4.3.</span> <span class="nav-text">第三方客户端</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#会话生命周期"><span class="nav-number">2.4.4.</span> <span class="nav-text">会话生命周期</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现目的的基本思路"><span class="nav-number">3.</span> <span class="nav-text">实现目的的基本思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体实现"><span class="nav-number">4.</span> <span class="nav-text">具体实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能测试"><span class="nav-number">5.</span> <span class="nav-text">功能测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后话"><span class="nav-number">6.</span> <span class="nav-text">后话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考连接"><span class="nav-number">7.</span> <span class="nav-text">参考连接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hl0rey</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
