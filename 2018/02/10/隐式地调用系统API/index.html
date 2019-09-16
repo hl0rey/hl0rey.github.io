@@ -1,14 +1,60 @@
 <!DOCTYPE html>
-<html>
+
+
+
+
+
+<html lang="zh-Hans">
 <head>
-  <meta charset="utf-8">
-  
-  <title>隐式地调用系统API | hl0rey&#39;s blog</title>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.5.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
 
-  <!-- keywords -->
-  
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Kopieren',
+      copy_success: 'Kopiert',
+      copy_failure: 'Kopieren fehlgeschlagen'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
   <meta name="description" content="隐藏调用系统API如果直接调用API，在将程序逆向的时候就会直接显示出被调用的函数的名字，所以根据程序的功能，结合调试器给出的提示很容易的就能定位关键代码，从而破解程序，所以程序员就采取一定的办法来隐式地调用系统API．  下边这种办法比较简单，毕竟还是可以通过LoadlLibrary(),GetProcAddress()这俩函数来判断程序用了什么函数，通过在GetProcessAddress上下">
 <meta name="keywords" content="API">
 <meta property="og:type" content="article">
@@ -21,193 +67,194 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="隐式地调用系统API">
 <meta name="twitter:description" content="隐藏调用系统API如果直接调用API，在将程序逆向的时候就会直接显示出被调用的函数的名字，所以根据程序的功能，结合调试器给出的提示很容易的就能定位关键代码，从而破解程序，所以程序员就采取一定的办法来隐式地调用系统API．  下边这种办法比较简单，毕竟还是可以通过LoadlLibrary(),GetProcAddress()这俩函数来判断程序用了什么函数，通过在GetProcessAddress上下">
-  
-    <link rel="alternative" href="/atom.xml" title="hl0rey&#39;s blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
+  <link rel="canonical" href="http://hl0rey.github.io/2018/02/10/隐式地调用系统API/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>隐式地调用系统API | hl0rey's blog</title>
   
 
-  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
-  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
 
-  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
-<body>
-  <div id="container">
-    <div id="particles-js"></div>
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-	<header id="header" class="inner">
-		<a href="/" class="profilepic">
-			
-			<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
-			
-		</a>
 
-		<hgroup>
-		  <h1 class="header-author"><a href="/">hl0rey</a></h1>
-		</hgroup>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  <div class="container use-motion">
+    <div class="headband"></div>
 
-		
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
 
-		
-			<div class="switch-btn">
-				<div class="icon">
-					<div class="icon-ctn">
-						<div class="icon-wrap icon-house" data-idx="0">
-							<div class="birdhouse"></div>
-							<div class="birdhouse_holes"></div>
-						</div>
-						<div class="icon-wrap icon-ribbon hide" data-idx="1">
-							<div class="ribbon"></div>
-						</div>
-						
-						<div class="icon-wrap icon-link hide" data-idx="2">
-							<div class="loopback_l"></div>
-							<div class="loopback_r"></div>
-						</div>
-						
-						
-					</div>
-					
-				</div>
-				<div class="tips-box hide">
-					<div class="tips-arrow"></div>
-					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>标签</li>
-						
-						<li>友情链接</li>
-						
-						
-					</ul>
-				</div>
-			</div>
-		
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hl0rey's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
 
-		<div class="switch-area">
-			<div class="switch-wrap">
-				<section class="switch-part switch-part1">
-					<nav class="header-menu">
-						<ul>
-						
-							<li><a href="/">主页</a></li>
-				        
-							<li><a href="/archives">所有文章</a></li>
-				        
-						</ul>
-					</nav>
-					<nav class="header-nav">
-						<div class="social">
-							
-						</div>
-					</nav>
-				</section>
-				
-				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Cobalt-Strike/" style="font-size: 13.33px;">Cobalt Strike</a> <a href="/tags/OD/" style="font-size: 10px;">OD</a> <a href="/tags/activedirectory/" style="font-size: 10px;">activedirectory</a> <a href="/tags/burpsuite/" style="font-size: 16.67px;">burpsuite</a> <a href="/tags/charset/" style="font-size: 10px;">charset</a> <a href="/tags/mimikatz/" style="font-size: 10px;">mimikatz</a> <a href="/tags/msf/" style="font-size: 10px;">msf</a> <a href="/tags/nmap/" style="font-size: 10px;">nmap</a> <a href="/tags/php/" style="font-size: 20px;">php</a> <a href="/tags/proxy/" style="font-size: 10px;">proxy</a> <a href="/tags/pte/" style="font-size: 10px;">pte</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/test/" style="font-size: 10px;">test</a>
-					</div>
-				</section>
-				
-				
-				
-				<section class="switch-part switch-part3">
-					<div id="js-friends">
-					
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
-			        
-			        </div>
-				</section>
-				
-
-				
-			</div>
-		</div>
-	</header>				
+  <div class="site-nav-toggle">
+    <button aria-label="Navigationsleiste an/ausschalten">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-  	<div class="overlay">
-  		<div class="slider-trigger"></div>
-  		<h1 class="header-author js-mobile-header hide">hl0rey</h1>
-  	</div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<div class="profilepic">
-				<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
-			</div>
-			<hgroup>
-			  <h1 class="header-author">hl0rey</h1>
-			</hgroup>
-			
-			<nav class="header-menu">
-				<ul>
-				
-					<li><a href="/">主页</a></li>
-		        
-					<li><a href="/archives">所有文章</a></li>
-		        
-		        <div class="clearfix"></div>
-				</ul>
-			</nav>
-			<nav class="header-nav">
-				<div class="social">
-					
-				</div>
-			</nav>
-		</header>				
-	</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+  </ul>
+
+    
+
 </nav>
-      <div class="body-wrap"><article id="post-隐式地调用系统API" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/02/10/隐式地调用系统API/" class="article-date">
-  	<time datetime="2018-02-10T11:55:54.000Z" itemprop="datePublished">2018-02-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      隐式地调用系统API
-      
-    </h1>
-  
+</div>
+    </header>
 
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/10/隐式地调用系统API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hl0rey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hl0rey's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">隐式地调用系统API
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+
+              
+                
+              
+
+              <time title="Erstellt: 2018-02-10 19:55:54 / Geändert am: 20:14:29" itemprop="dateCreated datePublished" datetime="2018-02-10T19:55:54+08:00">2018-02-10</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/reverse/" itemprop="url" rel="index"><span itemprop="name">reverse</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
       </header>
-      
-      <div class="article-info article-info-post">
-        
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li></ul>
-	</div>
 
-        
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/reverse/">reverse</a>
-	</div>
-
-
-        
-        <div class="clearfix"></div>
-      </div>
-      
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
         <h4 id="隐藏调用系统API"><a href="#隐藏调用系统API" class="headerlink" title="隐藏调用系统API"></a>隐藏调用系统API</h4><pre><code>如果直接调用API，在将程序逆向的时候就会直接显示出被调用的函数的名字，所以根据程序的功能，结合调试器给出的提示很容易的就能定位关键代码，从而破解程序，所以程序员就采取一定的办法来隐式地调用系统API．
 </code></pre><ul>
@@ -254,109 +301,220 @@ jmp [dwFunctionAddress]
 <p>参考链接：</p>
 <pre><code>https://bbs.pediy.com/thread-73398.htm
 </code></pre>
+    </div>
+
+    
+    
+    
+        
       
-    </div>
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/API/" rel="tag"># API</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2018/02/10/反调试之检测进程名/" rel="next" title="反调试之检测进程名">
+                  <i class="fa fa-chevron-left"></i> 反调试之检测进程名
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2018/02/10/代码审计大的思路/" rel="prev" title="代码审计大的思路">
+                  代码审计大的思路 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
     
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/2018/02/10/代码审计大的思路/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          代码审计大的思路
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/02/10/反调试之检测进程名/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">反调试之检测进程名</div>
-      <strong class="article-nav-caption">&gt;</strong>
-    </a>
-  
-</nav>
+  </article>
 
-  
-</article>
+  </div>
 
 
-<div class="ds-share share" data-thread-key="隐式地调用系统API" data-title="隐式地调用系统API" data-url="http://hl0rey.github.io/2018/02/10/隐式地调用系统API/"  data-images="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" data-content="隐式地调用系统API">
-    <div class="ds-share-inline">
-      <ul  class="ds-share-icons-16">
-      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-      </ul>
-      <div class="ds-share-icons-more">
-      </div>
-    </div>
- </div>
- 
+          </div>
+          
 
-
-
-
-
-</div>
-      <footer id="footer">
-  <div class="outer">
-    <div id="footer-info">
-      <div class="footer-left">
-        &copy; 2019 hl0rey
-      </div>
-        <div class="footer-right">
-          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
         </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
-</footer>
-    </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Inhaltsverzeichnis
+        </li>
+        <li class="sidebar-nav-overview">
+          Übersicht
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#隐藏调用系统API"><span class="nav-number">1.</span> <span class="nav-text">隐藏调用系统API</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">hl0rey</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">Artikel</span>
+        </a>
+      </div>
     
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">Kategorien</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">schlagwörter</span>
+        </a>
+      </div>
+    
+  </nav>
 
 
-<script>
-	var yiliaConfig = {
-		fancybox: true,
-		mathjax: true,
-		animate: true,
-		isHome: false,
-		isPost: true,
-		isArchive: false,
-		isTag: false,
-		isCategory: false,
-		open_in_new: false
-	}
-</script>
-<script src="/js/main.js"></script>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hl0rey</span>
+</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.5.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Design – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
+
+        
 
 
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
 
 
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
   </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/muse.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
 </body>
 </html>
