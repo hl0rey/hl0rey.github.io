@@ -163,6 +163,371 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-代码审计之XSS" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/02/23/代码审计之XSS/" class="article-date">
+  	<time datetime="2018-02-23T10:45:18.000Z" itemprop="datePublished">2018-02-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/23/代码审计之XSS/">
+        代码审计之XSS
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="攻击的类型"><a href="#攻击的类型" class="headerlink" title="攻击的类型"></a>攻击的类型</h3><ul>
+<li><p>反射型XSS</p>
+<pre><code>服务器取得用户输入之后直接再浏览器输出    
+</code></pre></li>
+<li><p>存储型XSS</p>
+<pre><code>服务器取得用户输入之后，存储起来，再输出        
+</code></pre></li>
+<li><p>DOM型XSS</p>
+<pre><code>客户端利用DOM动态的改变页面内容，不经过服务器
+</code></pre></li>
+<li><p>Flash XSS</p>
+</li>
+</ul>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>XSS防御速查表<br><a href="http://www.freebuf.com/articles/web/156622.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/156622.html</a><br>XSS过滤绕过速查表<br><a href="http://www.freebuf.com/articles/web/153055.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/153055.html</a><br>xss利用技巧<br><a href="http://www.freebuf.com/articles/web/157589.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/157589.html</a></p>
+<h3 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h3><p>资料太多了．<br>审计的时候主要是看看可控变量在什么地方输出．<br>值得注意的是经过了实体编码也不能消除威胁的地方．</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>htmlspecialchars<br><a href="http://php.net/manual/zh/function.htmlspecialchars.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.htmlspecialchars.php</a><br>如果不设置该函数的第二个参数的话，那么将不会转义引号，那么如果输出在标签内部，那么也是漏洞．<br>还可以利用宽字符．<br>而且支持的字符集有限，也是个突破口．</p>
+<h3 id="XSS利用"><a href="#XSS利用" class="headerlink" title="XSS利用"></a>XSS利用</h3><ul>
+<li>手工利用<br><a href="http://www.freebuf.com/sectool/159689.html" target="_blank" rel="noopener">http://www.freebuf.com/sectool/159689.html</a></li>
+<li>各种利用平台</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/code/">code</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-代码审计之命令执行" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/02/19/代码审计之命令执行/" class="article-date">
+  	<time datetime="2018-02-19T07:36:11.000Z" itemprop="datePublished">2018-02-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/19/代码审计之命令执行/">
+        代码审计之命令执行
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>有些时候，应用程序需要调用外部程序，这个时候就需要用到操作系统命令执行了．
+</code></pre><h3 id="涉及的函数"><a href="#涉及的函数" class="headerlink" title="涉及的函数"></a>涉及的函数</h3><ul>
+<li>system</li>
+<li>exec</li>
+<li>passthru</li>
+<li><p>shell_exec</p>
+</li>
+<li><p>``</p>
+<pre><code>反引号本质是调用shell_exec
+</code></pre><p>  当然，执行命令的办法并不是只能用php内置的函数，比如COM组件．</p>
+</li>
+</ul>
+<h3 id="自动化检测工具"><a href="#自动化检测工具" class="headerlink" title="自动化检测工具"></a>自动化检测工具</h3><pre><code>commix
+</code></pre><h3 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h3><pre><code>在网站功能的实现中，可能需要直接调用操作系统命令，一般是为了调用外部程序，这种情况比较少，但还是存在的，为了执行命令而调用系统命令的基本不存在，比如，要调用一个程序来压缩图片，或者识别二维码。
+
+而操作系统的shell特性是允许同时执行多条命令的，依赖特殊的符号来声明有多条命令。Linux下是 | || &amp; &amp;&amp; ;$(shell命令) 还有反引号“ ` ”和$(shell命令)，用它包裹的字符串会被当作系统命令执行，这在php里和linux shell里是一致的。Windows下不支持反引号，别的符号都支持。
+</code></pre><h3 id="漏洞常见类型"><a href="#漏洞常见类型" class="headerlink" title="漏洞常见类型"></a>漏洞常见类型</h3><pre><code>代码层过滤不严
+系统漏洞
+第三方组件(例如 COM)
+</code></pre><h3 id="命令注入的判断方法："><a href="#命令注入的判断方法：" class="headerlink" title="命令注入的判断方法："></a>命令注入的判断方法：</h3><pre><code>分两种情况，有点像sql 注入，一种是有回显的命令执行，一种是没有回显的命令执行。
+有回显的命令执行判断起来十分简单，让命令额外输出一段十分特别的字符串，也就是说，正常不该输出这个字符串，例如afagagnjdghsuiiebgibqkio ，短一点就可以，这里只是举个例子。发送请求后，观察页面有没有出现这个字符串，如果出现了，也就是命令执行成功了。
+对于没有回显的，一可以基于响应时间来判断，比如在linux下 可以执行 sleep 5 ，睡眠任意的秒数，如果相应时间明显变长，如果不是延迟的锅，则可以判断是否存在命令注入。Windows下执行ping -n 127.0.0.1 &gt; 1 (大约五秒钟)，也可以用来判断。二是可以基于服务器的行为，用命令注入让服务器作出一个动作，比如linux可以 wget 一个ip地址或者网站或者是ping一个地址等，ip地址是你可以控制的网站，然后查看访问记录，如果有访问记录就可以认为存在命令注入，windows下用ping。
+</code></pre><h3 id="测试步骤："><a href="#测试步骤：" class="headerlink" title="测试步骤："></a>测试步骤：</h3><h4 id="1-安全等级一的时候，没有过滤任何特殊符号。想怎么注入怎么注入。"><a href="#1-安全等级一的时候，没有过滤任何特殊符号。想怎么注入怎么注入。" class="headerlink" title="1.安全等级一的时候，没有过滤任何特殊符号。想怎么注入怎么注入。"></a>1.安全等级一的时候，没有过滤任何特殊符号。想怎么注入怎么注入。</h4><p>Payload：<br>1）有回显的<br>| echo test 管道符，把前一个命令的输出作为后一个命令的输入<br>; echo test 分号表示一个命令的结束<br>-1 || echo test 此处逻辑运算符或，只有前面的命令执行失败才能执行后面的命令，所以这地方要故意把或符号前面的参数弄错，导致命令无法正常执行。<br>&amp; echo test<br>&amp;&amp; echo test 这两个与运算必须保证前一个命令能正常执行<br>2）无回显的<br>| sleep 5<br>; sleep 5<br>-1 || sleep 5<br>&amp; sleep 5<br>&amp;&amp; sleep 5<br>用别的判断方法只要把sleep 5 换成其他的命令就行了</p>
+<h4 id="2-安全等级2、3、4、6、7，都是没有过滤完全，只要不用被过滤的字符就可以了"><a href="#2-安全等级2、3、4、6、7，都是没有过滤完全，只要不用被过滤的字符就可以了" class="headerlink" title="2.安全等级2、3、4、6、7，都是没有过滤完全，只要不用被过滤的字符就可以了"></a>2.安全等级2、3、4、6、7，都是没有过滤完全，只要不用被过滤的字符就可以了</h4><p>例如使用 $(echo 2)</p>
+<h4 id="3-执行黑名单函数"><a href="#3-执行黑名单函数" class="headerlink" title="3.执行黑名单函数"></a>3.执行黑名单函数</h4><p>A）大小写绕过</p>
+<pre><code>Linux？不存在的
+操作系统特性，linux对大小写敏感，windows相反。
+Windows下可以用大小写来绕过比如把echo命令写成成Echo ECho。
+</code></pre><p>B）字符串拼接来执行命令</p>
+<pre><code>例如，执行echo
+a=&quot;ec&quot;;b=&quot;ho&quot;;$a$b 1;
+a=&apos;ec&apos;;b=&apos;ho&apos;;$a$b 1;
+a=&apos;ec&apos;&amp;b=&apos;ho&apos;&amp;$a$b 1;
+a=&apos;ec&apos;&amp;&amp;b=&apos;ho&apos;&amp;&amp;$a$b 1;
+`a=’ec’` `b=’ho’` `$a$b` 用反引号的，这个不常见
+</code></pre><p>C）编码绕过</p>
+<pre><code>编码这块我绕的头疼，先这样吧。
+Linux编码的命令有base64，#（用法：（进制数#数值）），或者用ascii码
+|| base64 echo | base64 -d 
+|| Cg== | base64 -d
+其他的类似只要把符合换换，命令换换
+进制转换来拼接命令非常有限，linux shell只能比较方便的最高支持16进制一下的转化，理论上来说只能执行由123456789abcdef 组成的命令（有待考证）
+Ascii码非常好用，一种是用printf 一种是用tr和od来结合实现，例如，
+字符转化为ascii码  echo &quot;A&quot;| tr -d &quot;\n&quot; | od -An -t dC
+分号可以替换为其他符号，下面这条命令会输出echo
+printf \\x`printf %x 101` ; printf \\x`printf %x 99`; printf \\x`printf %x 104`; printf \\x`printf %x 111` 
+
+Windows cmd比较垃圾，好像没有什么编码
+</code></pre><h4 id="严格过滤之后的绕过"><a href="#严格过滤之后的绕过" class="headerlink" title="严格过滤之后的绕过"></a>严格过滤之后的绕过</h4><pre><code>经过安全等级8的严格过滤，看似已经不可能注入命令了。但是实际上还是有办法注入命令的。这里提到两种办法，一是宽字节注入，二是软件漏洞。
+一是宽字节注入，这个我暂时先停留在设想阶段- -。
+二是软件漏洞，值得一提的漏洞有shellshock和imagemagick解析漏洞
+Shellshock：
+                1).CVE-2014-6271 测试方式:
+                  env x=&apos;() { :;}; echo vulnerable&apos; bash -c &quot;echo this is a test&quot; 
+                   (2).CVE-2014-7169 测试方式:(CVE-2014-6271补丁更新后仍然可以绕过)
+                  env -i X=&apos;;() { (a)=&gt;\&apos; bash -c &apos;echo date&apos;; cat echo
+</code></pre><h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><pre><code>&lt;?php
+
+global $cmds;
+$cmds = &apos;&apos;;
+$servercmd = &apos;dir&apos;;
+$black = &apos;&apos;;
+
+//字符串替换函数详解
+
+//改变服务器执行的命令
+if (isset($_POST[&apos;servercmd&apos;])) {
+    $servercmd = $_POST[&apos;servercmd&apos;];
+}
+
+if ($_POST[&apos;lv&apos;] == 1) {
+//不做任何过滤
+    $cmds = $_POST[&apos;cmd&apos;];
+
+}
+if ($_POST[&apos;lv&apos;] == 2) {
+    //去掉特殊字符
+    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;,), &apos;&apos;, $_POST[&apos;cmd&apos;]);
+
+}
+if ($_POST[&apos;lv&apos;] == 3) {
+    //去掉特殊字符
+    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;, &apos;;&apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
+
+}
+if ($_POST[&apos;lv&apos;] == 4) {
+    //去掉特殊字符
+    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;, &apos;;&apos;, &apos;||&apos;, &apos;&amp;&amp;&apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
+
+}
+if ($_POST[&apos;lv&apos;] == 5) {
+    //代码书写错误，造成的绕过，多加了个空格导致过滤函数无效
+    $cmds = str_replace(array(&apos;&amp; &apos;, &apos;| &apos;, &apos;; &apos;, &apos;|| &apos;, &apos;&amp;&amp; &apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
+}
+if ($_POST[&apos;lv&apos;] == 6) {
+    //去掉特殊字符
+    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;, &apos;;&apos;, &apos;||&apos;, &apos;&amp;&amp;&apos;, &apos;`&apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
+
+}
+if ($_POST[&apos;lv&apos;] == 7) {
+    //去掉特殊字符
+    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;, &apos;;&apos;, &apos;||&apos;, &apos;&amp;&amp;&apos;, &apos;`&apos;,&apos;&gt;&apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
+
+}
+
+
+if ($_POST[&apos;lv&apos;] == 8) {
+    //过滤了 # &amp; ; ` | * ? ~ &lt; &gt; ^ ( ) [ ] { } $ \\ \x0A \xFF
+    //在特殊符号之前加了转义符号 \
+    $cmds = escapeshellcmd($_POST[&apos;cmd&apos;]);
+}
+
+//把字符串转换为小写
+if ($_POST[&apos;case&apos;]==1){
+
+    $cmds=strtolower($cmds);//转为小写
+    //strtoupper();转为大写
+    //ucfirst(); 首字母大写
+    //ucwords(); 所有单词首字母大写
+}
+
+//过滤某个命令，基于黑名单
+if (isset($_POST[&apos;black&apos;])) {
+    $black = $_POST[&apos;black&apos;];
+    $cmds = str_replace($black, &apos;&apos;, $cmds);
+}
+
+
+?&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;style&gt;
+    div{
+    text-align: center;
+    }
+    &lt;/style&gt;
+    &lt;script src=&quot;jquery.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id=&quot;center&quot;&gt;
+
+    &lt;form action=&quot;cmd.php&quot; method=&quot;post&quot;&gt;
+    &lt;div id=&quot;title&quot;&gt;命令注入&lt;/div&gt;
+    &lt;br&gt;
+    安全等级：&lt;select name=&quot;lv&quot;&gt;
+        &lt;option value=&quot;1&quot;&gt;1&lt;/option&gt;
+        &lt;option value=&quot;2&quot;&gt;2&lt;/option&gt;
+        &lt;option value=&quot;3&quot;&gt;3&lt;/option&gt;
+        &lt;option value=&quot;4&quot;&gt;4&lt;/option&gt;
+        &lt;option value=&quot;5&quot;&gt;5&lt;/option&gt;
+        &lt;option value=&quot;6&quot;&gt;6&lt;/option&gt;
+        &lt;option value=&quot;7&quot;&gt;7&lt;/option&gt;
+        &lt;option value=&quot;8&quot;&gt;8&lt;/option&gt;
+    &lt;/select&gt;&lt;br&gt;&lt;br&gt;
+    &lt;label&gt;函数黑名单：&lt;/label&gt;&lt;input type=&quot;text&quot; name=&quot;black&quot;&gt;&lt;br&gt;&lt;br&gt;
+    &lt;label&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;命令：&lt;/label&gt;&lt;input type=&quot;text&quot;
+                                                                                         name=&quot;servercmd&quot;
+                                                                                         value=&quot;dir&quot;&gt;&lt;br&gt;&lt;br&gt;
+    &lt;label&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;参数：&lt;/label&gt;&lt;input type=&quot;text&quot; name=&quot;cmd&quot;
+                                                                                         value=&quot;&quot;&gt;&lt;br&gt;&lt;br&gt;
+    &amp;nbsp;&amp;nbsp;
+    &lt;label&gt;是否开启大小写过滤：&lt;/label&gt;&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;case&quot; value=&quot;1&quot;&gt;是&lt;/label&gt;&amp;nbsp;&amp;nbsp;&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;case&quot; value=&quot;2&quot;&gt;否&lt;/label&gt;&lt;br&gt;
+    &lt;br&gt;&lt;input type=&quot;submit&quot; value=&quot;execute&quot;&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+&lt;div id=&quot;result&quot;&gt;
+    &lt;?php
+    //给了默认值了，是字符串所以这了进不来，直接构造数据包的时候这地方可以做校验
+    if (!isset($_POST[&apos;lv&apos;]) or !isset($_POST[&apos;cmd&apos;])) {
+    die(&apos; &lt;span id=&quot;tip&quot;&gt;
+安全等级1没有任何过滤&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级2过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级3过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级4过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;;&amp;nbsp;&amp;&amp;&amp;nbsp;||&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级5代码书写失误，过滤无效&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级6过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;;&amp;nbsp;&amp;&amp;&amp;nbsp;||`&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级7过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;;&amp;nbsp;&amp;&amp;&amp;nbsp;||&amp;nbsp;`&amp;nbsp;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级8使用了php的内建函数，在#&amp;nbsp;&amp;&amp;nbsp;;&amp;nbsp;`&amp;nbsp;|&amp;nbsp;*&amp;nbsp;?&amp;nbsp;~&amp;nbsp;&lt;&amp;nbsp;&gt;&amp;nbsp;^&amp;nbsp;(&amp;nbsp;)&amp;nbsp;[&amp;nbsp;]&amp;nbsp;{&amp;nbsp;}&amp;nbsp;$&amp;nbsp;\&amp;nbsp;\x0A&amp;nbsp;\xFF之前加了转移字符&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;/span&gt;&apos;);
+    }
+
+    $result = shell_exec($servercmd . &apos; &apos; . $cmds);
+    echo &apos;shell_exec output: &lt;br&gt;&apos;;
+    echo $result;
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;&apos;;
+
+    echo &apos;----------------------------------------------------------&lt;br&gt;&apos;;
+
+    echo &apos;system output: &lt;br&gt;&apos;;
+    system($servercmd . &apos; &apos; . $cmds, $code);
+
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;system return code: &apos;;
+    echo $code;
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;&apos;;
+
+    echo &apos;----------------------------------------------------------&lt;br&gt;&apos;;
+
+    exec($servercmd . &apos; &apos; . $cmds, $a, $code2);
+    echo &apos;exec output:&lt;br&gt;&apos;;
+
+    foreach ($a as $aa) {
+    echo $aa;
+    }
+
+
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;exec return code:&apos; . $code2;
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;&apos;;
+
+    echo &apos;----------------------------------------------------------&lt;br&gt;&apos;;
+
+    echo &apos;passthru output:&lt;br&gt;&apos;;
+    passthru($servercmd . &apos; &apos; . $cmds, $code3);
+
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;passthru return code: &apos;;
+    echo $code3;
+    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;&apos;;
+
+    echo &apos;----------------------------------------------------------&lt;br&gt;&apos;;
+
+    echo &quot;the string is:&lt;br&gt;&quot; . $cmds;
+
+    ?&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/code/">code</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-代码审计之代码执行" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1356,177 +1721,6 @@ jmp [dwFunctionAddress]
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/reverse/">reverse</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-反调试之检测进程名" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/02/10/反调试之检测进程名/" class="article-date">
-  	<time datetime="2018-02-10T03:01:26.000Z" itemprop="datePublished">2018-02-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/10/反调试之检测进程名/">
-        反调试之检测进程名
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>通过遍历进程列表，读取所有进程名，一旦发现黑名单上的进程名，打开它的进程，获得他的句柄，并且关闭它．</p>
-<h4 id="涉及的API"><a href="#涉及的API" class="headerlink" title="涉及的API"></a>涉及的API</h4><ul>
-<li>EnumProcesses<br>枚举所有的进程PID（进程标识符）<br><a href="http://www.baike.com/wiki/EnumProcesses&amp;prd=button_doc_jinru" target="_blank" rel="noopener">互动百科－EnumProcesses</a> </li>
-</ul>
-<pre><code>函数往一个数组传入当前所有PID．然后遍历这个数组就可以遍历整个进程列表了
-</code></pre><ul>
-<li><p>EnumProcessModules<br>获取某进程里所有模块的句柄<br><a href="https://msdn.microsoft.com/zh-cn/ms682631\(v=vs.85\" target="_blank" rel="noopener">MSDN-EnumProcessModule</a>.aspx) </p>
-<pre><code>函数往一个数组里放入某个进程所有模块的句柄．
-</code></pre></li>
-<li><p>GetModuleBaseName<br><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms683196\(v=vs.85\" target="_blank" rel="noopener">MSDN-GetModuleBaseName</a>.aspx)<br>获得指定模块的名称，在Win32环境下，模块和进程可以混同．</p>
-</li>
-</ul>
-<pre><code>函数向指定的缓冲区写入模块的名称．
-</code></pre><h4 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h4><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms682623\(v=vs.85\" target="_blank" rel="noopener">MSDN-EnumProcesses &amp; EnumProcessModule &amp; GetModuleBaseName 枚举所有进程</a>.aspx) </p>
-<p>此外，个人用这种方式来实现遍历进程，涉及的API： CreateToolhelp32Snapshot<br><a href="https://msdn.microsoft.com/zh-cn/library/ms686852\(v=vs.85\" target="_blank" rel="noopener">MSDN-拍摄进程快照，再遍历进程</a>.aspx) </p>
-<h4 id="绕过方法"><a href="#绕过方法" class="headerlink" title="绕过方法"></a>绕过方法</h4><p>在涉及的函数上下断点分析，修改程序内建的进程名黑名单，或者修改调试器的名称皆可．</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/reverse/">reverse</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-150行代码写成的可扩展的代码审计辅助工具" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/02/08/150行代码写成的可扩展的代码审计辅助工具/" class="article-date">
-  	<time datetime="2018-02-08T11:18:51.000Z" itemprop="datePublished">2018-02-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/08/150行代码写成的可扩展的代码审计辅助工具/">
-        150行代码写成的可扩展的代码审计辅助工具
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre><code>你是否觉得有时候人类的思考模式很像正则匹配？
-</code></pre><h4 id="本文包括以下几个部分："><a href="#本文包括以下几个部分：" class="headerlink" title="本文包括以下几个部分："></a>本文包括以下几个部分：</h4><pre><code>为什么我觉得可以用这个工具（个人认为）
-我为什么写这个工具
-工具的实现思路
-工具的升级思路
-源代码的github地址
-使用测试
-最后说两句
-</code></pre><h4 id="为什么我觉得可以用这个工具（个人认为）"><a href="#为什么我觉得可以用这个工具（个人认为）" class="headerlink" title="为什么我觉得可以用这个工具（个人认为）"></a>为什么我觉得可以用这个工具（个人认为）</h4><pre><code>通过审计源代码，也就是查看源代码，来发现其中存在的隐患，代码审计需要对被审计的语言有充分的了解，不仅是能读懂源代码，还要了解语言本身的缺陷。很多时候代码审计的突破口就在于一些已经广为人知的有问题的代码的写法。如果能够快速找到突破口，也就提高了审计的效率。
-</code></pre><h4 id="我为什么写这个工具"><a href="#我为什么写这个工具" class="headerlink" title="我为什么写这个工具"></a>我为什么写这个工具</h4><pre><code>我是一个ctf小白，为了考pte，正在学习怎么做ctf题目（个人比较感兴趣代码审计的题目，别的没啥什么感觉）。学习知识肯定是要笔记的，但是我觉得那种传统的笔记效果不是太好，记下来了也不一定记住了，到时候遇上题目万一想不起来，多尴尬。这时我忽然想到，我让程序记住就好了，它不会背叛我，一定会忠实地对我表达他的所见所想。所以我只要让程序看到某个字眼，就来提示我一下，并且告诉我，我把笔记记在了什么地方不就行了。
-</code></pre><h4 id="工具的实现思路"><a href="#工具的实现思路" class="headerlink" title="工具的实现思路"></a>工具的实现思路</h4><pre><code>程序入口：adcode.py
-主程序：ADC/ADCode.py
-插件目录：rules
-笔记目录（可选）：note
-</code></pre><p><img src="/2018/02/08/150行代码写成的可扩展的代码审计辅助工具/adcode1.jpg" alt=""></p>
-<h5 id="1-读取目标代码"><a href="#1-读取目标代码" class="headerlink" title="1.读取目标代码"></a>1.读取目标代码</h5><pre><code>联想平时的应用，我觉得应该让工具从剪贴板内读取待审计的代码，这样使用比较方便。但是，偶尔也会遇到待审计的代码是一个php文件的场景。所以我决定支持两种读取方式，一种是从剪贴板读取，一种是从文件读取。
-</code></pre><p>剪贴板读取，为了能够跨平台，这里需要用到一个python的库——pyperclip。<br>这是一个第三方的跨平台的python访问剪贴板的库。<br>进入python shell看一下最基本的使用例子。</p>
-<p><img src="/2018/02/08/150行代码写成的可扩展的代码审计辅助工具/1.png" alt=""></p>
-<p>知道了这个库的使用，只需在代码中用其paste()方法，即可获取剪贴板的内容了。<br>从文件获取比较简单，直接用python的open()就好了。</p>
-<h5 id="2-运行主程序"><a href="#2-运行主程序" class="headerlink" title="2.运行主程序"></a>2.运行主程序</h5><pre><code>让入口脚本调用主程序，把读取到的代码和插件的内容传递过去。
-</code></pre><h5 id="3-加载插件"><a href="#3-加载插件" class="headerlink" title="3.加载插件"></a>3.加载插件</h5><pre><code>主程序加载插件，借助BeautifulSoup来解析插件内容。
-插件有三种类型：
-    1.vulnfunc 只要发现在程序中使用了某函数，则程序认为存在风险。
-    2.regmatchall 根据插件给出的一条或者多条正则表达式，只有给出的正则全部能够匹配，才认为存在风险。
-    3.regmatchonce 给出的一条或者多条正则表达式，只要有一条可以匹配，就认为存在风险。
-    4.keywords 只要在代码中发现了关键词就认为有风险，简单粗暴。
-</code></pre><h5 id="4-返回结果"><a href="#4-返回结果" class="headerlink" title="4.返回结果"></a>4.返回结果</h5><pre><code>根据插件的指示来分析代码，并且返回结果。
-</code></pre><h5 id="5-格式化输出"><a href="#5-格式化输出" class="headerlink" title="5.格式化输出"></a>5.格式化输出</h5><pre><code>比较好看的把提示输出出来．
-</code></pre><h4 id="工具的升级思路"><a href="#工具的升级思路" class="headerlink" title="工具的升级思路"></a>工具的升级思路</h4><pre><code>如果要审计大量的代码，则加入多线程机制，每个线程是一个插件，遍历指定的文件夹，挨个审计即可．
-</code></pre><h4 id="源代码的github地址（我添加了尽量详尽的注释）"><a href="#源代码的github地址（我添加了尽量详尽的注释）" class="headerlink" title="源代码的github地址（我添加了尽量详尽的注释）"></a>源代码的github地址（我添加了尽量详尽的注释）</h4><pre><code>https://github.com/hl0rey/ADCode
-</code></pre><h4 id="使用测试"><a href="#使用测试" class="headerlink" title="使用测试"></a>使用测试</h4><p>用这个地址的题目来测试，这些题目我觉得很典型很不错．<br><a href="https://github.com/bowu678/php_bugs" target="_blank" rel="noopener">https://github.com/bowu678/php_bugs</a></p>
-<p>复制这个题目到剪贴板<br><img src="/2018/02/08/150行代码写成的可扩展的代码审计辅助工具/2.png" alt=""></p>
-<p>直接运行脚本<br><img src="/2018/02/08/150行代码写成的可扩展的代码审计辅助工具/3.png" alt=""></p>
-<p>输出内容如下<br><img src="/2018/02/08/150行代码写成的可扩展的代码审计辅助工具/4.png" alt=""></p>
-<h4 id="最后说两句"><a href="#最后说两句" class="headerlink" title="最后说两句"></a>最后说两句</h4><p>１．我不知道这能不能算个代码审计工具，我姑且这么叫它，请各位大神轻喷．<br>２．这个工具的功能强大与否在于插件写的怎么样，是不是准确的把代码的问题用正则概括出来是关键．<br>３．希望能起到抛砖引玉的作用，分享思路．<br>４．也希望刚学习ｐｙｔｈｏｎ的新手，根据这篇文档和代码的注释能够学到东西．<br>５．一切尽在代码中．</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/code/">code</a>
 	</div>
 
 

@@ -163,6 +163,152 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-burpsuite截获流量" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/02/02/burpsuite截获流量/" class="article-date">
+  	<time datetime="2018-02-02T04:18:03.000Z" itemprop="datePublished">2018-02-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/02/burpsuite截获流量/">
+        burpsuite截获流量
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>burpsuite的测试功能，主要体现在能灵活的修改重放http请求，其原理是将burpsuite做为代理，在客户端和服务器之间截断请求．默认不截获返回内容．（可以分析下httpproxy.pcapng，了解下http代理．）
+</code></pre><h3 id="https证书问题"><a href="#https证书问题" class="headerlink" title="https证书问题"></a>https证书问题</h3><p>web请求有http和https两种，https是经过ssl证书加密的http通信，burpsuite在中间做代理，则必须让客户端信任burp的证书．<br>浏览器设置代理指向burp监听的端口，然后访问 <a href="https://burp" target="_blank" rel="noopener">https://burp</a> 把证书导入就行了</p>
+<h3 id="客户端支持代理的解决方案"><a href="#客户端支持代理的解决方案" class="headerlink" title="客户端支持代理的解决方案"></a>客户端支持代理的解决方案</h3><p>直接设置．</p>
+<h5 id="可见代理，适用于支持代理的客户端"><a href="#可见代理，适用于支持代理的客户端" class="headerlink" title="可见代理，适用于支持代理的客户端"></a>可见代理，适用于支持代理的客户端</h5><h3 id="客户端不支持http代理的解决方案"><a href="#客户端不支持http代理的解决方案" class="headerlink" title="客户端不支持http代理的解决方案"></a>客户端不支持http代理的解决方案</h3><h4 id="dns欺骗"><a href="#dns欺骗" class="headerlink" title="dns欺骗"></a>dns欺骗</h4><p>通过修改客户端的hosts文或者其他办法把发向待测试的web应用程序的流量引到burpsuite上．这就需要burpsuite来判断如何转发流量．当在被测试的客户端与burp在同一机器时，为使其能正常访问，可设置burp内部的域名解析，来覆盖系统hosts文件的配置．<br>Hostname Resolution配置<br><img src="/2018/02/02/burpsuite截获流量/2.png" alt=""></p>
+<h4 id="不可见代理（透明代理）"><a href="#不可见代理（透明代理）" class="headerlink" title="不可见代理（透明代理）"></a>不可见代理（透明代理）</h4><p>代理服务器读取数据包的URL和host头，来判断客户端要访问的网站．<br>配置位置：<br>Proxy -&gt; Option -&gt; Proxy Listeners<br>点击 Edit 某个代理的配置，切换到 Request handing 标签页，勾选 Support invisible proxying，不能随便勾选，如果勾选了此项则不支持可见代理了．<br><img src="/2018/02/02/burpsuite截获流量/1.png" alt=""> </p>
+<h4 id="请求没有host头"><a href="#请求没有host头" class="headerlink" title="请求没有host头"></a>请求没有host头</h4><p>这种情况单靠不可见代理代理，也不能解决问题了．<br>这时候需要让burp自己来确定如何转发．在Request handing 标签页下来配置．<br>当客户端访问多个域名，多个待测服务器时，可以启动多个监听，运用linux子接口机制，让测试机有多个ip地址，来完成测试．</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>苑老师的表格<br><img src="/2018/02/02/burpsuite截获流量/3.png" alt=""> </p>
+<h4 id="linux-lo子接口配置（kali）"><a href="#linux-lo子接口配置（kali）" class="headerlink" title="linux lo子接口配置（kali）"></a>linux lo子接口配置（kali）</h4><pre><code>ifconfig lo:1 127.0.0.2 netmask 255.255.255.0
+ifconfig lo:1 up
+</code></pre><p>这样就创建好了<br>在burp添加代理的时候，就能看见这个地址了，然后在浏览器里直接配置代理就可以用了．<br><img src="/2018/02/02/burpsuite截获流量/4.png" alt=""> </p>
+<p>使用完毕，把接口关闭就恢复原样了．</p>
+<pre><code>ifconfig lo:1 down
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/burpsuite/">burpsuite</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tools/">tools</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-burpsuite优化配置" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/02/02/burpsuite优化配置/" class="article-date">
+  	<time datetime="2018-02-02T03:21:57.000Z" itemprop="datePublished">2018-02-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/02/burpsuite优化配置/">
+        burpsuite优化配置
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>burpsuite是由PortSwigger公司开发的一款功能强大的web应用程序测试工具．
+它不同于一般的web扫描器，它不局限与对网站的扫描，理论上，他可以测试一切通过http协议通讯的程序．    
+</code></pre><h3 id="安装设置中文字体"><a href="#安装设置中文字体" class="headerlink" title="安装设置中文字体"></a>安装设置中文字体</h3><ul>
+<li><h4 id="安装字体"><a href="#安装字体" class="headerlink" title="安装字体"></a>安装字体</h4>百度＂文泉驿微米黑＂下载一个（微软雅黑因该也可以，文泉驿是苑老师推荐的），扔到home目录下的.font目录里就行了．<br><img src="/2018/02/02/burpsuite优化配置/2.png" alt=""> </li>
+<li><h4 id="设置中文字体"><a href="#设置中文字体" class="headerlink" title="设置中文字体"></a>设置中文字体</h4>设置的位置：User options -&gt; Dispaly -&gt; HTTP Message Display<br>点击　change font … 按钮　修改　Font 属性，选择要设置的字体即可．<br><img src="/2018/02/02/burpsuite优化配置/1.png" alt=""> </li>
+</ul>
+<h3 id="设置较大的JVM内存"><a href="#设置较大的JVM内存" class="headerlink" title="设置较大的JVM内存"></a>设置较大的JVM内存</h3><p>burpsuite是个java程序，如果安装了jre就能顺利运行了，但是由于burpsuite是个做渗透测试的工具，免不了发送大量请求，那么默认的64M内存也就满足不了需求了．所以就要在java在创建虚拟机的时候分配较大的内存，命令如下：</p>
+<pre><code>java -jar -Xmx2048M  /your_burpsuite_path/burpsuite.jar
+</code></pre><p>其中参数-Xmx指定JVM可用的最大内存，单位可以是M，也可以是G，如果是G为单位的话，则脚本内容为：</p>
+<pre><code>java -jar -Xmx2G  /your_burpsuite_path/burpsuite.jar
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/burpsuite/">burpsuite</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tools/">tools</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-nmap-7-6-手册" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
