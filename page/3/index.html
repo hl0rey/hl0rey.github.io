@@ -163,112 +163,6 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-隐式地调用系统API" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/02/10/隐式地调用系统API/" class="article-date">
-  	<time datetime="2018-02-10T11:55:54.000Z" itemprop="datePublished">2018-02-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/10/隐式地调用系统API/">
-        隐式地调用系统API
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="隐藏调用系统API"><a href="#隐藏调用系统API" class="headerlink" title="隐藏调用系统API"></a>隐藏调用系统API</h4><pre><code>如果直接调用API，在将程序逆向的时候就会直接显示出被调用的函数的名字，所以根据程序的功能，结合调试器给出的提示很容易的就能定位关键代码，从而破解程序，所以程序员就采取一定的办法来隐式地调用系统API．
-</code></pre><ul>
-<li><p>下边这种办法比较简单，毕竟还是可以通过LoadlLibrary(),GetProcAddress()这俩函数来判断程序用了什么函数，通过在GetProcessAddress上下一个条件断点（一般返回值放在EAX，参数直接推进栈），来记录，它获取过什么函数的地址即可．</p>
-</li>
-<li><p>示例代码：</p>
-<pre><code>TCHAR DllName[MAX_PATH]=&quot;user32.dll&quot;;
-TCHAR ImportedFunctionName[MAX_PATH]=&quot;MessageBoxA&quot;;
-HANDLE hDllModule=NULL;
-DWORD dwFunctionAddress=0;
-
-hDllModule=LoadLibrary(DllName);    
-(FARPROC)dwFunctionAddress=GetProcAddress(hDllModule,ImportedFunctionName);
-((FARPROC)dwFunctionAddress)(NULL,OutputInfor,&quot;Info&quot;,MB_OK | MB_ICONINFORMATION);
-</code></pre></li>
-<li><p>手动实现call指令方式，让调试器认不出call，如果开发者所有的API的这么调用，也算有恒心有毅力的了，放过他吧．</p>
-</li>
-<li><p>实例代码：</p>
-<pre><code>_asm
-{
-            push MB_OK
-            push StringAddress
-            mov eax,0
-            push eax
-            push eax
-
-            mov eax,offset Label
-            push eax
-            jmp [dwFunctionAddress]                //call MessageBox()
-label:    
-            nop
-            nop
-}
-</code></pre></li>
-</ul>
-<p>以上代码段中的</p>
-<pre><code>mov eax,offset Label001
-push eax
-jmp [dwFunctionAddress]       
-</code></pre><p>实现了CALL 指令的功能，且功能有所增强，如果使用CALL 指令，API函数的返回地址必定是紧接CALL 指令的下一条指令的地址。<br>而此代码段可返回到任意指定地址，形成更具迷惑性的代码。</p>
-<ul>
-<li>动态解密函数名，感觉应该不如第二有迷惑性，找到动态解密函数的代码段即可了．<br>代码实例不好找</li>
-</ul>
-<p>参考链接：</p>
-<pre><code>https://bbs.pediy.com/thread-73398.htm
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API/">API</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/reverse/">reverse</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
     <article id="post-反调试之检测进程名" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1373,6 +1267,77 @@ http    192.168.39.93    8080
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/proxy/">proxy</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tools/">tools</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-burpsuite-Target Spider Scanner Repeater Decoder Comparer模块" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/02/03/burpsuite-Target Spider Scanner Repeater Decoder Comparer模块/" class="article-date">
+  	<time datetime="2018-02-03T08:42:20.000Z" itemprop="datePublished">2018-02-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/03/burpsuite-Target Spider Scanner Repeater Decoder Comparer模块/">
+        burpsuite-Target Spider Scanner Repeater Decoder Comparer模块
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Target模块"><a href="#Target模块" class="headerlink" title="Target模块"></a>Target模块</h3><p>该模块下有两个标签页,一个SIte map和Scope，就是字面意思．<br>作用是来控制测试的范围，清楚干扰信息．有反选功能和正则替换功能．</p>
+<h3 id="Spider模块"><a href="#Spider模块" class="headerlink" title="Spider模块"></a>Spider模块</h3><p>burp爬网的模块，可以直接在Target里点右键爬行某个站点，该模块和一般的爬网工具类似，有一些通用的配置．</p>
+<h3 id="Scanner模块"><a href="#Scanner模块" class="headerlink" title="Scanner模块"></a>Scanner模块</h3><p>有个被动扫描值得注意，在挂着burp的代理浏览网站的时候就会检测漏洞，在Target模块底下会显示结果，看颜色能看出危害程度．</p>
+<h3 id="Repeater模块"><a href="#Repeater模块" class="headerlink" title="Repeater模块"></a>Repeater模块</h3><p>重放http请求的模块，支持Hex编辑．<br>右键菜单值得注意的功能有</p>
+<pre><code>Change request method
+Change body encoding
+Copy as curl command
+</code></pre><h3 id="Decoder模块"><a href="#Decoder模块" class="headerlink" title="Decoder模块"></a>Decoder模块</h3><p>编码解码的模块</p>
+<h3 id="Comparer模块"><a href="#Comparer模块" class="headerlink" title="Comparer模块"></a>Comparer模块</h3><p>对比http请求的模块</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/burpsuite/">burpsuite</a></li></ul>
 	</div>
 
       
